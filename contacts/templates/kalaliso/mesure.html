@@ -6,55 +6,49 @@
 {% block content %}
 
 <fieldset>
+     <br />
     <div class="row">
     <div>
-{#    <div class="col-sm-6 offset-5">#}
         <h3 class="text-center"> MESURE CLIENT</h3>
         <form action="{% url 'mesure' %}" method="post">
         {% csrf_token %}
-        <div class="row offset-3">
-            <div class="form-group col-sm-3 mb-0">
+        <div class="row">
+            <div class="form-group col-sm-6 mb-0">
                 {{ form.person_mesure|as_crispy_field }}
             </div>
-            <div class="form-group col-sm-3 mb-0">
+            <div class="form-group col-sm-6 mb-0">
                 {{ form.coude|as_crispy_field }}
             </div>
-            <div class=" form-group col-sm-3 mb-0">
+            <div class=" form-group col-sm-6 mb-0">
                 {{ form.epaule|as_crispy_field }}
             </div>
-            <div class="form-group col-sm-3 mb-0">
+            <div class="form-group col-sm-6 mb-0">
                 {{ form.manche|as_crispy_field }}
             </div>
-        </div>
-
-       <div class="row offset-3">
-            <div class="form-group col-sm-3 mb-0">
+            <div class="form-group col-sm-6 mb-0">
                  {{ form.tour_manche|as_crispy_field }}
             </div>
-            <div class=" form-group col-sm-3 mb-0">
+            <div class=" form-group col-sm-6 mb-0">
                 {{ form.poitrine|as_crispy_field }}
             </div>
-            <div class="form-group col-sm-3 mb-0">
+            <div class="form-group col-sm-6 mb-0">
                 {{ form.longueur_boubou|as_crispy_field }}
             </div>
-        </div>
-
-      <div class="row offset-3">
-            <div class="form-group col-sm-3 mb-0">
+            <div class="form-group col-sm-6 mb-0">
                  {{ form.longueur_patanlon|as_crispy_field }}
             </div>
-            <div class=" form-group col-sm-3 mb-0">
+            <div class=" form-group col-sm-6 mb-0">
                {{ form.ceinture|as_crispy_field }}
             </div>
-            <div class="form-group col-sm-3 mb-0">
+            <div class="form-group col-sm-6 mb-0">
                 {{ form.patte|as_crispy_field }}
             </div>
-        </div><br />
+        </div>
 
        <div class="row offset-4">
             <div class="col-12 justify-content-center">
                      <input type="submit" value="Submit" class="btn btn-primary col-md-4">
-                     <input type="submit" value="cancel" class="btn btn-danger col-md-4">
+                     <input type="submit" value="Reset" class="btn btn-danger col-md-4">
            </div>
 
         </div>

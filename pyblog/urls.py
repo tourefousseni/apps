@@ -24,9 +24,8 @@ urlpatterns = [
       path('edit/profile/', views.edit_profile, name='edit_profile'),
       path('change/password/', views.change_password, name='change_password'),
 
-
       path('person/', views.person, name='person'),
-      path('person/list/<int:person_id>/', views.person_list, name='person_list'),
+      path('person/<int:person_id>/', views.person_list, name='person_list'),
 
       path('order/', views.order, name='order'), path('order_items/', views.order_items, name='order_items'),
       path('order/list/<int:order_id>/', views.order_list, name='order_list'),
@@ -40,7 +39,6 @@ urlpatterns = [
       path('payment/', views.payment, name='payment'),
       path('payment/list/<int:payment_id>/', views.payment_list, name='payment_list'),
 
-
      # PARTY MAPS LOCALISATION #
       path('maps/', views.maps, name='maps'),
       path('region/', views.region, name='region'),
@@ -52,7 +50,6 @@ urlpatterns = [
 ]
 if settings.DEBUG:
       urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
 
 # =================================
 #         ULRS KALALISO

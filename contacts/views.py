@@ -150,7 +150,7 @@ def image_upload_view(request, **kwargs):
 
 
 
-def person(request,):
+def person(request):
     if request.method == 'POST':
         form = PersonForm(request.POST)
         if form.is_valid():
@@ -158,14 +158,11 @@ def person(request,):
             return HttpResponseRedirect(reverse('mesure'))
     else:
        form=PersonForm()
-
     return render(request, 'kalaliso/person.html', {'form': form,})
 
-
 def person_list(request, person_id):
-    qs = Person.objects.all().order_by('-created_at')
-    context = {'person_list': qs,}
-
+    lp = get_object_or_404(Person, pk=person_id)
+    context     = {'list_person': lp}
     return render(request, 'kalaliso/person_list.html', context)
 
 

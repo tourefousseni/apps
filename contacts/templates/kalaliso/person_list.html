@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
-{% block title %} CONTENU CLIENTS {% endblock %}
+{% block title %} LISTE {% endblock %}
+
+
 
 {% block content %}
  <div class="wy-text-left offset-1">
@@ -23,10 +25,10 @@
       </thead>
 
       <tbody>
-             {% for person in person_list %}
-                           <tr>
-                       <td><a href="{% url 'person_list' person.pk %}"></a></td>
-<!--                                <td><input type="checkbox" class="checkthis" /></td>-->
+             {% for person in list_person.all %}
+                     <tr>
+                         <td><a href="{% url 'person_list' person.id %}"></a></td>
+<!--                            <td><input type="checkbox" class="checkthis" /></td>-->
                                 <td>{{ person.status }}</td>
                                 <td>{{ person.genre }}</td>
                                 <td>{{ person.code_person }}</td>

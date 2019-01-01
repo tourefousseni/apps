@@ -9,7 +9,10 @@ ALTER ROLE myprojectuser SET timezone TO 'UTC';
 GRANT ALL PRIVILEGES ON DATABASE plateform TO myprojectuser;
 \c plateform;
 create extension postgis;
+python manage.py makemigrations;
+python manage.py migrate;
+python manage.py createsuperuser;
 
-python manage.py dumpdata --format=json contacts > /tmp/data2.json
-python manage.py loaddata  /tmp/data2.json
+python manage.py dumpdata --format=json contacts > /Users/toure/PycharmProjects/douniyasoba/tmp/data1.json
+python manage.py loaddata  /Users/toure/PycharmProjects/douniyasoba/tmp/data1.json
 

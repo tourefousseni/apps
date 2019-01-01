@@ -92,16 +92,16 @@ def change_password(request):
 # def CreatePostView(CreateView):
 #     model = Post
 #     form_class = PostForm
-#     template_name = 'kalalso/post.html'
-#     # success_url = reverse_lazy ('kalalso/homepage.html')
-#     return render(CreateView, 'kalalso/post.html')
+#     template_name = 'kalaliso/post.html'
+#     # success_url = reverse_lazy ('kalaliso/homepage.html')
+#     return render(CreateView, 'kalaliso/post.html')
 #
 # def HomePageView(ListView):
 #     qp = Post.objects.all()
 #     model = Post
 #     context = { 'homepage': qp}
-#     # template_name =  'kalalso/homepage.html'
-#     return render(ListView, 'kalalso/homepage.html', context)
+#     # template_name =  'kalaliso/homepage.html'
+#     return render(ListView, 'kalaliso/homepage.html', context)
 
 #     global image
 #     if request.method == "POST":
@@ -109,11 +109,11 @@ def change_password(request):
 #         if form.is_valid():
 #             form.save()
 #             obj=form.instance
-#             return render(request,'kalalso/homepage.html', {"obj":obj})
+#             return render(request,'kalaliso/homepage.html', {"obj":obj})
 #     else:
 #        form=PostForm()
 #        image=Post.objects.all()
-#     return render(request, 'kalalso/homepage.html', {"image":image, "form":form})
+#     return render(request, 'kalaliso/homepage.html', {"image":image, "form":form})
 
 
 def homepage(request,):
@@ -123,15 +123,15 @@ def homepage(request,):
         'p': p,
         'o': o
     }
-    return render(request, 'kalalso/homepage.html', context)
+    return render(request, 'kalaliso/homepage.html', context)
 
 
-def vuesimg(request, upload_id):
-    images = get_object_or_404(Image, id=1)
+# def vuesimg(request, upload_id):
+    # images = get_object_or_404(Image, id=1)
     # images = Product_image.objects.all()
-    context = {'images':images }
-    # return HttpResponseRedirect(reverse('kalalso/detail_image.html', context))
-    return HttpResponseRedirect('kalalso/homepage.html', context)
+    # context = {'images':images }
+    # return HttpResponseRedirect(reverse('kalaliso/detail_image.html', context))
+    # return HttpResponseRedirect('kalaliso/homepage.html', context)
 # return HttpResponseRedirect(reverse('app_blog:blog_detail',args=[pk]))
 
 
@@ -142,12 +142,11 @@ def image_upload_view(request, **kwargs):
         if form.is_valid():
             form.save()
             obj=form.instance
-            return render(request, 'kalalso/homepage.html', {'obj': obj})
+            return render(request, 'kalaliso/homepage.html', {'obj': obj})
     else:
         form = ImageForm()
     img = Image.objects.all()
-    return render(request, 'kalalso/homepage.html', {'img': img, 'form': form})
-
+    return render(request, 'kalaliso/homepage.html', {'img': img, 'form': form})
 
 
 def person(request):
@@ -158,34 +157,36 @@ def person(request):
             return HttpResponseRedirect(reverse('mesure'))
     else:
        form=PersonForm()
-    return render(request, 'kalalso/person.html', {'form': form,})
+    return render(request, 'kalaliso/person.html', {'form': form,})
 
 def list(request, person_id):
     list_person = get_object_or_404(Person, pk=person_id)
     # context     = {'list_person': lp}
-    return render(request, 'kalalso/person_list.html', {'list_person': list_person})
+    return render(request, 'kalaliso/person_list.html', {'list_person': list_person})
 
 def detail_person(request, person_id):
     detail = get_object_or_404(Person, pk=person_id)
-    return render(request, 'kalalso/detail_person.html', {'detail': detail})
+    return render(request, 'kalaliso/detail_person.html', {'detail': detail})
 
 
+# def product(request):
+#     if request.method == 'POST':
+#         form = ProductForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return HttpResponseRedirect(reverse('order'))
+#     else:
+#        form = ProductForm()
+#     return render(request, 'kalaliso/product.html', {'form': form})
 def product(request):
-    if request.method == 'POST':
-        form = ProductForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('order'))
-    else:
-       form = ProductForm()
-    return render(request, 'kalalso/product.html', {'form': form})
-
+    products = Product.objects
+    return render(request, 'kalaliso/product.html', {'products':products})
 
 def product_list(request, product_id):
     qs = Product.objects.all()
     context = {'product_list': qs,}
 
-    return render(request, 'kalalso/product_list.html', context)
+    return render(request, 'kalaliso/product_list.html', context)
 
 
 def order(request):
@@ -196,14 +197,15 @@ def order(request):
             return HttpResponseRedirect(reverse('order_detail'))
     else:
         form=OrderForm()
-    return render(request, 'kalalso/order.html', {'form': form})
+    return render(request, 'kalaliso/order.html', {'form': form})
 
 
 def order_list(request, order_id):
-    qs = Order.objects.all().order_by()
+    # qs = Order.objects.all().order_by()
+    qs = get_object_or_404(Order, pk=order_id )
     context = {'order_list': qs,}
 
-    return render(request, 'kalalso/order_list.html', context)
+    return render(request, 'kalaliso/order_list.html', context)
 
 
 def order_items(request, ):
@@ -214,14 +216,14 @@ def order_items(request, ):
             return HttpResponseRedirect(reverse('order_items'))
     else:
         form = Order_ItemsForm()
-    return render(request, 'kalalso/order_items.html', {'form': form})
+    return render(request, 'kalaliso/order_items.html', {'form': form})
 
 def orderdetail_detail(request, orderdetail_id):
 
     qs = Order_Items.objects.all().order_by(Order)
     context = {'orderdetail': qs, }
 
-    return render(request, 'kalalso/orderdetail_detail.html', context)
+    return render(request, 'kalaliso/orderdetail_detail.html', context)
 
 def mesure(request,):
     if request.method == 'POST':
@@ -231,7 +233,7 @@ def mesure(request,):
              return HttpResponseRedirect(reverse('Order'))
     else:
        form = MesureForm()
-    return render(request, 'kalalso/mesure.html', {'form': form})
+    return render(request, 'kalaliso/mesure.html', {'form': form})
 
 # research for OVER STACK FLOW this Bug
 
@@ -242,7 +244,7 @@ def mesure_list(request, mesure_id):
 
     context = {'mesure_list': qs,}
 
-    return render(request, 'kalalso/mesure_list.html', context)
+    return render(request, 'kalaliso/mesure_list.html', context)
 
 
 def payment(request,):
@@ -253,14 +255,14 @@ def payment(request,):
               return HttpResponseRedirect(reverse('Order'))
         else:
             form = PaymentForm()
-        return render(request, 'kalalso/payment.html', {'form': form})
+        return render(request, 'kalaliso/payment.html', {'form': form})
 
 def payment_list(request, payment_id):
     qs = Payment.objects.all()
 
     context = {'payment_list': qs, }
 
-    return render(request, 'kalalso/payment_list.html', context)
+    return render(request, 'kalaliso/payment_list.html', context)
 
 
 
@@ -310,7 +312,7 @@ def village(request):
 
 
 def profile(request):
-    return render(request, 'kalalso/profile.html', {})
+    return render(request, 'kalaliso/profile.html', {})
 
 # ===========================
 #      VIEWS KALALISO

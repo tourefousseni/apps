@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+          <h1 class="text-center"> Album for all photos </h1>
+          {% for product in products.all %}
+
+                  {{ product.name }}
+                  {{ product.price }}
+                  {{ product.code_product }}
+                  {{ product.description }}
+                  {{ product.create_at }}
+
+          {% endfor %}
+
+{% endblock  %}

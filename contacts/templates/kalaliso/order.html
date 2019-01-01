@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+<div class="orderform">
+          <div class="col-lg-8 offset-md-1">
+               {% crispy form %}
+          </div>
+         <a href="{% url 'order_list' order.id %}">List Commande</a>
+</div>
+<script>
+    $(document).ready(() => {
+        $('#Reset').click(function(event) {
+            event.preventDefault();
+            $('#orderform').clearForm();
+        });
+    });
+</script>
+{% endblock  %}

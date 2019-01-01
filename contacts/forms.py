@@ -84,38 +84,38 @@ class MesureForm(forms.ModelForm):
         self.helper = FormHelper(self)
 
 
-class ProductForm(forms.ModelForm):
-    class Meta:
-         model = Product
-         template_name = 'kalalso/product.html'
-         fields = ['name', 'code_product', 'description', 'price', 'create_at']
-         exclude = ['create_at']
+# class ProductForm(forms.ModelForm):
+#     class Meta:
+#          model = Product
+#          template_name = 'kalaliso/product.html'
+#          fields = ['name', 'code_product','image', 'description', 'price', 'create_at']
+#          exclude = ['create_at']
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_method = 'post'
-        self.helper.layout = Layout(
-            Row(
-                Column('name', ),
-                Column('price', ),
-                Column('description', ),
-            ),
-            Row(
-                Column('code_product', ),
-                # Column('create_at', ),
-            ),
-
-            FormActions(
-                Submit('save_product', 'Save'),
-                Submit('cancel', 'Cancel', css_class='btn btn-danger')
-            ),
-        )
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.helper = FormHelper()
+    #     self.helper.form_method = 'post'
+    #     self.helper.layout = Layout(
+    #         Row(
+    #             Column('name', ),
+    #             Column('price', ),
+    #             Column('description', ),
+    #         ),
+    #         Row(
+    #             Column('code_product', ),
+    #             # Column('create_at', ),
+    #         ),
+    #
+    #         FormActions(
+    #             Submit('save_product', 'Save'),
+    #             Submit('cancel', 'Cancel', css_class='btn btn-danger')
+    #         ),
+    #     )
 
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        template_name = 'kalalso/order.html'
+        template_name = 'kalaliso/order.html'
         fields = ['person_id',
                   'reception',
                   'order_items',
@@ -192,7 +192,7 @@ class Order_ItemsForm(forms.ModelForm):
 class PaymentForm(forms.ModelForm):
     class Meta:
         model = Payment
-        template_name = 'kalalso/payment.html'
+        template_name = 'kalaliso/payment.html'
         fields = ['mode_payment',
                   'code_payment',
                   'mount',

@@ -409,63 +409,52 @@ class cotisation(models.Model):
 
 class Region(models.Model):
     id = models.AutoField(primary_key=True)
-    code_reg = models.PositiveIntegerField(null=True, blank=True)
+    id_reg = models.IntegerField(null=True, blank=True)
     name_reg = models.CharField(max_length=30, null=True, blank=True)
-    longitude = models.CharField(max_length=30, null=True, blank=True)
-    latitude = models.CharField(max_length=30, null=True, blank=True)
 
     def __str__(self):
-        return'{} {}'.format(self.code_reg, self.name_reg)
+        return'{}'.format(self.name_reg)
 
 
 class Cercle(models.Model):
     id = models.AutoField(primary_key=True)
-    id_reg = models.ForeignKey('Region', on_delete=models.CASCADE)
-    code_cer = models.PositiveIntegerField(null=True, blank=True)
+    id_cer = models.IntegerField(null=True, blank=True)
     name_cer = models.CharField(max_length=30, null=True, blank=True)
-    # reg_nom = models.ForeignKey('Region', on_delete=models.CASCADE)
-    longitude = models.CharField(max_length=30, null=True, blank=True)
-    latitude = models.CharField(max_length=30, null=True, blank=True)
-
+    id_region = models.ForeignKey('Region', on_delete=models.CASCADE)
     def __str__(self):
-        return '{} {}'.format(self.name_cer, self.code_cer)
+        return '{}'.format(self.name_cer)
 
-class Arrondissement(models.Model):
-    id = models.AutoField(primary_key=True)
-    id_cer = models.ForeignKey('Cercle', on_delete=models.CASCADE)
-    code_arr = models.PositiveIntegerField(null=True, blank=True)
-    name_arr = models.CharField(max_length=30, null=True, blank=True)
-    # cer_nom = models.ForeignKey('Cercle', on_delete=models.CASCADE)
-    longitude = models.CharField(max_length=30, null=True, blank=True)
-    latitude = models.CharField(max_length=30, null=True, blank=True)
-
-    def __str__(self):
-        return '{} {}'.format(self.name_arr, self.code_arr)
+# class Arrondissement(models.Model):
+#     id = models.AutoField(primary_key=True)
+#     id_cer = models.ForeignKey('Cercle', on_delete=models.CASCADE)
+#     code_arr = models.PositiveIntegerField(null=True, blank=True)
+#     name_arr = models.CharField(max_length=30, null=True, blank=True)
+#     # cer_nom = models.ForeignKey('Cercle', on_delete=models.CASCADE)
+#     longitude = models.CharField(max_length=30, null=True, blank=True)
+#     latitude = models.CharField(max_length=30, null=True, blank=True)
+#
+#     def __str__(self):
+#         return '{} {}'.format(self.name_arr, self.code_arr)
 
 class Commune(models.Model):
     id = models.AutoField(primary_key=True)
-    id_arr = models.ForeignKey('Arrondissement', on_delete=models.CASCADE)
+    id_com = models.IntegerField(null=True, blank=True)
     name_com = models.CharField(max_length=30, null=True, blank=True)
-    # arr_nom = models.ForeignKey('Arrondissement', on_delete=models.CASCADE)
-    code_com = models.PositiveIntegerField(null=True, blank=True)
-    longitude = models.CharField(max_length=30, null=True, blank=True)
-    latitude = models.CharField(max_length=30, null=True, blank=True)
+    id_cercle = models.ForeignKey('Cercle', on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{} {}'.format(self.name_com, self.code_com)
+        return '{}'.format(self.name_com)
 
 class Village(models.Model):
     id = models.AutoField(primary_key=True)
-    id_com = models.ForeignKey('Commune', on_delete=models.CASCADE)
-    code_vill = models.PositiveIntegerField(null=True, blank=True)
-    name_vill = models.CharField(max_length=30, null=True, blank=True)
+    code_village = models.PositiveIntegerField(null=True, blank=True)
+    name_village = models.CharField(max_length=30, null=True, blank=True)
     longitude = models.CharField(max_length=30, null=True, blank=True)
     latitude = models.CharField(max_length=30, null=True, blank=True)
-
-    # vill_nom = models.ForeignKey('Commune', on_delete=models.CASCADE)
+    id_commune = models.ForeignKey('Commune', on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{} {}'.format(self.name_vill, self.code_vill)
+        return '{}'.format(self.name_village)
 
 # ==============================================
 #                  MODELE LOCALISATION

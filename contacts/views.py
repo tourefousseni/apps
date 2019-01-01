@@ -40,7 +40,8 @@ from django.views.generic import FormView
 from django.template import context
 from django.template import defaulttags
 from contacts.models import Contact, Parcel, Person, Mesure, \
-                            Order, Product, Payment, OrderDetail, Region, Cercle, Arrondissement, Commune, Village
+                            Order, Product, Payment, OrderDetail, Region, Cercle, Commune, Village
+
 
 from .forms import SignUpForm, \
                    EditProfileForm, \

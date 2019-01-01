@@ -40,8 +40,8 @@ from django.views.generic import FormView
 from django.template import context
 from django.template import defaulttags
 from contacts.models import Contact, Parcel, Person, Mesure, \
-                            Order, Product, Payment, OrderDetail, Region
-# \Region, Cercle, Arrondissement, Commune, village
+                            Order, Product, Payment, OrderDetail, Region, Cercle, Arrondissement, Commune, Village
+
 from .forms import SignUpForm, \
                    EditProfileForm, \
                    ContactForm, \
@@ -518,6 +518,32 @@ def cotisation(request):
     return None
 
 
+
+# ===========================
+#      VIEWS LOCALISATION
+#          STARTING
+# ===========================
 def region(request):
     qs = Region.objects.all()
     return render(region, 'kalaliso/region.html')
+
+
+def commune(request):
+    return None
+
+
+def arrondissement(request):
+    return None
+
+
+def cercle(request):
+    return None
+
+
+def village(request):
+    return None
+
+# ===========================
+#      VIEWS LOCALISATION
+#          END
+# ===========================

@@ -418,7 +418,7 @@ def orderdetail_detail(request, orderdetail_id):
 
     return render(request, 'kalaliso/orderdetail_detail.html', context)
 
-def mesure(request,  id_person_mesure_id, *args, **kwargs):
+def mesure(request, *args, **kwargs):
     if request.method == 'POST':
             id = request.POST.get("id")
             coud = request.POST.get("coude")

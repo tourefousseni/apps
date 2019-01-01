@@ -330,6 +330,7 @@ def person_detail(request, person_id):
 
 
 def product(request):
+
     if request.method == 'POST':
             pri = request.POST.get("price")
             na = request.POST.get("name")
@@ -379,7 +380,7 @@ def order(request):
 
 
 def order_detail(request, order_id):
-    qs = Order.objects.all()
+    qs = Order.objects.all().order_by(-order)
 
     context = {'detail_order': qs,}
 
@@ -412,12 +413,12 @@ def orderdetail(request):
 #
 def orderdetail_detail(request, orderdetail_id):
 
-    qs = OrderDetail.objects.all()
+    qs = OrderDetail.objects.all().order_by(Order)
     context = {'orderdetail': qs, }
 
     return render(request, 'kalaliso/orderdetail_detail.html', context)
 
-def mesure(request, *args, **kwargs):
+def mesure(request,  id_person_mesure_id, *args, **kwargs):
     if request.method == 'POST':
             id = request.POST.get("id")
             coud = request.POST.get("coude")

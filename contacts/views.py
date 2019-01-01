@@ -39,7 +39,9 @@ from django.http import HttpResponseRedirect
 from django.views.generic import FormView
 from django.template import context
 from django.template import defaulttags
-from contacts.models import Contact, Parcel, Person, Mesure, Order, Product, Payment, OrderDetail
+from contacts.models import Contact, Parcel, Person, Mesure, \
+                            Order, Product, Payment, OrderDetail
+# \Region, Cercle, Arrondissement, Commune, village
 from .forms import SignUpForm, \
                    EditProfileForm, \
                    ContactForm, \
@@ -431,7 +433,8 @@ def mesure(request, *args, **kwargs):
             pat = request.POST.get("patte")
             cre = request.POST.get('created_at')
             upd = request.POST.get('update_at')
-            pmid = request.POST.get('person_mesure_id')
+            # pmid = request.POST.get('person_mesure_id'
+            #                         )
 
             data = Mesure(id=id,
                           coude=coud,
@@ -448,7 +451,7 @@ def mesure(request, *args, **kwargs):
                           patte=pat,
                           update_at=upd,
                           created_at=cre,
-                          person_mesure_id=pmid,
+                          # person_mesure_id=pmid,
                           )
             data.save()
 
@@ -457,6 +460,9 @@ def mesure(request, *args, **kwargs):
        form = MesureForm()
     return render(request, 'kalaliso/mesure.html', {'form': form})
 
+# research for OVER STACK FLOW this Bug
+
+# response = wrapped_callback(request, *callback_args, **callback_kwargs)
 
 def mesure_detail(request, mesure_id):
     qs = Mesure.objects.all()

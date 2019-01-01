@@ -97,4 +97,20 @@ urlpatterns = [
       #         ULRS MEMBER
       #             END
       # =================================
+
+
+      # =================================
+      #         ULRS LOCALISATION
+      #             START
+      # =================================
+      path('region/', views.region, name='region'),
+      path('cercle/', views.cercle, name='cercle'),
+      path('arrondissement/', views.arrondissement, name='arrondissement'),
+      path('commune/', views.commune, name='commune'),
+      path('village/', views.village, name='village'),
+
+      # =================================
+      #         ULRS LOCALISATION
+      #             END
+      # =================================
 ]

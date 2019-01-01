@@ -248,7 +248,7 @@ pre_save.connect(pre_save_produit_id, sender=Product)
 class Album(models.Model):
     TYPE = (
         ('Broderie', 'Broderie'),
-        ('simple', 'SIMPLE'),
+        ('Couture simple', 'COUTURE SIMPLE'),
         ('Couture a main', 'COUTURE A MAIN'),
         ('Finition', 'FINITION'),)
 
@@ -396,5 +396,63 @@ class cotisation(models.Model):
 
 # ==============================================
 #                  MODELE members
+#                        END
+# ==============================================
+
+
+
+# ==============================================
+
+#                  MODELE LOCALISATION
+#                        START
+# ==============================================
+
+class Region(models.Model):
+    id = models.AutoField(primary_key=True)
+    nom = models.CharField(max_length=30, null=True, blank=True)
+    code_reference_reg = models.PositiveIntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return'{} {}'.format(self.nom, self.code_reference_reg)
+
+
+class Cercle(models.Model):
+    id = models.AutoField(primary_key=True)
+    nom = models.CharField(max_length=30, null=True, blank=True)
+    reg_nom = models.ForeignKey('Region', on_delete=models.CASCADE)
+    code_reference_cer = models.PositiveIntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return '{} {}'.format(self.reg_nom, self.code_reference_cer)
+
+class Arrondissement(models.Model):
+    id = models.AutoField(primary_key=True)
+    nom = models.CharField(max_length=30, null=True, blank=True)
+    cer_nom = models.ForeignKey('Cercle', on_delete=models.CASCADE)
+    code_reference_cer = models.PositiveIntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return '{} {}'.format(self.cer_nom, self.code_reference_cer)
+
+class Commune(models.Model):
+    id = models.AutoField(primary_key=True)
+    nom = models.CharField(max_length=30, null=True, blank=True)
+    arr_nom = models.ForeignKey('Arrondissement', on_delete=models.CASCADE)
+    code_reference_com = models.PositiveIntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return '{} {}'.format(self.arr_nom, self.code_reference_com)
+
+class Village(models.Model):
+    id = models.AutoField(primary_key=True)
+    nom = models.CharField(max_length=30, null=True, blank=True)
+    vill_nom = models.ForeignKey('Commune', on_delete=models.CASCADE)
+    code_reference_vill = models.PositiveIntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return '{} {}'.format(self.vill_nom, self.code_reference_vill)
+
+# ==============================================
+#                  MODELE LOCALISATION
 #                        END
 # ==============================================

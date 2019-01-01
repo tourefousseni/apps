@@ -90,8 +90,8 @@ class Droit(models.Model):
 
 class Recette_fiscale(models.Model):
     id = models.AutoField(primary_key=True)
-    contact_id= models.ForeignKey('Contact', on_delete=models.CASCADE, verbose_name='TITULAIRE')
-    parcel_id= models.ForeignKey('Parcel', on_delete=models.CASCADE, verbose_name='Parcelle concerne')
+    contact_id = models.ForeignKey('Contact', on_delete=models.CASCADE, verbose_name='TITULAIRE')
+    parcel_id = models.ForeignKey('Parcel', on_delete=models.CASCADE, verbose_name='Parcelle concerne')
     code_fiscale = models.CharField(max_length=30,)
     impot = models.CharField(max_length=30,)
     taxes = models.CharField(max_length=30,)

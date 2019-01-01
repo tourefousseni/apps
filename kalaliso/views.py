@@ -41,6 +41,43 @@ def mesure(request):
        form = MesureForm()
     return render(request, 'kalaliso/mesure.html', {'form': form})
 
+def list(request):
+    list = Mesure.objects.all().order_by('-id')
+    context = {
+        'list': list, }
+    return render(request, 'kalaliso/list.html', context)
+
+# def mesure_custom(request, mesure_id,):
+#     qs = Mesure.objects.get(pk=mesure_id)
+#     context = {
+#         'mesure_list': qs, }
+#     return render(request, 'kalaliso/mesure_custom.html', context)
+
+def mesure_detail(request, id):
+    mesure_detail = Mesure.objects.get(pk=id)
+    # list_person = Person.objects.get(pk=id)
+    context = {
+        'mesure_detail': mesure_detail,
+        # 'list_person': list_person,
+    }
+    return render(request, 'kalaliso/mesure_detail.html', context)
+
+def album(request):
+    album = Album.objects.all()
+
+    context = {
+        'img': album,
+    }
+    return render(request, 'kalaliso/album.html', context)
+
+def annonce(request):
+    annonce = Annonce.objects.all()
+
+    context = {
+        'ann': annonce,
+    }
+    return render(request, 'kalaliso/annonce.html', context)
+
 
 def search_mesure(request):
     search = request.GET.get('search')
@@ -242,29 +279,6 @@ def orderdetail_detail(request,):
 
 # research for OVER STACK FLOW this Bug
 # response = wrapped_callback(request, *callback_args, **callback_kwargs)
-
-
-def list(request):
-    list = Mesure.objects.all().order_by('-id')
-    context = {
-        'list': list, }
-    return render(request, 'kalaliso/list.html', context)
-
-# def mesure_custom(request, mesure_id,):
-#     qs = Mesure.objects.get(pk=mesure_id)
-#     context = {
-#         'mesure_list': qs, }
-#     return render(request, 'kalaliso/mesure_custom.html', context)
-
-def mesure_detail(request, id):
-    mesure_detail = Mesure.objects.get(pk=id)
-    # list_person = Person.objects.get(pk=id)
-    context = {
-        'mesure_detail': mesure_detail,
-        # 'list_person': list_person,
-    }
-    return render(request, 'kalaliso/mesure_detail.html', context)
-
 
 
 def report_mesure(request):

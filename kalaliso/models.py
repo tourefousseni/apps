@@ -185,3 +185,41 @@ class Video(models.Model):
 
     def __str__(self):
         return '{}'.format(self.title)
+
+
+class Album(models.Model):
+    id    = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=50, blank=True, null=True)
+    img = models.FileField(upload_to="photos/", validators=[file_size])
+    create_at = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return '{}'.format(self.title)
+
+class Category(models.Model):
+    category = (
+
+                ('Or', 'Or'),
+                ('Meduim', 'Medium'),
+                ('Diamon', 'Diamon'),)
+
+    category  =  models.CharField(max_length=50, choices=category, default='Or')
+    id        = models.AutoField(primary_key=True)
+    album     = models.ForeignKey(Album, on_delete=models.CASCADE, verbose_name='Photos')
+    title     = models.CharField(max_length=50, blank=True, null=True)
+
+    def __str__(self):
+        return '{}'.format(self.title)
+
+class Annonce(models.Model):
+
+    id          = models.AutoField(primary_key=True)
+    title       = models.CharField(max_length=50, blank=False, null=True)
+    person      = models.ForeignKey(Person, on_delete=models.CASCADE)
+    video       = models.FileField(upload_to="video/%y", blank=True, validators=[file_size])
+    description = models.CharField(max_length=500, blank=True)
+    date_start  = models.DateField(auto_now=True)
+    date_end    = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return '{}'.format(self.title)

@@ -14,27 +14,28 @@
 </style>
 
 {% block content %}
-<div class="row col-lg-12">
-<div >
+<div class="row col-lg-12"><br>
+<div ><br>
 {#    <a href="{% url 'kalaliso:mesure_list'  %}" class="btn btn-primary btn col-md-4 ">View List Mesure</a>#}
 
 {#    <a href="{% url 'report_mesure'  %}" class="btn btn-primary btn col-md-4 ">Generated Mesure To PDF</a>#}
 
-    <div class="row col-lg-8 offset-0">
+    <div class="row col-md-8 ">
     <div class="mesureform">
-{#        <h5 class="text-left offset-0"> MESURE CLIENT</h5><hr>#}
-        <form action="{% url 'kalaliso:mesure' %}" method="post">
-        {% csrf_token %}
+        <h5 class="text-left offset-0"> ADD NEW MESURE </h5><hr>
+<form action="{% url 'kalaliso:mesure' %}" method="post">
+            {% csrf_token %}
 {#        <div class="row offset-0">#}
 {#            <div class="form-group col-sm-12 mb-0">#}
 {#                {{ form.person_mesure|as_crispy_field }}#}
 {#            </div>#}
 {#        </div>#}
-
-
-              <div class="row">
-  <div class="col-sm-10">
-   <div class="row offset-0">
+<div class="row ">
+  <div class="col-md-10 offset-1 ">
+   <div class="row ">
+       <div class="form-group col-sm-12 mb-0">
+{#                {{ form.person_mesure|as_crispy_field }}#}
+            </div>
             <div class="form-group col-sm-3  mb-0">
                 {{ form.coude|as_crispy_field }}
             </div>
@@ -73,26 +74,28 @@
             </div>
         </div>
   </div>
-  <div  class="row">
-             <div class="col-md-4 offset-md-2" style="margin: 50px">
+{#  <div class="row">#}
+            <div >
+                     <input type="submit" value="Submit" class="btn btn-primary col-md-4">
+                     <input type="reset" value="Reset" class="btn btn-danger col-md-4">
+
+           </div>
+{#   </div >#}
+
+{#  <div  class="row col-md-4 d-inline-block">#}
+             <div  class="col-md-4 offset-1" style="margin: 50px">
                  <p>
                     Corps Humains
                      <img src="/media/image/img1.jpeg" id="img" class="img-fluid" alt="Responsive image">
                 </p>
              </div>
- </div>
+{# </div>#}
 </div>
 
-       <div class="row">
-            <div class="col-12 justify-content-center">
-                     <input type="submit" value="Submit" class="btn btn-primary col-md-4">
-                     <input type="reset" value="Reset" class="btn btn-danger col-md-4">
 
-           </div>
-        </div >
 
 {#                <a href="{% url 'mesure_list' mesure.id %}"></a>#}
-    </form>
+</form>
 
     </div>
  </div>

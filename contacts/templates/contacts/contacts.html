@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{#<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">#}
+{% block title %} CARNET ADRESSE {% endblock %}
+{% block content %}
+        <div class="col-sm-9">
+                {% for contact in contacts %}
+                   <div class="mt-9">
+                   <form action="{% url 'adresses' contacts %}" method="post">
+                       {% csrf_token %}
+                       {% for contact in contacts %}
+                       {% endfor %}
+                     <input type="submit" value="Registrer">
+                   </form>
+            {% endfor %}
+          </div>
+
+{% endblock content %}
+</div>

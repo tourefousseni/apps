@@ -1,5 +1,6 @@
 from django.urls import reverse_lazy
 
+NAV_CONTACTS = 'Contacts'
 NAV_POSTS = 'Posts'
 NAV_ITEMS = (
 	(NAV_POSTS, reverse_lazy('home')),

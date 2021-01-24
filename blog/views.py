@@ -2,7 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.template import context
 from django.template import defaulttags
-from blog.models import Post, PostCategory, Comment
+from blog.models import Post,  PostCategory, Comment
+from contacts.models import Contact
 from blog import model_helpers
 from blog import navigation
 
@@ -49,3 +50,4 @@ def post_detail(request, post_id):
         'posts_save_category': posts_save_category,
    }
 	return render(request, 'blog/post_detail.html', context)
+

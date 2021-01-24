@@ -1,12 +1,11 @@
 from django.urls import reverse_lazy
 
-NAV_CONTACTS = 'Contacts'
+# NAV_CONTACTS = 'adresses'
 NAV_POSTS = 'Posts'
 NAV_ITEMS = (
 	(NAV_POSTS, reverse_lazy('home')),
 	('test', reverse_lazy('home')),
-	('test', reverse_lazy('home')),
-	('test', reverse_lazy('home')),
+
 
 )
 

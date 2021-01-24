@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # enable the app
     'blog.apps.BlogConfig',
-    'contacts.apps.ContactsConfig',
+    'contacts',
 
 
 

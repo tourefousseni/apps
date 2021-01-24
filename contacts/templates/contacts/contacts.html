@@ -1,18 +1,35 @@
 {% extends 'base.html' %}
+{% load static %}
 {#<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">#}
 {% block title %} CARNET ADRESSE {% endblock %}
 {% block content %}
+    <h2 class="text-center">CONTACTS</h2>
         <div class="col-sm-9">
-                {% for contact in contacts %}
-                   <div class="mt-9">
-                   <form action="{% url 'adresses' contacts %}" method="post">
+{#                {% for contact in contacts %}#}
+{#                   <div class="mt-9">#}
+                   <form action="{% url 'adresses' %}" method="post">
                        {% csrf_token %}
-                       {% for contact in contacts %}
-                       {% endfor %}
-                     <input type="submit" value="Registrer">
+                             <table class="col-sm-9 >
+                                {{ form.as_table }}
+                             </table><br />
+                             <input type="submit" value="Rengistrer" >
                    </form>
-            {% endfor %}
+{#            {% endfor %}#}
           </div>
 
 {% endblock content %}
-</div>
+{#</div>#}
+
+{#{% extends 'base.html' %}#}
+{##}
+{##}
+{#{% block content %}#}
+{#    <h2 class="text-center">PRODUITS</h2>#}
+{#    <form action="{% url 'products' %}" method="post">#}
+{#        {% csrf_token %}#}
+{#            <table class="col-sm-6 text-center" >#}
+{#               {{ form.as_table }}#}
+{#            </table><br />#}
+{#        <input type="submit" value="Submit" class="btn btn-primary">#}
+{#    </form>#}
+{#{% endblock %}#}

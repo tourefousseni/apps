@@ -7,6 +7,6 @@ var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 osm.addTo(map);
 
-var marker = L.marker([27.2, 83.95].addTo(map));
+// var marker = L.marker([27.2, 83.95].addTo(map));
 
 

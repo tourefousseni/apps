@@ -66,18 +66,18 @@
       <IntrospectionStateNumber>7293</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
-      <Relations>sequence|table|228878|228880|1
+      <Relations>sequence|table|229036|229038|1
+sequence|table|229044|229046|1
+sequence|table|229055|229057|1
+sequence|table|229003|229005|1
+sequence|table|228943|228945|1
 sequence|table|228889|228891|1
 sequence|table|228899|228901|1
 sequence|table|228907|228909|1
 sequence|table|228917|228919|1
 sequence|table|228925|228927|1
 sequence|table|228935|228937|1
-sequence|table|228943|228945|1
-sequence|table|229003|229005|1
-sequence|table|229036|229038|1
-sequence|table|229044|229046|1
-sequence|table|229055|229057|1
+sequence|table|228878|228880|1
 sequence|table|302606|302608|1
 </Relations>
     </database>

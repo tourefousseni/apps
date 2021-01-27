@@ -23,7 +23,7 @@ class ContactForm(forms.Form):
     siege_social          = forms.CharField(max_length=50,  label='SIEGE SOCIAL')
     responsable           = forms.CharField(max_length=50,  label='RESPONSABLE')
     email                 = forms.EmailField(max_length=50, label='ADRESSE EMAIL')
-    created_at            = forms.DateTimeField()
+    created_at            = forms.DateTimeField(label='DATE')
 
     # def clean(self):
     #     data = self.cleaned_data

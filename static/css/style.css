@@ -1,4 +1,4 @@
-.card{
+card{
     width: 250px;
     height: 250px;
     text-align: center;
@@ -11,3 +11,9 @@ footer{
     background-color: #4e555b;
 }
 
+map {
+    margin: auto;
+    padding-right: 600px;
+    padding-top: auto;
+
+}

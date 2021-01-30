@@ -11,7 +11,8 @@ var marker = L.marker([13.22, -5.16], {
     title: 'REPERE',
     opacity: 0.5,
 })
-    .addTo(map);
+    .addTo(map)
+    .bindPopup('<h1>Marker</h1><p>This is the marker text</p>');
 
 
 // point.addTo(map);

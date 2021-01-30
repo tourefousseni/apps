@@ -1,1 +1,1 @@
-alert("Bienvenu dans le portail du cadastre rural!");
+alert("La page a été actualisée avec success !");

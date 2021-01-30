@@ -2,12 +2,19 @@
 var map = L.map('map').setView([13.22, -5.16], 10);
 
 var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreet map</a> DNGR 2021'
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreet map</a> DNGR 2021',
 });
-
 osm.addTo(map);
 
- // = L.marker([27.2, 83.95].addTo(map));
+var marker = L.marker([13.22, -5.16], {
+    draggable :true,
+    title: 'REPERE',
+    opacity: 0.5,
+})
+    .addTo(map);
+
+
+// point.addTo(map);
 // 17°00' N 4°00' W
 
 // var marker = L.marker([48.5, -0.09] , 10).addTo(map)

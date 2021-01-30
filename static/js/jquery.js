@@ -1,1 +1,1 @@
-alert("Bonjour les douniya soba!");
+alert("Bienvenu dans le portail du cadastre rural!");

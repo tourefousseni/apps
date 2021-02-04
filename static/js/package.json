@@ -1,0 +1,17 @@
+{
+  "name": "cadastre",
+  "version": "1.0.0",
+  "description": "leaflet basic cadastre",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cadastre"
+  ],
+  "author": "fulani",
+  "license": "ISC",
+  "dependencies": {
+    "leaflet": "^1.7.1"
+  }
+}

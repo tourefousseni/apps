@@ -1,1 +1,0 @@
-alert("Bonjour les douniya soba!");

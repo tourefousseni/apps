@@ -52,21 +52,43 @@
      </header>
 {#     this code at the address form #}
     <container>
+
         <div>
-            <div >
+             <div >
+
                    {% block content %} form address {% endblock %}<br />
-            </div><br/><br/>
-                      <h5 class="text-center">CADASTRE RURAL DE L'OFFICE DU MOYEN BANI</h5>
-        </div>
+             <p>
+                     <h3 class="text-center">CADASTRE RURAL DE L'OFFICE DU MOYEN BANI</h3>
+             </p>
 
-        <div>
+            </div><br/>
 
-                      <div id="map" style="width: 60%; height: 500px; margin-left: 20%;"></div>
-        </div>
+                      <div id="map" style="width: 100%; height: 800px; margin-top: 20px;"></div>
+         </div>
+    <div class="row-cols-4">
+         <div>
+                 <h3>
+                     Fiscalité foncière
+                 </h3>
+                     <p class="btn-info border-right">
+                         <span>Evaluation des droits réels</span>
+                    </p>
+
+         </div>
+         <div>
+                 <h3>
+                     Transaction foncière
+                 </h3>
+                     <p class="btn-info border-right">
+                         <span>Transfert des droits</span>
+                    </p>
+         </div>
+    </div>
    </container>
 
 </body><br />
 <footer>
+
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
           <ol class="carousel-indicators">
             <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>
@@ -75,12 +97,13 @@
           </ol>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="/photos/identite/Pantalon6.jpg" class="d-block w-100" alt="Pantalon">
+              <img src="{% static '/photos/identite/Pantalon6.jpg' %}">
               <div class="carousel-caption d-none d-md-block">
-                <h5>First slide label</h5>
+                <h5>DNGR, pour vous rassurez de la sécurisation foncière</h5>
                 <p>Sécuriser la terre est notre priorité.</p>
               </div>
             </div>
+
             <div class="carousel-item">
               <img src="/photos/identite/ZONE_DETUDE.jpg" class="d-block w-100" alt="Zone Ciblé">
               <div class="carousel-caption d-none d-md-block">
@@ -117,4 +140,5 @@
 </html>
 
 <script src="{% static 'js/main.js' %}"></script>
+{#<link src="{% static 'js/main.js' %}"></link>#}
 

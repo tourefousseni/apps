@@ -7,9 +7,7 @@ from .views import home, about,\
      change_password, register_user, \
      render, redirect
 
-# app_name = 'contact'
-
-
+app_name = 'accounts'
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
@@ -22,5 +20,5 @@ urlpatterns = [
     path('register/', views.register_user, name='register'),
     path('edit/profile/', views.edit_profile, name='edit_profile'),
     path('change/password/', views.change_password, name='change_password'),
-    path('', include('contacts.urls')),
+    path('', include('accounts.urls')),
 ]

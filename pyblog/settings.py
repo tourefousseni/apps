@@ -26,13 +26,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # enable the app
-    'blog.apps.BlogConfig',
+    # Our the app
+    # 'blog.apps.BlogConfig',
     'contacts',
-    'accounts',
-
-
 
 ]
 

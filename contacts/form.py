@@ -8,13 +8,13 @@ import datetime
 
 class ContactForm(forms.Form):
     STATUS                = (
-        ('PERSONNE',   'Personne'),
+        ('PERSONNE',    'Personne'),
         ('SOCIETE',     'Societe'),)
-    status                = forms.ChoiceField(choices=STATUS,)
+    status                = forms.ChoiceField(choices=STATUS, required='Personne')
     SEXE                  = (
         ('HOMME',      'H'),
         ('FEMME',      'F'),)
-    sexe                  = forms.ChoiceField(choices=SEXE)
+    sexe                  = forms.ChoiceField(choices=SEXE, required='Homme')
     nom                   = forms.CharField(max_length=50, label='NOM')
     prenom                = forms.CharField(max_length=50, label='PRENOM')
     # photo_identite        = forms.FileField()

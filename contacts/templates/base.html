@@ -10,44 +10,54 @@
             <link rel="stylesheet" href="{% static 'css/style.css' %}">
     </head>
 
-    <header>
+ <header>
            <div>
-                <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-info">
+              <div>
+              <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-info">
 {#                  <a class="navbar-brand" href="{% url 'home' %}">Douniya</a>#}
                   <a class="navbar-brand"  href="{% url 'adresses' %}">PORTAIL DU FONCIER RURAL</a>
                   <button class="navbar-toggler" type="button" data-toggler= "collapse" data-targer="#navbar">
                     <span class="navbar-toggler-icon"></span>
                   </button>
                   <div class="collapse navbar-collapse" id="navbar">
-                      <ul class="navbar-nav mr-auto">
+                      <ul class="navbar-nav ml-auto">
                         {% for item in navigation_items %}
                             <li class="nav-item {% if item.active %}active{% endif %}">
                                 <a class="nav-link" href="{{ item.url }}">{{ item.name }}</a>
                             </li>
                         {% endfor %}
-                  <li class="nav-item dropdown">
-                         <a class="nav-link dropdown-toggle" href="{{ "contact-detail" }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" Dropdown></a>
-                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">detail contact</a></li>
-                        </ul>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                  </li>
-                  </ul>
-                       <form class="d-flex">
-                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline-success" type="submit">Search</button>
-                       </form>
-                      </ul>
-                  </div>
-                </nav>
-            </div>
-     </header>
+
+              <ul class="navbar-nav ml-auto">
+                        {% if user.is_authenticated %}
+        {#                    <li class="nav-item">#}
+        {#                    <a class="nav-link" href="{% url 'products' %}">Products</a>#}
+        {#                    </li>#}
+                             <li class="nav-item">
+                                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'edit_profile' %}">Edit Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'change_password' %}">Change Password</a>
+                            </li>
+
+                        {% else %}
+                              <li class="nav-item">
+                                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" href="{% url 'register' %}">Register</a>
+                              </li>
+                        {% endif %}
+                </ul>
+             </nav>
+           </div>
+        </div>
+  </header>
 {#     this code at the address form #}
+
+
     <container>
 
         <div>

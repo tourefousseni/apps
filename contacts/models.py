@@ -9,12 +9,12 @@ class Contact(models.Model):
         ('SOCIETE',    'Societe'),
     )
 
-    status              = models.CharField(max_length=30, choices=STATUS,)
+    status              = models.CharField(max_length=30, choices=STATUS, default='Personne')
     SEXE = (
         ('HOMME', 'Homme'),
         ('FEMME', 'Femme'),
     )
-    sexe                = models.CharField(max_length=10, choices=SEXE,)
+    sexe                = models.CharField(max_length=10, choices=SEXE, default='Homme')
     nom                 = models.CharField(max_length=50, null=True, blank=True, verbose_name='NOM')
     prenom              = models.CharField(max_length=50, null=True, blank=True, verbose_name='PRENOM')
     photo               = models.ImageField(upload_to='photos/identite', null=True, blank=True, verbose_name='PHOTO IDENTITE')

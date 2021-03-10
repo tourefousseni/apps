@@ -11,8 +11,8 @@
     </head>
 
  <header>
+       <div>
            <div>
-              <div>
               <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-info">
 {#                  <a class="navbar-brand" href="{% url 'home' %}">Douniya</a>#}
                   <a class="navbar-brand"  href="{% url 'adresses' %}">PORTAIL DU FONCIER RURAL</a>
@@ -41,24 +41,22 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'change_password' %}">Change Password</a>
                             </li>
-
                         {% else %}
                               <li class="nav-item">
-                                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                                  <a class="nav-link" href="{% url 'login' %}">Login</a>
                               </li>
                               <li class="nav-item">
                                 <a class="nav-link" href="{% url 'register' %}">Register</a>
                               </li>
                         {% endif %}
-                </ul>
+                 </ul>
              </nav>
            </div>
         </div>
   </header>
 {#     this code at the address form #}
 
-
-    <container>
+<container>
 
         <div>
              <div >
@@ -91,7 +89,7 @@
                     </p>
          </div>
     </div>
-   </container>
+</container>
 
 </body><br />
 <footer>

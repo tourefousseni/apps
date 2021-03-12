@@ -7,17 +7,16 @@ import datetime
 # from contacts.models import contacts_contact
 
 class ContactForm(forms.Form):
-    STATUS                = (
-        ('PERSONNE',    'Personne'),
-        ('SOCIETE',     'Societe'),)
-    status                = forms.ChoiceField(choices=STATUS, required='Personne')
-    SEXE                  = (
-        ('HOMME',      'H'),
-        ('FEMME',      'F'),)
-    sexe                  = forms.ChoiceField(choices=SEXE, required='Homme')
+    # STATUS                = (
+    #     ('PERSONNE',    'Personne'),
+    #     ('SOCIETE',     'Societe'),)
+    # status                = forms.ChoiceField(choices=STATUS,)
+    # SEXE                  = (
+    #     ('HOMME',      'H'),
+    #     ('FEMME',      'F'),)
+    # sexe                  = forms.ChoiceField(choices=SEXE,)
     nom                   = forms.CharField(max_length=50, label='NOM')
     prenom                = forms.CharField(max_length=50, label='PRENOM')
-    # photo_identite        = forms.FileField()
     contact               = forms.CharField(max_length=8, label='TELEPHONE')
     n_cin                 = forms.CharField(max_length=50,  label='CIN')
     nina                  = forms.CharField(max_length=50,  label='NINA')

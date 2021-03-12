@@ -17,7 +17,6 @@
                   <th>Sexe</th>
                   <th>Nom</th>
                   <th>Prenom</th>
-{#                  <th>Photo Identite</th>#}
                   <th>Contact</th>
                   <th>CIN</th>
                   <th>Nina</th>
@@ -37,13 +36,12 @@
                     {% for contact in contacts %}
                            <tr>
                                 <td><a href="{% url 'contact-detail' contact.pk %}"></a>{{ contacts.nom }}</td>
-{#                                <td><input type="checkbox" class="checkthis" /></td>#}
+                                <td><input type="checkbox" class="checkthis" /></td>
                                 <td>{{ contact.id }}</td>
                                 <td>{{ contact.status }}</td>
                                 <td>{{ contact.sexe }}</td>
                                 <td>{{ contact.nom }}</td>
                                 <td>{{ contact.prenom }}</td>
-{#                                <td>{{ contacts.photo_identite }}</td>#}
                                 <td>{{ contact.contact }}</td>
                                 <td>{{ contact.n_cin }}</td>
                                 <td>{{ contact.nina }}</td>

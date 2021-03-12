@@ -18,7 +18,7 @@ urlpatterns = [
       # path('posts/<str:category_name>/', views.post_list, name='post-list'),
       # path('posts/detail/<int:post_id>/', views.post_detail, name='post-detail'),
 
-      path('thanks/', views.thanks, name='thanks'),
+      # path('thanks/', views.thanks, name='thanks'),
       path('profil/', views.profil, name='profil'),
       path('contact/', views.contact, name='adresses'),
       path('contacts/detail/<int:contact_id>/', views.contact_detail, name='contact-detail'),

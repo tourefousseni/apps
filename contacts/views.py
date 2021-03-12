@@ -40,16 +40,16 @@ from django.contrib import messages
 #     form = ContactForm()
 #     return render(request, 'contacts/contacts.html', {'form': form})
 
-def thanks(request):
-    return HttpResponse('Thanks, your form has been processed')
+# def thanks(request):
+#     return HttpResponse('Thanks, your form has been processed')
+
+def home(request):
+    return render(request, 'contacts/home.html', {})
 
 def contact(request):
     if request.method == 'POST':
-        stat           = request.POST.get('status')
-        sexe           = request.POST.get('sexe')
         nom            = request.POST.get('nom')
         prenom         = request.POST.get('prenom')
-        # photo_identite = request.POST.get('photo_identite')
         contact        = request.POST.get('contact')
         n_cin          = request.POST.get('n_cin')
         nina           = request.POST.get('nina')
@@ -60,14 +60,13 @@ def contact(request):
         responsable    = request.POST.get('responsable')
         email          = request.POST.get('email')
         created_at     = request.POST.get('created_at')
-        # photo_identite = photo_identite,
 
-        data  = Contact(status=stat, sexe=sexe, nom=nom, prenom=prenom,
-                         contact=contact, n_cin=n_cin, nina=nina, profession=profession, rcimm=rcimm,
-                         nif=nif, siege_social=siege_social, responsable=responsable, email=email,
-                         created_at=created_at)
+
+        data  = Contact(nom=nom, prenom=prenom, contact=contact, n_cin=n_cin, nina=nina,
+                        profession=profession, rcimm=rcimm, nif=nif, siege_social=siege_social,
+                        responsable=responsable, email=email, created_at=created_at)
         data.save()
-        return HttpResponseRedirect(reverse('thanks'))
+        return HttpResponseRedirect(reverse('home'))
 
     else:
        form = ContactForm()
@@ -90,8 +89,7 @@ def profil(request,):
     return render(request, 'contacts/profil.html', context)
 
 
-def home(request):
-    return render(request, 'contacts/home.html', {})
+
 
 def about(request):
     return render(request, 'contacts/about.html', {})

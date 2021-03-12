@@ -21,17 +21,18 @@
                   </button>
                   <div class="collapse navbar-collapse" id="navbar">
                       <ul class="navbar-nav ml-auto">
-                        {% for item in navigation_items %}
-                            <li class="nav-item {% if item.active %}active{% endif %}">
-                                <a class="nav-link" href="{{ item.url }}">{{ item.name }}</a>
+                          <li class="nav-item">
+                                <a class="nav-link" href="{% url 'about' %}">ABOUT</a>
                             </li>
-                        {% endfor %}
+
+{#                          {% for item in navigation_items %}#}
+{#                            <li class="nav-item {% if item.active %}active{% endif %}">#}
+{#                                <a class="nav-link" href="{{ item.url }}">{{ item.name }}</a>#}
+{#                            </li>#}
+{#                        {% endfor %}#}
 
               <ul class="navbar-nav ml-auto">
                         {% if user.is_authenticated %}
-        {#                    <li class="nav-item">#}
-        {#                    <a class="nav-link" href="{% url 'products' %}">Products</a>#}
-        {#                    </li>#}
                              <li class="nav-item">
                                 <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                             </li>
@@ -48,6 +49,9 @@
                               <li class="nav-item">
                                 <a class="nav-link" href="{% url 'register' %}">Register</a>
                               </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'profil' %}">Profil</a>
+                            </li>
                         {% endif %}
                  </ul>
              </nav>

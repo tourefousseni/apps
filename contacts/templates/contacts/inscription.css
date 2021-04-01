@@ -1,0 +1,237 @@
+.body
+	{
+		background-color: darkseagreen;
+	}
+
+.header
+	{
+		display:          inline;
+		background-color: rebeccapurple;
+		height:           330px;
+		width:            1234px;
+		padding:          0px;
+		margin:           0px;
+		/*background-position: fixed;*/
+		/*text-align:       center;*/
+
+	}
+
+.footer
+	{
+		padding:             auto;
+		width:               auto;
+		height:              200px;
+		text-align:          left;
+		background-color:    gainsboro;
+		/*background-position: fixed;*/
+	}
+
+/*.tweets*/
+	/*{*/
+		/*color:          darkcyan;*/
+		/*background-color: gainsboro;*/
+
+	/*}*/
+
+/*.options*/
+	/*{*/
+		/*color:          darkcyan;*/
+		/*background-color: gainsboro;*/
+
+	/*}*/
+
+/*.produits*/
+	/*{*/
+		/*color:          darkcyan;*/
+		/*background-color: gainsboro;*/
+
+	/*}*/
+
+.person
+	{
+		background-color: grey;
+		font-size: 15px;
+	}
+.marquee
+	{
+		display: inline-grid;
+	}
+.li
+	{
+		display:          none;
+
+	}
+
+.list-inline
+	{
+		display: inline;
+	}
+
+.gis
+	{
+
+
+	}
+
+/*footer {*/
+    /*margin: auto;*/
+
+/*}*/
+/*.mafooter {*/
+    /*background-color: yellowgreen;*/
+    /*width: 1264px;*/
+    /*height: 120px;*/
+    /*font-size: 15px;*/
+    /*display: inline-block;*/
+
+/*}*/
+
+
+/*.navbar-nav*/
+
+/*{*/
+	/*background-color:  #DCDCDC;*/
+	/*!*position:          all;*!*/
+	/*!*width:             1264px;*!*/
+	/*!*padding-right:     250px;*!*/
+	/*!*padding-left:      250px;*!*/
+	/*font-size:         10px;*/
+	/*text-align:        right;*/
+	/*text-transform:    uppercase;*/
+/*}*/
+
+/*.navbar-collapse*/
+/*{*/
+
+    /**/
+
+/*}*/
+
+ /*.imagetop*/
+ /*{*/
+ 	/*display:          inline-block;*/
+ 	/*padding:          70px;*/
+ 	/*margin:           20px;*/
+ 	/*border:           solid black 30px;*/
+ 	/*text-align:       center;*/
+ 	/**/
+ /*}*/
+
+
+/*.navbar-brand*/
+
+/*{*/
+	/*position:             absolute;*/
+	/*background-position:  center;*/
+	/*font-size:            30px;*/
+	/*padding-top:          10px;*/
+	/*margin:               10px;*/
+	/*!*width:                30px;*!*/
+
+/*}*/
+
+/*.row header*/
+
+/*{*/
+	/*display:          inline-block;*/
+/*}*/
+
+
+
+/*.breadcrumb*/
+
+/*{*/
+	/*background-color:    #000080;*/
+	/*padding-left:        20px;*/
+	/*height:              45px;*/
+	/*padding-top:         0px;*/
+	/*margin-top:          50px;*/
+	/*font-size:           10px;*/
+	/*position:            absolute;*/
+	/*color:               #F8F8FF;*/
+
+/*}*/
+/*.content */
+/*{	*/
+	/*margin:              50px;*/
+	/*border-top:          20px;*/
+	/*padding-top:         20px;*/
+	/*padding-right:       25px;*/
+	/*padding-left:        25px;*/
+	/*background-color:    ;*/
+
+
+ /*.body*/
+ /**/
+ /*{*/
+ 	/*background-color:    #F5F5DC;*/
+ 	/*margin-top:          10px;*/
+ 	/*font-family:         arial sans-serif,trebuchet MS; */
+ /*}*/
+
+/*.p*/
+/*{*/
+	/*background-color:    #F8F8FF;*/
+	/*margin-top:          120px;*/
+	/*padding-top:         30px;*/
+
+/*}*/
+
+ /*.h3*/
+/*{*/
+	/*padding:             50px;*/
+	/*margin-bottom:       5px;*/
+	/*text-align:          left;*/
+	/*font-size:           50px;*/
+	/*width:               25px;	*/
+
+/*}*/
+
+/*.li*/
+/*{*/
+	/*padding-right:       50px;*/
+	/*background-color:    #DCDCDC;*/
+	/*text-align:          none;*/
+/*}*/
+
+
+/*.blockquote*/
+/*{*/
+
+
+
+
+/*}*/
+/*.jumbotron*/
+/*{*/
+	/*background-color:   #C0C0C0;*/
+	/*width:              500px;*/
+	/*height:             300px;*/
+	/*padding-right:      auto;*/
+	/*margin-left:        0px;*/
+
+
+/*}*/
+/*.reseau*/
+/*{*/
+	/*border-width:      250px;*/
+	/*height:            150px;*/
+	/*transform-style:   arial;*/
+
+/*}*/
+/*.tbody*/
+/*{*/
+	/*border:            solid black 1px;*/
+/*}*/
+/*.table*/
+/*{*/
+	/*background-color:  #DCDCDC;*/
+/*}*/
+
+/*.figcaption*/
+/*{*/
+    /*padding-top:           30px;*/
+    /*background-position:   top;*/
+    /*background-color:      red;*/
+
+/*}*/

@@ -30,17 +30,19 @@ img {
     width: 200px;
 }
 
-.card{
-    width: 250px;
-    height: 200px;
+.card-img-top{
+    width: 150px;
+    height: 100px;
     text-align: center;
     margin: auto;
     padding-bottom: 50px;
-
 }
 
+/*inputCarteIdentiteNationale{*/
+    /*width: 200px;*/
+    /*height: 200px;*/
 
-
+/*}*/
 /*body{*/
     /*background-color: gainsboro;*/
 /*}*

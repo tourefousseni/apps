@@ -1,0 +1,53 @@
+body{
+    margin: 10px;
+    padding: 20px;
+}
+
+.wrapper{
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2px;
+  grid-auto-rows: minmax(10px, 50px);
+}
+
+
+/*map{*/
+   /*style="width: 60%;*/
+   /*height: 500px;*/
+   /*margin-left: 20%";*/
+/*}*/
+
+
+footer{
+    background-color: #4e555b;
+
+}
+img {
+    margin: 0px;
+    padding: 0px;
+    height: 200px;
+    width: 200px;
+}
+
+.card-img-top{
+    width: 250px;
+    height: 200px;
+    text-align: center;
+    margin: auto;
+    padding-bottom: 50px;
+}
+
+/*inputCarteIdentiteNationale{*/
+    /*width: 200px;*/
+    /*height: 200px;*/
+
+/*}*/
+/*body{*/
+    /*background-color: gainsboro;*/
+/*}*
+
+style="width: 60%;
+height: 500px;
+margin-left: 20%"/
+ */

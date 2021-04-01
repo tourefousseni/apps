@@ -39,6 +39,15 @@ var baseLayers = {
 };
 L.control.Layers(baseLayers).addTo(map);
 
+
+// create a red polygon from an array of LatLng points
+var latlngs = [[37, -109.05],[41, -109.03],[41, -102.05],[37, -102.04]];
+
+var polygon = L.polygon(latlngs, {color: 'red'}).addTo(map);
+
+// zoom the map to the polygon
+map.fitBounds(polygon.getBounds());
+
 // point.addTo(map);
 // 17°00' N 4°00' W
 
@@ -53,6 +62,8 @@ L.control.Layers(baseLayers).addTo(map);
 //
 // map.addLayer(osmLayer); // Le layer par défaut
 // map.addControl(new L.Control.Layers( {
+
+
 //     'OpenStreetMap': osmLayer,
 //     'Google Roadmap' : ggRoadmap,
 //     'Google Satellite': ggSatellite,

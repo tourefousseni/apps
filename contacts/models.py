@@ -31,3 +31,19 @@ class Contact(models.Model):
 
     def __str__(self):
         return  ('{} - {} - {}').format(self.nom, self.prenom, self.contact)
+
+
+
+class Parcel(models.Model):
+    STATUS              = (
+        ('BATI',   'Bati'),
+        ('NON BATIE',    'Non Bati'),
+    )
+
+    status              = models.CharField(max_length=30, choices=STATUS,)
+    superficie          = models.IntegerField()
+    code                = models.IntegerField()
+    created_at          = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return  ('{} - {} - {}').format(self.status, self.superficie, self.code)

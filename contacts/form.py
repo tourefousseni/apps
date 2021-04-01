@@ -15,8 +15,8 @@ class ContactForm(forms.Form):
     #     ('HOMME',      'H'),
     #     ('FEMME',      'F'),)
     # sexe                  = forms.ChoiceField(choices=SEXE,)
-    nom                   = forms.CharField(max_length=50, label='NOM')
-    prenom                = forms.CharField(max_length=50, label='PRENOM')
+    nom                   = forms.CharField(max_length=50, label='inputFirstName')
+    prenom                = forms.CharField(max_length=50, label='inputLastName')
     contact               = forms.CharField(max_length=8, label='TELEPHONE')
     n_cin                 = forms.CharField(max_length=50,  label='CIN')
     nina                  = forms.CharField(max_length=50,  label='NINA')

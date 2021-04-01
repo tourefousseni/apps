@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="34886f25-e1c6-432a-8cb9-2b5d781e9b2c" name="Default Changelist" comment="update for files html">
+    <list default="true" id="9c4e4a26-4056-4312-a22a-aef0c9a20aaa" name="Default Changelist" comment="update project cada">
       <change afterPath="$PROJECT_DIR$/../Projects/Home_KALALISO/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Projects/Home_KALALISO/.idea/dataSources.local.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Projects/Home_KALALISO/.idea/deployment.xml" afterDir="false" />
@@ -5435,49 +5435,17 @@
       <change beforePath="$PROJECT_DIR$/../Projects/Home_KALALISO/env/lib/python3.7/site-packages/psycopg2/extras.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Projects/Home_KALALISO/env/lib/python3.7/site-packages/psycopg2/extras.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/9c3b1638-dbae-41eb-ac07-234fb36d7598.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9c3b1638-dbae-41eb-ac07-234fb36d7598.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/form.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/authenticate/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/contacts/about.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/authenticate/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/authenticate/change_password.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/contacts/change_password.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/authenticate/commande.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/contacts/commande.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/authenticate/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/contacts/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/authenticate/delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/authenticate/depenses.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/contacts/depenses.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/authenticate/edit_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/contacts/edit_profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/authenticate/forms.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/contacts/forms.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/authenticate/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/contacts/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/authenticate/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/contacts/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/authenticate/inscription.css" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/contacts/inscription.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/authenticate/inscription.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/contacts/inscription.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/authenticate/invalid_login.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/contacts/invalid_login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/authenticate/loggedin.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/contacts/loggedin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/authenticate/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/contacts/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/authenticate/logout.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/contacts/logout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/authenticate/person.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/contacts/person.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/authenticate/produit.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/contacts/produit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/authenticate/read.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/authenticate/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/contacts/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/authenticate/update.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/authenticate/vente.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/contacts/vente.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/post_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/post_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/templates/blog/post_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog/templates/blog/post_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/contacts/form.py" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/form.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contacts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contacts/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contacts/templates/contacts/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/contacts/about.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/contacts/templates/contacts/contacts.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/contacts/contacts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contacts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/contacts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plateform.png" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/contacts/plateform.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyblog/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyblog/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyblog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyblog/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts/templates/base.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -5522,6 +5490,23 @@
         <item name="plateform: database" type="162271b6:PgImplModel$Database" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="plateform@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="plateform: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="plateform@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="plateform: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
     </expand>
     <select />
   </component>
@@ -5529,12 +5514,12 @@
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/contacts/form.py">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pyblog/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="87" column="46" selection-start-line="87" selection-start-column="46" selection-end-line="87" selection-end-column="46" />
+            <state relative-caret-position="512">
+              <caret line="121" selection-start-line="121" selection-end-line="121" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -5543,28 +5528,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/login.html">
+        <entry file="file://$PROJECT_DIR$/pyblog/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="16" selection-start-column="16" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/contacts/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="110" column="9" lean-forward="true" selection-start-line="110" selection-start-column="9" selection-end-line="110" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/contacts/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="240">
+              <caret line="23" column="76" selection-start-line="23" selection-start-column="76" selection-end-line="23" selection-end-column="90" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -5573,10 +5540,40 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/register.html">
+        <entry file="file://$PROJECT_DIR$/contacts/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="16" selection-start-column="16" selection-end-column="16" />
+            <state relative-caret-position="945">
+              <caret line="80" column="19" selection-start-line="80" selection-start-column="19" selection-end-line="80" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/contacts/form.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/js/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/contacts/templates/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="30" selection-start-line="30" selection-end-line="31" />
             </state>
           </provider>
         </entry>
@@ -5622,32 +5619,24 @@
         <option value="$PROJECT_DIR$/blog/views.py" />
         <option value="$PROJECT_DIR$/contacts/admin.py" />
         <option value="$PROJECT_DIR$/blog/navigation.py" />
-        <option value="$PROJECT_DIR$/blog/urls.py" />
         <option value="$PROJECT_DIR$/templates/main.js" />
         <option value="$PROJECT_DIR$/templates/brouillon.html" />
         <option value="$PROJECT_DIR$/static/js/jquery.js" />
-        <option value="$PROJECT_DIR$/static/css/style.css" />
         <option value="$PROJECT_DIR$/static/js/main.js" />
         <option value="$PROJECT_DIR$/templates/home.html" />
         <option value="$PROJECT_DIR$/accounts/templates/authenticate/home.html" />
         <option value="$PROJECT_DIR$/accounts/templates/authenticate/base.html" />
         <option value="$PROJECT_DIR$/accounts/urls.py" />
         <option value="$PROJECT_DIR$/accounts/form.py" />
-        <option value="$PROJECT_DIR$/contacts/models.py" />
         <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/accounts/views.py" />
         <option value="$PROJECT_DIR$/templates/login.html" />
         <option value="$PROJECT_DIR$/authenticate/views.py" />
         <option value="$PROJECT_DIR$/authenticate/urls.py" />
-        <option value="$PROJECT_DIR$/contacts/form.py" />
         <option value="$PROJECT_DIR$/contacts/templates/contacts/base.html" />
         <option value="$PROJECT_DIR$/authenticate/templates/base.html" />
-        <option value="$PROJECT_DIR$/contacts/views.py" />
         <option value="$PROJECT_DIR$/contacts/urls.py" />
-        <option value="$PROJECT_DIR$/pyblog/urls.py" />
         <option value="$PROJECT_DIR$/contacts/templates/contacts/change_password.html" />
-        <option value="$PROJECT_DIR$/contacts/templates/contacts/contacts.html" />
-        <option value="$PROJECT_DIR$/contacts/templates/contacts/contacts_detail.html" />
         <option value="$PROJECT_DIR$/contacts/templates/contacts/edit_profile.html" />
         <option value="$PROJECT_DIR$/contacts/templates/contacts/home.html" />
         <option value="$PROJECT_DIR$/contacts/templates/contacts/imagefiles.html" />
@@ -5658,14 +5647,24 @@
         <option value="$PROJECT_DIR$/contacts/templates/contacts/logout.html" />
         <option value="$PROJECT_DIR$/contacts/templates/contacts/profil.html" />
         <option value="$PROJECT_DIR$/contacts/templates/contacts/register.html" />
+        <option value="$PROJECT_DIR$/contacts/models.py" />
+        <option value="$PROJECT_DIR$/contacts/templates/contacts/contacts_detail.html" />
         <option value="$PROJECT_DIR$/contacts/templates/base.html" />
         <option value="$PROJECT_DIR$/pyblog/settings.py" />
+        <option value="$PROJECT_DIR$/pyblog/urls.py" />
+        <option value="$PROJECT_DIR$/contacts/templates/contacts/about.html" />
+        <option value="$PROJECT_DIR$/static/css/style.css" />
+        <option value="$PROJECT_DIR$/contacts/templates/contacts/contacts.html" />
+        <option value="$PROJECT_DIR$/blog/urls.py" />
+        <option value="$PROJECT_DIR$/contacts/form.py" />
+        <option value="$PROJECT_DIR$/contacts/views.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="800" />
+    <option name="height" value="739" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -5695,14 +5694,23 @@
             <path>
               <item name="pyblog" type="b2602c69:ProjectViewProjectNode" />
               <item name="pyblog" type="462c0819:PsiDirectoryNode" />
-              <item name="contacts" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="contacts" type="462c0819:PsiDirectoryNode" />
+              <item name="photos" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pyblog" type="b2602c69:ProjectViewProjectNode" />
               <item name="pyblog" type="462c0819:PsiDirectoryNode" />
               <item name="pyblog" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pyblog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pyblog" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pyblog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pyblog" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -5720,13 +5728,13 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/contacts/templates/contacts" />
       <recent name="$PROJECT_DIR$/contacts/templates" />
       <recent name="$PROJECT_DIR$/authenticate/templates" />
-      <recent name="$PROJECT_DIR$/contacts/templates/contacts" />
       <recent name="$PROJECT_DIR$/contacts/templates/contacts/templates" />
       <recent name="$PROJECT_DIR$/templates" />
     </key>
@@ -5801,7 +5809,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="34886f25-e1c6-432a-8cb9-2b5d781e9b2c" name="Default Changelist" comment="" />
+      <changelist id="9c4e4a26-4056-4312-a22a-aef0c9a20aaa" name="Default Changelist" comment="update project cada" />
       <created>1605663081532</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -5863,6 +5871,15 @@
       <workItem from="1615322122840" duration="615000" />
       <workItem from="1581210352016" duration="3582000" />
       <workItem from="1581277178973" duration="1777000" />
+      <workItem from="1615828148797" duration="3749000" />
+      <workItem from="1616287424024" duration="1197000" />
+      <workItem from="1616364106682" duration="3238000" />
+      <workItem from="1616379983970" duration="319000" />
+      <workItem from="1616415321437" duration="3108000" />
+      <workItem from="1616500029681" duration="1592000" />
+      <workItem from="1616807094244" duration="390000" />
+      <workItem from="1617044841885" duration="3524000" />
+      <workItem from="1617186851762" duration="444000" />
     </task>
     <task id="LOCAL-00001" summary="add IP address on settings.file">
       <created>1610240560102</created>
@@ -5969,11 +5986,25 @@
       <option name="project" value="LOCAL" />
       <updated>1613263114778</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="update project pyblog">
+      <created>1615416642432</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1615416642432</updated>
+    </task>
+    <task id="LOCAL-00017" summary="update project cada now">
+      <created>1615591448539</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1615591448539</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="304687000" />
+    <option name="totallyTimeSpent" value="339975000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -5985,10 +6016,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <frame x="0" y="23" width="1280" height="739" extended-state="0" />
     <layout>
       <window_info anchor="top" x="31" y="618" width="1238" height="186" id="Python Console" order="0" sideWeight="0.6695312" type="WINDOWED" weight="0.26308346" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49633968" visible="true" weight="0.3257329" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49633968" visible="true" weight="0.254886" />
       <window_info id="Structure" order="1" sideWeight="0.5036603" side_tool="true" weight="0.2198697" />
       <window_info id="Favorites" order="2" sideWeight="0.5021216" side_tool="true" weight="0.2374798" />
       <window_info anchor="bottom" id="Database Console" order="0" weight="0.329429" />
@@ -6000,10 +6031,10 @@
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" sideWeight="0.5890625" weight="0.3263158" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32807016" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.67" />
       <window_info anchor="bottom" id="Database Changes" order="10" sideWeight="0.49837133" weight="0.32666665" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.3611111" side_tool="true" weight="0.31333333" />
-      <window_info anchor="bottom" auto_hide="true" x="21" y="320" width="1238" height="159" id="Terminal" order="12" sideWeight="0.6388889" weight="0.2982456" />
+      <window_info active="true" anchor="bottom" auto_hide="true" x="21" y="320" width="1238" height="159" id="Terminal" order="12" sideWeight="0.6388889" visible="true" weight="0.93666667" />
       <window_info anchor="right" x="0" y="0" width="270" height="524" id="Documentation" order="0" sideWeight="0.500821" side_tool="true" weight="0.21405493" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
@@ -6011,11 +6042,11 @@
       <window_info anchor="right" id="SciView" order="4" weight="0.32899022" />
       <window_info anchor="right" id="R Graphics" order="5" weight="0.32980457" />
       <window_info anchor="right" id="R Packages" order="6" weight="0.27442998" />
-      <window_info anchor="right" id="Database" order="7" sideWeight="0.49917898" weight="0.31369662" />
+      <window_info anchor="right" id="Database" order="7" sideWeight="0.49917898" visible="true" weight="0.05456026" />
     </layout>
     <layout-to-restore>
       <window_info anchor="top" x="31" y="618" width="1238" height="186" id="Python Console" order="0" sideWeight="0.6695312" type="WINDOWED" weight="0.26308346" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49633968" visible="true" weight="0.18081494" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49633968" visible="true" weight="0.25895765" />
       <window_info id="Structure" order="1" sideWeight="0.5036603" side_tool="true" weight="0.2198697" />
       <window_info id="Favorites" order="2" sideWeight="0.5021216" side_tool="true" weight="0.2374798" />
       <window_info anchor="bottom" id="Database Console" order="0" weight="0.329429" />
@@ -6025,20 +6056,20 @@
       <window_info anchor="bottom" id="Debug" order="4" weight="0.39833334" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="7" sideWeight="0.5890625" weight="0.3265306" />
+      <window_info anchor="bottom" id="TODO" order="7" sideWeight="0.5890625" weight="0.3263158" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32807016" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32796487" />
       <window_info anchor="bottom" id="Database Changes" order="10" sideWeight="0.49837133" weight="0.32666665" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.35749185" side_tool="true" weight="0.44363105" />
-      <window_info anchor="bottom" auto_hide="true" x="21" y="320" width="1238" height="159" id="Terminal" order="12" sideWeight="0.64250815" weight="0.18833333" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.3611111" side_tool="true" weight="0.31333333" />
+      <window_info anchor="bottom" auto_hide="true" x="21" y="320" width="1238" height="159" id="Terminal" order="12" sideWeight="0.6388889" weight="0.36666667" />
       <window_info anchor="right" x="0" y="0" width="270" height="524" id="Documentation" order="0" sideWeight="0.500821" side_tool="true" weight="0.21405493" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="4" />
-      <window_info anchor="right" id="R Graphics" order="5" />
-      <window_info anchor="right" id="R Packages" order="6" />
-      <window_info anchor="right" id="Database" order="7" sideWeight="0.49917898" visible="true" weight="0.13667233" />
+      <window_info anchor="right" id="SciView" order="4" weight="0.32899022" />
+      <window_info anchor="right" id="R Graphics" order="5" weight="0.32980457" />
+      <window_info anchor="right" id="R Packages" order="6" weight="0.27442998" />
+      <window_info anchor="right" id="Database" order="7" sideWeight="0.49917898" visible="true" weight="0.14983714" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -6103,7 +6134,9 @@
     <MESSAGE value="update for files projects" />
     <MESSAGE value="create app accounts" />
     <MESSAGE value="update project cadastre" />
-    <option name="LAST_COMMIT_MESSAGE" value="update project cadastre" />
+    <MESSAGE value="update project pyblog" />
+    <MESSAGE value="update project cada now" />
+    <option name="LAST_COMMIT_MESSAGE" value="update project cada now" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -6115,123 +6148,15 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/contacts/form.py</url>
-          <line>21</line>
+          <line>20</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/contacts/tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contacts/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="88" selection-start-line="16" selection-start-column="88" selection-end-line="16" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contacts/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/commande.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/contacts.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" lean-forward="true" selection-start-column="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/contacts_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" lean-forward="true" selection-start-column="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/create.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="7" lean-forward="true" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/imagefiles.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" selection-start-column="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/inscription.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/invalid_login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" selection-start-column="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/loggedin.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" selection-start-column="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/logout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" selection-start-column="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/person.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/produit.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/read.html" />
-    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/profil.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" selection-start-column="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/update.html" />
     <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/inscription.html">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" selection-start-column="16" selection-end-column="16" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/delete.html" />
     <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/index.html">
@@ -6258,9 +6183,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/forms.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/vente.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="366">
@@ -6268,17 +6190,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/about.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/authenticate/templates/base1.html" />
-    <entry file="file://$PROJECT_DIR$/contacts/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="36" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/authenticate/urls.py" />
     <entry file="file://$PROJECT_DIR$/authenticate/views.py" />
     <entry file="file://$PROJECT_DIR$/authenticate/models.py" />
@@ -6288,23 +6200,6 @@
     <entry file="file://$PROJECT_DIR$/authenticate/__init__.py" />
     <entry file="file://$PROJECT_DIR$/blog/apps.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pyblog/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="31" column="4" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blog/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/blog/tests.py">
       <provider selected="true" editor-type-id="text-editor" />
@@ -6322,6 +6217,92 @@
         </state>
       </provider>
     </entry>
+    <entry file="das://9c3b1638-dbae-41eb-ac07-234fb36d7598/database/plateform/schema/public/view/geography_columns">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="16" selection-start-column="16" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contacts/apps.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/jquery.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/bootstrap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/bootstrap.bundle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/create.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contacts/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="16" column="71" selection-start-line="16" selection-start-column="71" selection-end-line="16" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/plateform.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="18" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="15" lean-forward="true" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/contacts_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="43" column="61" selection-start-line="43" selection-start-column="61" selection-end-line="43" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/about.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="24" lean-forward="true" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/blog/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -6332,29 +6313,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://9c3b1638-dbae-41eb-ac07-234fb36d7598/database/plateform/schema/public/view/geography_columns">
+    <entry file="file://$PROJECT_DIR$/blog/templates/blog/post_list.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blog/templates/blog/post_detail.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blog/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/brouillon.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/contacts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="885">
+          <caret line="59" column="34" selection-start-line="59" selection-start-column="34" selection-end-line="59" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9c3b1638-dbae-41eb-ac07-234fb36d7598/database/plateform/schema/public/table/contacts_contact">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/contacts/form.py">
+    <entry file="file://$PROJECT_DIR$/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/person.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="87" column="46" selection-start-line="87" selection-start-column="46" selection-end-line="87" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-665" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" selection-start-column="16" selection-end-column="16" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/forms.html">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/contacts/urls.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -6366,27 +6371,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pyblog/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="121" selection-start-line="121" selection-end-line="121" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pyblog/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+        <state relative-caret-position="240">
+          <caret line="23" column="76" selection-start-line="23" selection-start-column="76" selection-end-line="23" selection-end-column="90" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/contacts/templates/contacts/register.html">
+    <entry file="file://$PROJECT_DIR$/contacts/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" selection-start-column="16" selection-end-column="16" />
+        <state relative-caret-position="945">
+          <caret line="80" column="19" selection-start-line="80" selection-start-column="19" selection-end-line="80" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/contacts/views.py">
+    <entry file="file://$PROJECT_DIR$/contacts/form.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="110" column="9" lean-forward="true" selection-start-line="110" selection-start-column="9" selection-end-line="110" selection-end-column="9" />
+        <state relative-caret-position="375">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contacts/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" selection-start-line="30" selection-end-line="31" />
         </state>
       </provider>
     </entry>

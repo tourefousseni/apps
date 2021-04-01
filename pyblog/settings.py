@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     # Our the app
     # 'blog.apps.BlogConfig',
     'contacts',
+    # 'bootstrap3',
 
 ]
 
@@ -116,5 +117,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)                    ]

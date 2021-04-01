@@ -46,9 +46,12 @@ from django.contrib import messages
 def home(request):
     return render(request, 'contacts/home.html', {})
 
+
+
+
 def contact(request):
     if request.method == 'POST':
-        nom            = request.POST.get('nom')
+        no             = request.POST.get('nom')
         prenom         = request.POST.get('prenom')
         contact        = request.POST.get('contact')
         n_cin          = request.POST.get('n_cin')
@@ -61,24 +64,25 @@ def contact(request):
         email          = request.POST.get('email')
         created_at     = request.POST.get('created_at')
 
-
-        data  = Contact(nom=nom, prenom=prenom, contact=contact, n_cin=n_cin, nina=nina,
+        data = Contact(nom=no, prenom=prenom, contact=contact, n_cin=n_cin, nina=nina,
                         profession=profession, rcimm=rcimm, nif=nif, siege_social=siege_social,
                         responsable=responsable, email=email, created_at=created_at)
         data.save()
-        return HttpResponseRedirect(reverse('home'))
+        return HttpResponse(('adresses'))
+        # return HttpResponseRedirect(reverse('home'))
 
     else:
        form = ContactForm()
     return render(request, 'contacts/contacts.html', {'form':form})
 
 
-def contact_detail(request, contact_id):
+def contact_detail(request):
         qs = Contact.objects.all()
         context = {
-        'contacts': qs,
-    }
+            'contacts': qs,
+        }
         return render(request, 'contacts/contacts_detail.html', context)
+
 
 
 def profil(request,):

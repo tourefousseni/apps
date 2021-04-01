@@ -16,11 +16,10 @@
 {#                             </table><br />#}
 {#                   </form>#}
 
-    <form action="{% url 'adresses' %}" method="post">
-     {% csrf_token %}
+
 
 {#        <!-- column profil image -->#}
-        <div class="wrapper col-lg-9 text-center" >
+{#        <div class="wrapper cols-sm-3 text-center" >#}
 {#           <div>#}
 {#                <select class="form-select" aria-label="">#}
 {#                    <option selected>status</option>#}
@@ -44,6 +43,9 @@
 {#                </div>#}
 {#          </div>#}
 
+    <form action="{% url 'adresses' %}" method="post">
+    <div class="wrapper cols-sm-3 text-center" >
+     {% csrf_token %}
         <!-- champ nom -->
             <div class="form-row">
                   <div class="form-group">
@@ -149,29 +151,6 @@
 {#</div>#}
 
 
-{#            {% endfor %}##}
-
-
 {% endblock content %}
 
 
-
-
-
-
-{#</div>#}
-{#class="col-sm-9#}
-{#class="col-sm-2" col-md-4#}
-{#{% extends 'base1.html' %}#}
-{##}
-{##}
-{#{% block content %}#}
-{#    <h2 class="text-center">PRODUITS</h2>#}
-{#    <form action="{% url 'products' %}" method="post">#}
-{#        {% csrf_token %}#}
-{#            <table class="col-sm-6 text-center" >#}
-{#               {{ form.as_table }}#}
-{#            </table><br />#}
-{#        <input type="submit" value="Submit" class="btn btn-primary">#}
-{#    </form>#}
-{#{% endblock %}#}

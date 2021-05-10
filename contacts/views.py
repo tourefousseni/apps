@@ -46,13 +46,14 @@ from django.contrib import messages
 def home(request):
     return render(request, 'contacts/home.html', {})
 
-
-
-
 def contact(request):
     if request.method == 'POST':
+
+        status         = request.POST.get('')
+        sexe           = request.POST.get('')
         no             = request.POST.get('nom')
         prenom         = request.POST.get('prenom')
+        matricule      = request.POST.get('matricule')
         contact        = request.POST.get('contact')
         n_cin          = request.POST.get('n_cin')
         nina           = request.POST.get('nina')
@@ -64,16 +65,16 @@ def contact(request):
         email          = request.POST.get('email')
         created_at     = request.POST.get('created_at')
 
-        data = Contact(nom=no, prenom=prenom, contact=contact, n_cin=n_cin, nina=nina,
+        data = Contact(status=status, sexe=sexe, nom=no, prenom=prenom, matricule=matricule, contact=contact, n_cin=n_cin, nina=nina,
                         profession=profession, rcimm=rcimm, nif=nif, siege_social=siege_social,
                         responsable=responsable, email=email, created_at=created_at)
         data.save()
-        return HttpResponse(('adresses'))
-        # return HttpResponseRedirect(reverse('home'))
+    #     return HttpResponse(('adresses'))
+        return HttpResponseRedirect(reverse('home'))
 
     else:
-       form = ContactForm()
-    return render(request, 'contacts/contacts.html', {'form':form})
+        form = ContactForm()
+    return render(request, 'contacts/contacts.html', {'form': form})
 
 
 def contact_detail(request):
@@ -84,15 +85,12 @@ def contact_detail(request):
         return render(request, 'contacts/contacts_detail.html', context)
 
 
-
 def profil(request,):
     ps = Contact.objects.all()
     context = {
         'contacts': ps,
     }
     return render(request, 'contacts/profil.html', context)
-
-
 
 
 def about(request):

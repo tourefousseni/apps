@@ -7,17 +7,18 @@ import datetime
 # from contacts.models import contacts_contact
 
 class ContactForm(forms.Form):
-    # STATUS                = (
-    #     ('PERSONNE',    'Personne'),
-    #     ('SOCIETE',     'Societe'),)
-    # status                = forms.ChoiceField(choices=STATUS,)
-    # SEXE                  = (
-    #     ('HOMME',      'H'),
-    #     ('FEMME',      'F'),)
-    # sexe                  = forms.ChoiceField(choices=SEXE,)
-    nom                   = forms.CharField(max_length=50, label='inputFirstName')
-    prenom                = forms.CharField(max_length=50, label='inputLastName')
-    contact               = forms.CharField(max_length=8, label='TELEPHONE')
+    STATUS                = (
+        ('PERSONNE',    'Personne'),
+        ('SOCIETE',     'Societe'),)
+    status                = forms.ChoiceField(choices=STATUS,)
+    SEXE                  = (
+        ('HOMME',      'H'),
+        ('FEMME',      'F'),)
+    sexe                  = forms.ChoiceField(choices=SEXE,)
+    nom                   = forms.CharField(max_length=50,  label='inputName')
+    prenom                = forms.CharField(max_length=50,  label='inputLastName')
+    matricule             = forms.CharField(max_length=50,  label='inputm')
+    contact               = forms.CharField(max_length=8,   label='TELEPHONE')
     n_cin                 = forms.CharField(max_length=50,  label='CIN')
     nina                  = forms.CharField(max_length=50,  label='NINA')
     profession            = forms.CharField(max_length=50,  label='PROFESSION')
@@ -27,7 +28,6 @@ class ContactForm(forms.Form):
     responsable           = forms.CharField(max_length=50,  label='RESPONSABLE')
     email                 = forms.EmailField(max_length=50, label='ADRESSE EMAIL')
     created_at            = forms.DateTimeField()
-
 
 
 class EditProfileForm(UserChangeForm):

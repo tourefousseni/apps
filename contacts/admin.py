@@ -9,9 +9,10 @@ class ContactAdmin(admin.ModelAdmin):
     # search_fields = ['post__title', 'author_name', ]
     field = ['__all__']
     list_display = (
-        'status',
+
         'nom',
         'prenom',
+        'matricule',
         'sexe',
         'profession',
         'nina',
@@ -22,6 +23,7 @@ class ContactAdmin(admin.ModelAdmin):
     exclude = [
 
          'contacts',
+         'status',
 
          ]
     # list_editable = ('status', 'moderation_text',)

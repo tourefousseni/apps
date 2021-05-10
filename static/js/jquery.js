@@ -1,4 +1,4 @@
-alert("La page a été actualisée avec success !");
+// alert("La page a été actualisée avec success !");
 
 $(document).ready(function(){
 $("#status").on('click', function () {

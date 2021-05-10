@@ -27,7 +27,8 @@ var watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercol
    watercolor.addTo(map);
 
 var esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-	attribution: 'Tiles &copy; Esri &mdash; Source: Esri'
+	attribution: ''
+    // 'Tiles &copy; Esri &mdash; Source: Esri'
 });
 
     esri_WorldImagery.addTo(map);
@@ -41,12 +42,14 @@ L.control.Layers(baseLayers).addTo(map);
 
 
 // create a red polygon from an array of LatLng points
-var latlngs = [[37, -109.05],[41, -109.03],[41, -102.05],[37, -102.04]];
-
-var polygon = L.polygon(latlngs, {color: 'red'}).addTo(map);
+// var latlngs = [[37, -109.05],[41, -109.03],[41, -102.05],[37, -102.04]];
+//
+// var polygon = L.polygon(latlngs, {color: 'red'}).addTo(map);
 
 // zoom the map to the polygon
-map.fitBounds(polygon.getBounds());
+// map.fitBounds(polygon.getBounds());
+
+
 
 // point.addTo(map);
 // 17°00' N 4°00' W

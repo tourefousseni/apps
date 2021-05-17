@@ -6,166 +6,160 @@
     <h3 class="text-center">FORMULAIRE D'ENREGISTREMENT DES EXPLOITANTS</h3><br/>
 
 
-{#        <div>#}
-{#                {% for contact in contacts %}#}
-{#                   <div class="mt-9">#}
-{#                   <form action="{% url 'adresses' %}" method="post">#}
-{#                       {% csrf_token %}#}
-{#                             <table >#}
-{#                             {{ form.as_table }}#}
-{#                             </table><br />#}
-{#                   </form>#}
-
-
-
-{#        <!-- column profil image -->#}
-{#        <div class="wrapper cols-sm-3 text-center" >#}
-
+        <div>
+            {% for contact in contacts %}
+                   <div class="mt-9">
+                   <form action="{% url 'adresses' %}" method="POST">
+                       {% csrf_token %}
+                             <table >{{ form.as_table }}</table><br />
+                   </form>
+                   </div>
+               {% endfor %}
+        </div>
+        <!-- column profil image -->
+        <div class="wrapper cols-sm-3 text-center" >
+        </div>
+{% endblock content %}
 
 {##}
 
 
-    <form action="{% url 'adresses' %}" method="post">
-            <div class="wrapper cols-sm-3 text-center" >
-             {% csrf_token %}
-                <!-- champ status -->
-                <div class="form-row">
-                    <select class="form-select" aria-label="status">
-                        <option selected>status</option>
-                        <option value="personne">Personne</option>
-                        <option value="societe">Societe</option>
-                    </select>
-                </div>
-
-                <!-- champ sexe -->
-                <div class="form-row">
-                    <select class="form-select" aria-label="sexe">
-                        <option selected>sexe</option>
-                        <option value="homme">Homme</option>
-                        <option value="femme">Femme</option>
-                    </select>
-                </div>
-                <!-- champ nom -->
-                    <div class="form-row">
-                          <div class="form-group">
-                              <label for="inputFirstName"></label>
-                              <input type="text" class="form-control" id="inputFirstName" placeholder="Nom">
-                          </div>
-                    </div>
-
-                <!-- champ prenom -->
-                    <div class="form-row">
-                          <div class="form-group">
-                              <label for="inputLastName"></label>
-                              <input type="text" class="form-control" id="inputLastName" placeholder="Prenom">
-                          </div>
-                   </div>
-
-                <!-- champ matricule -->
-                    <div class="form-row">
-                          <div class="form-group">
-                              <label for="inputMatr"></label>
-                              <input type="text" class="form-control" id="inputMatr" placeholder="Matricule">
-                          </div>
-                   </div>
-
-                <!-- champ contact -->
-                    <div class="form-row">
-                          <div class="form-group">
-                              <label for="NumberPhone"></label>
-                              <input type="text" class="form-control" id="NumberPhone" placeholder="Telephone">
-                          </div>
-                   </div>
-
-                <!-- champ numero CIN -->
-                    <div class="form-row">
-                          <div class="form-group">
-                              <label for="inputCarteIdentiteNationale"></label>
-                              <input type="text" class="form-control" id="inputCarteIdentiteNationale" placeholder="CIN">
-                          </div>
-                   </div>
-
-                <!-- champ NINA  -->
-                    <div class="form-row">
-                          <div class="form-group">
-                              <label for="inputNumeroIdentificationNationale"></label>
-                              <input type="text" class="form-control" id="inputNumeroIdentificationNationale" placeholder="Nina">
-                          </div>
-                   </div>
-
-                <!-- champ profession  -->
-                    <div class="form-row">
-                          <div class="form-group">
-                              <label for="inputProfession"></label>
-                              <input type="text" class="form-control" id="inputProfession" placeholder="Profession">
-                          </div>
-                    </div>
-
-                <!-- champ registre de commerce  -->
-                    <div class="form-row">
-                          <div class="form-group">
-                              <label for="inputRegistreCommerceIndustrieMali"></label>
-                              <input type="text" class="form-control" id="inputRegistreCommerceIndustrieMali" placeholder="RCIMM">
-                          </div>
-                    </div>
-
-                <!-- champ Numero d'identificaion Fiscal  -->
-                    <div class="form-row">
-                          <div class="form-group">
-                              <label for="inputNumeroIdentificationFiscal"></label>
-                              <input type="text" class="form-control" id="inputNumeroIdentificationFiscal" placeholder="Nif">
-                          </div>
-                   </div>
-
-                <!-- champ Siege Social  -->
-                    <div class="form-row">
-                          <div class="form-group">
-                              <label for="inputSiegeSocial"></label>
-                              <input type="text" class="form-control" id="inputSiegeSocial" placeholder="Siege Social">
-                          </div>
-                    </div>
-
-                <!-- champ Responsable  -->
-                    <div class="form-row">
-                          <div class="form-group">
-                              <label for="inputResponsable"></label>
-                              <input type="text" class="form-control" id="inputResponsable" placeholder="Responsable">
-                          </div>
-                    </div>
-
-                <!-- column email input -->
-                   <div class="form-row">
-                          <div class="form-group">
-                              <label for="inputEmail4"></label>
-                              <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-                          </div>
-                   </div>
-
-                    <!-- champ date -->
-                    <div class="form-row">
-                          <div class="form-group">
-                              <label for="inputdate"></label>
-                              <input type="date" class="form-control" id="inputdate" placeholder="Date">
-                          </div>
-                   </div>
-
-             </div><br /><br />
-
-                <!-- champ Image Profil -->
-                <div class="form-group">
-                    <div class="custom-file">
-                          <label class="custom-file-label" for="customFile">Profil Image</label>
-                          <input type="file" class="custom-file-input" id="customFile">
-                    </div>
-                </div>
-                <div class="text-center border-right">
-                    <input type="submit" class="btn btn-secondary col-sm-3 text-center"  value="sauvegarder">
-                    <input type="submit" class="btn btn-primary col-sm-3 text-center"  value="Valider">
-                </div>
-  </form>
+{#    <form action="{% url 'adresses' %}" method="post">#}
+{#            <div class="wrapper cols-sm-3 text-center" >#}
+{#             {% csrf_token %}#}
+{#                <!-- champ status -->#}
+{#                <div class="form-row">#}
+{#                    <select class="form-select" aria-label="status">#}
+{#                        <option selected>status</option>#}
+{#                        <option value="personne">Personne</option>#}
+{#                        <option value="societe">Societe</option>#}
+{#                    </select>#}
+{#                </div>#}
+{##}
+{#                <!-- champ sexe -->#}
+{#                <div class="form-row">#}
+{#                    <select class="form-select" aria-label="sexe">#}
+{#                        <option selected>sexe</option>#}
+{#                        <option value="homme">Homme</option>#}
+{#                        <option value="femme">Femme</option>#}
+{#                    </select>#}
+{#                </div>#}
+{#                <!-- champ nom -->#}
+{#                    <div class="form-row">#}
+{#                          <div class="form-group">#}
+{#                              <label for="inputFirstName"></label>#}
+{#                              <input type="text" class="form-control" id="inputFirstName" placeholder="Nom">#}
+{#                          </div>#}
+{#                    </div>#}
+{##}
+{#                <!-- champ prenom -->#}
+{#                    <div class="form-row">#}
+{#                          <div class="form-group">#}
+{#                              <label for="inputLastName"></label>#}
+{#                              <input type="text" class="form-control" id="inputLastName" placeholder="Prenom">#}
+{#                          </div>#}
+{#                   </div>#}
+{##}
+{#                <!-- champ matricule -->#}
+{#                    <div class="form-row">#}
+{#                          <div class="form-group">#}
+{#                              <label for="inputMatr"></label>#}
+{#                              <input type="text" class="form-control" id="inputMatr" placeholder="Matricule">#}
+{#                          </div>#}
+{#                   </div>#}
+{##}
+{#                <!-- champ contact -->#}
+{#                    <div class="form-row">#}
+{#                          <div class="form-group">#}
+{#                              <label for="NumberPhone"></label>#}
+{#                              <input type="text" class="form-control" id="NumberPhone" placeholder="Telephone">#}
+{#                          </div>#}
+{#                   </div>#}
+{##}
+{#                <!-- champ numero CIN -->#}
+{#                    <div class="form-row">#}
+{#                          <div class="form-group">#}
+{#                              <label for="inputCarteIdentiteNationale"></label>#}
+{#                              <input type="text" class="form-control" id="inputCarteIdentiteNationale" placeholder="CIN">#}
+{#                          </div>#}
+{#                   </div>#}
+{##}
+{#                <!-- champ NINA  -->#}
+{#                    <div class="form-row">#}
+{#                          <div class="form-group">#}
+{#                              <label for="inputNumeroIdentificationNationale"></label>#}
+{#                              <input type="text" class="form-control" id="inputNumeroIdentificationNationale" placeholder="Nina">#}
+{#                          </div>#}
+{#                   </div>#}
+{##}
+{#                <!-- champ profession  -->#}
+{#                    <div class="form-row">#}
+{#                          <div class="form-group">#}
+{#                              <label for="inputProfession"></label>#}
+{#                              <input type="text" class="form-control" id="inputProfession" placeholder="Profession">#}
+{#                          </div>#}
+{#                    </div>#}
+{##}
+{#                <!-- champ registre de commerce  -->#}
+{#                    <div class="form-row">#}
+{#                          <div class="form-group">#}
+{#                              <label for="inputRegistreCommerceIndustrieMali"></label>#}
+{#                              <input type="text" class="form-control" id="inputRegistreCommerceIndustrieMali" placeholder="RCIMM">#}
+{#                          </div>#}
+{#                    </div>#}
+{##}
+{#                <!-- champ Numero d'identificaion Fiscal  -->#}
+{#                    <div class="form-row">#}
+{#                          <div class="form-group">#}
+{#                              <label for="inputNumeroIdentificationFiscal"></label>#}
+{#                              <input type="text" class="form-control" id="inputNumeroIdentificationFiscal" placeholder="Nif">#}
+{#                          </div>#}
+{#                   </div>#}
+{##}
+{#                <!-- champ Siege Social  -->#}
+{#                    <div class="form-row">#}
+{#                          <div class="form-group">#}
+{#                              <label for="inputSiegeSocial"></label>#}
+{#                              <input type="text" class="form-control" id="inputSiegeSocial" placeholder="Siege Social">#}
+{#                          </div>#}
+{#                    </div>#}
+{##}
+{#                <!-- champ Responsable  -->#}
+{#                    <div class="form-row">#}
+{#                          <div class="form-group">#}
+{#                              <label for="inputResponsable"></label>#}
+{#                              <input type="text" class="form-control" id="inputResponsable" placeholder="Responsable">#}
+{#                          </div>#}
+{#                    </div>#}
+{##}
+{#                <!-- column email input -->#}
+{#                   <div class="form-row">#}
+{#                          <div class="form-group">#}
+{#                              <label for="inputEmail4"></label>#}
+{#                              <input type="email" class="form-control" id="inputEmail4" placeholder="Email">#}
+{#                          </div>#}
+{#                   </div>#}
+{##}
+{#                    <!-- champ date -->#}
+{#                    <div class="form-row">#}
+{#                          <div class="form-group">#}
+{#                              <label for="inputdate"></label>#}
+{#                              <input type="date" class="form-control" id="inputdate" placeholder="Date">#}
+{#                          </div>#}
+{#                   </div>#}
+{##}
+{#             </div><br /><br />#}
+{##}
+{#                <!-- champ Image Profil -->#}
+{#                <div class="form-group">#}
+{#                    <div class="custom-file">#}
+{#                          <label class="custom-file-label" for="customFile">Profil Image</label>#}
+{#                          <input type="file" class="custom-file-input" id="customFile">#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="text-center border-right">#}
+{#                    <input type="submit" class="btn btn-secondary col-sm-3 text-center"  value="sauvegarder">#}
+{#                    <input type="submit" class="btn btn-primary col-sm-3 text-center"  value="Valider">#}
+{#                </div>#}
+{#  </form>#}
 {#</div>#}
-
-
-{% endblock content %}
-
-

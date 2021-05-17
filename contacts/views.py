@@ -69,8 +69,8 @@ def contact(request):
                         profession=profession, rcimm=rcimm, nif=nif, siege_social=siege_social,
                         responsable=responsable, email=email, created_at=created_at)
         data.save()
-    #     return HttpResponse(('adresses'))
-        return HttpResponseRedirect(reverse('home'))
+        return HttpResponse(('adresses'))
+        # return HttpResponseRedirect(reverse('home'))
 
     else:
         form = ContactForm()

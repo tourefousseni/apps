@@ -30,7 +30,7 @@ from blog import navigation
 
 
 
-def post_list(request, ):
+def post_list(request):
       posts = Post.objects.all()
 
       context = {

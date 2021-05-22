@@ -10,10 +10,12 @@ class ContactForm(forms.Form):
     STATUS                = (
         ('PERSONNE',    'Personne'),
         ('SOCIETE',     'Societe'),)
+    # status                = forms.ChoiceField()
     status                = forms.ChoiceField(choices=STATUS,)
     SEXE                  = (
         ('HOMME',      'H'),
         ('FEMME',      'F'),)
+    # sexe                  = forms.ChoiceField()
     sexe                  = forms.ChoiceField(choices=SEXE,)
     nom                   = forms.CharField(max_length=50,  label='inputName')
     prenom                = forms.CharField(max_length=50,  label='inputLastName')

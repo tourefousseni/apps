@@ -4,24 +4,27 @@
 {% block title %} CARNET ADRESSE {% endblock %}
 {% block content %} <br/>
     <h3 class="text-center">FORMULAIRE D'ENREGISTREMENT DES EXPLOITANTS</h3><br/>
-
-
         <div>
-            {% for contact in contacts %}
+{#            {% for contact in contacts %}#}
                    <div class="mt-9">
-                   <form action="{% url 'adresses' %}" method="POST">
-                       {% csrf_token %}
-                             <table >{{ form.as_table }}</table><br />
-                   </form>
+                           <form action="{% url 'adresses' %}" method="post">
+                               {% csrf_token %}
+                                     <table >{{ form.as_table }}</table><br />
+                           </form>
+                       <div class="text-center border-right">
+                            <button type="submit" class="btn btn-secondary col-sm-3 text-center" >Sauvegarder</button>
+                           <button type="submit" class="btn btn-primary col-sm-3 text-center">Valider</button>
+                        </div>
                    </div>
-               {% endfor %}
+{#            {% endfor %}#}
         </div>
         <!-- column profil image -->
         <div class="wrapper cols-sm-3 text-center" >
         </div>
-{% endblock content %}
+{% endblock %}
 
 {##}
+
 
 
 {#    <form action="{% url 'adresses' %}" method="post">#}
@@ -30,7 +33,7 @@
 {#                <!-- champ status -->#}
 {#                <div class="form-row">#}
 {#                    <select class="form-select" aria-label="status">#}
-{#                        <option selected>status</option>#}
+{#                        <option selected>Status</option>#}
 {#                        <option value="personne">Personne</option>#}
 {#                        <option value="societe">Societe</option>#}
 {#                    </select>#}
@@ -39,7 +42,7 @@
 {#                <!-- champ sexe -->#}
 {#                <div class="form-row">#}
 {#                    <select class="form-select" aria-label="sexe">#}
-{#                        <option selected>sexe</option>#}
+{#                        <option selected>Sexe</option>#}
 {#                        <option value="homme">Homme</option>#}
 {#                        <option value="femme">Femme</option>#}
 {#                    </select>#}
@@ -163,3 +166,4 @@
 {#                </div>#}
 {#  </form>#}
 {#</div>#}
+{#{% endblock content %}#}

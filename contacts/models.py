@@ -6,15 +6,12 @@ from django.db import models
 class Contact(models.Model):
     STATUS              = (
         ('PERSONNE',   'Personne'),
-        ('SOCIETE',    'Societe'),
-    )
-
-    status              = models.CharField(max_length=30, choices=STATUS,)
+        ('SOCIETE',    'Societe'),)
+    status              = models.CharField(max_length=30, choices=STATUS, null=True, blank=True,)
     SEXE = (
         ('HOMME', 'Homme'),
-        ('FEMME', 'Femme'),
-    )
-    sexe                = models.CharField(max_length=10, choices=SEXE,)
+        ('FEMME', 'Femme'),)
+    sexe                = models.CharField(max_length=10, choices=SEXE, null=True, blank=True,)
     nom                 = models.CharField(max_length=50, null=True, blank=True, verbose_name='NOM')
     prenom              = models.CharField(max_length=50, null=True, blank=True, verbose_name='PRENOM')
     matricule           = models.CharField(max_length=50, null=True, blank=True, verbose_name='N°MATRICULE')

@@ -4,21 +4,19 @@ from django.urls import include, path
 from django.conf.urls import url
 from contacts import views
 # from blog import views
-# from  .import views
+from blog.views import post_detail, post_list
 from django.conf import settings
 from django.conf.urls.static import static
 
 
-app_name = 'contacts',
-           # 'blog', \
+app_name = 'contacts', 'blog',
            # 'authenticate',
 
 urlpatterns = [
-      path('', admin.site.urls),
-      # path('posts', views.post_list, name='list'),
-      # path('posts/<str:category_name>/', views.post_list, name='post-list'),
-      # path('posts/detail/<int:post_id>/', views.post_detail, name='post-detail'),
-
+      # path('', admin.site.urls),
+      path('posts', views.post_list, name='list'),
+      path('posts/<str:category_name>/', views.post_list, name='post-list'),
+      path('posts/detail/<int:post_id>/', views.post_detail, name='post-detail'),
       # path('thanks/', views.thanks, name='thanks'),
       path('profil/', views.profil, name='profil'),
       path('contact/', views.contact, name='adresses'),

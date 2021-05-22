@@ -15,8 +15,8 @@
            <div>
                <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-info">
 {#                  <a class="navbar-brand" href="{% url 'home' %}">Douniya</a>#}
-                  <a class="navbar-brand"  href="{% url 'adresses' %}">PORTAIL DU FONCIER RURAL</a>
-                  <button class="navbar-toggler" type="button" data-toggler= "collapse" data-targer="#navbar">
+                  <a class="navbar-brand">PORTAIL DU FONCIER RURAL</a>
+                  <button class="navbar-toggler" type="button" data-toggler= "collapse" data-targer="navbar">
                     <span class="navbar-toggler-icon"></span>
                   </button>
 
@@ -25,12 +25,13 @@
                           <li class="nav-item">
                                 <a class="nav-link mr-auto" href="{% url 'about' %}">ABOUT</a>
                             </li>
-                          <li class="nav-item">
+                            <li class="nav-item">
+                                <a class="nav-link mr-auto" href="{% url 'adresses' %}">CONTACT</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link mr-auto" href="{% url 'profil' %}">PROFIL</a>
                             </li>
-                          <li class="nav-item">
-                                <a class="nav-link mr-auto" href="{% url 'adresses' %}">CONTACT</a>
-                          </li>
+
 {#                          <li class="nav-item">#}
 {#                                <a class="nav-link mr-auto" href="{% url 'contacts-detail' %}">CONTENU CONTACT</a>#}
 {#                          </li>#}
@@ -77,7 +78,8 @@
         <div>
              <div >
 
-                   {% block content %} form address {% endblock %}<br />
+                    {% block content %} form address {% endblock %}<br />
+{#                     <input type="submit" value="OK">#}
                     <p><h3 class="text-center">CADASTRE RURAL DE L'OFFICE DU MOYEN BANI</h3></p>
 
             </div><br/>

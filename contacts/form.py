@@ -2,35 +2,59 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth.models import User
 from django import forms
+from django.forms import widgets
 import datetime
+from contacts.models import Contact
+from django.forms import ModelForm
+from django_bootstrap_datetimepicker.widgets import BootstrapDateTimeInput
 
-# from contacts.models import contacts_contact
 
-class ContactForm(forms.Form):
-    STATUS                = (
+
+class ContactForm(ModelForm):
+    STATUS = (
         ('PERSONNE',    'Personne'),
         ('SOCIETE',     'Societe'),)
-    # status                = forms.ChoiceField()
-    status                = forms.ChoiceField(choices=STATUS,)
-    SEXE                  = (
+    status = forms.ChoiceField(choices=STATUS,)
+    SEXE = (
         ('HOMME',      'H'),
         ('FEMME',      'F'),)
-    # sexe                  = forms.ChoiceField()
-    sexe                  = forms.ChoiceField(choices=SEXE,)
-    nom                   = forms.CharField(max_length=50,  label='inputName')
-    prenom                = forms.CharField(max_length=50,  label='inputLastName')
-    matricule             = forms.CharField(max_length=50,  label='inputm')
-    contact               = forms.CharField(max_length=8,   label='TELEPHONE')
-    n_cin                 = forms.CharField(max_length=50,  label='CIN')
-    nina                  = forms.CharField(max_length=50,  label='NINA')
-    profession            = forms.CharField(max_length=50,  label='PROFESSION')
-    rcimm                 = forms.CharField(max_length=50,  label='REGISTRE DE COMMERCE')
-    nif                   = forms.CharField(max_length=50,  label='NIF')
-    siege_social          = forms.CharField(max_length=50,  label='SIEGE SOCIAL')
-    responsable           = forms.CharField(max_length=50,  label='RESPONSABLE')
-    email                 = forms.EmailField(max_length=50, label='ADRESSE EMAIL')
-    created_at            = forms.DateTimeField()
+    sexe = forms.ChoiceField(choices=SEXE,)
+    nom = forms.CharField(label="Nom", max_length=100,
+                                    widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nom' }))
 
+    prenom = forms.CharField(label="Prenom", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Prenom'}))
+
+    matricule = forms.CharField(label="Matricule", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Matricule'}))
+    contact = forms.CharField(label="Contact", max_length=8, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Contact'}))
+    n_cin = forms.CharField(label="Carte d'Indentite Nationale", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'CIN'}))
+    nina = forms.CharField(label="NINA", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'NINA'}))
+    profession = forms.CharField(label="Profession", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Profession'}))
+    rcimm = forms.CharField(label="Registre Commerce", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Registre Commerce'}))
+    nif = forms.CharField(label="NIF", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'NIF'}))
+    siege_social = forms.CharField(label="SIEGE SOCIAL", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Siege Social'}))
+    responsable = forms.CharField(label="RESPONABLE", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Responsable'}))
+    email = forms.EmailField(max_length=50, label='ADRESSE EMAIL', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
+    # created_at = forms.DateTimeField(widget=BootstrapDateTimeInput())
+    created_at = forms.DateTimeField(
+        input_formats=['%d/%m/%Y %H:%M'],
+        widget=forms.DateTimeInput(attrs={
+            'class': 'form-control datetimepicker-input',
+            'data-target': '#datetimepicker1'
+        })
+    )
+
+
+    class Meta:
+        # fields = ['__all__']
+        model = Contact
+        exclude = ['n_cin',
+                   'nina',
+                   'rcimm',
+                   'Matricule',
+                   'nif',
+                   'siege_social',
+                   'Responsable',
+                   'email',]
 
 class EditProfileForm(UserChangeForm):
         password = forms.CharField(label="", widget=forms.TextInput(attrs={'type': 'hidden'}))

@@ -74,11 +74,13 @@
 {#     this code at the address form #}
 
 <container>
-
+    <div>
+        {% block content %} form address {% endblock %}<br />
+    </div>
         <div>
              <div >
 
-                    {% block content %} form address {% endblock %}<br />
+
 {#                     <input type="submit" value="OK">#}
                     <p><h3 class="text-center">CADASTRE RURAL DE L'OFFICE DU MOYEN BANI</h3></p>
 
@@ -162,4 +164,18 @@
 
 <script src="{% static 'js/main.js' %}"></script>
 {#<link src="{% static 'js/main.js' %}"></link>#}
+
+{#    < div class ="input-append date form_datetime" >#}
+{##}
+{#    < input size = "16" type = "text" value = "" readonly > < span#}
+{##}
+{#    class ="add-on" > < i class ="icon-th" > < / i > < / span >#}
+{##}
+{#< / div >#}
+{##}
+{#< script type = "text/javascript" >#}
+{#$(".form_datetime").datetimepicker({#}
+{#    format: "dd MM yyyy - hh:ii"#}
+{#});#}
+{#< / script >#}
 

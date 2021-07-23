@@ -41,6 +41,9 @@ var baseLayers = {
 L.control.Layers(baseLayers).addTo(map);
 
 
+
+
+
 // create a red polygon from an array of LatLng points
 // var latlngs = [[37, -109.05],[41, -109.03],[41, -102.05],[37, -102.04]];
 //

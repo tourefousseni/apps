@@ -14,5 +14,23 @@ ALTER ROLE myprojectuser SET client_encoding TO 'utf8';
 ALTER ROLE myprojectuser SET timezone TO 'UTC';
 GRANT ALL PRIVILEGES ON DATABASE douniyakafe TO myprojectuser;
 
+create database plateform;
+create user myprojectuser WITH PASSWORD 'password';
+ALTER ROLE myprojectuser SET default_transaction_isolation TO 'read committed';
+ALTER ROLE myprojectuser SET client_encoding TO 'utf8';
+ALTER ROLE myprojectuser SET timezone TO 'UTC';
+GRANT ALL PRIVILEGES ON DATABASE plateform TO myprojectuser;
+
 
 how create account with django 1.11 https://youtu.be/V1DOQyB5LXA
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'plateform',
+        'USER': 'myprojectuser',
+        'PASSWORD':'password',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}

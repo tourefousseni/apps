@@ -22,10 +22,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.template import context
 from django.template import defaulttags
-from blog.models import Post,  PostCategory, Comment
 from contacts.models import Contact
-from blog import model_helpers
-from blog import navigation
 
 
 # Create your views here.
@@ -74,8 +71,8 @@ def contact(request):
         created_at     = request.POST.get('created_at')
 
         data = Contact(status=status, sexe=sexe, nom=no, prenom=prenom, matricule=matricule, contact=contact, n_cin=n_cin, nina=nina,
-                        profession=profession, rcimm=rcimm, nif=nif, siege_social=siege_social,
-                        responsable=responsable, email=email, created_at=created_at)
+                       profession=profession, rcimm=rcimm, nif=nif, siege_social=siege_social,
+                       responsable=responsable, email=email, created_at=created_at)
         data.save()
         # return HttpResponse(('adresses'))
         return HttpResponseRedirect(reverse('home'))
@@ -173,24 +170,4 @@ def change_password(request):
 
 
 
-def post_list(request):
-      posts = Post.objects.all()
-
-      context = {
-        'posts': posts,
-	}
-      return render(request, 'blog/post_list.html', context)
-
-
-def post_detail(request, post_id):
-
-	post = get_object_or_404(Post, pk=post_id)
-	posts_save_category = Post.objects.filter(published=True, category=post.category).exclude(pk=post_id)
-
-	context = {
-        'navigation_items': navigation.navigation_items(navigation.NAV_POSTS),
-        'post': post,
-        'posts_save_category': posts_save_category,
-   }
-	return render(request, 'blog/post_detail.html', context)
 

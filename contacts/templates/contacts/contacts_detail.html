@@ -10,8 +10,7 @@
             <h2>REPERTOIRE</h2><br/>
         </div>
             <tr>
-
-                  <td><input type="checkbox" id="checkall" /></td>
+{#                  <td><input type="checkbox" id="checkall" /></td>#}
                   <th>N°</th>
                   <th>Status</th>
                   <th>Sexe</th>
@@ -35,9 +34,9 @@
       <tbody>
                     {% for contact in contacts %}
                            <tr>
-                                <td><a href="{% url 'contact-detail' contact.pk %}"></a>{{ contacts.nom }}</td>
-                                <td><input type="checkbox" class="checkthis" /></td>
-                                <td>{{ contact.id }}</td>
+                                <td><a href="{% url 'contact-detail' contact.pk %}"></a></td>
+{#                                <td><input type="checkbox" class="checkthis" /></td>#}
+{#                                <td>{{ contact.id }}</td>#}
                                 <td>{{ contact.status }}</td>
                                 <td>{{ contact.sexe }}</td>
                                 <td>{{ contact.nom }}</td>

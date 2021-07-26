@@ -2,14 +2,13 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
-{% block title %} CARNET ADRESSE {% endblock %}
+{% block title %} CARNET PARCELLES {% endblock %}
 {% block content %} <br/>
     <h3 class="text-center">
-        <span>FORMULAIRE D'ENREGISTREMENT DES EXPLOITANTS </span></h3><br/>
+        <span>SITUATION DES PARCELLES </span></h3><br/>
         <div>
-{#            {% for contact in contacts %}#}
                    <div class="mt-9">
-                           <form action="{% url 'adresses' %}" method="post">
+                           <form action="{% url 'parcel' %}" method="post">
                                {% csrf_token %}
                                     <div class="row">
                                             <div class="col-sm-6">
@@ -23,4 +22,5 @@
 
                            </form>
                    </div>
+        </div>
 {% endblock %}

@@ -29,20 +29,23 @@ class Contact(models.Model):
     created_at          = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return  ('{} - {} - {}').format(self.nom, self.prenom, self.contact)
+        return ('{}-{}-{}').format(self.nom, self.prenom, self.contact)
 
 
 
 
-# class Parcel(models.Model):
-#     TYPE              = (
-#         ('BATI',   'Bati'),
-#         ('NON BATIE',    'Non Bati'),)
-#     type                = models.CharField(max_length=30, choices=TYPE,)
-#     contact             = models.ForeignKey('Contact', on_delete=models.CASCADE)
-#     superficie          = models.IntegerField()
-#     code                = models.IntegerField()
-#     created_at          = models.DateTimeField(auto_now=True)
-#
-#     def __str__(self):
-#         return  ('{} - {} - {}').format(self.type, self.superficie, self.code)
+class Parcel(models.Model):
+    TYPE = (
+        ('BATI',   'Bati'),
+        ('NON BATIE',    'Non Bati'),)
+    type = models.CharField(max_length=30, choices=TYPE,)
+    contact = models.ManyToManyField('Contact')
+    # geom = models.JSONField()
+    area = models.PositiveIntegerField()
+    perimeter = models.PositiveIntegerField()
+    code = models.CharField(max_length=30,)
+    created_at = models.DateTimeField(auto_now=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return ('{}-{}-{}').format(self.type, self.area, self.code)

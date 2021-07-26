@@ -1,8 +1,9 @@
 .body{
-    margin: 10px;
-    padding: 20px;
+    margin: 50px;
+    padding: 50px;
     background-color: antiquewhite;
 }
+
 
 .wrapper{
 
@@ -37,6 +38,10 @@ img {
     text-align: center;
     margin: auto;
     padding-bottom: 50px;
+}
+
+.navbar {
+    background-color: red;
 }
 
 /*inputCarteIdentiteNationale{*/

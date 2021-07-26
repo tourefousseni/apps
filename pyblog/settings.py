@@ -118,6 +118,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 FORM_RENDERER = 'django.forms.renderers.DjangoTemplates'
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)                    ]

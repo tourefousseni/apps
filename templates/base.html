@@ -14,7 +14,6 @@
        <div>
            <div>
                <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-info">
-{#                  <a class="navbar-brand" href="{% url 'home' %}">Douniya</a>#}
                   <a class="navbar-brand">PORTAIL DU FONCIER RURAL</a>
                   <button class="navbar-toggler" type="button" data-toggler= "collapse" data-targer="navbar">
                     <span class="navbar-toggler-icon"></span>
@@ -28,13 +27,16 @@
                             <li class="nav-item">
                                 <a class="nav-link mr-auto" href="{% url 'adresses' %}">CONTACT</a>
                             </li>
+                           <li class="nav-item">
+                                <a class="nav-link mr-auto" href="{% url 'parcel' %}">PARCEL</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link mr-auto" href="{% url 'profil' %}">PROFIL</a>
                             </li>
 
-{#                          <li class="nav-item">#}
-{#                                <a class="nav-link mr-auto" href="{% url 'contacts-detail' %}">CONTENU CONTACT</a>#}
-{#                          </li>#}
+{#                            <li class="nav-item">#}
+{#                                <a class="nav-link mr-auto" href="{% url 'contact-detail' %}">CONTENU CONTACT</a>#}
+{#                            </li>#}
                       </ul>
 {#                          {% for item in navigation_items %}#}
 {#                            <li class="nav-item {% if item.active %}active{% endif %}">#}
@@ -69,7 +71,7 @@
              </nav>
            </div>
 
-        </div>
+       </div>
   </header>
 {#     this code at the address form #}
 
@@ -78,24 +80,21 @@
         {% block content %} form address {% endblock %}<br />
     </div>
         <div>
+
              <div >
 
-
-{#                     <input type="submit" value="OK">#}
-                    <p><h3 class="text-center">CADASTRE RURAL DE L'OFFICE DU MOYEN BANI</h3></p>
-
+                 <span><h4 class="text-center">CADASTRE RURAL DE L'OFFICE DU MOYEN BANI</h4></span>
+                     <div id="map" style="width: 100%; height: 800px; margin-top: 20px;"></div>
             </div><br/>
 
-                      <div id="map" style="width: 100%; height: 800px; margin-top: 20px;"></div>
+
          </div>
          <div >
          <div class="col-xl-3">
                      <h3>
                          Fiscalité foncière
                      </h3>
-                     <p class="btn-info border-right">
-                         <span>Evaluation des droits réels</span>
-                    </p>
+                     <p class="btn-info border-right"><span>Evaluation des droits réels</span></p>
 
          </div>
          <div class="col-xl-3">
@@ -165,17 +164,4 @@
 <script src="{% static 'js/main.js' %}"></script>
 {#<link src="{% static 'js/main.js' %}"></link>#}
 
-{#    < div class ="input-append date form_datetime" >#}
-{##}
-{#    < input size = "16" type = "text" value = "" readonly > < span#}
-{##}
-{#    class ="add-on" > < i class ="icon-th" > < / i > < / span >#}
-{##}
-{#< / div >#}
-{##}
-{#< script type = "text/javascript" >#}
-{#$(".form_datetime").datetimepicker({#}
-{#    format: "dd MM yyyy - hh:ii"#}
-{#});#}
-{#< / script >#}
 

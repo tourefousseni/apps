@@ -34,3 +34,151 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+
+
+
+
+{# <div class="container">#}
+{##}
+{#     <div class="row row-cols-2">#}
+{#            <form action="{% url 'adresses' %}" method="post">#}
+{#                {% csrf_token %}#}
+{#                                <div class="wrapper row ">#}
+{#                                    <!-- field status -->#}
+{#                                    <div class="col">#}
+{#                                        <select class="form-select" id="status">#}
+{#                                            <option selected>Status</option>#}
+{#                                            <option value="Personne">Personne</option>#}
+{#                                            <option value="Societe">Societe</option>#}
+{#                                        </select>#}
+{#                                    </div>#}
+{#                                    <!-- field sexe -->#}
+{#                                    <div class="col">#}
+{#                                        <select class="form-select" id="sexe">#}
+{#                                            <option selected>Sexe</option>#}
+{#                                            <option value="H">Homme</option>#}
+{#                                            <option value="F">Femme</option>#}
+{#                                        </select>#}
+{#                                    </div>#}
+{#                                    <!-- field nom -->#}
+{#                                        <div class="col">#}
+{#                                              <div class="form-group">#}
+{#                                                  <label for="nom"></label>#}
+{#                                                  <input type="text" class="form-control" id="nom" placeholder="Nom">#}
+{#                                              </div>#}
+{#                                        </div>#}
+{##}
+{#                                    <!-- field prenom -->#}
+{#                                        <div class="col">#}
+{#                                              <div class="form-group">#}
+{#                                                  <label for="prenom"></label>#}
+{#                                                  <input type="text" class="form-control" id="prenom" placeholder="Prenom">#}
+{#                                              </div>#}
+{#                                       </div>#}
+{##}
+{#                                    <!-- field matricule -->#}
+{#                                        <div class="col">#}
+{#                                              <div class="form-group">#}
+{#                                                  <label for="inputMatr"></label>#}
+{#                                                  <input type="text" class="form-control" id="inputMatr" placeholder="Matricule">#}
+{#                                              </div>#}
+{#                                       </div>#}
+{##}
+{#                                    <!-- field contact -->#}
+{#                                        <div class="col">#}
+{#                                              <div class="form-group">#}
+{#                                                  <label for="NumberPhone"></label>#}
+{#                                                  <input type="text" class="form-control" id="NumberPhone" placeholder="Telephone">#}
+{#                                              </div>#}
+{#                                       </div>#}
+{##}
+{#                                    <!-- field numero CIN -->#}
+{#                                        <div class="col">#}
+{#                                              <div class="form-group">#}
+{#                                                  <label for="inputCarteIdentiteNationale"></label>#}
+{#                                                  <input type="text" class="form-control" id="inputCarteIdentiteNationale" placeholder="CIN">#}
+{#                                              </div>#}
+{#                                       </div>#}
+{##}
+{#                                    <!-- field NINA  -->#}
+{#                                        <div class="col">#}
+{#                                              <div class="form-group">#}
+{#                                                  <label for="inputNumeroIdentificationNationale"></label>#}
+{#                                                  <input type="text" class="form-control" id="inputNumeroIdentificationNationale" placeholder="Nina">#}
+{#                                              </div>#}
+{#                                       </div>#}
+{##}
+{#                                    <!-- field profession  -->#}
+{#                                        <div class="col">#}
+{#                                              <div class="form-group">#}
+{#                                                  <label for="inputProfession"></label>#}
+{#                                                  <input type="text" class="form-control" id="inputProfession" placeholder="Profession">#}
+{#                                              </div>#}
+{#                                        </div>#}
+{##}
+{#                                    <!-- field registre de commerce  -->#}
+{#                                        <div class="col">#}
+{#                                              <div class="form-group">#}
+{#                                                  <label for="inputRegistreCommerceIndustrieMali"></label>#}
+{#                                                  <input type="text" class="form-control" id="inputRegistreCommerceIndustrieMali" placeholder="RCIMM">#}
+{#                                              </div>#}
+{#                                        </div>#}
+{##}
+{#                                    <!-- field Numero d'identificaion Fiscal  -->#}
+{#                                        <div class="col">#}
+{#                                              <div class="form-group">#}
+{#                                                  <label for="inputNumeroIdentificationFiscal"></label>#}
+{#                                                  <input type="text" class="form-control" id="inputNumeroIdentificationFiscal" placeholder="Nif">#}
+{#                                              </div>#}
+{#                                       </div>#}
+{##}
+{#                                    <!-- field Siege Social  -->#}
+{#                                        <div class="col">#}
+{#                                              <div class="form-group">#}
+{#                                                  <label for="inputSiegeSocial"></label>#}
+{#                                                  <input type="text" class="form-control" id="inputSiegeSocial" placeholder="Siege Social">#}
+{#                                              </div>#}
+{#                                        </div>#}
+{##}
+{#                                    <!-- field Responsable  -->#}
+{#                                        <div class="col">#}
+{#                                              <div class="form-group">#}
+{#                                                  <label for="inputResponsable"></label>#}
+{#                                                  <input type="text" class="form-control" id="inputResponsable" placeholder="Responsable">#}
+{#                                              </div>#}
+{#                                        </div>#}
+{##}
+{#                                    <!-- column email input -->#}
+{#                                       <div class="col">#}
+{#                                              <div class="form-group">#}
+{#                                                  <label for="inputEmail4"></label>#}
+{#                                                  <input type="email" class="form-control" id="inputEmail4" placeholder="Email">#}
+{#                                              </div>#}
+{#                                       </div>#}
+{##}
+{#                                        <!-- field date -->#}
+{#                                        <div class="col">#}
+{#                                              <div class="form-group">#}
+{#                                                  <label for="inputdate"></label>#}
+{#                                                  <input type="date" class="form-control" id="inputdate" placeholder="Date">#}
+{#                                              </div>#}
+{#                                       </div>#}
+{##}
+{#                                 </div><br /><br />#}
+{##}
+{#                                    <!-- field Image Profil -->#}
+{#                                    <div class="col">#}
+{#                                        <div class="custom-file">#}
+{#                                              <label class="custom-file-label" for="customFile">Profil Image</label>#}
+{#                                              <input type="file" class="custom-file-input" id="customFile">#}
+{#                                        </div>#}
+{#                                    </div> <br />#}
+{#                <div class="text-center border-right">#}
+{#                        <button type="submit" class="btn btn-primary col-sm-3 text-center">Valider</button>#}
+{#                </div>#}
+{#          </form>#}
+{#      </div>#}
+{#    </div>#}
+{#</div>#}
+

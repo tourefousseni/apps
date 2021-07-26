@@ -1,4 +1,4 @@
-from .form import ContactForm
+from .forms import ContactForm, ParcelForm
 # SignUpForm, EditProfileForm
 # from .forms import UploadFileForm
 from django.contrib import messages
@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.template import context
 from contacts.models import Contact
-from .form import  SignUpForm, EditProfileForm
+from .forms import  SignUpForm, EditProfileForm
 # from .forms import UploadFileForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -16,13 +16,11 @@ from .import views
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
-
-
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.template import context
 from django.template import defaulttags
-from contacts.models import Contact
+from contacts.models import Contact, Parcel
 
 
 # Create your views here.
@@ -52,34 +50,36 @@ from contacts.models import Contact
 def home(request):
     return render(request, 'contacts/home.html', {})
 
-def contact(request):
-    if request.method == 'POST':
-        status         = request.POST.get('')
-        sexe           = request.POST.get('')
-        no             = request.POST.get('nom')
-        prenom         = request.POST.get('prenom')
-        matricule      = request.POST.get('matricule')
-        contact        = request.POST.get('contact')
-        n_cin          = request.POST.get('n_cin')
-        nina           = request.POST.get('nina')
-        profession     = request.POST.get('profession')
-        rcimm          = request.POST.get('rcimm')
-        nif            = request.POST.get('nif')
-        siege_social   = request.POST.get('siege_social')
-        responsable    = request.POST.get('responsable')
-        email          = request.POST.get('email')
-        created_at     = request.POST.get('created_at')
 
-        data = Contact(status=status, sexe=sexe, nom=no, prenom=prenom, matricule=matricule, contact=contact, n_cin=n_cin, nina=nina,
-                       profession=profession, rcimm=rcimm, nif=nif, siege_social=siege_social,
-                       responsable=responsable, email=email, created_at=created_at)
+def contact(request):
+
+    if request.method == 'POST':
+
+        sta = request.POST.get('status')
+        sx = request.POST.get('sexe')
+        no = request.POST.get('nom')
+        pre = request.POST.get('prenom')
+        mle = request.POST.get('matricule')
+        cont = request.POST.get('contact')
+        cin = request.POST.get('n_cin')
+        ni = request.POST.get('nina')
+        prof = request.POST.get('profession')
+        rci = request.POST.get('rcimm')
+        nf = request.POST.get('nif')
+        s_s = request.POST.get('siege_social')
+        res = request.POST.get('responsable')
+        ema = request.POST.get('email')
+        cre = request.POST.get('created_at')
+
+        data = Contact(status=sta, sexe=sx, nom=no, prenom=pre, matricule=mle, contact=cont, n_cin=cin, nina=ni,
+                       profession=prof, rcimm=rci, nif=nf, siege_social=s_s, responsable=res, email=ema, created_at=cre)
+
         data.save()
         # return HttpResponse(('adresses'))
-        return HttpResponseRedirect(reverse('home'))
-
+        return HttpResponseRedirect(reverse('parcel'))
     else:
-        form = ContactForm()
-    return render(request, 'contacts/contacts.html', {'form': form})
+        blog = ContactForm()
+    return render(request, 'contacts/contacts.html', {'form': blog})
 
 
 def contact_detail(request, contact_id):
@@ -169,5 +169,21 @@ def change_password(request):
     return render(request, 'contacts/change_password.html', context)
 
 
+def parcel(request):
 
+    if request.method == 'POST':
+        sty = request.POST.get('type')
+        ar = request.POST.get('area')
+        pe = request.POST.get('perimeter')
+        cod = request.POST.get('code')
+        cre = request.POST.get('created_at')
+        upd = request.POST.get('update_at')
 
+        data = Parcel(type=sty, area=ar, perimeter=pe, code=cod, update_at=upd, created_at=cre)
+
+        data.save()
+        # return HttpResponse(('adresses'))
+        return HttpResponseRedirect(reverse('home'))
+    else:
+        blog = ParcelForm()
+    return render(request, 'contacts/parcel.html', {'form': blog})

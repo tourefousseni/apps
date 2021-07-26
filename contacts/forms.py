@@ -4,27 +4,29 @@ from django.contrib.auth.models import User
 from django import forms
 from django.forms import widgets
 import datetime
-from contacts.models import Contact
+from .models import Contact
 from django.forms import ModelForm
 from django_bootstrap_datetimepicker.widgets import BootstrapDateTimeInput
 
 
+# class ContactForm(ModelForm):
+class ContactForm(forms.Form):
 
-class ContactForm(ModelForm):
     STATUS = (
         ('PERSONNE',    'Personne'),
-        ('SOCIETE',     'Societe'),)
-    status = forms.ChoiceField(choices=STATUS,)
+        ('SOCIETE',     'Societe'))
+    status = forms.ChoiceField(choices=STATUS)
     SEXE = (
-        ('HOMME',      'H'),
-        ('FEMME',      'F'),)
-    sexe = forms.ChoiceField(choices=SEXE,)
+        ('HOMME',      'Homme'),
+        ('FEMME',      'Femme'))
+    sexe = forms.ChoiceField(choices=SEXE)
     nom = forms.CharField(label="Nom", max_length=100,
-                                    widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nom' }))
+                                    widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nom'}))
 
     prenom = forms.CharField(label="Prenom", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Prenom'}))
 
     matricule = forms.CharField(label="Matricule", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Matricule'}))
+    photo = forms.ImageField()
     contact = forms.CharField(label="Contact", max_length=8, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Contact'}))
     n_cin = forms.CharField(label="Carte d'Indentite Nationale", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'CIN'}))
     nina = forms.CharField(label="NINA", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'NINA'}))
@@ -39,22 +41,43 @@ class ContactForm(ModelForm):
         input_formats=['%d/%m/%Y %H:%M'],
         widget=forms.DateTimeInput(attrs={
             'class': 'form-control datetimepicker-input',
-            'data-target': '#datetimepicker1'
+            'data-target': 'datetimepicker1'
         })
     )
-
-
     class Meta:
-        # fields = ['__all__']
+        fields = ['__all__']
         model = Contact
-        exclude = ['n_cin',
-                   'nina',
-                   'rcimm',
-                   'Matricule',
-                   'nif',
+        exclude = [
                    'siege_social',
                    'Responsable',
                    'email',]
+
+class ParcelForm(forms.Form):
+    TYPE = (
+        ('BATI',   'Bati'),
+        ('NON BATIE',    'Non Bati'),)
+    type = forms.ChoiceField(choices=TYPE)
+    contact = forms.ModelMultipleChoiceField(
+        queryset=Contact.objects.all(),
+        widget=forms.CheckboxSelectMultiple)
+    # geom = forms.JSONField()
+    area = forms.CharField(label="Area", max_length=8, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Area'}))
+    perimeter = forms.CharField(label="Perimeter", max_length=8, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Perimeter'}))
+    code = forms.CharField(max_length=30,)
+    created_at = forms.DateTimeField(
+        input_formats=['%d/%m/%Y %H:%M'],
+        widget=forms.DateTimeInput(attrs={
+            'class': 'form-control datetimepicker-input',
+            'data-target': 'datetimepicker1'
+        })
+    )
+    update_at = forms.DateTimeField(
+        input_formats=['%d/%m/%Y %H:%M'],
+        widget=forms.DateTimeInput(attrs={
+            'class': 'form-control datetimepicker-input',
+            'data-target': 'datetimepicker1'
+        })
+    )
 
 class EditProfileForm(UserChangeForm):
         password = forms.CharField(label="", widget=forms.TextInput(attrs={'type': 'hidden'}))

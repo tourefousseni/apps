@@ -1,6 +1,7 @@
 from django.db import models
 import random
 from random import  randint
+# from django.db.models.AutoField
 from django.db.models.signals import pre_save
 from .utils import unique_matricule_id_generator
 from django.forms import widgets
@@ -9,6 +10,7 @@ from django.forms import widgets
 
 
 class Contact(models.Model):
+    id = models.AutoField(primary_key=True)
     STATUS              = (
         ('PERSONNE',   'Personne'),
         ('SOCIETE',    'Societe'),)
@@ -43,6 +45,7 @@ pre_save.connect(pre_save_matricule_id, sender=Contact)
 
 
 class Parcel(models.Model):
+    id = models.AutoField(primary_key=True)
     TYPE = (
         ('BATI',   'Bati'),
         ('NON BATIE',    'Non Bati'),)

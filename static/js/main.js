@@ -42,6 +42,11 @@ L.control.Layers(baseLayers).addTo(map);
 
 
 
+$( "p" ).click(function() {
+  $( this ).slideUp();
+});
+
+
 
 
 // create a red polygon from an array of LatLng points

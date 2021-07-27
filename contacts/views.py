@@ -178,7 +178,6 @@ def parcel(request):
         cod = request.POST.get('code')
         cre = request.POST.get('created_at')
         upd = request.POST.get('update_at')
-
         data = Parcel(type=sty, area=ar, perimeter=pe, code=cod, update_at=upd, created_at=cre)
 
         data.save()
@@ -187,3 +186,11 @@ def parcel(request):
     else:
         blog = ParcelForm()
     return render(request, 'contacts/parcel.html', {'form': blog})
+
+
+def parcel_detail(request, parcel_id):
+    qs = Parcel.objects.all()
+    context = {
+        'detenteur': qs,
+    }
+    return render(request, 'contacts/parcel_detail.html', context)

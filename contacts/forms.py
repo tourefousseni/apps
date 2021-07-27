@@ -25,7 +25,7 @@ class ContactForm(forms.Form):
 
     prenom = forms.CharField(label="Prenom", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Prenom'}))
 
-    matricule = forms.CharField(label="Matricule", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Matricule'}))
+    # matricule = forms.CharField(label="Matricule", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Matricule'}))
     photo = forms.ImageField()
     contact = forms.CharField(label="Contact", max_length=8, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Contact'}))
     n_cin = forms.CharField(label="Carte d'Indentite Nationale", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'CIN'}))
@@ -45,12 +45,10 @@ class ContactForm(forms.Form):
         })
     )
     class Meta:
-        fields = ['__all__']
-        model = Contact
-        exclude = [
-                   'siege_social',
-                   'Responsable',
-                   'email',]
+            model = Contact
+            fields = ['status', 'sexe', 'contact', 'nom', 'prenom']
+            exclude = ['matricule']
+
 
 class ParcelForm(forms.Form):
     TYPE = (

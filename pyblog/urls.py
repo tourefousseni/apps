@@ -17,6 +17,7 @@ urlpatterns = [
       # path('thanks/', views.thanks, name='thanks'),
       path('profil/', views.profil, name='profil'),
       path('parcel/', views.parcel, name='parcel'),
+      path('parcels/detail/<int:parcel_id>/', views.parcel_detail, name='parcel_detail'),
       path('contact/', views.contact, name='adresses'),
       path('contacts/detail/<int:contact_id>/', views.contact_detail, name='contact-detail'),
       path('', views.home, name='home'),

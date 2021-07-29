@@ -1,5 +1,3 @@
-from .forms import ContactForm, ParcelForm
-# SignUpForm, EditProfileForm
 # from .forms import UploadFileForm
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
@@ -7,7 +5,6 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.template import context
 from contacts.models import Contact
-from .forms import  SignUpForm, EditProfileForm
 # from .forms import UploadFileForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -20,35 +17,25 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.template import context
 from django.template import defaulttags
-from contacts.models import Contact, Parcel
+from contacts.models import Contact, Parcel, Person, Mesure, Order, Produit
+from .forms import SignUpForm, \
+                   EditProfileForm, \
+                   ContactForm, \
+                   ParcelForm, \
+                   PersonForm,\
+                   MesureForm
 
+# \
+    # PersonForm, MesureForm, OrderForm, ProductForm
 
-# Create your views here.
-
-# def contact(request):
-#           contacts = Contact.objects.all()
-#
-#           context = {
-#             'contacts': contacts,
-#           }
-#
-#           return render(request, 'contacts/contacts.html', context)
-
-
-# def contact(request,):
-#     contacts = Contact.objects.all()
-#     context = {
-#         'contacts': contacts,
-# 	}
-#     # return render(request, 'contacts/contacts.html', context)
-#     form = ContactForm()
-#     return render(request, 'contacts/contacts.html', {'form': form})
-#
-# def thanks(request):
-#     return HttpResponse('Thanks, your form has been processed')
 
 def home(request):
     return render(request, 'contacts/home.html', {})
+
+# ==============================================
+#                  VIEWS CADASTRE
+#                        START
+# ==============================================
 
 
 def contact(request):
@@ -71,8 +58,12 @@ def contact(request):
         ema = request.POST.get('email')
         cre = request.POST.get('created_at')
 
-        data = Contact(status=sta, sexe=sx, nom=no, prenom=pre, matricule=mle, contact=cont, n_cin=cin, nina=ni,
-                       profession=prof, rcimm=rci, nif=nf, siege_social=s_s, responsable=res, email=ema, created_at=cre)
+        data = Contact(status=sta, sexe=sx, nom=no,
+                       prenom=pre, matricule=mle,
+                       contact=cont, n_cin=cin, nina=ni,
+                       profession=prof, rcimm=rci, nif=nf,
+                       siege_social=s_s, responsable=res,
+                       email=ema, created_at=cre)
 
         data.save()
         # return HttpResponse(('adresses'))
@@ -90,6 +81,35 @@ def contact_detail(request, contact_id):
         return render(request, 'contacts/contacts_detail.html', context)
 
 
+def parcel(request):
+
+    if request.method == 'POST':
+        sty = request.POST.get('type')
+        ar = request.POST.get('area')
+        pe = request.POST.get('perimeter')
+        cod = request.POST.get('code')
+        cre = request.POST.get('created_at')
+        upd = request.POST.get('update_at')
+
+        data = Parcel(type=sty, area=ar, perimeter=pe,
+                      code=cod, update_at=upd, created_at=cre)
+
+        data.save()
+        # return HttpResponse(('adresses'))
+        return HttpResponseRedirect(reverse('home'))
+    else:
+        blog = ParcelForm()
+    return render(request, 'contacts/parcel.html', {'form': blog})
+
+
+def parcel_detail(request, parcel_id):
+    qs = Parcel.objects.all()
+    context = {
+        'detenteur': qs,
+    }
+    return render(request, 'contacts/parcel_detail.html', context)
+
+
 def profil(request,):
     ps = Contact.objects.all()
     context = {
@@ -97,9 +117,15 @@ def profil(request,):
     }
     return render(request, 'contacts/profil.html', context)
 
+# ==============================================
+#                  VIEWS CADASTRE
+#                        END
+# ==============================================
+
 
 def about(request):
     return render(request, 'contacts/about.html', {})
+
 
 def user_login(request):
     if request.method == 'POST':
@@ -108,7 +134,7 @@ def user_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request,('You Have been Logged In !'))
+            messages.success(request, ('You Have been Logged In !'))
             return redirect('home')
         else:
             messages.success(request, ('Error you can try again !'))
@@ -116,10 +142,12 @@ def user_login(request):
     else:
         return render(request, 'contacts/login.html', {})
 
+
 def logout_user(request):
      logout(request)
      messages.success(request, ('You Have Been Logged out...'))
      return redirect('home')
+
 
 def register_user(request):
     if request.method == 'POST':
@@ -144,12 +172,12 @@ def edit_profile(request):
         form = EditProfileForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            messages.success(request,('You Have Edited Your Profiel...'))
+            messages.success(request, ('You Have Edited Your Profiel...'))
             return redirect('home')
 
     else:
         form = EditProfileForm(instance=request.user)
-    context = {'form': form}
+        context = {'form': form}
     return render(request, 'contacts/edit_profile.html', context)
 
 
@@ -159,38 +187,148 @@ def change_password(request):
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
-            messages.success(request, ('You Have Edited Your Password...'))
+            messages.success(request,('You Have Edited Your Password...'))
             return redirect('home')
 
     else:
         form = PasswordChangeForm(user=request.user)
+
     context = {'form': form}
 
     return render(request, 'contacts/change_password.html', context)
 
 
-def parcel(request):
-
-    if request.method == 'POST':
-        sty = request.POST.get('type')
-        ar = request.POST.get('area')
-        pe = request.POST.get('perimeter')
-        cod = request.POST.get('code')
-        cre = request.POST.get('created_at')
-        upd = request.POST.get('update_at')
-        data = Parcel(type=sty, area=ar, perimeter=pe, code=cod, update_at=upd, created_at=cre)
-
-        data.save()
-        # return HttpResponse(('adresses'))
-        return HttpResponseRedirect(reverse('home'))
-    else:
-        blog = ParcelForm()
-    return render(request, 'contacts/parcel.html', {'form': blog})
+# ===========================
+#      VIEWS KALALISO
+#          START
+# ===========================
 
 
-def parcel_detail(request, parcel_id):
-    qs = Parcel.objects.all()
+def homepage(request):
+    return render(request, 'kalaliso/homepage.html')
+
+
+def product(request):
+    return render(request, 'kalaliso/product.html')
+
+
+def product_detail(request, product_id):
+    qs = Produit.objects.all()
     context = {
-        'detenteur': qs,
+        'detail_product': qs,
     }
-    return render(request, 'contacts/parcel_detail.html', context)
+
+    return render(request, 'kalaliso/product_detail.html', context)
+
+
+def order(request):
+    return render(request, 'kalaliso/order.html')
+
+
+def order_detail(request, order_id):
+    qs = Order.objects.all()
+
+    context = {
+        'detail_order': qs,
+    }
+
+    return render(request, 'kalaliso/order_detail.html', context)
+
+
+def mesure(request):
+    return render(request, 'kalaliso/mesure.html')
+
+
+def mesure_detail(request, mesure_id):
+    qs = Mesure.objects.all()
+
+    context = {
+        'detail_mesure': qs,
+    }
+
+    return render(request, 'kalaliso/mesure_detail.html', context)
+
+
+def person(request):
+    if request.method == 'POST':
+
+            sta = request.POST.get("status")
+            se = request.POST.get("sex")
+            pre = request.POST.get("prenom")
+            no = request.POST.get("nom")
+            cont = request.POST.get("contact_1")
+            ema = request.POST.get("email")
+
+            data = Person(status=sta, prenom=pre, nom=no,
+                          sex=se, contact_1=cont, email=ema)
+            data.save()
+
+       # if form.is_valid():
+       #       sta = form.cleaned_data['status']
+       #       se = form.cleaned_data['sex']
+       #       pre = form.cleaned_data["prenom"]
+       #       pre = form.cleaned_data["prenom"]
+       #       no = form.cleaned_data["nom"]
+       #       cont = form.cleaned_data["contact_1"]
+       #       ema = form.cleaned_data["email"]
+
+            return HttpResponseRedirect(reverse('mesure'))
+    else:
+        form = PersonForm()
+    return render(request, 'kalaliso/person.html', {'form':form})
+
+
+def person_detail(request, person_id):
+    qs = Person.objects.all()
+
+    context = {
+        'detail_person': qs,
+    }
+
+    return render(request, 'kalaliso/person_detail.html', context)
+
+# def list_person(request):
+#      model = Person
+#      list_p = Person.objects.all()
+#
+#      # context = {'year': year, 'article_list': a_list}
+#      return render(request, '../templates/list_person.html')
+
+
+# def merci(request):
+#     return HttpResponse('Thanks, your messure had well added')
+#
+def mesure(request):
+    if request.method == 'POST':
+            coud  = request.POST.get("coude")
+            epau   = request.POST.get("epaule")
+            ma = request.POST.get("manche")
+            to_ma   = request.POST.get("tour_manche")
+            tail   = request.POST.get("taille")
+            poitr = request.POST.get("pointrine")
+            lo_bo = request.POST.get("longueur_boubou")
+            lo_pa = request.POST.get("longueur_patanlon")
+            fes = request.POST.get("fesse")
+            cei = request.POST.get("ceinture")
+            cui = request.POST.get("cuisse")
+            pat = request.POST.get("patte")
+
+
+            data = Mesure(coude=coud, epaule=epau, manche=ma,
+                          tour_manche=to_ma, taille=tail,
+                          poitrine=poitr, longueur_boubou=lo_bo,
+                          longueur_patanlon=lo_pa, fesse=fes,
+                          ceinture=cei, cuisse=cui, patte=pat,)
+            data.save()
+            return HttpResponseRedirect(reverse('Order'))
+    else:
+       form = MesureForm()
+    return render(request, 'kalaliso/mesure.html', {'form':form})
+
+
+
+
+# ===========================
+#      VIEWS KALALISO
+#          END
+# ===========================

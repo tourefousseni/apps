@@ -4,12 +4,15 @@ from django.contrib.auth.models import User
 from django import forms
 from django.forms import widgets
 import datetime
-from .models import Contact
+from .models import Contact, Person, Produit, Order, Mesure
 from django.forms import ModelForm
-from django_bootstrap_datetimepicker.widgets import BootstrapDateTimeInput
+# from django_bootstrap_datetimepicker.widgets import BootstrapDateTimeInput
 
 
-# class ContactForm(ModelForm):
+# ==============================================
+#                  FORM CADASTRE
+#                        START
+# ==============================================
 class ContactForm(forms.Form):
 
     STATUS = (
@@ -76,6 +79,112 @@ class ParcelForm(forms.Form):
             'data-target': 'datetimepicker1'
         })
     )
+
+
+
+# ==============================================
+#                  FORM CADASTRE
+#                        END
+# ==============================================
+
+
+
+
+# ==============================================
+#                  FORM KALALISO
+#                        START
+# ==============================================
+
+
+class PersonForm(forms.Form):
+
+
+    STATUS = (
+                ('Client', 'CLIENT'),
+                ('Ouvrier', 'OUVRIER'),
+                ('Apprenti', 'APPRENTI'),
+                ('Fournisseur', 'FOURNISSEUR'),
+                ('Company', 'COMPANY'),)
+
+    status = forms.ChoiceField(label='Status', choices=STATUS, required='CLIENT')
+    SEX = (
+                ('H', 'Homme'),
+                ('F', 'Femme'),
+                ('A', 'Autres'),)
+    sex = forms.ChoiceField(label='Sex', choices=SEX, required='Homme')
+    prenom = forms.CharField(label='Last Name', max_length=30)
+    nom = forms.CharField(label='First Name', max_length=30)
+    contact_1 = forms.IntegerField(label='Telephone')
+    email = forms.EmailField(label='Email', max_length=100)
+
+    class Meta:
+        model = Person
+
+class MesureForm(forms.Form):
+
+        person = forms.IntegerField()
+        coude = forms.FloatField(label='Coude',)
+        epaule = forms.FloatField(label='Epaule',)
+        manche = forms.FloatField(label='Manche',)
+        tour_manche = forms.FloatField(label='Tour Manche',)
+        taille = forms.FloatField(label='Taille',)
+        poitrine = forms.FloatField(label='Poitrine',)
+        longueur_boubou = forms.FloatField(label='Longueur Boubou',)
+        longueur_patanlon = forms.FloatField(label='Longueur Patanlon',)
+        fesse = forms.FloatField(label='Fesse',)
+        ceinture = forms.FloatField(label='Ceinture',)
+        cuisse = forms.FloatField(label='Cuisse',)
+        patte = forms.FloatField(label='Patte',)
+
+        class Meta:
+            model = Mesure
+
+
+class ProductForm(forms.Form):
+
+        name = forms.CharField(label='Name Product', max_length=30)
+        photo = forms.ImageField(label='Photos', max_length=30)
+        price = forms.FloatField(label='Coude', )
+
+        class Meta:
+            model = Produit
+
+class OrderForm(forms.Form):
+
+
+            PRODUIT = [
+                ('Boubou', 'Boubou'),
+                ('Grand Boubou', 'Grand Boubou'),
+                ('Chemise Complet', 'Chemise Complet'),
+                ('Chemise Manche Long', 'Chemise Manche Long'),
+                ('Chemise Manche Court', 'Chemise Manche Court'),
+                ('Pagne Jupe', 'Pagne Jupe'),
+                ('Pagne Complet', 'Pagne Complet'),
+                ('Pagne Maniere', 'Pagne Maniere'),
+                ('Patanlon', 'Patanlon'),
+                ('Tenu Scolaire', 'Tenu Scolaire'),
+                ('Tenu Securite', 'Tenu Securite'),
+                ('AUTRES', 'AUTRES'),]
+            id_person = forms.ModelChoiceField(queryset=Person.objects.all())
+            produit = forms.MultipleChoiceField(required=False, widget=forms.CheckboxSelectMultiple, choices=PRODUIT)
+            submontant = forms.FloatField(label='Montant Total', )
+            remise = forms.FloatField(label='Montant Total', )
+            tva = forms.FloatField(label='Montant Total', )
+            montant_total = forms.FloatField(label='Montant Total', )
+            reception = forms.DateTimeField()
+            rendez_vous = forms.DateTimeField()
+            livre = forms.BooleanField(label='Livraison', required=False)
+            create_at = forms.DateTimeField()
+
+            class Meta:
+                models = Order
+
+
+# ==============================================
+#                  FORM KALALISO
+#                        END
+# ==============================================
+
 
 class EditProfileForm(UserChangeForm):
         password = forms.CharField(label="", widget=forms.TextInput(attrs={'type': 'hidden'}))

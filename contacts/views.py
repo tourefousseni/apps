@@ -17,16 +17,17 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.template import context
 from django.template import defaulttags
-from contacts.models import Contact, Parcel, Person, Mesure, Order, Produit
+from contacts.models import Contact, Parcel, Person, Mesure, Order, Product, Payment
 from .forms import SignUpForm, \
                    EditProfileForm, \
                    ContactForm, \
                    ParcelForm, \
                    PersonForm,\
-                   MesureForm
+                   MesureForm,\
+                   ProductForm,\
+                   OrderForm, \
+                   PaymentForm
 
-# \
-    # PersonForm, MesureForm, OrderForm, ProductForm
 
 
 def home(request):
@@ -58,15 +59,24 @@ def contact(request):
         ema = request.POST.get('email')
         cre = request.POST.get('created_at')
 
-        data = Contact(status=sta, sexe=sx, nom=no,
-                       prenom=pre, matricule=mle,
-                       contact=cont, n_cin=cin, nina=ni,
-                       profession=prof, rcimm=rci, nif=nf,
-                       siege_social=s_s, responsable=res,
-                       email=ema, created_at=cre)
+        data = Contact(status=sta,
+                       sexe=sx,
+                       nom=no,
+                       prenom=pre,
+                       matricule=mle,
+                       contact=cont,
+                       n_cin=cin,
+                       nina=ni,
+                       profession=prof,
+                       rcimm=rci,
+                       nif=nf,
+                       siege_social=s_s,
+                       responsable=res,
+                       email=ema,
+                       created_at=cre)
 
         data.save()
-        # return HttpResponse(('adresses'))
+
         return HttpResponseRedirect(reverse('parcel'))
     else:
         blog = ContactForm()
@@ -75,9 +85,8 @@ def contact(request):
 
 def contact_detail(request, contact_id):
         qs = Contact.objects.all()
-        context = {
-            'contacts': qs,
-        }
+        context = {'contacts': qs,}
+
         return render(request, 'contacts/contacts_detail.html', context)
 
 
@@ -91,11 +100,15 @@ def parcel(request):
         cre = request.POST.get('created_at')
         upd = request.POST.get('update_at')
 
-        data = Parcel(type=sty, area=ar, perimeter=pe,
-                      code=cod, update_at=upd, created_at=cre)
+        data = Parcel(type=sty,
+                      area=ar,
+                      perimeter=pe,
+                      code=cod,
+                      update_at=upd,
+                      created_at=cre)
 
         data.save()
-        # return HttpResponse(('adresses'))
+
         return HttpResponseRedirect(reverse('home'))
     else:
         blog = ParcelForm()
@@ -104,17 +117,15 @@ def parcel(request):
 
 def parcel_detail(request, parcel_id):
     qs = Parcel.objects.all()
-    context = {
-        'detenteur': qs,
-    }
+    context = {'detenteur': qs,}
+
     return render(request, 'contacts/parcel_detail.html', context)
 
 
 def profil(request,):
     ps = Contact.objects.all()
-    context = {
-        'contacts': ps,
-    }
+    context = {'contacts': ps,}
+
     return render(request, 'contacts/profil.html', context)
 
 # ==============================================
@@ -209,42 +220,99 @@ def homepage(request):
 
 
 def product(request):
-    return render(request, 'kalaliso/product.html')
+    if request.method == 'POST':
+            na = request.POST.get("name")
+            cod = request.POST.get("code_produit")
+            ph = request.POST.get("photo")
+            pr = request.POST.get("price")
+
+            data = Product(name=na,
+                           code_produit=cod,
+                           photo=ph,
+                           price=pr,)
+            data.save()
+
+            return HttpResponseRedirect(reverse('product_detail'))
+    else:
+        form = ProductForm()
+    return render(request, 'kalaliso/product.html', {'form': form})
 
 
 def product_detail(request, product_id):
-    qs = Produit.objects.all()
-    context = {
-        'detail_product': qs,
-    }
+    qs = Product.objects.all()
+    context = {'detail_product': qs,}
 
     return render(request, 'kalaliso/product_detail.html', context)
 
 
-def order(request):
-    return render(request, 'kalaliso/order.html')
+def order(request,):
+    if request.method == 'POST':
+            ida=request.POST.get("id")
+            cd = request.POST.get("code_order")
+            recep = request.POST.get("reception")
+
+
+            creat = request.POST.get("create_at")
+
+            data = Order(id=ida,
+                         code_order=cd,
+                         reception=recep,
+                         create_at=creat,)
+            data.save()
+
+            return HttpResponseRedirect(reverse('order_detail'))
+    else:
+        form = OrderForm()
+    return render(request, 'kalaliso/order.html', {'form': form})
 
 
 def order_detail(request, order_id):
     qs = Order.objects.all()
 
-    context = {
-        'detail_order': qs,
-    }
+    context = {'detail_order': qs,}
 
     return render(request, 'kalaliso/order_detail.html', context)
 
 
+
 def mesure(request):
-    return render(request, 'kalaliso/mesure.html')
+    if request.method == 'POST':
+            coud = request.POST.get("coude")
+            epau = request.POST.get("epaule")
+            ma = request.POST.get("manche")
+            to_ma = request.POST.get("tour_manche")
+            tail = request.POST.get("taille")
+            poitr = request.POST.get("pointrine")
+            lo_bo = request.POST.get("longueur_boubou")
+            lo_pa = request.POST.get("longueur_patanlon")
+            fes = request.POST.get("fesse")
+            cei = request.POST.get("ceinture")
+            cui = request.POST.get("cuisse")
+            pat = request.POST.get("patte")
+
+            data = Mesure(coude=coud,
+                          epaule=epau,
+                          manche=ma,
+                          tour_manche=to_ma,
+                          taille=tail,
+                          poitrine=poitr,
+                          longueur_boubou=lo_bo,
+                          longueur_patanlon=lo_pa,
+                          fesse=fes,
+                          ceinture=cei,
+                          cuisse=cui,
+                          patte=pat,)
+            data.save()
+            return HttpResponseRedirect(reverse('Order'))
+    else:
+       form = MesureForm()
+    return render(request, 'kalaliso/mesure.html', {'form': form})
 
 
 def mesure_detail(request, mesure_id):
     qs = Mesure.objects.all()
 
-    context = {
-        'detail_mesure': qs,
-    }
+    context = {'detail_mesure': qs,}
 
     return render(request, 'kalaliso/mesure_detail.html', context)
 
@@ -258,9 +326,12 @@ def person(request):
             no = request.POST.get("nom")
             cont = request.POST.get("contact_1")
             ema = request.POST.get("email")
-
-            data = Person(status=sta, prenom=pre, nom=no,
-                          sex=se, contact_1=cont, email=ema)
+            data = Person(status=sta,
+                          prenom=pre,
+                          nom=no,
+                          sex=se,
+                          contact_1=cont,
+                          email=ema)
             data.save()
 
        # if form.is_valid():
@@ -275,57 +346,45 @@ def person(request):
             return HttpResponseRedirect(reverse('mesure'))
     else:
         form = PersonForm()
-    return render(request, 'kalaliso/person.html', {'form':form})
+    return render(request, 'kalaliso/person.html', {'form': form})
 
 
 def person_detail(request, person_id):
     qs = Person.objects.all()
 
-    context = {
-        'detail_person': qs,
-    }
+    context = {'detail_person': qs,}
 
     return render(request, 'kalaliso/person_detail.html', context)
 
-# def list_person(request):
-#      model = Person
-#      list_p = Person.objects.all()
-#
-#      # context = {'year': year, 'article_list': a_list}
-#      return render(request, '../templates/list_person.html')
 
-
-# def merci(request):
-#     return HttpResponse('Thanks, your messure had well added')
-#
-def mesure(request):
-    if request.method == 'POST':
-            coud  = request.POST.get("coude")
-            epau   = request.POST.get("epaule")
-            ma = request.POST.get("manche")
-            to_ma   = request.POST.get("tour_manche")
-            tail   = request.POST.get("taille")
-            poitr = request.POST.get("pointrine")
-            lo_bo = request.POST.get("longueur_boubou")
-            lo_pa = request.POST.get("longueur_patanlon")
-            fes = request.POST.get("fesse")
-            cei = request.POST.get("ceinture")
-            cui = request.POST.get("cuisse")
-            pat = request.POST.get("patte")
-
-
-            data = Mesure(coude=coud, epaule=epau, manche=ma,
-                          tour_manche=to_ma, taille=tail,
-                          poitrine=poitr, longueur_boubou=lo_bo,
-                          longueur_patanlon=lo_pa, fesse=fes,
-                          ceinture=cei, cuisse=cui, patte=pat,)
+def payment(request, ):
+        if request.method == 'POST':
+            subm = request.POST.get("submontant")
+            rm = request.POST.get("remise")
+            tv = request.POST.get("tva")
+            mt = request.POST.get("montant_total")
+            rd = request.POST.get("rendez_vous")
+            lv = request.POST.get("livre")
+            creat = request.POST.get("create_at")
+            data = Payment(submontant=subm,
+                           remise=rm,
+                           tva=tv,
+                           montant_total=mt,
+                           rendez_vous=rd,
+                           livre=lv,
+                           create_at=creat,)
             data.save()
             return HttpResponseRedirect(reverse('Order'))
-    else:
-       form = MesureForm()
-    return render(request, 'kalaliso/mesure.html', {'form':form})
+        else:
+            form = PaymentForm()
+        return render(request, 'kalaliso/payment.html', {'form': form})
 
+def payment_detail(request, payment_id):
+    qs = Payment.objects.all()
 
+    context = {'detail_payment': qs, }
+
+    return render(request, 'kalaliso/payment_detail.html', context)
 
 
 # ===========================

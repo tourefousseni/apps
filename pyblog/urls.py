@@ -51,6 +51,8 @@ urlpatterns = [
       path('product/detail/<int:product_id>/', views.product_detail, name='product_detail'),
       path('person/', views.person, name='person'),
       path('person/detail/<int:person_id>/', views.person_detail, name='person_detail'),
+      path('payment/', views.payment, name='payment'),
+      path('payment/detail/<int:payment_id>/', views.payment_detail, name='payment_detail'),
       path('mesure/', views.mesure, name='mesure'),
       path('mesure/detail/<int:mesure_id>/', views.mesure_detail, name='mesure_detail'),
 

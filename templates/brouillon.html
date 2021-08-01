@@ -35,8 +35,46 @@ DATABASES = {
     }
 }
 
+Models Order AND Orders_Items
+{#class Order(models.Model):#}
+{#    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)#}
+{#    product = models.ManyToManyField('OrderItem', related_name='ordered_products')#}
+{#    date_ordered = models.DateTimeField(auto_now_add=True)#}
+{#    complete = models.BooleanField(default=False)#}
+{#    transaction_id = models.CharField(max_length=200, null=True, unique=True)#}
+{#    payment = models.ForeignKey('Payment', on_delete=models.SET_NULL, blank=True, null=True)#}
+{#    received = models.BooleanField(default=False)#}
 
+{#class OrderItem(models.Model):#}
+{#    order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True, blank=True,)#}
+{#    product = models.ForeignKey(Product, on_delete=models.CASCADE)#}
+{#    quantity = models.IntegerField(default=1, blank=True, null=True)#}
 
+View file for Order and Items_order
+{#def processorder(request):#}
+{#    transaction_id = create_transaction_id()#}
+{#    data = json.loads(request.body)#}
+{#    user = request.user#}
+{#    order, created = Order.objects.get_or_create(user=user, complete=False)#}
+{#    items = order.orderitem_set.all()#}
+{#    total = float(data['form']['total'])#}
+{#    order.transaction_id = transaction_id#}
+{#    order.items = items#}
+{##}
+{#    if total == order.get_cart_total:#}
+{#        order.complete = True#}
+{#    order.save()#}
+{#    if order.shipping == True:#}
+{#        ShippingAddress.objects.create(#}
+{#        user=user,#}
+{#        order=order,#}
+{#        address=data['shipping']['address'],#}
+{#        city=data['shipping']['city'],#}
+{#        state=data['shipping']['state'],#}
+{#        zipcode=data['shipping']['zipcode'],#}
+{#        )#}
+{##}
+{#    return JsonResponse('Payment Complete', safe=False)#}
 
 
 {# <div class="container">#}

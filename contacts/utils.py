@@ -41,14 +41,14 @@ def random_string_generator():
         result += random.choice(characters)
     return result
 
-def unique_produit_id_generator(instance):
+def unique_product_id_generator(instance):
     code_produit_new_id = random_string_generator()
 
     Klass = instance.__class__
 
     qs_exists = Klass.objects.filter(code_produit=code_produit_new_id).exists()
     if qs_exists:
-        return unique_produit_id_generator(instance)
+        return unique_product_id_generator(instance)
     return code_produit_new_id
 
 def unique_order_id_generator(instance):

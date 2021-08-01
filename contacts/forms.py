@@ -4,7 +4,13 @@ from django.contrib.auth.models import User
 from django import forms
 from django.forms import widgets
 import datetime
-from .models import Contact, Person, Produit, Order, Mesure
+from .models import Contact, \
+                    Person, \
+                    Product, \
+                    Order, \
+                    Mesure, \
+                    OrderDetail, \
+                    Payment
 from django.forms import ModelForm
 # from django_bootstrap_datetimepicker.widgets import BootstrapDateTimeInput
 
@@ -64,7 +70,7 @@ class ParcelForm(forms.Form):
     # geom = forms.JSONField()
     area = forms.CharField(label="Area", max_length=8, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Area'}))
     perimeter = forms.CharField(label="Perimeter", max_length=8, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Perimeter'}))
-    code = forms.CharField(max_length=30,)
+    code = forms.CharField(label="Code", max_length=30, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Code'}))
     created_at = forms.DateTimeField(
         input_formats=['%d/%m/%Y %H:%M'],
         widget=forms.DateTimeInput(attrs={
@@ -79,9 +85,6 @@ class ParcelForm(forms.Form):
             'data-target': 'datetimepicker1'
         })
     )
-
-
-
 # ==============================================
 #                  FORM CADASTRE
 #                        END
@@ -97,8 +100,6 @@ class ParcelForm(forms.Form):
 
 
 class PersonForm(forms.Form):
-
-
     STATUS = (
                 ('Client', 'CLIENT'),
                 ('Ouvrier', 'OUVRIER'),
@@ -112,46 +113,42 @@ class PersonForm(forms.Form):
                 ('F', 'Femme'),
                 ('A', 'Autres'),)
     sex = forms.ChoiceField(label='Sex', choices=SEX, required='Homme')
-    prenom = forms.CharField(label='Last Name', max_length=30)
-    nom = forms.CharField(label='First Name', max_length=30)
-    contact_1 = forms.IntegerField(label='Telephone')
-    email = forms.EmailField(label='Email', max_length=100)
+    prenom = forms.CharField(label="Prenom", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Prenom'}))
+    nom = forms.CharField(label="Nom", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nom'}))
+    contact_1 = forms.IntegerField(label="Contact", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Contact'}))
+    email = forms.EmailField(max_length=50, label='ADRESSE EMAIL', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
 
     class Meta:
         model = Person
 
 class MesureForm(forms.Form):
-
-        person = forms.IntegerField()
-        coude = forms.FloatField(label='Coude',)
-        epaule = forms.FloatField(label='Epaule',)
-        manche = forms.FloatField(label='Manche',)
-        tour_manche = forms.FloatField(label='Tour Manche',)
-        taille = forms.FloatField(label='Taille',)
-        poitrine = forms.FloatField(label='Poitrine',)
-        longueur_boubou = forms.FloatField(label='Longueur Boubou',)
-        longueur_patanlon = forms.FloatField(label='Longueur Patanlon',)
-        fesse = forms.FloatField(label='Fesse',)
-        ceinture = forms.FloatField(label='Ceinture',)
-        cuisse = forms.FloatField(label='Cuisse',)
-        patte = forms.FloatField(label='Patte',)
+        # person_mesure = forms.ModelChoiceField(queryset=Person.objects.all())
+        coude = forms.IntegerField(label="Coude", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Coude'}))
+        epaule = forms.IntegerField(label="Epaule", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Epaule'}))
+        manche = forms.IntegerField(label="Manche", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Manche'}))
+        tour_manche = forms.IntegerField(label="Tour Manche", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Tour Manche'}))
+        taille = forms.IntegerField(label="Taille", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Taille'}))
+        poitrine = forms.IntegerField(label="Poitrine", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Pointrine'}))
+        longueur_boubou = forms.IntegerField(label="Longueur Boubou", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Longueur Boubou'}))
+        longueur_patanlon = forms.IntegerField(label="Longueur Patanlon", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Longueur Patanlon'}))
+        fesse = forms.IntegerField(label="Fesse", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Fesse'}))
+        ceinture = forms.IntegerField(label="Ceinture", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ceinture'}))
+        cuisse = forms.IntegerField(label="Cuisse", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Cuisse'}))
+        patte = forms.IntegerField(label="Patte", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Patte'}))
 
         class Meta:
             model = Mesure
 
 
 class ProductForm(forms.Form):
-
-        name = forms.CharField(label='Name Product', max_length=30)
-        photo = forms.ImageField(label='Photos', max_length=30)
-        price = forms.FloatField(label='Coude', )
+        name = forms.CharField(label="Name Product", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name Product'}))
+        photo = forms.ImageField(label='Photos', )
+        price = forms.IntegerField(label="Price", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Price'}))
 
         class Meta:
-            model = Produit
+            model = Product
 
 class OrderForm(forms.Form):
-
-
             PRODUIT = [
                 ('Boubou', 'Boubou'),
                 ('Grand Boubou', 'Grand Boubou'),
@@ -167,10 +164,7 @@ class OrderForm(forms.Form):
                 ('AUTRES', 'AUTRES'),]
             id_person = forms.ModelChoiceField(queryset=Person.objects.all())
             produit = forms.MultipleChoiceField(required=False, widget=forms.CheckboxSelectMultiple, choices=PRODUIT)
-            submontant = forms.FloatField(label='Montant Total', )
-            remise = forms.FloatField(label='Montant Total', )
-            tva = forms.FloatField(label='Montant Total', )
-            montant_total = forms.FloatField(label='Montant Total', )
+
             reception = forms.DateTimeField()
             rendez_vous = forms.DateTimeField()
             livre = forms.BooleanField(label='Livraison', required=False)
@@ -179,6 +173,17 @@ class OrderForm(forms.Form):
             class Meta:
                 models = Order
 
+
+class PaymentForm(forms.Form):
+    # id = forms.AutoField(primary_key=True)
+    # person = models.ForeignKey('Order', on_delete=models.CASCADE, verbose_name='Titulaire command', )
+    submontant = forms.IntegerField(label="Submontant", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Submontant'}))
+    remise = forms.IntegerField(label="Remise", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Remise'}))
+    tva = forms.IntegerField(label="Tva", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Tva'}))
+    montant_total = forms.IntegerField(label="Montant Total", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Montant Total'}))
+    rendez_vous = forms.DateTimeField()
+    livre = forms.BooleanField(required=False)
+    create_at = forms.DateTimeField()
 
 # ==============================================
 #                  FORM KALALISO
@@ -231,9 +236,6 @@ class SignUpForm(UserCreationForm):
             self.fields['password2'].widget.attrs['placeholder'] = 'Comfirm password'
             self.fields['password2'].label = ''
             self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
-
-
-
 
 
     # def clean(self):

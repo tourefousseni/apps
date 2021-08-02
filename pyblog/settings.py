@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     # Our the app
     'contacts',
     'django_bootstrap_datetimepicker',
+    'crispy_forms',
+    "crispy_bootstrap5",
     # 'bootstrap3',
 
 ]
@@ -120,3 +122,6 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 FORM_RENDERER = 'django.forms.renderers.DjangoTemplates'
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)                    ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"

@@ -236,7 +236,7 @@ class Payment(models.Model):
     tva = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
     montant_total = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
     rendez_vous = models.DateTimeField(auto_now_add=False)
-    livre = models.BooleanField(default=False)
+    # livre = models.BooleanField()
     create_at = models.DateTimeField(auto_now=True)
 
 

@@ -117,7 +117,7 @@ class PersonForm(forms.Form):
     nom = forms.CharField(label="Nom", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nom'}))
     contact_1 = forms.IntegerField(label="Contact", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Contact'}))
     email = forms.EmailField(max_length=50, label='ADRESSE EMAIL', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
-
+    update_at = forms.DateTimeField()
     class Meta:
         model = Person
 
@@ -182,7 +182,7 @@ class PaymentForm(forms.Form):
     tva = forms.IntegerField(label="Tva", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Tva'}))
     montant_total = forms.IntegerField(label="Montant Total", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Montant Total'}))
     rendez_vous = forms.DateTimeField()
-    livre = forms.BooleanField(required=False)
+    # livre = forms.BooleanField()
     create_at = forms.DateTimeField()
 
 # ==============================================

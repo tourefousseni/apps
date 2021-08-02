@@ -245,15 +245,12 @@ def product_detail(request, product_id):
     return render(request, 'kalaliso/product_detail.html', context)
 
 
-def order(request,):
+def order(request):
     if request.method == 'POST':
-            ida=request.POST.get("id")
+            ida = request.POST.get("id")
             cd = request.POST.get("code_order")
             recep = request.POST.get("reception")
-
-
             creat = request.POST.get("create_at")
-
             data = Order(id=ida,
                          code_order=cd,
                          reception=recep,
@@ -326,12 +323,14 @@ def person(request):
             no = request.POST.get("nom")
             cont = request.POST.get("contact_1")
             ema = request.POST.get("email")
+            cret = request.POST.get('update_at')
             data = Person(status=sta,
                           prenom=pre,
                           nom=no,
                           sex=se,
                           contact_1=cont,
-                          email=ema)
+                          email=ema,
+                          update_at=cret)
             data.save()
 
        # if form.is_valid():
@@ -357,21 +356,21 @@ def person_detail(request, person_id):
     return render(request, 'kalaliso/person_detail.html', context)
 
 
-def payment(request, ):
+def payment(request,):
         if request.method == 'POST':
             subm = request.POST.get("submontant")
             rm = request.POST.get("remise")
             tv = request.POST.get("tva")
             mt = request.POST.get("montant_total")
             rd = request.POST.get("rendez_vous")
-            lv = request.POST.get("livre")
+            # lv = request.POST.get("livre")
             creat = request.POST.get("create_at")
             data = Payment(submontant=subm,
                            remise=rm,
                            tva=tv,
                            montant_total=mt,
                            rendez_vous=rd,
-                           livre=lv,
+                           # livre=lv,
                            create_at=creat,)
             data.save()
             return HttpResponseRedirect(reverse('Order'))

@@ -23,7 +23,7 @@
       </thead>
 
       <tbody>
-                    {% for order in orders %}
+                    {% for order in order_detail %}
                            <tr>
                                 <td><a href="{% url 'order_detail' order.pk %}"></a></td>
 {#                                <td><input type="checkbox" class="checkthis" /></td>#}

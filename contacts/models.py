@@ -38,7 +38,7 @@ class Contact(models.Model):
     siege_social        = models.CharField(max_length=50, null=True, blank=True, verbose_name='SIEGE SOCIAL')
     responsable         = models.CharField(max_length=50, null=True, blank=True, verbose_name='RESPONSABLE')
     email               = models.EmailField(max_length=50, null=True, blank=True, verbose_name='ADRESSE EMAIL')
-    created_at          = models.DateTimeField(auto_now=True)
+    create_at = models.DateField(auto_now=True)
 
     def __str__(self):
         return ('{}-{}-{}').format(self.nom, self.prenom, self.contact)
@@ -81,6 +81,7 @@ class Parcel(models.Model):
 #                        START
 # ==============================================
 class Person(models.Model):
+    id = models.AutoField(primary_key=True)
     image = models.ImageField(upload_to='profil/%d/%m/%Y', null=True, blank=True, verbose_name='Photo_commande')
     STATUS = (
         ('Client', 'CLIENT'),
@@ -93,9 +94,7 @@ class Person(models.Model):
         ('Brodeur', 'Brodeur'),
         ('Tailleur simple', 'TAILLEUR SIMPLE'),
         ('Tailleur simple', 'TAILLEUR SIMPLE'),
-        ('Boutouman', 'BOUTOUMAN'),
-        ('Fournisseur', 'FOURNISSEUR'),
-        ('Company', 'COMPANY'),)
+        ('Boutouman', 'BOUTOUMAN'),)
 
     SEX = (
         ('H', 'Homme'),
@@ -114,7 +113,7 @@ class Person(models.Model):
     code_person = models.CharField(max_length=30, blank=True, verbose_name='Code person')
     prenom = models.CharField(max_length=30, null=True, blank=True)
     nom = models.CharField(max_length=30, null=True, blank=True)
-    contact_1 = models.IntegerField(primary_key=True)
+    contact_1 = models.IntegerField()
     email = models.EmailField(max_length=100, null=True, blank=True)
     domicile = models.CharField(max_length=30, null=True, blank=True, default='Lafiabougou')
     alias = models.CharField(verbose_name='alias', max_length=30, null=True, blank=True)
@@ -126,8 +125,8 @@ class Person(models.Model):
     telephonique_fix = models.CharField(max_length=30, null=True, blank=True)
     numero_reference = models.PositiveIntegerField(null=True, blank=True)
     nina = models.PositiveIntegerField(null=True, blank=True)
-    create_at = models.DateTimeField(auto_now_add=True)
-    update_at = models.DateTimeField(auto_now_add=False)
+    create_at = models.DateField(auto_now=True)
+    update_at = models.DateField(auto_now=True)
 
     def __str__(self):
         return'{} {} {}'.format(self.prenom, self.nom, self.contact_1)
@@ -141,7 +140,7 @@ pre_save.connect(pre_save_person_id, sender=Person)
 
 class Mesure(models.Model):
     id = models.AutoField(primary_key=True)
-    person_mesure = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Client')
+    person_mesure = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Mesure Client')
     coude = models.FloatField(null=True, blank=True)
     epaule = models.FloatField(null=True, blank=True)
     manche = models.FloatField(null=True, blank=True)
@@ -154,8 +153,8 @@ class Mesure(models.Model):
     ceinture = models.FloatField(null=True, blank=True)
     cuisse = models.FloatField(null=True, blank=True)
     patte = models.FloatField(null=True, blank=True)
-    create_at = models.DateTimeField(auto_now=True)
-    update_at = models.DateTimeField(auto_now=True)
+    create_at = models.DateField(auto_now=True)
+    update_at = models.DateField(auto_now=True)
 
     def __str__(self):
         return'{}'.format(self.person_mesure,)
@@ -188,8 +187,8 @@ class Product(models.Model):
     code_produit = models.CharField(max_length=30, blank=True, verbose_name='Code Produit')
     description = models.CharField(max_length=30, blank=True, null=True)
     photo = models.ImageField(upload_to='albums/%Y/%m/%d')
-    price = models.FloatField(default=0, null=True, blank=True)
-    create_at = models.DateTimeField(auto_now=True)
+    price = models.DecimalField(decimal_places=2, max_digits=20, default=50.25, null=True, blank=True)
+    create_at = models.DateField()
 
     def __str__(self):
         return'{}'.format(self.name)
@@ -201,15 +200,17 @@ def pre_save_produit_id(instance, sender, *args, **kwargs):
 pre_save.connect(pre_save_produit_id, sender=Product)
 
 
+
+
 class Order(models.Model):
-    person = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Titulaire command', )
-    payment = models.ForeignKey('Payment', on_delete=models.SET_NULL, blank=True, null=True )
-    products = models.ManyToManyField('OrderDetail', related_name='ordered_products', verbose_name='list_commande')
-    code_order = models.CharField(max_length=30, blank=True, verbose_name='Code commande', primary_key=True)
+    id = models.AutoField(primary_key=True)
+    person_id = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Titulaire Commande',)
+    # products = models.ManyToManyField('OrderDetail',  verbose_name='list_commande')
+    code_order = models.CharField(max_length=30, blank=True, verbose_name='Code commande')
     reception = models.BooleanField(default=False)
-    rendez_vous = models.DateTimeField(auto_now_add=False)
+    rendez_vous = models.DateField(auto_now=True)
     livre = models.BooleanField(default=False)
-    create_at = models.DateTimeField(auto_now=True)
+    create_at = models.DateField(auto_now=True)
 
 
     def __str__(self):
@@ -223,21 +224,24 @@ pre_save.connect(pre_save_order_id, sender=Order)
 
 class OrderDetail(models.Model):
     id = models.AutoField(primary_key=True)
-    order = models.ForeignKey('Order', on_delete=models.CASCADE, verbose_name='Titulaire command', )
-    product = models.ForeignKey('Product', on_delete=models.CASCADE,)
+    order_id = models.ForeignKey('Order', on_delete=models.CASCADE, verbose_name='Commande', )
+    product_id = models.ManyToManyField('Product')
     quantity = models.IntegerField(default=1, blank=True, null=True)
+    submontant = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
+    remise = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
+    create_at = models.DateField(auto_now=True)
 
 
 class Payment(models.Model):
     id = models.AutoField(primary_key=True)
-    # person = models.ForeignKey('Order', on_delete=models.CASCADE, verbose_name='Titulaire command', )
-    submontant = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-    remise = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-    tva = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
+    paymentOrder = models.ForeignKey('Order', on_delete=models.CASCADE, verbose_name='Payment Facture', )
+    person_id = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Titulaire command', )
     montant_total = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-    rendez_vous = models.DateTimeField(auto_now_add=False)
+    # payment = models.ForeignKey('Payment', on_delete=models.SET_NULL, blank=True, null=True)
+    # tva = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
+
     # livre = models.BooleanField()
-    create_at = models.DateTimeField(auto_now=True)
+    create_at = models.DateField(auto_now=True)
 
 
 # ==============================================

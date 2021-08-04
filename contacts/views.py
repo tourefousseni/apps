@@ -274,6 +274,7 @@ def order_detail(request, order_id):
 
 def mesure(request):
     if request.method == 'POST':
+            pmid = request.POST.get("person_mesure")
             coud = request.POST.get("coude")
             epau = request.POST.get("epaule")
             ma = request.POST.get("manche")
@@ -286,8 +287,11 @@ def mesure(request):
             cei = request.POST.get("ceinture")
             cui = request.POST.get("cuisse")
             pat = request.POST.get("patte")
+            cre = request.POST.get('created_at')
+            upd = request.POST.get('update_at')
 
-            data = Mesure(coude=coud,
+            data = Mesure(person_mesure=pmid,
+                          coude=coud,
                           epaule=epau,
                           manche=ma,
                           tour_manche=to_ma,
@@ -298,7 +302,9 @@ def mesure(request):
                           fesse=fes,
                           ceinture=cei,
                           cuisse=cui,
-                          patte=pat,)
+                          patte=pat,
+                          update_at=upd,
+                          create_at=cre)
             data.save()
             return HttpResponseRedirect(reverse('Order'))
     else:

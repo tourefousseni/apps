@@ -15,17 +15,18 @@ class ContactAdmin(admin.ModelAdmin):
         'prenom',
         'matricule',
         'sexe',
-        'created_at',
+
     )
-    # exclude = [
-    #
-    #     'contacts',
-    #     'status',
-    #     'profession',
-    #     'nina',
-    #     'rcimm',
-    #     'siege_social',
-    #
-    #      ]
+    exclude = [
+
+        'contacts',
+        'status',
+        'profession',
+        'nina',
+        'rcimm',
+        'siege_social',
+        'created_at',
+
+         ]
     # list_editable = ('status', 'moderation_text',)
     # list_filter = ['status']

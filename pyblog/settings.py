@@ -30,8 +30,7 @@ INSTALLED_APPS = [
     'contacts',
     'django_bootstrap_datetimepicker',
     'crispy_forms',
-    "crispy_bootstrap5",
-    # 'bootstrap3',
+    'crispy_bootstrap5',
 
 ]
 

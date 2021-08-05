@@ -186,7 +186,7 @@ class Product(models.Model):
     code_produit = models.CharField(max_length=30, blank=True, verbose_name='Code Produit')
     description = models.CharField(max_length=30, blank=True, null=True)
     photo = models.ImageField(upload_to='albums/%Y/%m/%d')
-    price = models.DecimalField(decimal_places=2, max_digits=20, default=50.25, null=True, blank=True)
+    # price = models.DecimalField(decimal_places=2, max_digits=20, default=50.25, null=True, blank=True)
     create_at = models.DateField(auto_now=True)
 
     def __str__(self):

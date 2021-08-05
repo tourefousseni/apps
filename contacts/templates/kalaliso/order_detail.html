@@ -25,9 +25,9 @@
       <tbody>
                     {% for order in order_detail %}
                            <tr>
-                                <td><a href="{% url 'order_detail' order.pk %}"></a></td>
+                                <td><a href="{% url 'order_detail' order.id %}"></a></td>
 {#                                <td><input type="checkbox" class="checkthis" /></td>#}
-                                <td>{{ contact.id }}</td>
+                                <td>{{ order.id }}</td>
                                 <td>{{ order.code_order }}</td>
                                 <td>{{ order.reception }}</td>
                                 <td>{{ order.rendez_vous }}</td>

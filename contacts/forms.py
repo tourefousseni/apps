@@ -235,7 +235,7 @@ class ProductForm(forms.Form):
         name = forms.ChoiceField(label='Name', choices=NAME, required='Boubou')
         # name = forms.CharField(label="Name Product", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name Product'}))
         photo = forms.ImageField(label='Photos', )
-        price = forms.DecimalField(label="Price", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Price'}))
+        # price = forms.DecimalField(label="Price", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Price'}))
         create_at = forms.DateField()
 
 

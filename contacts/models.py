@@ -125,8 +125,7 @@ class Person(models.Model):
     telephonique_fix = models.CharField(max_length=30, null=True, blank=True)
     numero_reference = models.PositiveIntegerField(null=True, blank=True)
     nina = models.PositiveIntegerField(null=True, blank=True)
-    create_at = models.DateField(auto_now=True)
-    update_at = models.DateField(auto_now=True)
+    created_at = models.DateField(auto_now=True)
 
     def __str__(self):
         return'{} {} {}'.format(self.prenom, self.nom, self.contact_1)
@@ -188,7 +187,7 @@ class Product(models.Model):
     description = models.CharField(max_length=30, blank=True, null=True)
     photo = models.ImageField(upload_to='albums/%Y/%m/%d')
     price = models.DecimalField(decimal_places=2, max_digits=20, default=50.25, null=True, blank=True)
-    create_at = models.DateField()
+    create_at = models.DateField(auto_now=True)
 
     def __str__(self):
         return'{}'.format(self.name)
@@ -209,7 +208,6 @@ class Order(models.Model):
     code_order = models.CharField(max_length=30, blank=True, verbose_name='Code commande')
     reception = models.BooleanField(default=False)
     rendez_vous = models.DateField(auto_now=True)
-    livre = models.BooleanField(default=False)
     create_at = models.DateField(auto_now=True)
 
 
@@ -237,10 +235,7 @@ class Payment(models.Model):
     paymentOrder = models.ForeignKey('Order', on_delete=models.CASCADE, verbose_name='Payment Facture', )
     person_id = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Titulaire command', )
     montant_total = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-    # payment = models.ForeignKey('Payment', on_delete=models.SET_NULL, blank=True, null=True)
-    # tva = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-
-    # livre = models.BooleanField()
+    livre = models.BooleanField(default=False)
     create_at = models.DateField(auto_now=True)
 
 

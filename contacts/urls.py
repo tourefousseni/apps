@@ -12,7 +12,7 @@ from django.conf.urls import url
 app_name = 'contacts'
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
+      # path('admin/', admin.site.urls),
       path('', include('contacts.urls')),
 ]
 

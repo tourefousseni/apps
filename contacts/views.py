@@ -17,7 +17,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.template import context
 from django.template import defaulttags
-from contacts.models import Contact, Parcel, Person, Mesure, Order, Product, Payment
+from contacts.models import Contact, Parcel, Person, Mesure, Order, Product, Payment, OrderDetail
 from .forms import SignUpForm, \
                    EditProfileForm, \
                    ContactForm, \
@@ -26,7 +26,9 @@ from .forms import SignUpForm, \
                    MesureForm,\
                    ProductForm,\
                    OrderForm, \
-                   PaymentForm
+                   PaymentForm, \
+                   OrderdetailForm
+
 
 
 
@@ -270,7 +272,35 @@ def order_detail(request, order_id):
 
     return render(request, 'kalaliso/order_detail.html', context)
 
+# def orderdetail(request):
+#     if request.method == 'POST':
+#         subm = request.POST.get("submontant")
+#         rm = request.POST.get("remise")
+#         tv = request.POST.get("tva")
+#         mt = request.POST.get("montant_total")
+#         rd = request.POST.get("rendez_vous")
+#         # lv = request.POST.get("livre")
+#         creat = request.POST.get("create_at")
+#         data = Payment(submontant=subm,
+#                        remise=rm,
+#                        tva=tv,
+#                        montant_total=mt,
+#                        rendez_vous=rd,
+#                        # livre=lv,
+#                        create_at=creat, )
+#         data.save()
+#         return HttpResponseRedirect(reverse('orderdetail'))
+#     else:
+#         form = OrderDetailForm()
+#     return render(request, 'kalaliso/payment.html', {'form': form})
+#
+#
+# def orderdetail_detail(request, orderdetail_id):
+#
+#     qs = OrderDetail.objects.all()
+#     context = {'orderdetail': qs, }
 
+    # return render(request, 'kalaliso/orderdetail.html', context)
 
 def mesure(request):
     if request.method == 'POST':
@@ -322,21 +352,37 @@ def mesure_detail(request, mesure_id):
 
 def person(request):
     if request.method == 'POST':
-
             sta = request.POST.get("status")
             se = request.POST.get("sex")
+            cat = request.POST.get("category")
             pre = request.POST.get("prenom")
             no = request.POST.get("nom")
             cont = request.POST.get("contact_1")
+            # cin = request.POST.get("n_cin")
+            nn = request.POST.get("nina")
+            prf = request.POST.get("profession")
+            rcm = request.POST.get("rcimm")
+            nf = request.POST.get("nif")
+            ss = request.POST.get("siege_social")
+            resp = request.POST.get("responsable")
             ema = request.POST.get("email")
-            cret = request.POST.get('update_at')
+            cret = request.POST.get('created_at')
+
             data = Person(status=sta,
                           prenom=pre,
                           nom=no,
                           sex=se,
+                          category=cat,
                           contact_1=cont,
+                          # n_cin=cin,
+                          nina=nn,
+                          profession=prf,
+                          rcimm=rcm,
+                          nif=nf,
+                          siege_social=ss,
+                          responsable=resp,
                           email=ema,
-                          update_at=cret)
+                          created_at=cret)
             data.save()
 
        # if form.is_valid():
@@ -360,6 +406,7 @@ def person_detail(request, person_id):
     context = {'detail_person': qs,}
 
     return render(request, 'kalaliso/person_detail.html', context)
+
 
 
 def payment(request,):

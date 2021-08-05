@@ -31,9 +31,8 @@ class ContactForm(forms.ModelForm):
     SEXE = (
         ('HOMME',      'Homme'),
         ('FEMME',      'Femme'))
-    sexe = forms.ChoiceField(choices=SEXE)
-    nom = forms.CharField(label="Nom", max_length=100,
-                                    widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nom'}))
+    sexe = forms.ChoiceField(choices=SEXE, widget=forms.RadioSelect, initial='Homme')
+    nom = forms.CharField(label="Nom", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nom'}))
 
     prenom = forms.CharField(label="Prenom", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Prenom'}))
 
@@ -111,7 +110,7 @@ class PersonForm(forms.Form):
                 ('Fournisseur', 'FOURNISSEUR'),
                 ('Company', 'COMPANY'),)
 
-    status = forms.ChoiceField(label='Status', choices=STATUS, required='CLIENT')
+    status = forms.ChoiceField(label='Status', choices=STATUS, widget=forms.RadioSelect, initial='Client')
     SEX = (
                 ('H', 'Homme'),
                 ('F', 'Femme'),
@@ -127,8 +126,8 @@ class PersonForm(forms.Form):
         ('Tailleur simple', 'TAILLEUR SIMPLE'),
         ('Boutouman', 'BOUTOUMAN'),)
 
-    sex = forms.ChoiceField(label='Sex', choices=SEX, required='Homme')
-    category = forms.ChoiceField(label='Category', choices=CATEGORY, required='Grande')
+    sex = forms.ChoiceField(label='Sex', choices=SEX, widget=forms.RadioSelect, initial='Homme')
+    category = forms.ChoiceField(label='Category', choices=CATEGORY, widget=forms.RadioSelect, initial='Grande')
     type_tailleur = forms.ChoiceField(label='Type Tailleur', choices=TYPE_TAILLEUR, required='Grande')
     prenom = forms.CharField(label="Prenom", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Prenom'}))
     nom = forms.CharField(label="Nom", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nom'}))

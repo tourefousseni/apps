@@ -15,6 +15,7 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
+from django.views.generic import FormView
 from django.template import context
 from django.template import defaulttags
 from contacts.models import Contact, Parcel, Person, Mesure, Order, Product, Payment, OrderDetail
@@ -223,15 +224,23 @@ def homepage(request):
 
 def product(request):
     if request.method == 'POST':
+            ca = request.POST.get("category")
             na = request.POST.get("name")
             cod = request.POST.get("code_produit")
+            des = request.POST.get("description")
             ph = request.POST.get("photo")
-            pr = request.POST.get("price")
+            dat = request.POST.get("create_at")
 
-            data = Product(name=na,
+
+            data = Product(
+                           category=ca,
+                           name=na,
                            code_produit=cod,
+                           description=des,
                            photo=ph,
-                           price=pr,)
+                           create_at=dat
+
+                           )
             data.save()
 
             return HttpResponseRedirect(reverse('product_detail'))
@@ -274,6 +283,7 @@ def order_detail(request, order_id):
 
 def orderdetail(request):
     if request.method == 'POST':
+
         pri = request.POST.get("price")
         qt = request.POST.get("quantity")
         tv = request.POST.get("tva")
@@ -382,15 +392,6 @@ def person(request):
                           created_at=cret)
             data.save()
 
-       # if form.is_valid():
-       #       sta = form.cleaned_data['status']
-       #       se = form.cleaned_data['sex']
-       #       pre = form.cleaned_data["prenom"]
-       #       pre = form.cleaned_data["prenom"]
-       #       no = form.cleaned_data["nom"]
-       #       cont = form.cleaned_data["contact_1"]
-       #       ema = form.cleaned_data["email"]
-
             return HttpResponseRedirect(reverse('mesure'))
     else:
         form = PersonForm()
@@ -413,14 +414,14 @@ def payment(request,):
             tv = request.POST.get("tva")
             mt = request.POST.get("montant_total")
             rd = request.POST.get("rendez_vous")
-            # lv = request.POST.get("livre")
+            lv = request.POST.get("livre")
             creat = request.POST.get("create_at")
             data = Payment(submontant=subm,
                            remise=rm,
                            tva=tv,
                            montant_total=mt,
                            rendez_vous=rd,
-                           # livre=lv,
+                           livre=lv,
                            create_at=creat,)
             data.save()
             return HttpResponseRedirect(reverse('Order'))

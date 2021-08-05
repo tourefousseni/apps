@@ -35,8 +35,8 @@ urlpatterns = [
       #             START
       # =================================
       path('homepage/', views.homepage, name='homepage'),
-      # path('orderdetail/', views.orderdetail, name='orderdetail'),
-      # path('orderdetail/detail/<int:orderdetail_id>/', views.orderdetail_detail, name='orderdetail_detail'),
+      path('orderdetail/', views.orderdetail, name='orderdetail'),
+      path('orderdetail/detail/<int:orderdetail_id>/', views.orderdetail_detail, name='orderdetail_detail'),
       path('order/', views.order, name='order'),
       path('order/detail/<int:order_id>/', views.order_detail, name='order_detail'),
       path('product/', views.product, name='product'),

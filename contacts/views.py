@@ -27,7 +27,7 @@ from .forms import SignUpForm, \
                    ProductForm,\
                    OrderForm, \
                    PaymentForm, \
-                   OrderdetailForm
+                   OrderDetailForm
 
 
 
@@ -272,35 +272,32 @@ def order_detail(request, order_id):
 
     return render(request, 'kalaliso/order_detail.html', context)
 
-# def orderdetail(request):
-#     if request.method == 'POST':
-#         subm = request.POST.get("submontant")
-#         rm = request.POST.get("remise")
-#         tv = request.POST.get("tva")
-#         mt = request.POST.get("montant_total")
-#         rd = request.POST.get("rendez_vous")
-#         # lv = request.POST.get("livre")
-#         creat = request.POST.get("create_at")
-#         data = Payment(submontant=subm,
-#                        remise=rm,
-#                        tva=tv,
-#                        montant_total=mt,
-#                        rendez_vous=rd,
-#                        # livre=lv,
-#                        create_at=creat, )
-#         data.save()
-#         return HttpResponseRedirect(reverse('orderdetail'))
-#     else:
-#         form = OrderDetailForm()
-#     return render(request, 'kalaliso/payment.html', {'form': form})
-#
-#
-# def orderdetail_detail(request, orderdetail_id):
-#
-#     qs = OrderDetail.objects.all()
-#     context = {'orderdetail': qs, }
+def orderdetail(request):
+    if request.method == 'POST':
+        pri = request.POST.get("price")
+        qt = request.POST.get("quantity")
+        tv = request.POST.get("tva")
+        rm = request.POST.get("remise")
+        creat = request.POST.get("create_at")
 
-    # return render(request, 'kalaliso/orderdetail.html', context)
+        data = OrderDetail(price=pri,
+                           remise=rm,
+                           quantity=qt,
+                           tva=tv,
+                           create_at=creat,)
+        data.save()
+        return HttpResponseRedirect(reverse('orderdetail'))
+    else:
+        form = OrderDetailForm()
+    return render(request, 'kalaliso/orderdetail.html', {'form': form})
+#
+#
+def orderdetail_detail(request, orderdetail_id):
+
+    qs = OrderDetail.objects.all()
+    context = {'orderdetail': qs, }
+
+    return render(request, 'kalaliso/orderdetail_detail.html', context)
 
 def mesure(request):
     if request.method == 'POST':
@@ -361,7 +358,7 @@ def person(request):
             # cin = request.POST.get("n_cin")
             nn = request.POST.get("nina")
             prf = request.POST.get("profession")
-            rcm = request.POST.get("rcimm")
+            nat = request.POST.get("nationnalite")
             nf = request.POST.get("nif")
             ss = request.POST.get("siege_social")
             resp = request.POST.get("responsable")
@@ -377,7 +374,7 @@ def person(request):
                           # n_cin=cin,
                           nina=nn,
                           profession=prf,
-                          rcimm=rcm,
+                          nationnalite=nat,
                           nif=nf,
                           siege_social=ss,
                           responsable=resp,

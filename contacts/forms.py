@@ -121,16 +121,25 @@ class PersonForm(forms.Form):
         ('M', 'Moyenne'),
         ('P', 'Petite'),
     )
+    TYPE_TAILLEUR = (
+        ('Brodeur', 'Brodeur'),
+        ('Tailleur simple', 'TAILLEUR SIMPLE'),
+        ('Tailleur simple', 'TAILLEUR SIMPLE'),
+        ('Boutouman', 'BOUTOUMAN'),)
+
     sex = forms.ChoiceField(label='Sex', choices=SEX, required='Homme')
     category = forms.ChoiceField(label='Category', choices=CATEGORY, required='Grande')
+    type_tailleur = forms.ChoiceField(label='Type Tailleur', choices=TYPE_TAILLEUR, required='Grande')
     prenom = forms.CharField(label="Prenom", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Prenom'}))
     nom = forms.CharField(label="Nom", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nom'}))
     contact_1 = forms.IntegerField(label="Contact", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Contact'}))
     photo = forms.ImageField()
+    domicile = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Domicile'}))
+    alias = forms.CharField(label="Alias", max_length=30, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Alias'}))
     # n_cin = forms.CharField(label="Carte d'Indentite Nationale", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'CIN'}))
     nina = forms.CharField(label="NINA", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'NINA'}))
     profession = forms.CharField(label="Profession", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Profession'}))
-    rcimm = forms.CharField(label="Registre Commerce", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Registre Commerce'}))
+    nationnalite = forms.CharField(label="Nationnalite", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nationnalite'}))
     nif = forms.CharField(label="NIF", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'NIF'}))
     siege_social = forms.CharField(label="SIEGE SOCIAL", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Siege Social'}))
     responsable = forms.CharField(label="RESPONABLE", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Responsable'}))
@@ -145,7 +154,41 @@ class PersonForm(forms.Form):
     class Meta:
         model = Person
 
-
+    # image = models.ImageField(upload_to='profil/%d/%m/%Y', null=True, blank=True, verbose_name='Photo_commande')
+    # STATUS = (
+    #     ('Client', 'CLIENT'),
+    #     ('Tailleur', 'TAILLEUR'),
+    #     ('Apprenti', 'APPRENTI'),
+    #     ('Fournisseur', 'FOURNISSEUR'),
+    #     ('Company', 'COMPANY'),)
+    # SEX = (
+    #     ('H', 'Homme'),
+    #     ('F', 'Femme'),
+    #     ('A', 'Autres'),)
+    # CATEGORY = (
+    #     ('G', 'Grande'),
+    #     ('M', 'Moyenne'),
+    #     ('P', 'Petite'),)
+    # status = models.CharField(max_length=20, choices=STATUS, default='CLIENT')
+    # type_tailleur = models.CharField(max_length=20, choices=TYPE_TAILLEUR, default='TAILLEUR SIMPLE')
+    # sex = models.CharField(max_length=20, choices=SEX, default='Homme')
+    # category = models.CharField(max_length=20, choices=CATEGORY, default='Grande')
+    # code_person = models.CharField(max_length=30, blank=True, verbose_name='Code person')
+    # prenom = models.CharField(max_length=30, null=True, blank=True)
+    # nom = models.CharField(max_length=30, null=True, blank=True)
+    # contact_1 = models.IntegerField()
+    # email = models.EmailField(max_length=100, null=True, blank=True)
+    # domicile = models.CharField(max_length=30, null=True, blank=True, default='Lafiabougou')
+    # alias = models.CharField(verbose_name='alias', max_length=30, null=True, blank=True)
+    # profession = models.CharField(max_length=30, null=True, blank=True)
+    # contact_2 = models.CharField(max_length=20, null=True, blank=True)
+    # date_naissance = models.DateField(auto_now_add=True)
+    # nationalite = models.CharField(max_length=30, null=True, blank=True)
+    # tutuelle = models.CharField(max_length=30, null=True, blank=True)
+    # telephonique_fix = models.CharField(max_length=30, null=True, blank=True)
+    # numero_reference = models.PositiveIntegerField(null=True, blank=True)
+    # nina = models.PositiveIntegerField(null=True, blank=True)
+    # created_at = models.DateField(auto_now=True)
 
 class MesureForm(forms.Form):
         person_mesure = forms.ModelChoiceField(queryset=Person.objects.all())
@@ -222,7 +265,7 @@ class OrderForm(forms.Form):
                 models = Order
 
 
-class OrderdetailForm(forms.Form):
+class OrderDetailForm(forms.Form):
 
     PRODUIT = [
         ('Boubou', 'Boubou'),

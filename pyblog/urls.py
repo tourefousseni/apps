@@ -1,10 +1,7 @@
 from django.contrib import admin
-# from django.urls import path
 from django.urls import include, path
 from django.conf.urls import url
 from contacts import views
-# from blog import views
-# from blog.views import post_detail, post_list
 from django.conf import settings
 from django.conf.urls.static import static
 

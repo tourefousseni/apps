@@ -283,7 +283,6 @@ def order_detail(request, order_id):
 
 def orderdetail(request):
     if request.method == 'POST':
-
         pri = request.POST.get("price")
         qt = request.POST.get("quantity")
         tv = request.POST.get("tva")

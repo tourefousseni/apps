@@ -367,7 +367,7 @@ def person(request):
             # cin = request.POST.get("n_cin")
             nn = request.POST.get("nina")
             prf = request.POST.get("profession")
-            nat = request.POST.get("nationnalite")
+            nat = request.POST.get("nationalite")
             nf = request.POST.get("nif")
             ss = request.POST.get("siege_social")
             resp = request.POST.get("responsable")
@@ -383,7 +383,7 @@ def person(request):
                           # n_cin=cin,
                           nina=nn,
                           profession=prf,
-                          nationnalite=nat,
+                          nationalite=nat,
                           nif=nf,
                           siege_social=ss,
                           responsable=resp,

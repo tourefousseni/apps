@@ -246,7 +246,7 @@ class OrderDetailForm(forms.Form):
         models = OrderDetail
 
 
-class PaymentForm(forms.ModelForm):
+class PaymentForm(forms.Form):
     # id = forms.AutoField(primary_key=True)
     paymentOrder = forms.ModelChoiceField(queryset=Order.objects.all())
     person_id = forms.ModelChoiceField(queryset=Person.objects.all())

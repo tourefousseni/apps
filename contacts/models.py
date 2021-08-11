@@ -51,67 +51,69 @@ def pre_save_matricule_id(instance, sender, *args, **kwargs):
 pre_save.connect(pre_save_matricule_id, sender=Contact)
 
 
-# class Parcel(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     Nature = (
-#         ('BATI',   'Bati'),
-#         ('NON BATIE',    'Non Bati'),)
-#     nature = models.CharField(max_length=30, choices=Nature,)
-#     contact = models.ManyToManyField('Contact')
-#     # geom = models.JSONField()
-#     superficie = models.PositiveIntegerField()
-#     perimeter = models.PositiveIntegerField()
-#     droit_reels models.ForeignKey('Droit', on_delete=models.CASCADE, verbose_name='Droits Réels')
-#     code = models.CharField(max_length=30,)
-#     created_at = models.DateTimeField(auto_now=True)
-#     update_at = models.DateTimeField(auto_now=True)
-#
-#     def __str__(self):
-#         return ('{}-{}-{}').format(self.type, self.area, self.code)
+class Parcel(models.Model):
+    id = models.AutoField(primary_key=True)
+    Nature = (
+        ('BATI',   'Bati'),
+        ('NON BATIE',    'Non Bati'),)
+    nature = models.CharField(max_length=30, choices=Nature,)
+    contact = models.ManyToManyField('Contact')
+    superficie = models.PositiveIntegerField()
+    perimeter = models.PositiveIntegerField()
+    dr= models.ForeignKey('Droit', on_delete=models.CASCADE, verbose_name='Droits Réels')
+    doc_adm= models.ForeignKey('Document_Administration', on_delete=models.CASCADE, verbose_name='Document Administratif')
+    code = models.CharField(max_length=30,)
+    created_at = models.DateTimeField(auto_now=True)
+    update_at = models.DateTimeField(auto_now=True)
 
-    # class Droit(models.Model):
-    #     id = models.AutoField(primary_key=True)
-    #     DROIT_REELS = (
-    #         ('LA PROPRIETE DES BIENS IMMEUBLES', 'Propriete des biens immeubles'),
-    #         ('USUFRUIT DES MEMES BIENS', 'l'Usufruit des memes biens'),)
-    #         ('LES DROITS D'USAGE ET D'HABITATION', 'les Droits d'usage et d'habitation'),)
-    #         ('L'EMPHYTEOSE', 'l'emphyteose'),)
-    #         ('LE DROIT DE SUPERFICIE', 'le droit de superficie'),)
-    #         ('LES SERVITUDES OU SERVICES FONCIERS', 'les servitudes ou services fonciers'),)
-    #         ('L'ANTICHRESE', 'l'anthichrese'),)
-    #         ('LES PRIVILEGES ET HYPOTHEQUE', 'les Privileges et hypotheque'),)
-    # droit_reels = models.CharField(max_length=30, choices=DROIT_REELS, null=True, blank=True,)
+    def __str__(self):
+        return ('{}-{}').format(self.code, self.nature)
 
-    # def __str__(self):
-    #         return ('{}').format(self.droit_reels)
+class Droit(models.Model):
+        id = models.AutoField(primary_key=True)
+        DR = (
+        ('LA PROPRIETE DES BIENS IMMEUBLES', 'Propriete des biens immeubles'),
+        ('USUFRUIT DES MEMES BIENS', 'Usufruit des memes biens'),
+        ('LES DROITS USAGE ET HABITATION', 'les Droits usage et habitation'),
+        ('EMPHYTEOSE', 'emphyteose'),
+        ('LE DROIT DE SUPERFICIE', 'droit de superficie'),
+        ('LES SERVITUDES OU SERVICES FONCIERS', 'les servitudes ou services fonciers'),
+        ('ANTICHRESE', 'anthichrese'),
+        ('LES PRIVILEGES ET HYPOTHEQUE', 'les Privileges et hypotheque'),)
 
+        dr = models.CharField(max_length=50, choices=DR, blank=True)
 
-# class Recette_fiscale(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     contact_id= models.ForeignKey('Contact', on_delete=models.CASCADE, verbose_name='TITULAIRE')
-#     parcel_id= models.ForeignKey('Parcel', on_delete=models.CASCADE, verbose_name='Parcelle concerne')
-#     code_fiscale = models.CharField(max_length=30,)
-#     impot = models.CharField(max_length=30,)
-#     taxes = models.CharField(max_length=30,)
-#     redevance = models.CharField(max_length=30,)
-#     created_at = models.DateTimeField(auto_now=True)
-#     update_at = models.DateTimeField(auto_now=True)
-#
-#     def __str__(self):
-#         return ('{}').format(self.code_fiscale)
+        def __str__(self):
+            return ('{}').format(self.dr)
 
 
-# class Document_Administration(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     DOC_ADM = (
-    #         ('DROITS REELS', 'Droits réels'),
-    #         ('DROIT COUTUMIER', 'Droit coutumier'),)
-    #         ('TITRE FONCIER', 'Titre Foncier'),)
-    #         ('TITRE PROVISOIRE', 'Titre provisoire'),)
-    #         ('ATTESTATION D'EXPLOITATION', 'Attestation d'Exploitation'),)
-#     document_administratif = models.CharField(max_length=30, choices=DOC_ADM, null=True, blank=True,)
-#     def __str__(self):
-#         return ('{}').format(self.document_administratif)
+class Recette_fiscale(models.Model):
+    id = models.AutoField(primary_key=True)
+    contact_id= models.ForeignKey('Contact', on_delete=models.CASCADE, verbose_name='TITULAIRE')
+    parcel_id= models.ForeignKey('Parcel', on_delete=models.CASCADE, verbose_name='Parcelle concerne')
+    code_fiscale = models.CharField(max_length=30,)
+    impot = models.CharField(max_length=30,)
+    taxes = models.CharField(max_length=30,)
+    redevance = models.CharField(max_length=30,)
+    created_at = models.DateTimeField(auto_now=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return ('{}').format(self.code_fiscale)
+
+
+class Document_Administration(models.Model):
+    id = models.AutoField(primary_key=True)
+    DOC_ADM = (
+            ('DROITS REELS', 'Droits réels'),
+            ('DROIT COUTUMIER', 'Droit coutumier'),
+            ('TITRE FONCIER', 'Titre Foncier'),
+            ('TITRE PROVISOIRE', 'Titre provisoire'),
+            ("ATTESTATION D'EXPLOITATION", "Attestation d'Exploitation"),)
+    da = models.CharField(max_length=30, choices=DOC_ADM)
+
+    def __str__(self):
+        return ('{}').format(self.da)
 # ==============================================
 #                  MODELE CADASTRE
 #                        END

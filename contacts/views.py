@@ -96,20 +96,20 @@ def contact_detail(request, contact_id):
 def parcel(request):
 
     if request.method == 'POST':
-        sty = request.POST.get('type')
-        ar = request.POST.get('area')
+        nat = request.POST.get('nature')
+        sup = request.POST.get('superficie')
         pe = request.POST.get('perimeter')
         cod = request.POST.get('code')
         cre = request.POST.get('created_at')
         upd = request.POST.get('update_at')
 
-        data = Parcel(type=sty,
-                      area=ar,
+        data = Parcel(
+                      nature=nat,
+                      superficie=sup,
                       perimeter=pe,
                       code=cod,
-                      update_at=upd,
-                      created_at=cre)
-
+                      created_at=cre,
+                      update_at=upd,)
         data.save()
 
         return HttpResponseRedirect(reverse('home'))
@@ -174,7 +174,6 @@ def register_user(request):
             login(request, user)
             messages.success(request,('You Have Registered now...'))
             return redirect('home')
-
     else:
         form = SignUpForm(request.POST)
     context = {'form': form}
@@ -188,7 +187,6 @@ def edit_profile(request):
             form.save()
             messages.success(request, ('You Have Edited Your Profiel...'))
             return redirect('home')
-
     else:
         form = EditProfileForm(instance=request.user)
         context = {'form': form}
@@ -203,7 +201,6 @@ def change_password(request):
             update_session_auth_hash(request, form.user)
             messages.success(request,('You Have Edited Your Password...'))
             return redirect('home')
-
     else:
         form = PasswordChangeForm(user=request.user)
 
@@ -224,26 +221,23 @@ def homepage(request):
 
 def product(request):
     if request.method == 'POST':
-            ca = request.POST.get("category")
+            pri = request.POST.get("price")
             na = request.POST.get("name")
-            cod = request.POST.get("code_produit")
+            cod = request.POST.get("code_product")
             des = request.POST.get("description")
             ph = request.POST.get("photo")
             dat = request.POST.get("create_at")
 
-
             data = Product(
-                           category=ca,
+                           price=pri,
                            name=na,
-                           code_produit=cod,
+                           code_product=cod,
                            description=des,
                            photo=ph,
-                           create_at=dat
-
-                           )
+                           create_at=dat)
             data.save()
 
-            return HttpResponseRedirect(reverse('product_detail'))
+            return HttpResponseRedirect(reverse('order'))
     else:
         form = ProductForm()
     return render(request, 'kalaliso/product.html', {'form': form})
@@ -251,7 +245,7 @@ def product(request):
 
 def product_detail(request, product_id):
     qs = Product.objects.all()
-    context = {'detail_product': qs,}
+    context = {'product': qs,}
 
     return render(request, 'kalaliso/product_detail.html', context)
 
@@ -283,13 +277,14 @@ def order_detail(request, order_id):
 
 def orderdetail(request):
     if request.method == 'POST':
-        pri = request.POST.get("price")
+        ca = request.POST.get("category")
         qt = request.POST.get("quantity")
         tv = request.POST.get("tva")
         rm = request.POST.get("remise")
         creat = request.POST.get("create_at")
 
-        data = OrderDetail(price=pri,
+        data = OrderDetail(
+                           category=ca,
                            remise=rm,
                            quantity=qt,
                            tva=tv,
@@ -308,9 +303,9 @@ def orderdetail_detail(request, orderdetail_id):
 
     return render(request, 'kalaliso/orderdetail_detail.html', context)
 
-def mesure(request):
+def mesure(request, *args, **kwargs):
     if request.method == 'POST':
-            pmid = request.POST.get("person_mesure")
+            id = request.POST.get("id")
             coud = request.POST.get("coude")
             epau = request.POST.get("epaule")
             ma = request.POST.get("manche")
@@ -325,8 +320,9 @@ def mesure(request):
             pat = request.POST.get("patte")
             cre = request.POST.get('created_at')
             upd = request.POST.get('update_at')
+            pmid = request.POST.get('person_mesure_id')
 
-            data = Mesure(person_mesure=pmid,
+            data = Mesure(id=id,
                           coude=coud,
                           epaule=epau,
                           manche=ma,
@@ -340,7 +336,9 @@ def mesure(request):
                           cuisse=cui,
                           patte=pat,
                           update_at=upd,
-                          create_at=cre)
+                          created_at=cre,
+                          person_mesure_id=pmid,
+                          )
             data.save()
             return HttpResponseRedirect(reverse('Order'))
     else:
@@ -368,10 +366,10 @@ def person(request):
             nn = request.POST.get("nina")
             prf = request.POST.get("profession")
             nat = request.POST.get("nationalite")
-            nf = request.POST.get("nif")
-            ss = request.POST.get("siege_social")
-            resp = request.POST.get("responsable")
-            ema = request.POST.get("email")
+            # n_f = request.POST.get("n")
+            # ss = request.POST.get("siege_social")
+            # resp = request.POST.get("responsable")
+            # ema = request.POST.get("email")
             cret = request.POST.get('created_at')
 
             data = Person(status=sta,
@@ -384,10 +382,10 @@ def person(request):
                           nina=nn,
                           profession=prf,
                           nationalite=nat,
-                          nif=nf,
-                          siege_social=ss,
-                          responsable=resp,
-                          email=ema,
+                          # n=n_f,
+                          # siege_social=ss,
+                          # responsable=resp,
+                          # email=ema,
                           created_at=cret)
             data.save()
 

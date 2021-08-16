@@ -25,20 +25,20 @@ class Contact(models.Model):
         ('HOMME', 'Homme'),
         ('FEMME', 'Femme'),)
     sexe                = models.CharField(max_length=10, choices=SEXE, null=True, blank=True,)
-    nom                 = models.CharField(max_length=50, null=True, blank=True, verbose_name='NOM')
-    prenom              = models.CharField(max_length=50, null=True, blank=True, verbose_name='PRENOM')
-    matricule           = models.CharField(max_length=50, blank=True, verbose_name='N°MATRICULE')
-    photo               = models.ImageField(upload_to='photos/identite', null=True, blank=True, verbose_name='PHOTO IDENTITE')
-    contact             = models.CharField(max_length=8, null=True, blank=True, verbose_name='TELEPHONE')
-    n_cin               = models.CharField(max_length=50, null=True, blank=True, verbose_name='CIN')
-    nina                = models.CharField(max_length=50, null=True, blank=True, verbose_name='NINA')
-    profession          = models.CharField(max_length=50, null=True, blank=True, verbose_name='PROFESSION')
-    rcimm               = models.CharField(max_length=50, null=True, blank=True, verbose_name='REGISTRE DE COMMERCE')
-    nif                 = models.CharField(max_length=50, null=True, blank=True, verbose_name='NIF')
-    siege_social        = models.CharField(max_length=50, null=True, blank=True, verbose_name='SIEGE SOCIAL')
-    responsable         = models.CharField(max_length=50, null=True, blank=True, verbose_name='RESPONSABLE')
-    email               = models.EmailField(max_length=50, null=True, blank=True, verbose_name='ADRESSE EMAIL')
-    create_at = models.DateField(auto_now=True)
+    nom                 = models.CharField(max_length=50, null=True, blank=True,)
+    prenom              = models.CharField(max_length=50, null=True, blank=True,)
+    matricule           = models.CharField(max_length=50, blank=True,)
+    photo               = models.ImageField(upload_to='photos/identite', null=True,)
+    contact             = models.CharField(max_length=8, null=True, blank=True,)
+    n_cin               = models.CharField(max_length=50, null=True, blank=True,)
+    nina                = models.CharField(max_length=50, null=True, blank=True,)
+    profession          = models.CharField(max_length=50, null=True, blank=True,)
+    rcimm               = models.CharField(max_length=50, null=True, blank=True,)
+    nif                 = models.CharField(max_length=50, null=True, blank=True,)
+    siege_social        = models.CharField(max_length=50, null=True, blank=True, )
+    responsable         = models.CharField(max_length=50, null=True, blank=True,)
+    email               = models.EmailField(max_length=50, null=True, blank=True,)
+    created_at = models.DateField(auto_now=True)
     update_at = models.DateField(auto_now=True)
 
     def __str__(self):
@@ -60,9 +60,9 @@ class Parcel(models.Model):
     contact = models.ManyToManyField('Contact')
     superficie = models.PositiveIntegerField()
     perimeter = models.PositiveIntegerField()
-    dr= models.ForeignKey('Droit', on_delete=models.CASCADE, verbose_name='Droits Réels')
-    doc_adm= models.ForeignKey('Document_Administration', on_delete=models.CASCADE, verbose_name='Document Administratif')
-    code = models.CharField(max_length=30,)
+    dr = models.ForeignKey('Droit', on_delete=models.CASCADE, verbose_name='Droits Réels')
+    doc_adm = models.ForeignKey('Document_Administration', on_delete=models.CASCADE, verbose_name='Document Administratif')
+    code = models.CharField(max_length=30, blank=True, null=True)
     created_at = models.DateTimeField(auto_now=True)
     update_at = models.DateTimeField(auto_now=True)
 
@@ -154,24 +154,24 @@ class Person(models.Model):
         ('P', 'Petite'),
     )
     status = models.CharField(max_length=20, choices=STATUS, default='CLIENT')
-    type_tailleur = models.CharField(max_length=20, choices=TYPE_TAILLEUR, default='TAILLEUR SIMPLE')
+    type_tailleur = models.CharField(max_length=20, choices=TYPE_TAILLEUR,)
     sex = models.CharField(max_length=20, choices=SEX, default='Homme')
     category = models.CharField(max_length=20, choices=CATEGORY, default='Grande')
     code_person = models.CharField(max_length=30, blank=True, verbose_name='Code person')
     prenom = models.CharField(max_length=30, null=True, blank=True)
     nom = models.CharField(max_length=30, null=True, blank=True)
-    contact_1 = models.IntegerField()
+    contact_1 = models.IntegerField(null=True, blank=True)
     email = models.EmailField(max_length=100, null=True, blank=True)
     domicile = models.CharField(max_length=30, null=True, blank=True, default='Lafiabougou')
     alias = models.CharField(verbose_name='alias', max_length=30, null=True, blank=True)
     profession = models.CharField(max_length=30, null=True, blank=True)
-    contact_2 = models.CharField(max_length=20, null=True, blank=True)
+    contact_2 = models.CharField(max_length=8, null=True, blank=True)
     date_naissance = models.DateField(auto_now_add=True)
     nationalite = models.CharField(max_length=30, null=True, blank=True)
     tutuelle = models.CharField(max_length=30, null=True, blank=True)
-    telephonique_fix = models.CharField(max_length=30, null=True, blank=True)
+    telephonique_fix = models.CharField(max_length=15, null=True, blank=True)
     numero_reference = models.PositiveIntegerField(null=True, blank=True)
-    nina = models.PositiveIntegerField(null=True, blank=True)
+    nina = models.CharField(max_length=30,null=True, blank=True)
     created_at = models.DateField(auto_now=True)
 
     def __str__(self):
@@ -186,7 +186,7 @@ pre_save.connect(pre_save_person_id, sender=Person)
 
 class Mesure(models.Model):
     id = models.AutoField(primary_key=True)
-    person_mesure = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Mesure Client')
+    person_mesure = models.OneToOneField('Person', on_delete=models.CASCADE, verbose_name='Mesure Client')
     coude = models.FloatField(null=True, blank=True)
     epaule = models.FloatField(null=True, blank=True)
     manche = models.FloatField(null=True, blank=True)
@@ -199,21 +199,20 @@ class Mesure(models.Model):
     ceinture = models.FloatField(null=True, blank=True)
     cuisse = models.FloatField(null=True, blank=True)
     patte = models.FloatField(null=True, blank=True)
-    create_at = models.DateField(auto_now=True)
+    created_at = models.DateField(auto_now=True)
     update_at = models.DateField(auto_now=True)
 
+    # @classmethod
+    # def create(cls, person_mesure):
+    #     test = cls(person_mesure=person_mesure)
+    #     # do something with the book
+    #     return test
+
     def __str__(self):
-        return'{}'.format(self.person_mesure,)
+        return'{}'.format(self.id,)
 
 class Product(models.Model):
     id = models.AutoField(primary_key=True)
-    CATEGORY = (
-        ('Homme', 'Homme'),
-        ('Femme', 'Femme'),
-        ('Fille', 'Fille'),
-        ('Garçon', 'Garçon'),
-        ('Autres', 'Autres'),
-    )
     Name = (
         ('Boubou', 'Boubou'),
         ('Grand Boubou', 'Grand Boubou'),
@@ -227,13 +226,11 @@ class Product(models.Model):
         ('Tenu Scolaire', 'Tenu Scolaire'),
         ('Tenu Securite', 'Tenu Securite'),
         ('AUTRES', 'AUTRES'),)
-
-    category = models.CharField(max_length=50, choices=CATEGORY, default='Homme',)
     name = models.CharField(max_length=50, choices=Name, default='Boubou',)
-    code_produit = models.CharField(max_length=30, blank=True, verbose_name='Code Produit')
+    code_product = models.CharField(max_length=30, blank=True, null=True, verbose_name='Code Produit')
     description = models.CharField(max_length=30, blank=True, null=True)
     photo = models.ImageField(upload_to='albums/%Y/%m/%d')
-    # price = models.DecimalField(decimal_places=2, max_digits=20, default=50.25, null=True, blank=True)
+    price = models.DecimalField(decimal_places=2, max_digits=20, default=50.25, null=True, blank=True)
     create_at = models.DateField(auto_now=True)
 
     def __str__(self):
@@ -269,7 +266,15 @@ pre_save.connect(pre_save_order_id, sender=Order)
 
 class OrderDetail(models.Model):
     id = models.AutoField(primary_key=True)
+    CATEGORY = (
+        ('Homme', 'Homme'),
+        ('Femme', 'Femme'),
+        ('Fille', 'Fille'),
+        ('Garçon', 'Garçon'),
+        ('Autres', 'Autres'),
+    )
     order_id = models.ForeignKey('Order', on_delete=models.CASCADE, verbose_name='Commande', )
+    category = models.CharField(max_length=50, choices=CATEGORY, default='Homme', )
     product_id = models.ManyToManyField('Product')
     quantity = models.IntegerField(default=1, blank=True, null=True)
     submontant = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)

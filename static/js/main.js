@@ -66,22 +66,22 @@ $( "p" ).click(function() {
 //     .bindPopup('Le texte du marker<br> On peut y mettre du code HTML');
 
 
-// var ggRoadmap = new L.Google('ROADMAP');
-// var ggSatellite = new L.Google('');
-// var ggTerrain = new L.Google('TERRAIN');
-// var ggHybrid = new L.Google('HYBRID');
-//
-// map.addLayer(osmLayer); // Le layer par défaut
-// map.addControl(new L.Control.Layers( {
+var ggRoadmap = new L.Google('ROADMAP');
+var ggSatellite = new L.Google('');
+var ggTerrain = new L.Google('TERRAIN');
+var ggHybrid = new L.Google('HYBRID');
+
+map.addLayer(osmLayer); // Le layer par défaut
+map.addControl(new L.Control.Layers( {
 
 
-//     'OpenStreetMap': osmLayer,
-//     'Google Roadmap' : ggRoadmap,
-//     'Google Satellite': ggSatellite,
-//     'Google Terrain': ggTerrain,
-//     'Google Hybrid' : ggHybrid
-//     }, {})
-// );
+    'OpenStreetMap': osmLayer,
+    'Google Roadmap' : ggRoadmap,
+    'Google Satellite': ggSatellite,
+    'Google Terrain': ggTerrain,
+    'Google Hybrid' : ggHybrid
+    }, {})
+);
 
 // var customIcon = L.icon({
 //     iconUrl: 'icon-marker.png',

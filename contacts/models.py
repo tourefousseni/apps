@@ -1,4 +1,5 @@
 from django.db import models
+
 import random
 from random import  randint
 # from django.db.models.AutoField

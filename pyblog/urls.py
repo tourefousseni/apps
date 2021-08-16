@@ -12,11 +12,13 @@ app_name = 'contacts'
 urlpatterns = [
       # path('', admin.site.urls),
       # path('thanks/', views.thanks, name='thanks'),
-      path('profil/', views.profil, name='profil'),
+
       # =================================
       #         ULRS CADASTRE
       #             START
       # =================================
+      # path('fiche/', views.fiche, name='fiche'),
+      path('profil_pdf/', views.profil_pdf, name='profil_pdf'),
       path('parcel/', views.parcel, name='parcel'),
       path('parcels/detail/<int:parcel_id>/', views.parcel_detail, name='parcel_detail'),
       path('contact/', views.contact, name='adresses'),

@@ -1,16 +1,29 @@
+# import hashlib
+from math import sin, cos, tan, pi, ceil
+# from reportlab import rl_config, ascii, xrange
+from reportlab.pdfbase import pdfutils
+from reportlab.pdfbase import pdfdoc
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfgen  import pdfgeom, pathobject
+from reportlab.lib.utils import import_zlib, ImageReader, isSeq, isStr, isUnicode, _digester
+from reportlab.lib.rl_accel import fp_str, escapePDF
+from reportlab.lib.boxstuff import aspectRatioFix
+from reportlab.pdfgen import canvas
+from django.http import FileResponse
+import io
+# import reportlab.pdfgen
+from reportlab.lib.units import inch
+from reportlab.lib.pagesizes import letter
 # from .forms import UploadFileForm
-from django.contrib import messages
-from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.template import context
 from contacts.models import Contact
 # from .forms import UploadFileForm
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.http import Http404
 from .import views
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404
@@ -29,9 +42,6 @@ from .forms import SignUpForm, \
                    OrderForm, \
                    PaymentForm, \
                    OrderDetailForm
-
-
-
 
 def home(request):
     return render(request, 'contacts/home.html', {})
@@ -124,12 +134,53 @@ def parcel_detail(request, parcel_id):
 
     return render(request, 'contacts/parcel_detail.html', context)
 
+# GENERATED FILE PROFIL PDF
 
-def profil(request,):
-    ps = Contact.objects.all()
-    context = {'contacts': ps,}
+def profil_pdf(request,):
+    # create Bytestream buffer
+    buf = io.BytesIO()
+    # Create a Canvas
+    c = canvas.Canvas(buf,  pagesize=letter, bottomup=0 )
+    #Create a text object
+    textob = c.beginText()
+    textob.setTextOrigin(inch, inch)
+    textob.setFont('Helvetica', 14)
+    # lines = [
+    #     'This is line 1',
+    #     'This is line 2',
+    #     'This is line 3',
+    # ]
+    contacts = Contact.objects.all()
+    # Loop
+    lines = []
+    for contact in contacts:
+        lines.append(contact.status)
+        lines.append(contact.sexe)
+        lines.append(contact.nom)
+        lines.append(contact.prenom)
+        lines.append(contact.matricule)
+        lines.append(contact.contact)
+        lines.append('===============')
 
-    return render(request, 'contacts/profil.html', context)
+    for line in lines:
+        textob.textLine(line)
+    # Finish Up
+    c.drawText(textob)
+    c.showPage()
+    c.save()
+    buf.seek(0)
+
+    # Return something
+
+    return FileResponse(buf, as_attachment=True, filename='profil.pdf')
+
+    # context = {'contacts': ps,}
+
+    # return render(request, 'contacts/profil.html', context)
+
+#
+# def fiche(request):
+#     return None
 
 # ==============================================
 #                  VIEWS CADASTRE

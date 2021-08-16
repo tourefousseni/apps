@@ -31,8 +31,11 @@ INSTALLED_APPS = [
     'django_bootstrap_datetimepicker',
     'crispy_forms',
     'crispy_bootstrap5',
-
+    'reportlab'
 ]
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

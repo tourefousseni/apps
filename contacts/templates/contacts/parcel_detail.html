@@ -11,8 +11,8 @@
         </div>
             <tr>
 {#                  <td><input type="checkbox" id="checkall" /></td>#}
-                  <th>Type</th>
-                  <th>area</th>
+                  <th>Nature</th>
+                  <th>superficie</th>
                   <th>perimeter</th>
                   <th>code</th>
                   <th>created_at</th>
@@ -28,8 +28,8 @@
                                 <td><a href="{% url 'parcel_detail' parcel.pk %}"></a></td>
 {#                                <td><input type="checkbox" class="checkthis" /></td>#}
 {#                                <td>{{ contact.id }}</td>#}
-                                <td>{{ parcel.type }}</td>
-                                <td>{{ parcel.area }}</td>
+                                <td>{{ parcel.nature }}</td>
+                                <td>{{ parcel.superficie }}</td>
                                 <td>{{ parcel.perimeter }}</td>
                                 <td>{{ parcel.code }}</td>
                                 <td>{{ parcel.created_at }}</td>

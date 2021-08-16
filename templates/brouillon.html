@@ -35,6 +35,47 @@ DATABASES = {
     }
 }
 
+
+
+class ContactForm(forms.ModelForm):
+
+    STATUS = (
+        ('PERSONNE',    'Personne'),
+        ('SOCIETE',     'Societe'))
+    status = forms.ChoiceField(choices=STATUS)
+    SEXE = (
+        ('HOMME',      'Homme'),
+        ('FEMME',      'Femme'))
+    sexe = forms.ChoiceField(choices=SEXE, widget=forms.RadioSelect, initial='Homme')
+    nom = forms.CharField(label="Nom", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nom'}))
+
+    prenom = forms.CharField(label="Prenom", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Prenom'}))
+
+    # matricule = forms.CharField(label="Matricule", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Matricule'}))
+    photo = forms.ImageField()
+    contact = forms.CharField(label="Contact", max_length=8, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Contact'}))
+    n_cin = forms.CharField(label="Carte d'Indentite Nationale", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'CIN'}))
+    nina = forms.CharField(label="NINA", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'NINA'}))
+    profession = forms.CharField(label="Profession", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Profession'}))
+    rcimm = forms.CharField(label="Registre Commerce", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Registre Commerce'}))
+    nif = forms.CharField(label="NIF", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'NIF'}))
+    siege_social = forms.CharField(label="SIEGE SOCIAL", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Siege Social'}))
+    responsable = forms.CharField(label="RESPONABLE", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Responsable'}))
+    email = forms.EmailField(max_length=50, label='ADRESSE EMAIL', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
+    # created_at = forms.DateTimeField(widget=BootstrapDateTimeInput())
+    created_at = forms.DateTimeField(
+        input_formats=['%d/%m/%Y %H:%M'],
+        widget=forms.DateTimeInput(attrs={
+            'class': 'form-control datetimepicker-input',
+            'data-target': 'datetimepicker1'
+        })
+    )
+    class Meta:
+            model = Contact
+            fields = ['status', 'sexe', 'contact', 'nom', 'prenom', 'photo', 'nina', 'nif', 'siege_social',
+                      'responsable', 'email', 'created_at']
+            exclude = ['matricule']
+
 Models Order AND Orders_Items
 {#class Order(models.Model):#}
 {#    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)#}

@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load crispy_forms_filters %}
+
 {% load static %}
  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
  <link rel="stylesheet" href="{% static 'js/node_modules/leaflet/dist/leaflet.css'%}">
@@ -21,13 +23,16 @@ nam{
                                {% csrf_token %}
 
                                     <div class="row">
-                                            <div class="col-sm-6">
+{#                                            <div class="col-sm-6">#}
 
-                                            <table>{{ form.as_p }}</table><br />
-                                            </div>
+                                            <table>
+                                                {{ form|crispy }}
+                                            </table><br />
+{#                                            </div>#}
                                      </div>
                                <div>
                                    <button type="submit" class="btn btn-primary col-sm-3 text-center">Valider</button>
+                                   <button type="submit" class="btn btn-danger col-sm-3 text-center">Cancel</button>
                                </div>
 
                            </form>

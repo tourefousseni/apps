@@ -1,6 +1,11 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth.models import User
+from crispy_forms.helper import FormHelper
+from crispy_forms.bootstrap import StrictButton
+from crispy_forms.layout import Submit, Layout, Row,   Column
+from crispy_forms.bootstrap import TabHolder, Tab
+from crispy_forms.bootstrap import  InlineRadios
 # from django import forms
 # from django.forms import forms
 from django.forms import ModelForm
@@ -22,58 +27,44 @@ from .models import Contact, \
 #                  FORM CADASTRE
 #                        START
 # ==============================================
-class ContactForm(forms.ModelForm):
-
-    STATUS = (
-        ('PERSONNE',    'Personne'),
-        ('SOCIETE',     'Societe'))
+class ContactForm(forms.Form):
+    STATUS = (('PERSONNE',    'Personne'),('SOCIETE', 'Societe'))
     status = forms.ChoiceField(choices=STATUS)
-    SEXE = (
-        ('HOMME',      'Homme'),
-        ('FEMME',      'Femme'))
-    sexe = forms.ChoiceField(choices=SEXE, widget=forms.RadioSelect, initial='Homme')
-    nom = forms.CharField(label="Nom", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nom'}))
-
-    prenom = forms.CharField(label="Prenom", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Prenom'}))
-
-    # matricule = forms.CharField(label="Matricule", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Matricule'}))
+    SEXE = (('HOMME',      'Homme'), ('FEMME',      'Femme'))
+    sexe = forms.ChoiceField(choices=SEXE,)
+    nom = forms.CharField(max_length=100,)
+    prenom = forms.CharField( max_length=100,)
+    matricule = forms.CharField(max_length=100,)
     photo = forms.ImageField()
-    contact = forms.CharField(label="Contact", max_length=8, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Contact'}))
-    n_cin = forms.CharField(label="Carte d'Indentite Nationale", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'CIN'}))
-    nina = forms.CharField(label="NINA", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'NINA'}))
-    profession = forms.CharField(label="Profession", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Profession'}))
-    rcimm = forms.CharField(label="Registre Commerce", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Registre Commerce'}))
-    nif = forms.CharField(label="NIF", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'NIF'}))
-    siege_social = forms.CharField(label="SIEGE SOCIAL", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Siege Social'}))
-    responsable = forms.CharField(label="RESPONABLE", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Responsable'}))
-    email = forms.EmailField(max_length=50, label='ADRESSE EMAIL', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
-    # created_at = forms.DateTimeField(widget=BootstrapDateTimeInput())
+    contact = forms.CharField( max_length=8,)
+    n_cin = forms.CharField(max_length=50,)
+    nina = forms.CharField(label="NINA", max_length=50,)
+    profession = forms.CharField( max_length=50)
+    rcimm = forms.CharField( max_length=50,)
+    nif = forms.CharField( max_length=50,)
+    siege_social = forms.CharField( max_length=50,)
+    responsable = forms.CharField( max_length=50,)
+    email = forms.EmailField(max_length=50, )
     created_at = forms.DateTimeField(
-        input_formats=['%d/%m/%Y %H:%M'],
-        widget=forms.DateTimeInput(attrs={
-            'class': 'form-control datetimepicker-input',
-            'data-target': 'datetimepicker1'
-        })
-    )
+        input_formats=['%d/%m/%Y %H:%M'],)
+
     class Meta:
             model = Contact
-            fields = ['status', 'sexe', 'contact', 'nom', 'prenom', 'photo', 'nina', 'nif', 'siege_social',
-                      'responsable', 'email', 'created_at']
-            exclude = ['matricule']
+            fields = ('__all__')
 
 
 class ParcelForm(forms.Form):
-    TYPE = (
+    Nature = (
         ('BATI',   'Bati'),
         ('NON BATIE',    'Non Bati'),)
-    type = forms.ChoiceField(choices=TYPE)
+    nature = forms.ChoiceField(choices=Nature)
     contact = forms.ModelMultipleChoiceField(
         queryset=Contact.objects.all(),
         widget=forms.CheckboxSelectMultiple)
     # geom = forms.JSONField()
-    area = forms.CharField(label="Area", max_length=8, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Area'}))
-    perimeter = forms.CharField(label="Perimeter", max_length=8, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Perimeter'}))
-    code = forms.CharField(label="Code", max_length=30, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Code'}))
+    superficie = forms.IntegerField( widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Superficie'}))
+    perimeter = forms.IntegerField( widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Perimeter'}))
+    code = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Code'}))
     created_at = forms.DateTimeField(
         input_formats=['%d/%m/%Y %H:%M'],
         widget=forms.DateTimeInput(attrs={
@@ -101,7 +92,6 @@ class ParcelForm(forms.Form):
 #                        START
 # ==============================================
 
-
 class PersonForm(forms.Form):
     STATUS = (
                 ('Client', 'CLIENT'),
@@ -110,7 +100,7 @@ class PersonForm(forms.Form):
                 ('Fournisseur', 'FOURNISSEUR'),
                 ('Company', 'COMPANY'),)
 
-    status = forms.ChoiceField(label='Status', choices=STATUS, widget=forms.RadioSelect, initial='Client')
+    status = forms.ChoiceField(label='Status', choices=STATUS, initial='Client')
     SEX = (
                 ('H', 'Homme'),
                 ('F', 'Femme'),
@@ -126,68 +116,36 @@ class PersonForm(forms.Form):
         ('Tailleur simple', 'TAILLEUR SIMPLE'),
         ('Boutouman', 'BOUTOUMAN'),)
 
-    sex = forms.ChoiceField(label='Sex', choices=SEX, widget=forms.RadioSelect, initial='Homme')
-    category = forms.ChoiceField(label='Category', choices=CATEGORY, widget=forms.RadioSelect, initial='Grande')
-    type_tailleur = forms.ChoiceField(label='Type Tailleur', choices=TYPE_TAILLEUR, required='Grande')
-    prenom = forms.CharField(label="Prenom", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Prenom'}))
-    nom = forms.CharField(label="Nom", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nom'}))
-    contact_1 = forms.IntegerField(label="Contact", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Contact'}))
+    sex = forms.ChoiceField(label='Sex', choices=SEX, initial='Homme')
+    category = forms.ChoiceField(label='Category', choices=CATEGORY, initial='Grande')
+    type_tailleur = forms.ChoiceField(label='Type Tailleur', choices=TYPE_TAILLEUR, required='')
+    prenom = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Prenom'}))
+    nom = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nom'}))
+    contact_1 = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Contact'}))
     photo = forms.ImageField()
-    domicile = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Domicile'}))
+    domicile = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Domicile'}))
     alias = forms.CharField(label="Alias", max_length=30, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Alias'}))
     # n_cin = forms.CharField(label="Carte d'Indentite Nationale", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'CIN'}))
     nina = forms.CharField(label="NINA", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'NINA'}))
     profession = forms.CharField(label="Profession", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Profession'}))
-    nationnalite = forms.CharField(label="Nationnalite", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nationnalite'}))
-    nif = forms.CharField(label="NIF", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'NIF'}))
-    siege_social = forms.CharField(label="SIEGE SOCIAL", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Siege Social'}))
-    responsable = forms.CharField(label="RESPONABLE", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Responsable'}))
-    email = forms.EmailField(max_length=50, label='ADRESSE EMAIL', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
-    created_at = forms.DateField(
-        input_formats=['%d/%m/%Y'],
-        widget=forms.DateTimeInput(attrs={
-            'class': 'form-control datetimepicker-input',
-            'data-target': 'datetimepicker1'
-        })
-    )
+    nationalite = forms.CharField(label="Nationalite", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nationalite'}))
+    # nif = forms.CharField(label="NIF", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'NIF'}))
+    # siege_social = forms.CharField(label="SIEGE SOCIAL", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Siege Social'}))
+    # responsable = forms.CharField(label="RESPONABLE", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Responsable'}))
+    # email = forms.EmailField(max_length=50, label='ADRESSE EMAIL', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
+    # created_at = forms.DateField(
+    #     input_formats=['%d/%m/%Y'],
+    #     widget=forms.DateTimeInput(attrs={
+    #         'class': 'form-control datetimepicker-input',
+    #         'data-target': 'datetimepicker1'
+    #     })
+    # )
+
     class Meta:
         model = Person
-
-    # image = models.ImageField(upload_to='profil/%d/%m/%Y', null=True, blank=True, verbose_name='Photo_commande')
-    # STATUS = (
-    #     ('Client', 'CLIENT'),
-    #     ('Tailleur', 'TAILLEUR'),
-    #     ('Apprenti', 'APPRENTI'),
-    #     ('Fournisseur', 'FOURNISSEUR'),
-    #     ('Company', 'COMPANY'),)
-    # SEX = (
-    #     ('H', 'Homme'),
-    #     ('F', 'Femme'),
-    #     ('A', 'Autres'),)
-    # CATEGORY = (
-    #     ('G', 'Grande'),
-    #     ('M', 'Moyenne'),
-    #     ('P', 'Petite'),)
-    # status = models.CharField(max_length=20, choices=STATUS, default='CLIENT')
-    # type_tailleur = models.CharField(max_length=20, choices=TYPE_TAILLEUR, default='TAILLEUR SIMPLE')
-    # sex = models.CharField(max_length=20, choices=SEX, default='Homme')
-    # category = models.CharField(max_length=20, choices=CATEGORY, default='Grande')
-    # code_person = models.CharField(max_length=30, blank=True, verbose_name='Code person')
-    # prenom = models.CharField(max_length=30, null=True, blank=True)
-    # nom = models.CharField(max_length=30, null=True, blank=True)
-    # contact_1 = models.IntegerField()
-    # email = models.EmailField(max_length=100, null=True, blank=True)
-    # domicile = models.CharField(max_length=30, null=True, blank=True, default='Lafiabougou')
-    # alias = models.CharField(verbose_name='alias', max_length=30, null=True, blank=True)
-    # profession = models.CharField(max_length=30, null=True, blank=True)
-    # contact_2 = models.CharField(max_length=20, null=True, blank=True)
-    # date_naissance = models.DateField(auto_now_add=True)
-    # nationalite = models.CharField(max_length=30, null=True, blank=True)
-    # tutuelle = models.CharField(max_length=30, null=True, blank=True)
-    # telephonique_fix = models.CharField(max_length=30, null=True, blank=True)
-    # numero_reference = models.PositiveIntegerField(null=True, blank=True)
-    # nina = models.PositiveIntegerField(null=True, blank=True)
-    # created_at = models.DateField(auto_now=True)
+        # fields = '__all__'
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
 
 class MesureForm(forms.Form):
         person_mesure = forms.ModelChoiceField(queryset=Person.objects.all())
@@ -203,21 +161,21 @@ class MesureForm(forms.Form):
         ceinture = forms.IntegerField(label="Ceinture", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ceinture'}))
         cuisse = forms.IntegerField(label="Cuisse", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Cuisse'}))
         patte = forms.IntegerField(label="Patte", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Patte'}))
-        create_at = forms.DateField()
-        update_at = forms.DateField()
+        # create_at = forms.DateField()
+        # update_at = forms.DateField()
 
         class Meta:
             model = Mesure
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+
+            self.helper = FormHelper()
+            self.helper.form_method = 'post'
+            self.helper.layout = Layout()
+
 
 class ProductForm(forms.Form):
-        CATEGORY = (
-            ('Homme', 'Homme'),
-            ('Femme', 'Femme'),
-            ('Fille', 'Fille'),
-            ('Garçon', 'Garçon'),
-            ('Autres', 'Autres'),
-        )
-        category = forms.ChoiceField(label='Category', choices=CATEGORY, required='HOMME')
+
         NAME = (
             ('Boubou', 'Boubou'),
             ('Grand Boubou', 'Grand Boubou'),
@@ -232,14 +190,19 @@ class ProductForm(forms.Form):
             ('Tenu Securite', 'Tenu Securite'),
             ('AUTRES', 'AUTRES'),)
         name = forms.ChoiceField(label='Name', choices=NAME, required='Boubou')
+        code_product = forms.CharField(label="Code Product",
+                                 widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Code Product'}))
+        # price = forms.IntegerField(label="price", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'price'}))
         # name = forms.CharField(label="Name Product", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name Product'}))
-        photo = forms.ImageField(label='Photos', )
-        # price = forms.DecimalField(label="Price", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Price'}))
-        create_at = forms.DateField()
-
+        photo = forms.ImageField()
+        price = forms.DecimalField(label="Price", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Price'}))
+        # create_at = forms.DateField()
 
         class Meta:
             model = Product
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+
 
 class OrderForm(forms.Form):
             PRODUIT = [
@@ -263,8 +226,19 @@ class OrderForm(forms.Form):
             class Meta:
                 models = Order
 
+            def __init__(self, *args, **kwargs):
+                super().__init__(*args, **kwargs)
+
 
 class OrderDetailForm(forms.Form):
+    CATEGORY = (
+        ('Homme', 'Homme'),
+        ('Femme', 'Femme'),
+        ('Fille', 'Fille'),
+        ('Garçon', 'Garçon'),
+        ('Autres', 'Autres'),
+    )
+    category = forms.ChoiceField(label='Category', choices=CATEGORY, required='HOMME')
 
     PRODUIT = [
         ('Boubou', 'Boubou'),
@@ -282,13 +256,15 @@ class OrderDetailForm(forms.Form):
     person_id = forms.ModelChoiceField(queryset=Person.objects.all())
     order_id = forms.ModelChoiceField(queryset=Order.objects.all())
     produit = forms.MultipleChoiceField(required=False, widget=forms.CheckboxSelectMultiple, choices=PRODUIT)
-    price = forms.IntegerField(label="price", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'price'}))
     quantity = forms.IntegerField(label="quantity", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'quantity'}))
     remise = forms.IntegerField(label="Remise", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Remise'}))
     create_at = forms.DateField()
 
     class Meta:
         models = OrderDetail
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
 
 class PaymentForm(forms.Form):
@@ -298,6 +274,9 @@ class PaymentForm(forms.Form):
     montant_total = forms.DecimalField(label="Montant Total", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Montant Total'}))
     livre = forms.BooleanField(label='Livraison',)
     create_at = forms.DateField()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
 # ==============================================
 #                  FORM KALALISO
@@ -317,7 +296,7 @@ class EditProfileForm(UserChangeForm):
                       'password')
 
 class SignUpForm(UserCreationForm):
-        email = forms.EmailField(label="", widget=forms.TextInput(
+        email = forms.EmailField(label="", widget=forms.EmailInput(
             attrs={'class': 'form-control', 'placeholder': 'Your adress email'}))
         last_name = forms.CharField(label="", max_length=100,
                                     widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last name'}))

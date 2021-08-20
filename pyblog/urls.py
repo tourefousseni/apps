@@ -2,6 +2,9 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls import url
 from contacts import views
+from reportlab.platypus import Table
+
+# from  reportlab.pdfgen views  genFooterTable, genBodyTable, genHeaderTable
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -14,10 +17,24 @@ urlpatterns = [
       # path('thanks/', views.thanks, name='thanks'),
 
       # =================================
-      #         ULRS CADASTRE
+      #         ULRS INVOICE
       #             START
       # =================================
       # path('fiche/', views.fiche, name='fiche'),
+      path('header/', views.genHeaderTable, name='header'),
+      path('body/', views.genBodyTable, name='body'),
+      path('footer/', views.genFooterTable, name='footer'),
+      path('program/', views.program, name='program'),
+      # =================================
+      #         ULRS INVOICE
+      #             START
+      # =================================
+
+      # =================================
+      #         ULRS CADASTRE
+      #             START
+      # =================================
+
       path('profil_pdf/', views.profil_pdf, name='profil_pdf'),
       path('parcel/', views.parcel, name='parcel'),
       path('parcels/detail/<int:parcel_id>/', views.parcel_detail, name='parcel_detail'),

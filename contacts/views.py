@@ -9,11 +9,19 @@ from reportlab.lib.utils import import_zlib, ImageReader, isSeq, isStr, isUnicod
 from reportlab.lib.rl_accel import fp_str, escapePDF
 from reportlab.lib.boxstuff import aspectRatioFix
 from reportlab.pdfgen import canvas
+from reportlab.platypus import Table
 from django.http import FileResponse
 import io
 # import reportlab.pdfgen
 from reportlab.lib.units import inch
-from reportlab.lib.pagesizes import letter
+from reportlab.lib.pagesizes import letter, A5
+from reportlab.pdfgen import canvas
+# import genHeaderTable
+# import genBodyTable
+# import genFooterTable
+# import reportlab genFooterTable, genBodyTable, genHeaderTable
+# from reportlab.lib.pagesizes import A4
+from reportlab.platypus import Table
 # from .forms import UploadFileForm
 from django.shortcuts import render
 from django.urls import reverse
@@ -22,7 +30,6 @@ from contacts.models import Contact
 # from .forms import UploadFileForm
 from django.shortcuts import render, redirect
 from django.http import Http404
-from .import views
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
@@ -45,6 +52,8 @@ from .forms import SignUpForm, \
 
 def home(request):
     return render(request, 'contacts/home.html', {})
+
+
 
 # ==============================================
 #                  VIEWS CADASTRE
@@ -140,16 +149,12 @@ def profil_pdf(request,):
     # create Bytestream buffer
     buf = io.BytesIO()
     # Create a Canvas
-    c = canvas.Canvas(buf,  pagesize=letter, bottomup=0 )
+    p = canvas.Canvas(buf,  pagesize=A5, bottomup=0)
     #Create a text object
-    textob = c.beginText()
+    textob = p.beginText()
     textob.setTextOrigin(inch, inch)
     textob.setFont('Helvetica', 14)
-    # lines = [
-    #     'This is line 1',
-    #     'This is line 2',
-    #     'This is line 3',
-    # ]
+
     contacts = Contact.objects.all()
     # Loop
     lines = []
@@ -165,9 +170,9 @@ def profil_pdf(request,):
     for line in lines:
         textob.textLine(line)
     # Finish Up
-    c.drawText(textob)
-    c.showPage()
-    c.save()
+    p.drawText(textob)
+    p.showPage()
+    p.save()
     buf.seek(0)
 
     # Return something

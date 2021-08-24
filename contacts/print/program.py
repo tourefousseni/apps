@@ -6,6 +6,7 @@ from header import genHeaderTable
 from body import genBodyTable
 from footer import genFooterTable
 
+
 pdf = canvas.Canvas('invoice_1.pdf', pagesize=A5)
 pdf.setTitle('INVOICE OF PERSON')
 
@@ -28,7 +29,7 @@ mainTable = Table([
 )
 
 mainTable.setStyle([
-    ('GRID', (0, 0), (-1, -1), 1, 'red'),
+    # ('GRID', (0, 0), (-1, -1), 1, 'red'),
     ('LEFTPADDING', (0, 0), (0, 2), 0),
     ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
 ]

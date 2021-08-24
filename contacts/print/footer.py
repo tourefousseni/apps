@@ -17,7 +17,6 @@ def genFooterTable(width, height):
         ('TEXTCOLOR', (0, 0), (-1, -1), 'white'),
         ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-
     ])
 
     return res

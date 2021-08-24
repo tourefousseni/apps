@@ -53,18 +53,17 @@ from .forms import SignUpForm, \
 def home(request):
     return render(request, 'contacts/home.html', {})
 
-
+def program(request):
+    return render(request, 'contacts/home.html', {})
 
 # ==============================================
 #                  VIEWS CADASTRE
 #                        START
 # ==============================================
 
-
 def contact(request):
 
     if request.method == 'POST':
-
         sta = request.POST.get('status')
         sx = request.POST.get('sexe')
         no = request.POST.get('nom')
@@ -108,7 +107,6 @@ def contact(request):
 def contact_detail(request, contact_id):
         qs = Contact.objects.all()
         context = {'contacts': qs,}
-
         return render(request, 'contacts/contacts_detail.html', context)
 
 
@@ -345,6 +343,10 @@ def orderdetail(request):
                            quantity=qt,
                            tva=tv,
                            create_at=creat,)
+
+        # CODE FOR INSTANCIATION
+        # form = PartialAuthorForm(request.POST, instance=author)
+
         data.save()
         return HttpResponseRedirect(reverse('orderdetail'))
     else:

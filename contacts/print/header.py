@@ -4,9 +4,7 @@ def genHeaderTable(width, height):
 
     WidthList = [
         width * 55/100,
-        width * 45/100,
-
-    ]
+        width * 45/100,]
 
     leftImgPath = '/Users/toure/PycharmProjects/douniyasoba/photos/identite/ZONE_DETUDE.jpg'
     leftImgWidth = WidthList[0]
@@ -24,7 +22,7 @@ def genHeaderTable(width, height):
     height)
 
     res.setStyle([
-         ('GRID', (0, 0), (-1, -1), 1, 'red'),
+         # ('GRID', (0, 0), (-1, -1), 1, 'red'),
         ('LEFTPADDING', (0, 0), (-1, -1), 0,),
         ('BOTTOMPADDING', (0, 0), (-1, -1), 0,),
     ])

@@ -2,8 +2,9 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls import url
 from contacts import views
+# from  . import views  program, genFooterTable, genBodyTable, genHeaderTable
 from reportlab.platypus import Table
-
+# from  .import views
 # from  reportlab.pdfgen views  genFooterTable, genBodyTable, genHeaderTable
 from django.conf import settings
 from django.conf.urls.static import static
@@ -13,7 +14,7 @@ app_name = 'contacts'
            # 'authenticate',
 
 urlpatterns = [
-      # path('', admin.site.urls),
+      path('', admin.site.urls),
       # path('thanks/', views.thanks, name='thanks'),
 
       # =================================
@@ -21,9 +22,9 @@ urlpatterns = [
       #             START
       # =================================
       # path('fiche/', views.fiche, name='fiche'),
-      path('header/', views.genHeaderTable, name='header'),
-      path('body/', views.genBodyTable, name='body'),
-      path('footer/', views.genFooterTable, name='footer'),
+      # path('header/', views.genHeaderTable, name='header'),
+      # path('body/', views.genBodyTable, name='body'),
+      # path('footer/', views.genFooterTable, name='footer'),
       path('program/', views.program, name='program'),
       # =================================
       #         ULRS INVOICE

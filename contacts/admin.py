@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.forms import Textarea
 from django.db import models
-from contacts.models import Contact
+from contacts.models import Contact, Parcel
 
 # Register your models here.
 @admin.register(Contact)
@@ -30,3 +30,8 @@ class ContactAdmin(admin.ModelAdmin):
          ]
     # list_editable = ('status', 'moderation_text',)
     # list_filter = ['status']
+
+@admin.register(Parcel)
+class ParcelAdmin(admin.ModelAdmin):
+
+    field = ['__all__']

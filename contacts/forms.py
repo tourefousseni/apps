@@ -62,7 +62,8 @@ class ParcelForm(forms.Form):
         queryset=Contact.objects.all(),
         widget=forms.CheckboxSelectMultiple)
     # geom = forms.JSONField()
-    superficie = forms.IntegerField( widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Superficie'}))
+    superficie = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Superficie'}))
+    # geom = forms.M
     perimeter = forms.IntegerField( widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Perimeter'}))
     code = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Code'}))
     created_at = forms.DateTimeField(
@@ -259,6 +260,7 @@ class OrderDetailForm(forms.Form):
     quantity = forms.IntegerField(label="quantity", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'quantity'}))
     remise = forms.IntegerField(label="Remise", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Remise'}))
     create_at = forms.DateField()
+
 
     class Meta:
         models = OrderDetail

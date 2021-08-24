@@ -1,0 +1,37 @@
+{#{% extends 'base.html' %}#}
+{#{% load static %}#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Title</title>#}
+{#</head>#}
+{#<body>#}
+{#<template pageSize="(595, 842)" leftMargin="0" rightMargin="0" showBoundary="0">#}
+{##}
+{#<image file="/rml/rl_letterhead_201203.pdf" x="0" y="0" width="595" height="842"/>#}
+{##}
+{##}
+{#<!-- top row centered, bold and white on blue-->#}
+{#<blockAlignment value="center" start="0,0" stop="-1,0"/>#}
+{#<blockBackground colorName="#1E4C9C" start="0,0" stop="-1,0"/>#}
+{#<blockFont name="Helvetica-Bold" size="11" leading="15" start="0,0" stop="-1,0"/>#}
+{#<blockTextColor colorName="white" start="0,0" stop="-1,0"/>#}
+{##}
+{##}
+{#<para style="normal" leading="20" fontSize="17"> <b> {{ data.customer_name }} </b> <br/> </para>#}
+{#<pre style="normal"> {{data.address }} </pre>#}
+{#<para style="normal" leading="20"> {{data.country_name }} </para>#}
+{#<para style="normal"> <i>Requested by: </i> <br/>{{data.manager }} </para>#}
+{##}
+{##}
+{#{{for contact in (data.contacts)}}#}
+{#        <tr>#}
+{#            <td> <para style="table_normal">{{item.description}}</para> </td>#}
+{#            <td align="DECIMAL" rightPadding="20" vAlign="top">{{item.price}}}</td>#}
+{#            <td align="CENTER" vAlign="top">{{item.quantity}}</td>#}
+{#            <td align="DECIMAL" rightPadding="20" vAlign="top">{{item.net}}</td>#}
+{#            <td align="CENTER" vAlign="top">{{item.vat}}</td>#}
+{#            <td align="DECIMAL" rightPadding="15" vAlign="top">{{item.gross}}</td>#}
+{#        </tr>#}
+{#{{endfor}}#}
+{#</body>#}
+{#</html>#}

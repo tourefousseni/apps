@@ -27,11 +27,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Our the app
+    'django.contrib.gis',
     'contacts',
     'django_bootstrap_datetimepicker',
     'crispy_forms',
     'crispy_bootstrap5',
-    'reportlab'
+    'reportlab',
 ]
 
 
@@ -74,7 +75,8 @@ WSGI_APPLICATION = 'pyblog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        # 'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'plateform',
         'USER': 'myprojectuser',
         'PASSWORD':'password',

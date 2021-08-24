@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.gis.db import models as gis_models
 import random
 from random import  randint
 # from django.db.models.AutoField
@@ -59,6 +59,7 @@ class Parcel(models.Model):
         ('NON BATIE',    'Non Bati'),)
     nature = models.CharField(max_length=30, choices=Nature,)
     contact = models.ManyToManyField('Contact')
+    geom = gis_models.MultiPolygonField(srid=32642, blank=True, null=True)
     superficie = models.PositiveIntegerField()
     perimeter = models.PositiveIntegerField()
     dr = models.ForeignKey('Droit', on_delete=models.CASCADE, verbose_name='Droits Réels')

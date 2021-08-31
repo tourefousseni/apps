@@ -16,6 +16,7 @@ import io
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter, A5
 from reportlab.pdfgen import canvas
+from django.core.serializers  import serialize
 # import genHeaderTable
 # import genBodyTable
 # import genFooterTable

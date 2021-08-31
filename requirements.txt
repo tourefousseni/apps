@@ -4,6 +4,7 @@ crispy-bootstrap5==0.4
 Django==3.2.5
 django-bootstrap-datetimepicker==1.5
 django-crispy-forms==1.12.0
+django-leaflet==0.28.1
 Pillow==8.3.1
 postgis==1.0.4
 psycopg2==2.7.4

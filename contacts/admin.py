@@ -2,9 +2,10 @@ from django.contrib import admin
 from django.forms import Textarea
 from django.db import models
 from contacts.models import Contact, Parcel
+# from leaflet.admin import LeafletGeoAdmin
 
 # Register your models here.
-@admin.register(Contact)
+# admin.site.register(Contact , LeafletGeoAdmin)
 class ContactAdmin(admin.ModelAdmin):
 
     field = ['__all__']
@@ -28,10 +29,10 @@ class ContactAdmin(admin.ModelAdmin):
         'created_at',
 
          ]
-    # list_editable = ('status', 'moderation_text',)
-    # list_filter = ['status']
+    list_editable = ('status', 'moderation_text',)
+    list_filter = ['status']
 
-@admin.register(Parcel)
+
+# admin.site.register(Parcel, LeafletGeoAdmin)
 class ParcelAdmin(admin.ModelAdmin):
-
     field = ['__all__']

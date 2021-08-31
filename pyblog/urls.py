@@ -14,7 +14,7 @@ app_name = 'contacts'
            # 'authenticate',
 
 urlpatterns = [
-      path('', admin.site.urls),
+      # path('', admin.site.urls),
       # path('thanks/', views.thanks, name='thanks'),
 
       # =================================

@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Our the app
     'django.contrib.gis',
-    'leaflet',
+    # 'leaflet',
     'contacts',
     'django_bootstrap_datetimepicker',
     'crispy_forms',

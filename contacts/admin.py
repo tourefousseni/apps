@@ -16,7 +16,6 @@ class ContactAdmin(admin.ModelAdmin):
         'prenom',
         'matricule',
         'sexe',
-
     )
     exclude = [
 

@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load leaflet_tags %}
 
 {% block content %}
     <br/> <br/>
        <container>
+       <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+       <link rel="stylesheet" href="{% static 'bootstrap/css/style.css' %}">
 
               <div class="row ">
               <div class="row row-cols-1 row-cols-md-4 g-4 justify-content-center">
@@ -28,8 +31,22 @@
                     </div>
                   </div>
                 </div>
+           <div>
+                {% leaflet_js %}
+
+                {% leaflet_css %}
+           </div><br/>
+              <div class= "row justify-content-center">
+                 <div class="col-7">
+                      <span><h4 class="text-center">CADASTRE RURAL DE L'OFFICE DU MOYEN BANI</h4></span> <br/>
+                      {% leaflet_map "map"%}
+                 </div>
+               </div>
+
 {#             </div>#}
           </container>
+{# <script src="{% static 'bootstrap/js/index.js'%}"></script>#}
+{# <script src="{% static 'bootstrap/js/bootstrap.js'%}"></script>#}
 
  <script>
     $( "p" ).click(function( event ) {

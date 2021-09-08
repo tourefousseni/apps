@@ -108,7 +108,16 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
+LEAFLET_CONFIG = {
 
+'SPATIAL_EXTENT': (13.22, -5.16,  14.22, -4.16)
+# 'DEFAULT_CENTER': (13.22, -5.16),
+# 'DEFAULT_ZOOM': 7,
+# 'MIN_ZOOM': 3,
+# 'MAX_ZOOM': 1,
+# 'DEFAULT_PRECISION': 6,
+
+}
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')

@@ -8,3 +8,21 @@ body{
     background-color: beige;
 }
 
+.target{
+    background-color: red;
+}
+
+map {  /* all maps */
+        width:  1600px;
+        height: 1400px;
+    }
+
+/*#specialbigmap {*/
+        /*height: 800px;*/
+    /*}*/
+
+    /* Resize the "display_raw" textbox */
+/*.django-leaflet-raw-textarea {*/
+        /*width: 100%;*/
+    /*}*/
+

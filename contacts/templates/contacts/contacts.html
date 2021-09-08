@@ -18,21 +18,18 @@ nam{
         <span >FORMULAIRE D'ENREGISTREMENT DES EXPLOITANTS </span></h3><br/>
         <div>
 {#            {% for contact in contacts %}#}
-                   <div class="mt-9">
+                   <div class="col-sm-8 justify-content-center">
                            <form  id="target" action="{% url 'adresses' %}" method="post">
                                {% csrf_token %}
 
-                                    <div class="row">
-{#                                            <div class="col-sm-6">#}
-
-                                            <table>
+                                    <div class="row col-lg-8">
+                                            <table >
                                                 {{ form|crispy }}
                                             </table><br />
-{#                                            </div>#}
                                      </div>
                                <div>
-                                   <button type="submit" class="btn btn-primary col-sm-3 text-center">Valider</button>
-                                   <button type="submit" class="btn btn-danger col-sm-3 text-center">Cancel</button>
+                                   <button type="submit" class="btn btn-primary col-sm-3 text-center justify-content-center">Valider</button>
+                                   <button type="submit" class="btn btn-danger col-sm-3 text-center justify-content-center">Cancel</button>
                                </div>
 
                            </form>

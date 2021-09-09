@@ -3,14 +3,24 @@
 {% load static %}
 
 {% block content %}
-    <h2 class="text-center">REGISTER CLIENT</h2>
+    <h2 class="text-center offset-5">REGISTER CLIENT</h2>
     <form action="{% url 'person' %}" method="post">
         {% csrf_token %}
-            <table>
+        <div class="row">
+          <div class="col-xl-6 offset-5">
+             <table >
                {{ form|crispy }}
             </table><br />
-        <input type="submit" value="Submit" class="btn btn-primary">
-        <input type="submit" value="cancel" class="btn btn-danger">
+         </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 offset-5">
+                 <input type="submit" value="Submit" class="btn btn-primary ">
+                 <input type="submit" value="cancel" class="btn btn-danger ">
+            </div>
+
+        </div>
+
     </form>
 {#    <script type="text/javascript" src="{% staticfiles '' %}"></script>#}
 

@@ -3,16 +3,16 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Password
 from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
 from crispy_forms.bootstrap import StrictButton
-from crispy_forms.layout import Submit, Layout, Row,   Column
+from crispy_forms.layout import Submit, Layout, Row, Column
 from crispy_forms.bootstrap import TabHolder, Tab
-from crispy_forms.bootstrap import  InlineRadios
+from crispy_forms.bootstrap import InlineRadios
 # from django import forms
 # from django.forms import forms
 from django.forms import ModelForm
 from django.forms import widgets
 import datetime
 from .models import Contact, \
-                    Person, \
+                     Person, \
                     Product, \
                     Order, \
                     Mesure, \
@@ -93,7 +93,8 @@ class ParcelForm(forms.Form):
 #                        START
 # ==============================================
 
-class PersonForm(forms.Form):
+class PersonForm(forms.ModelForm):
+
     STATUS = (
                 ('Client', 'CLIENT'),
                 ('Ouvrier', 'OUVRIER'),
@@ -130,10 +131,10 @@ class PersonForm(forms.Form):
     nina = forms.CharField(label="NINA", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'NINA'}))
     profession = forms.CharField(label="Profession", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Profession'}))
     nationalite = forms.CharField(label="Nationalite", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nationalite'}))
-    # nif = forms.CharField(label="NIF", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'NIF'}))
-    # siege_social = forms.CharField(label="SIEGE SOCIAL", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Siege Social'}))
-    # responsable = forms.CharField(label="RESPONABLE", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Responsable'}))
-    # email = forms.EmailField(max_length=50, label='ADRESSE EMAIL', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
+    nif = forms.CharField(label="NIF", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'NIF'}))
+    siege_social = forms.CharField(label="SIEGE SOCIAL", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Siege Social'}))
+    responsable = forms.CharField(label="RESPONABLE", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Responsable'}))
+    email = forms.EmailField(max_length=50, label='ADRESSE EMAIL', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
     # created_at = forms.DateField(
     #     input_formats=['%d/%m/%Y'],
     #     widget=forms.DateTimeInput(attrs={
@@ -144,9 +145,30 @@ class PersonForm(forms.Form):
 
     class Meta:
         model = Person
-        # fields = '__all__'
+        fields = ['status', 'sex', 'category', 'prenom', 'nom', 'contact_1']
+        # exclude = ('domicile', 'email', 'alias', 'type_tailleur', 'code_person','photo', 'profession', 'responsable', 'numero_reference', 'created_at')
+
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
+
+            self.helper = FormHelper()
+            self.helper.form_method = 'POST'
+            self.helper.add_input(Submit('submit', 'Save Person' ))
+            self.helper.add_input(Submit('cancel', css_class='btn btn-danger'))
+            self.helper.layout = Layout(
+                Row(
+                    Column('prenom'),
+                    Column('nom'),
+                ),
+                InlineRadios('status'),
+                InlineRadios('sex'),
+                InlineRadios('category'),
+                'contact_1',
+
+            )
+
+
+
 
 class MesureForm(forms.Form):
         person_mesure = forms.ModelChoiceField(queryset=Person.objects.all())

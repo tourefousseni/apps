@@ -74,6 +74,7 @@ urlpatterns = [
       #         ULRS LOGIN
       #             START
       # =================================
+      path('workspaces/', views.workspaces, name='workspaces'),
       path('about/', views.about, name='about'),
       path('login/', views.user_login, name='login'),
       path('logout/', views.logout_user, name='logout'),

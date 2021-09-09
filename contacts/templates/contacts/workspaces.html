@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load leaflet_tags %}
+
+
+
+{% block content %}
+    <br/> <br/>
+       <container>
+       <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+       <link rel="stylesheet" href="{% static 'bootstrap/css/style.css' %}">
+<style>
+
+    map{  /* all maps */
+        width:  600px;
+        height: 400px;
+        margin-top: auto;
+    }
+</style>
+
+           </div><br/>
+              <div class= "row justify-content-center">
+                 <div  class="col-7">
+                      <span><h4 class="text-center">CADASTRE RURAL DE L'OFFICE DU MOYEN BANI</h4></span> <br/>
+                      <div class="map">
+                          {% leaflet_map "map"%}
+                      </div>
+                               <div>
+                                    {% leaflet_js %}
+                                    {% leaflet_css %}
+                               </div>
+                 </div>
+               </div>
+
+{#             </div>#}
+          </container>
+{# <script src="{% static 'bootstrap/js/index.js'%}"></script>#}
+{# <script src="{% static 'bootstrap/js/bootstrap.js'%}"></script>#}
+
+ <script>
+    $( "p" ).click(function( event ) {
+      alert("Your book is overdue.");// This is my case irrigation
+    });
+
+</script>
+
+{% endblock %}
+
+
+

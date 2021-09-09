@@ -195,6 +195,9 @@ def profil_pdf(request,):
 def about(request):
     return render(request, 'contacts/about.html', {})
 
+def workspaces(request):
+    return render(request, 'contacts/workspaces.html', {})
+
 
 def user_login(request):
     if request.method == 'POST':
@@ -272,6 +275,55 @@ def change_password(request):
 
 def homepage(request):
     return render(request, 'kalaliso/homepage.html')
+
+
+def person(request):
+    if request.method == 'POST':
+            sta = request.POST.get("status")
+            se = request.POST.get("sex")
+            cat = request.POST.get("category")
+            pre = request.POST.get("prenom")
+            no = request.POST.get("nom")
+            cont = request.POST.get("contact_1")
+            # cin1 = request.POST.get("n_cin")
+            nn = request.POST.get("nina")
+            prf = request.POST.get("profession")
+            nat = request.POST.get("nationalite")
+            # n_f = request.POST.get("n")
+            # ss = request.POST.get("siege_social")
+            # resp = request.POST.get("responsable")
+            # ema = request.POST.get("email")
+            cret = request.POST.get('created_at')
+
+            data = Person(status=sta,
+                          prenom=pre,
+                          nom=no,
+                          sex=se,
+                          category=cat,
+                          contact_1=cont,
+                          # n_cin=cin1,
+                          nina=nn,
+                          profession=prf,
+                          nationalite=nat,
+                          # n=n_f,
+                          # siege_social=ss,
+                          # responsable=resp,
+                          # email=ema,
+                          created_at=cret)
+            data.save()
+
+            return HttpResponseRedirect(reverse('mesure'))
+    else:
+        form = PersonForm()
+    return render(request, 'kalaliso/person.html', {'form': form})
+
+
+def person_detail(request, person_id):
+    qs = Person.objects.all()
+
+    context = {'detail_person': qs,}
+
+    return render(request, 'kalaliso/person_detail.html', context)
 
 
 def product(request):
@@ -413,53 +465,7 @@ def mesure_detail(request, mesure_id):
     return render(request, 'kalaliso/mesure_detail.html', context)
 
 
-def person(request):
-    if request.method == 'POST':
-            sta = request.POST.get("status")
-            se = request.POST.get("sex")
-            cat = request.POST.get("category")
-            pre = request.POST.get("prenom")
-            no = request.POST.get("nom")
-            cont = request.POST.get("contact_1")
-            # cin = request.POST.get("n_cin")
-            nn = request.POST.get("nina")
-            prf = request.POST.get("profession")
-            nat = request.POST.get("nationalite")
-            # n_f = request.POST.get("n")
-            # ss = request.POST.get("siege_social")
-            # resp = request.POST.get("responsable")
-            # ema = request.POST.get("email")
-            cret = request.POST.get('created_at')
 
-            data = Person(status=sta,
-                          prenom=pre,
-                          nom=no,
-                          sex=se,
-                          category=cat,
-                          contact_1=cont,
-                          # n_cin=cin,
-                          nina=nn,
-                          profession=prf,
-                          nationalite=nat,
-                          # n=n_f,
-                          # siege_social=ss,
-                          # responsable=resp,
-                          # email=ema,
-                          created_at=cret)
-            data.save()
-
-            return HttpResponseRedirect(reverse('mesure'))
-    else:
-        form = PersonForm()
-    return render(request, 'kalaliso/person.html', {'form': form})
-
-
-def person_detail(request, person_id):
-    qs = Person.objects.all()
-
-    context = {'detail_person': qs,}
-
-    return render(request, 'kalaliso/person_detail.html', context)
 
 
 

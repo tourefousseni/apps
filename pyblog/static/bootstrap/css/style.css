@@ -17,6 +17,9 @@ map {  /* all maps */
         height: 1400px;
     }
 
+navbar{
+    text-decoration-color: red;
+}
 /*#specialbigmap {*/
         /*height: 800px;*/
     /*}*/

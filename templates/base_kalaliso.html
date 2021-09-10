@@ -11,11 +11,16 @@
     <style>
         h5{
             color: red;
-            margin-top: auto;
-
+            margin: 2%;
+            padding-top: auto;
         }
         body{
-            background-color: beige;
+            background-color: whitesmoke;
+        }
+        footer{
+            background-color: darkgrey;
+            padding-top: 2%;
+           margin-bottom: auto;
         }
     </style>
     </head>
@@ -30,7 +35,7 @@
                   </button>
 
                   <div class="collapse navbar-collapse" id="navbar">
-                      <ul class="navbar-nav ml-lg-4">
+                      <ul class="navbar-nav col-sm-10">
                           <li class="nav-item">
                                 <a class="nav-link mr-auto" href="{% url 'homepage' %}">Homepage</a>
                             </li>
@@ -76,7 +81,7 @@
                                 <a class="nav-link" href="{% url 'change_password' %}">Change Password</a>
                             </li>
                         {% else %}
-                              <li class="nav-item">
+                              <li class="nav-item ">
                                   <a class="nav-link" href="{% url 'login' %}">Login</a>
                               </li>
                               <li class="nav-item">
@@ -95,66 +100,52 @@
   </header>
 
 
-<div class="container">
-<div class=jumbotron>
- <div class=container>
-  <div class=fond>
-  <h2>BIENVENUE DANS L'ANNONCE</h2>
-  <p>Toujours les nouveautés sont disponible !</p>
+<div class="container-fluid">
+  <div class=jumbotron>
+   <div class=container>
+    <div class=fond>
+      <h2>BIENVENUE DANS L'ANNONCE</h2>
+        <p>Toujours les nouveautés sont disponible !</p>
   </div>
  </div>
 </div>
 
-{#    <div class= "row justify-content-center">#}
-    <div>
-            <div>
-                    {% block content %}
-                    {% endblock %}<br />
-            </div>
+    <div class="row">
+      <div class="col">
+            {% block content %}
+            {% endblock %}<br />
+        </div>
     </div><br/><br />
 
-{#    <div >#}
-{#         <div class="col-xl-3">#}
-{#                     <h3>#}
-{#                         Fiscalité foncière#}
-{#                     </h3>#}
-{#                     <p class="btn-info border-right"><span>Evaluation des droits réels</span></p>#}
-{##}
-{#         </div>#}
-{#         <div class="col-xl-3">#}
-{#                     <h3>#}
-{#                         Transaction foncière#}
-{#                     </h3>#}
-{#                     <p class="btn-info border-right">#}
-{#                         <span>Transfert des droits</span>#}
-{#                    </p>#}
-{#         </div>#}
-{#    </div>#}
+</div>
+
 </div>
 
 
 </body><br />
  <footer>
-      <nav>
-       <section>
-            <h1>Gis Consulting</h1>
-                    <p><img src="images/somersaults.jpeg" alt=""> Go to the gym with
-                        our somersaults class! Our teacher Jim takes you through the paces
-                        in this two-part article. <a href="articles/somersaults/1">Part 1</a> · <a href="articles/somersaults/2">Part 2</a></p>
-                    <p><img src="images/kindplus.jpeg"> Tired of walking on the edge of
-                        a clif<!-- sic -->? Our guest writer Lara shows you how to bumble
-                        your way through the bars. <a href="articles/kindplus/1">Read more...</a></p>
-                    <p><img src="images/crisps.jpeg"> The chips are down, now all that's left is a potato. What can you do with it? <a
-        href="articles/crisps/1">Read more...</a></p>
-       </section>
-           <ul>
-                <li> <a href="/about">About us...</a>
-                <li> <a href="/feedback">Send feedback!</a>
-                <li> <a href="/sitemap">Sitemap</a>
-           </ul>
-      </nav>
-      <p><small>GisConsulting © 2021 The Kalaliso —
-  <a href="/tos">Terms of Service</a></small></p>
+     <div class="row">
+     <div class="col-sm">
+                     <h5>
+                         Competence
+                     </h5>
+                     <ul>
+                         <li ><span>Coupe Couture</span></li>
+                         <li ><span>Modelisation</span></li>
+                         <li ><span>Formation</span></li>
+                     </ul>
+         </div>
+         <div class="col-sm">
+                     <h5>
+                         Partenaires
+                     </h5>
+                     <ul >
+                         <li> <a href="centremaridianiare@gmail.com">Centre Maridia Niare</a></li>
+                         <li><a href="centreformationdecoupeetcouture@yahoo.fr">Centre Formation de Coupe et Couture</a></li>
+                     </ul>
+                    </p>
+         </div>
+    </div>
  </footer>
 {#    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="crossorigin=""/>#}
 {#    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="crossorigin=""></script>#}
@@ -165,7 +156,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
 </html>
 
-<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'index.js' %}"></script>
 {#<link src="{% static 'js/main.js' %}"></link>#}
 
 

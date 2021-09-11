@@ -451,6 +451,7 @@ def mesure(request, *args, **kwargs):
                           person_mesure_id=pmid,
                           )
             data.save()
+
             return HttpResponseRedirect(reverse('Order'))
     else:
        form = MesureForm()

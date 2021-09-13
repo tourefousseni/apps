@@ -62,10 +62,10 @@ class ParcelForm(forms.Form):
         queryset=Contact.objects.all(),
         widget=forms.CheckboxSelectMultiple)
     # geom = forms.JSONField()
-    superficie = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Superficie'}))
+    superficie = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
     # geom = forms.M
-    perimeter = forms.IntegerField( widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Perimeter'}))
-    code = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Code'}))
+    perimeter = forms.IntegerField( widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    code = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': 'form-control'}))
     created_at = forms.DateTimeField(
         input_formats=['%d/%m/%Y %H:%M'],
         widget=forms.DateTimeInput(attrs={
@@ -121,20 +121,20 @@ class PersonForm(forms.ModelForm):
     sex = forms.ChoiceField(label='Sex', choices=SEX, initial='Homme')
     category = forms.ChoiceField(label='Category', choices=CATEGORY, initial='Grande')
     type_tailleur = forms.ChoiceField(label='Type Tailleur', choices=TYPE_TAILLEUR, required='')
-    prenom = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Prenom'}))
-    nom = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nom'}))
-    contact_1 = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Contact'}))
+    prenom = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    nom = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    contact_1 = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
     # photo = forms.ImageField()
-    # domicile = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Domicile'}))
-    # alias = forms.CharField(label="Alias", max_length=30, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Alias'}))
-    # # n_cin = forms.CharField(label="Carte d'Indentite Nationale", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'CIN'}))
-    # nina = forms.CharField(label="NINA", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'NINA'}))
-    # profession = forms.CharField(label="Profession", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Profession'}))
-    # nationalite = forms.CharField(label="Nationalite", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nationalite'}))
-    # nif = forms.CharField(label="NIF", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'NIF'}))
-    # siege_social = forms.CharField(label="SIEGE SOCIAL", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Siege Social'}))
-    # responsable = forms.CharField(label="RESPONABLE", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Responsable'}))
-    # email = forms.EmailField(max_length=50, label='ADRESSE EMAIL', widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
+    # domicile = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'Domicile'}))
+    # alias = forms.CharField(label="Alias", max_length=30, widget=forms.TextInput(attrs={'class': 'form-control', 'Alias'}))
+    # # n_cin = forms.CharField(label="Carte d'Indentite Nationale", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'CIN'}))
+    # nina = forms.CharField(label="NINA", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'NINA'}))
+    # profession = forms.CharField(label="Profession", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'Profession'}))
+    # nationalite = forms.CharField(label="Nationalite", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'Nationalite'}))
+    # nif = forms.CharField(label="NIF", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'NIF'}))
+    # siege_social = forms.CharField(label="SIEGE SOCIAL", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'Siege Social'}))
+    # responsable = forms.CharField(label="RESPONABLE", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'Responsable'}))
+    # email = forms.EmailField(max_length=50, label='ADRESSE EMAIL', widget=forms.TextInput(attrs={'class': 'form-control', 'Email'}))
     # created_at = forms.DateField(
     #     input_formats=['%d/%m/%Y'],
     #     widget=forms.DateTimeInput(attrs={
@@ -172,18 +172,18 @@ class PersonForm(forms.ModelForm):
 
 class MesureForm(forms.Form):
         person_mesure = forms.ModelChoiceField(queryset=Person.objects.all())
-        coude = forms.IntegerField(label="Coude", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Coude'}))
-        epaule = forms.IntegerField(label="Epaule", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Epaule'}))
-        manche = forms.IntegerField(label="Manche", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Manche'}))
-        tour_manche = forms.IntegerField(label="Tour Manche", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Tour Manche'}))
-        taille = forms.IntegerField(label="Taille", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Taille'}))
-        poitrine = forms.IntegerField(label="Poitrine", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Pointrine'}))
-        longueur_boubou = forms.IntegerField(label="Longueur Boubou", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Longueur Boubou'}))
-        longueur_patanlon = forms.IntegerField(label="Longueur Patanlon", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Longueur Patanlon'}))
-        fesse = forms.IntegerField(label="Fesse", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Fesse'}))
-        ceinture = forms.IntegerField(label="Ceinture", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ceinture'}))
-        cuisse = forms.IntegerField(label="Cuisse", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Cuisse'}))
-        patte = forms.IntegerField(label="Patte", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Patte'}))
+        coude = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        epaule = forms.IntegerField( widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        manche = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        tour_manche = forms.IntegerField( widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        taille = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        poitrine = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        longueur_boubou = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        longueur_patanlon = forms.IntegerField( widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        fesse = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        ceinture = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        cuisse = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        patte = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
         # create_at = forms.DateField()
         # update_at = forms.DateField()
 
@@ -212,13 +212,13 @@ class ProductForm(forms.Form):
             ('Tenu Scolaire', 'Tenu Scolaire'),
             ('Tenu Securite', 'Tenu Securite'),
             ('AUTRES', 'AUTRES'),)
-        name = forms.ChoiceField(label='Name', choices=NAME, required='Boubou')
-        code_product = forms.CharField(label="Code Product",
-                                 widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Code Product'}))
-        # price = forms.IntegerField(label="price", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'price'}))
-        # name = forms.CharField(label="Name Product", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name Product'}))
+        name = forms.ChoiceField( choices=NAME, required='Boubou')
+        code_product = forms.CharField(
+                                 widget=forms.TextInput(attrs={'class': 'form-control'}))
+        # price = forms.IntegerField(label="price", widget=forms.NumberInput(attrs={'class': 'form-control', 'price'}))
+        # name = forms.CharField(label="Name Product", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'Name Product'}))
         photo = forms.ImageField()
-        price = forms.DecimalField(label="Price", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Price'}))
+        price = forms.DecimalField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
         # create_at = forms.DateField()
 
         class Meta:
@@ -279,8 +279,8 @@ class OrderDetailForm(forms.Form):
     person_id = forms.ModelChoiceField(queryset=Person.objects.all())
     order_id = forms.ModelChoiceField(queryset=Order.objects.all())
     produit = forms.MultipleChoiceField(required=False, widget=forms.CheckboxSelectMultiple, choices=PRODUIT)
-    quantity = forms.IntegerField(label="quantity", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'quantity'}))
-    remise = forms.IntegerField(label="Remise", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Remise'}))
+    quantity = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    remise = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
     create_at = forms.DateField()
 
 
@@ -295,8 +295,8 @@ class PaymentForm(forms.Form):
     # id = forms.AutoField(primary_key=True)
     paymentOrder = forms.ModelChoiceField(queryset=Order.objects.all())
     person_id = forms.ModelChoiceField(queryset=Person.objects.all())
-    montant_total = forms.DecimalField(label="Montant Total", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Montant Total'}))
-    livre = forms.BooleanField(label='Livraison',)
+    montant_total = forms.DecimalField( widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    livre = forms.BooleanField()
     create_at = forms.DateField()
 
     def __init__(self, *args, **kwargs):
@@ -320,12 +320,12 @@ class EditProfileForm(UserChangeForm):
                       'password')
 
 class SignUpForm(UserCreationForm):
-        email = forms.EmailField(label="", widget=forms.EmailInput(
-            attrs={'class': 'form-control', 'placeholder': 'Your adress email'}))
-        last_name = forms.CharField(label="", max_length=100,
-                                    widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last name'}))
-        first_name = forms.CharField(label="", max_length=100, widget=forms.TextInput(
-            attrs={'class': 'form-control', 'placeholder': 'First name'}))
+        email = forms.EmailField(widget=forms.EmailInput(
+            attrs={'class': 'form-control'}))
+        last_name = forms.CharField( max_length=100,
+                                    widget=forms.TextInput(attrs={'class': 'form-control'}))
+        first_name = forms.CharField(max_length=100, widget=forms.TextInput(
+            attrs={'class': 'form-control'}))
 
         class Meta:
             model = User
@@ -354,5 +354,5 @@ class SignUpForm(UserCreationForm):
             self.fields['password2'].label = ''
             self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
 
-# tva = forms.IntegerField(label="Tva", widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Tva'}))
+# tva = forms.IntegerField(label="Tva", widget=forms.NumberInput(attrs={'class': 'form-control', 'Tva'}))
 # rendez_vous = forms.DateTimeField()

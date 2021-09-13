@@ -8,9 +8,15 @@
         {% csrf_token %}
         <div class="row">
           <div class="col-xl-6 offset-5">
-             <table >
-               {{ form|crispy }}
-            </table><br />
+
+               {{ form.status|as_crispy_field }}
+               {{ form.sex|as_crispy_field }}
+               {{ form.category|as_crispy_field }}
+               {{ form.category|as_crispy_field }}
+               {{ form.nom|as_crispy_field }}
+               {{ form.prenom|as_crispy_field }}
+               {{ form.contact_1|as_crispy_field }}
+            <br />
          </div>
         </div>
         <div class="row">

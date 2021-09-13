@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Password
 from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
 from crispy_forms.bootstrap import StrictButton
-from crispy_forms.layout import Submit, Layout, Row, Column
+from crispy_forms.layout import Submit, Layout, Row, Column, Div, Field
 from crispy_forms.bootstrap import TabHolder, Tab
 from crispy_forms.bootstrap import InlineRadios
 # from django import forms
@@ -187,14 +187,20 @@ class MesureForm(forms.Form):
         # create_at = forms.DateField()
         # update_at = forms.DateField()
 
-        class Meta:
-            model = Mesure
         def __init__(self, *args, **kwargs):
-            super().__init__(*args, **kwargs)
+                super().__init__(*args, **kwargs)
 
-            self.helper = FormHelper()
-            self.helper.form_method = 'post'
-            self.helper.layout = Layout()
+                self.helper = FormHelper()
+                self.helper.form_method = 'post'
+                self.helper.layout = Layout(
+                            Div(
+                                Field('coude', wrapper_class='col-md-3'),
+                                Field('epaule', wrapper_class='col-md-3'),
+                    css_class='form-row')
+                    )
+
+                class Meta:
+                        model = Mesure
 
 
 class ProductForm(forms.Form):

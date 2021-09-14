@@ -1,28 +1,44 @@
 {% extends 'base_kalaliso.html' %}
 {% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
 {% load static %}
 
 {% block content %}
-    <h2 class="text-center offset-5">REGISTER CLIENT</h2>
+    <h4 class="text-center">INSCRIPTION DES CLIENTS</h4>
     <form action="{% url 'person' %}" method="post">
         {% csrf_token %}
-        <div class="row">
-          <div class="col-xl-6 offset-5">
-
-               {{ form.status|as_crispy_field }}
-               {{ form.sex|as_crispy_field }}
-               {{ form.category|as_crispy_field }}
-               {{ form.category|as_crispy_field }}
-               {{ form.nom|as_crispy_field }}
-               {{ form.prenom|as_crispy_field }}
-               {{ form.contact_1|as_crispy_field }}
-            <br />
-         </div>
+{#        <div class="row">#}
+{#          <div class="col-xl-6 offset-5">#}
+        <div class="row offset-3">
+            <div class="form-group col-sm-3 mb-0">
+                {{ form.status|as_crispy_field }}
+            </div>
+            <div class=" form-group col-sm-3 mb-0">
+                {{ form.sex|as_crispy_field }}
+            </div>
+            <div class="form-group col-sm-3 mb-0">
+                {{ form.category|as_crispy_field }}
+            </div>
         </div>
-        <div class="row">
-            <div class="col-sm-3 offset-5">
-                 <input type="submit" value="Submit" class="btn btn-primary ">
-                 <input type="submit" value="cancel" class="btn btn-danger ">
+        <div class="row offset-3">
+            <div class="form-group col-md-3 mb-0">
+                {{ form.nom|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-3 mb-0">
+                {{ form.prenom|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-3 mb-0">
+                {{ form.contact_1|as_crispy_field }}
+            </div>
+
+        </div>
+
+{#         </div>#}
+{#      </div>#}
+        <div class="row col-md-3 mb-0">
+            <div class=" form-group">
+                 <input type="submit" value="Submit" class="btn btn-primary">
+                 <input type="submit" value="cancel" class="btn btn-danger">
             </div>
 
         </div>

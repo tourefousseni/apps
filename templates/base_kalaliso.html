@@ -7,10 +7,8 @@
             <meta name="description" content="">
             <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
             <meta name="generator" content="Hugo 0.84.0">
-            <title>Sidebars · Bootstrap v5.0</title>
             <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
             <title>APP KALALISO - {% block title %}{% endblock %}</title>
-
             <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
             <link rel="stylesheet" href="{% static 'bootstrap/css/style.css' %}">
     <style>
@@ -22,17 +20,28 @@
         body{
             background-color: whitesmoke;
         }
+        .container{
+            padding: 10px;
+            background-color: #00B000;
+            height: 450px;
+            width: 1000px;
+            float: right;
+            position: relative;
+            bottom: 450px;
+          }
+
         footer{
             background-color: darkgrey;
             padding-top: 2%;
-           margin-bottom: auto;
+            margin-bottom: auto;
+
         }
         .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
       }
 
       @media (min-width: 768px) {
@@ -53,14 +62,10 @@
                   </button>
 
                   <div class="collapse navbar-collapse" id="navbar">
-                      <ul class="navbar-nav col-sm-10">
+                      <ul class="navbar-nav col-sm-4 offset-6">
 
-                      </ul>
-{#                          {% for item in navigation_items %}#}
-{#                            <li class="nav-item {% if item.active %}active{% endif %}">#}
-{#                                <a class="nav-link" href="{{ item.url }}">{{ item.name }}</a>#}
-{#                            </li>#}
-{#                        {% endfor %}#}
+                          <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+                       </ul>
 
                       <ul class="navbar-nav ml-auto">
                         {% if user.is_authenticated %}
@@ -85,6 +90,8 @@
 {#                            </li>#}
                         {% endif %}
                  </ul>
+
+
                 </div>
              </nav>
            </div>
@@ -149,7 +156,8 @@
     <path fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.319 1.319 0 0 0-.37.265.301.301 0 0 0-.057.09V14l.002.008a.147.147 0 0 0 .016.033.617.617 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.619.619 0 0 0 .146-.15.148.148 0 0 0 .015-.033L12 14v-.004a.301.301 0 0 0-.057-.09 1.318 1.318 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465-1.281 0-2.462-.172-3.34-.465-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411z"/>
   </symbol>
 </svg>
-
+<div class="row">
+<div class=".col-md-4">
 <main>
 
   <div class="b-example-divider"></div>
@@ -209,7 +217,7 @@
     <div class="dropdown">
       <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
         <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>mdo</strong>
+        <strong>fulani</strong>
       </a>
       <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
         <li><a class="dropdown-item" href="#">New project...</a></li>
@@ -222,21 +230,25 @@
   </div>
 
 </main>
-
-<div class=container>
-
-<div class="row">
-      <div class="col">
-            {% block content %}
-            {% endblock %}<br />
-        </div>
-      </div><br/><br />
+</div>
 </div>
 
+{#<div class="row">#}
+    <div class=".col-md-8">
+         <div class=container>
+
+                {% block content %}
+                {% endblock %}<br />
+          </div>
+      </div>
+{#</div>#}
+    <br/>
+
 </body><br />
- <footer>
-     <div class="row">
-     <div class="col-sm">
+
+<footer>
+     <div class="row justify-content-center">
+     <div class="col-sm-6 ">
                      <h5>
                          Competence
                      </h5>
@@ -246,7 +258,7 @@
                          <li ><span>Formation</span></li>
                      </ul>
          </div>
-         <div class="col-sm">
+         <div class="col-sm-6 ">
                      <h5>
                          Partenaires
                      </h5>

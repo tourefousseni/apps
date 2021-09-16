@@ -12,10 +12,11 @@ body{
     background-color: red;
 }
 
-map {  /* all maps */
-        width:  1600px;
-        height: 1400px;
-    }
+/*map{  !* all maps *!*/
+        /*width:  1600px;*/
+        /*height: 1400px;*/
+        /*border: red;*/
+    /*}*/
 
 navbar{
     text-decoration-color: red;

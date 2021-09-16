@@ -5,22 +5,24 @@
 
 
 {% block content %}
-    <br/> <br/>
+
        <container>
        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
        <link rel="stylesheet" href="{% static 'bootstrap/css/style.css' %}">
 <style>
 
-    map{  /* all maps */
-        width:  600px;
-        height: 400px;
-        margin-top: auto;
+    .map{
+        width:  1000px;
+        height: 1800px;
+        padding: 20px;
+        margin: 10px;
+
     }
 </style>
 
-           </div><br/>
+
               <div class= "row justify-content-center">
-                 <div  class="col-7">
+                 <div >
                       <span><h4 class="text-center">CADASTRE RURAL DE L'OFFICE DU MOYEN BANI</h4></span> <br/>
                       <div class="map">
                           {% leaflet_map "map"%}

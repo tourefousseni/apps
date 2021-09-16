@@ -7,19 +7,8 @@
             <title>CADASTRE RURAL - {% block title %}{% endblock %}</title>
 {#          <link rel="stylesheet" href="{% static 'leaflet/leaflet.css' %}">#}
             <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
-{#          <link rel="stylesheet" href="../node_modules/leaflet/dist/leaflet.css">#}
-{#          <link rel="stylesheet" href="/pyblog/static/bootstrap/css/bootstrap.css">#}
-{#          <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"#}
-{#            integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>#}
-
-{#          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"#}
-{#              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">#}
-
-{#           <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"#}
-{#              integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>#}
-
-             <link rel="stylesheet" href="{% static 'node_modules/leaflet/dist/leaflet.css'%}">
-{#            <link rel="stylesheet" href="{% static 'css/bootstrap.css/bootstrap.min.css'%}">#}
+            <link rel="stylesheet" href="{% static 'leaflet.css'%}">
+{#          <link rel="stylesheet" href="{% static 'css/bootstrap.css/bootstrap.min.css'%}">#}
             <link rel="stylesheet" href="{% static 'bootstrap/css/style.css' %}">
 
     </head>
@@ -83,9 +72,6 @@
                                 <a class="nav-link" href="{% url 'register' %}">Register</a>
                               </li>
 
-{#                            <li class="nav-item">#}
-{#                                <a class="nav-link" href="{% url 'profil' %}">Profil</a>#}
-{#                            </li>#}
                         {% endif %}
                  </ul>
                 </div>
@@ -98,9 +84,9 @@
 
 <div class="container" >
 
-    <div class= "row justify-content-center">
+    <div class= "row ">
             <div class="col">
-                  <hr class="mt-O mb-6">
+                  <hr>
                     {% block content %}
                     {% endblock %}<br />
             </div>
@@ -164,7 +150,7 @@
         </div>
 </footer>
 
-       <script src="{% static 'node_modules/leaflet/dist/leaflet.js'%}"></script>
+       <script src="{% static 'leaflet.js'%}"></script>
        <script src="{% static 'bootstrap/js/bootstrap.js'%}"></script>
 {#     <script src="{% static 'bootstrap/js/index.js'%}"></script>#}
        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -172,71 +158,68 @@
 </html>
 
 
-{#<script>#}
-{##}
-{#    var map = L.map('map').setView([13.22, -5.16], 10);#}
-{##}
-{#    var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {#}
-{#        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreet map</a> OMB 2021',#}
-{#    });#}
-{#        osm.addTo(map);#}
-{##}
-{##}
-{#    var watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {#}
-{#        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',#}
-{#        subdomains: 'abcd',#}
-{#        minZoom: 1,#}
-{#        maxZoom: 16,#}
-{#        ext: 'jpg'#}
-{#    });#}
-{#       watercolor.addTo(map);#}
-{##}
-{#    var darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {#}
-{#        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',#}
-{#        subdomains: 'abcd',#}
-{#        maxZoom: 19#}
-{#    });#}
-{#      darkLayer.addTo(map);#}
-{##}
-{##}
-{#    var esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {#}
-{#        attribution: ''#}
-{#        // 'Tiles &copy; Esri &mdash; Source: Esri'#}
-{#    });#}
-{#        esri_WorldImagery.addTo(map);#}
-{##}
-{##}
-{#    var baseLayers = {#}
-{#        "water color": watercolor,#}
-{#        "esri Imagery": esri_WorldImagery,#}
-{#        "dark layer map": darkLayer,#}
-{#         osm : osm,#}
-{#    };#}
-{#       L.control.layers(baseLayers).addTo(map);#}
-{##}
-{##}
-{#    var marker = L.marker([13.22, -5.16], {#}
-{#        draggable :true,#}
-{#        title: 'REPERE',#}
-{#        opacity: 0.5,#}
-{#    })#}
-{#        .addTo(map)#}
-{#        .bindPopup('<h1>Marker</h1><p>This is the marker text</p>');#}
-{##}
-{#    // GEOSERVER REQUEST#}
-{##}
-{#      var wmsLayer = L.Geoserver.wms("http://localhost:8080/geoserver/wms", {#}
-{#        layers: 'tiger:tiger_roads',#}
-{#      });#}
-{#        wmsLayer.addTo(map);#}
-{##}
-{##}
-{##}
-{##}
-{#    $( "p" ).click(function() {#}
-{#      $( this ).slideUp()#}
-{#      });#}
-{##}
-{#</script>#}
+<script>
+
+    var map = L.map('map').setView([13.22, -5.16], 10);
+
+    var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreet map</a> OMB 2021',
+    });
+        osm.addTo(map);
+
+
+    var watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
+        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        subdomains: 'abcd',
+        minZoom: 1,
+        maxZoom: 16,
+        ext: 'jpg'
+    });
+       watercolor.addTo(map);
+
+    var darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+    });
+      darkLayer.addTo(map);
+
+
+    var esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: ''
+        // 'Tiles &copy; Esri &mdash; Source: Esri'
+    });
+        esri_WorldImagery.addTo(map);
+
+
+    var baseLayers = {
+        "water color": watercolor,
+        "esri Imagery": esri_WorldImagery,
+        "dark layer map": darkLayer,
+         osm : osm,
+    };
+       L.control.layers(baseLayers).addTo(map);
+
+
+    var marker = L.marker([13.22, -5.16], {
+        draggable :true,
+        title: 'REPERE',
+        opacity: 0.5,
+    })
+        .addTo(map)
+        .bindPopup('<h1>Marker</h1><p>This is the marker text</p>');
+
+    // GEOSERVER REQUEST
+
+      var wmsLayer = L.Geoserver.wms("http://localhost:8080/geoserver/wms", {
+        layers: 'tiger:tiger_roads',
+      });
+        wmsLayer.addTo(map);
+
+    $( "p" ).click(function() {
+      $( this ).slideUp()
+      });
+
+</script>
 
 

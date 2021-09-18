@@ -3,5 +3,8 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/../Projects/Home_KALALISO" vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/bootstrap" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/capistrano" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/leaflet-geoserver-request" vcs="Git" />
   </component>
 </project>

@@ -15,7 +15,45 @@
             <link rel="stylesheet" href="{% static 'bootstrap/css/style.css' %}">
 
     </head>
+<style>
+        h5{
+            color: red;
+            margin: 2%;
+            padding-top: auto;
+        }
+        body{
+            background-color: whitesmoke;
+        }
+        .container{
+            padding: 100px;
+            background-color: #00B000;
+            height: 450px;
+            width: 1000px;
+            float: right;
+            position: relative;
+            bottom: 450px;
+          }
 
+        footer{
+            background-color: darkgrey;
+            padding-top: 2%;
+            margin-bottom: auto;
+
+        }
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
  <header>
        <div>
            <div>
@@ -30,31 +68,7 @@
                   <ul class="navbar-nav col-sm-4 offset-6">
 
                           <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-                  </ul>
-{#                      <ul class="navbar-nav ml-lg-4">#}
-{#                          <li class="nav-item">#}
-{#                                <a class="nav-link mr-auto" href="{% url 'about' %}">ABOUT</a>#}
-{#                            </li>#}
-{#                           <li class="nav-item">#}
-{#                                <a class="nav-link mr-auto" href="{% url 'workspaces' %}">WORKSPACES</a>#}
-{#                            </li>#}
-{#                            <li class="nav-item">#}
-{#                                <a class="nav-link mr-auto" href="{% url 'adresses' %}">CONTACT</a>#}
-{#                            </li>#}
-{#                           <li class="nav-item">#}
-{#                                <a class="nav-link mr-auto" href="{% url 'parcel' %}">PARCEL</a>#}
-{#                            </li>#}
-{#                          <li class="nav-item">#}
-{#                                <a class="nav-link mr-auto" href="{% url 'program' %}">IMPRESSION</a>#}
-{#                            </li>#}
-{#                            <li class="nav-item">#}
-{#                                <a class="nav-link mr-auto" href="{% url 'profil_pdf' %}">GENERATED PROFIL</a>#}
-{#                            </li>#}
-{##}
-{#                            <li class="nav-item">#}
-{#                                <a class="nav-link mr-auto" href="{% url 'contact-detail' %}">CONTENU CONTACT</a>#}
-{#                            </li>#}
-{#                      </ul>#}
+
                           {% for item in navigation_items %}
                             <li class="nav-item {% if item.active %}active{% endif %}">
                                 <a class="nav-link" href="{{ item.url }}">{{ item.name }}</a>

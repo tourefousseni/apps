@@ -1,32 +1,30 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load leaflet_tags %}
-
-
-
 {% block content %}
 
-       <container>
+
        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
        <link rel="stylesheet" href="{% static 'bootstrap/css/style.css' %}">
 <style>
 
     .map{
-        width:  1000px;
-        height: 1800px;
+        width:  850px;
+        height: 1200px;
         padding: 20px;
         margin: 10px;
+
 
     }
 </style>
 
-
-              <div class= "row justify-content-center">
+<container>
+              <div >
                  <div >
                       <span><h4 class="text-center">CADASTRE RURAL DE L'OFFICE DU MOYEN BANI</h4></span> <br/>
-                      <div class="map">
-                          {% leaflet_map "map"%}
-                      </div>
+                              <div class="map">
+                                  {% leaflet_map "map"%}
+                              </div>
                                <div>
                                     {% leaflet_js %}
                                     {% leaflet_css %}
@@ -34,8 +32,7 @@
                  </div>
                </div>
 
-{#             </div>#}
-          </container>
+</container>
 {# <script src="{% static 'bootstrap/js/index.js'%}"></script>#}
 {# <script src="{% static 'bootstrap/js/bootstrap.js'%}"></script>#}
 

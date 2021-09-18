@@ -1,10 +1,8 @@
 {% extends 'base.html' %}
 {% load crispy_forms_filters %}
-
+{% load crispy_forms_tags %}
 {% load static %}
-{# <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">#}
-{# <link rel="stylesheet" href="{% static 'js/node_modules/leaflet/dist/leaflet.css'%}">#}
-{# <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">#}
+
 
 <style>
 
@@ -22,15 +20,36 @@ nam{
                            <form  id="target" action="{% url 'adresses' %}" method="post">
                                {% csrf_token %}
 
-                                    <div class="row col-lg-8">
-                                            <table >
-                                                {{ form|crispy }}
-                                            </table><br />
+                                    <div class="row offset-3">
+                                     <div class="form-group col-sm-4 mb-0">
+                                        {{ form.status|as_crispy_field }}
+                                    </div>
+                                    <div class=" form-group col-sm-4 mb-0">
+                                         {{ form.sexe|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col-sm-4 mb-0">
+                                        {{ form.profession|as_crispy_field }}
+                                    </div>
+                                    </div>
+
+                                     <div class="row offset-3">
+                                     <div class="form-group col-md-4 mb-0">
+                                        {{ form.nom|as_crispy_field }}
                                      </div>
-                               <div>
-                                   <button type="submit" class="btn btn-primary col-sm-3 text-center justify-content-center">Valider</button>
-                                   <button type="submit" class="btn btn-danger col-sm-3 text-center justify-content-center">Cancel</button>
-                               </div>
+                                    <div class="form-group col-md-4 mb-0">
+                                        {{ form.prenom|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col-md-4 mb-0">
+                                        {{ form.contact|as_crispy_field }}
+                                    </div>
+
+                                    </div>
+                               <div class="row offset-4">
+                                    <div class="col-12 justify-content-center">
+                                             <input type="submit" value="Submit" class="btn btn-primary col-md-4">
+                                             <input type="submit" value="cancel" class="btn btn-danger col-md-4">
+
+                                   </div>
 
                            </form>
                    </div>

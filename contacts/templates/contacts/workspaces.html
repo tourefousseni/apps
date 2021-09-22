@@ -4,35 +4,36 @@
 {% block content %}
 
 
-       <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
-       <link rel="stylesheet" href="{% static 'bootstrap/css/style.css' %}">
+{#       <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">#}
+{#       <link rel="stylesheet" href="{% static 'bootstrap/css/style.css' %}">#}
 <style>
 
     .map{
-        width:  850px;
-        height: 1200px;
-        padding: 20px;
-        margin: 10px;
-
-
+            padding: 10px;
+            {#background-color: #00B000;#}
+            height: 650px;
+            width: 1200px;
+            float: right;
+            position: relative;
+            bottom: 10px;
     }
 </style>
 
-<container>
-              <div >
-                 <div >
-                      <span><h4 class="text-center">CADASTRE RURAL DE L'OFFICE DU MOYEN BANI</h4></span> <br/>
-                              <div class="map">
+{#<container>#}
+              <div class="row col-lg-12">
+{#                 <div class="col-sm-9 ">#}
+{#                      <h4 class="text-center">CADASTRE RURAL DE L'OFFICE DU MOYEN BANI</h4> <br/>#}
+                              <div class="map ">
                                   {% leaflet_map "map"%}
                               </div>
                                <div>
                                     {% leaflet_js %}
                                     {% leaflet_css %}
                                </div>
-                 </div>
+{#                 </div>#}
                </div>
 
-</container>
+{#</container>#}
 {# <script src="{% static 'bootstrap/js/index.js'%}"></script>#}
 {# <script src="{% static 'bootstrap/js/bootstrap.js'%}"></script>#}
 

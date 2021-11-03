@@ -85,4 +85,16 @@ urlpatterns = [
       #         ULRS LOGIN
       #             END
       # =================================
+
+      # =================================
+      #         ULRS MEMBER
+      #             START
+      # =================================
+      path('member/', views.member, name='member'),
+      path('cotisation/', views.cotisation, name='cotisation'),
+
+      # =================================
+      #         ULRS MEMBER
+      #             END
+      # =================================
 ]

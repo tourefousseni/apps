@@ -466,10 +466,6 @@ def mesure_detail(request, mesure_id):
     return render(request, 'kalaliso/mesure_detail.html', context)
 
 
-
-
-
-
 def payment(request,):
         if request.method == 'POST':
             subm = request.POST.get("submontant")
@@ -504,3 +500,13 @@ def payment_detail(request, payment_id):
 #      VIEWS KALALISO
 #          END
 # ===========================
+
+
+
+def member(request):
+    
+    return None
+
+
+def cotisation(request):
+    return None

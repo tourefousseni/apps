@@ -408,7 +408,7 @@ class cotisation(models.Model):
 # ==============================================
 
 class Region(models.Model):
-    # id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     code_reg = models.PositiveIntegerField(null=True, blank=True)
     name_reg = models.CharField(max_length=30, null=True, blank=True)
     longitude = models.CharField(max_length=30, null=True, blank=True)
@@ -419,7 +419,7 @@ class Region(models.Model):
 
 
 class Cercle(models.Model):
-    # id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     code_cer = models.PositiveIntegerField(null=True, blank=True)
     name_cer = models.CharField(max_length=30, null=True, blank=True)
     # reg_nom = models.ForeignKey('Region', on_delete=models.CASCADE)
@@ -430,7 +430,7 @@ class Cercle(models.Model):
         return '{} {}'.format(self.name_cer, self.code_cer)
 
 class Arrondissement(models.Model):
-    # id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     code_arr = models.PositiveIntegerField(null=True, blank=True)
     name_arr = models.CharField(max_length=30, null=True, blank=True)
     # cer_nom = models.ForeignKey('Cercle', on_delete=models.CASCADE)
@@ -441,7 +441,7 @@ class Arrondissement(models.Model):
         return '{} {}'.format(self.name_arr, self.code_arr)
 
 class Commune(models.Model):
-    # id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     name_com = models.CharField(max_length=30, null=True, blank=True)
     # arr_nom = models.ForeignKey('Arrondissement', on_delete=models.CASCADE)
     code_com = models.PositiveIntegerField(null=True, blank=True)
@@ -452,7 +452,7 @@ class Commune(models.Model):
         return '{} {}'.format(self.name_com, self.code_com)
 
 class Village(models.Model):
-    # id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     code_vill = models.PositiveIntegerField(null=True, blank=True)
     name_vill = models.CharField(max_length=30, null=True, blank=True)
     longitude = models.CharField(max_length=30, null=True, blank=True)

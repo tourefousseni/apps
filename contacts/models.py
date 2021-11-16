@@ -437,11 +437,11 @@ class Commune(models.Model):
 
 class Village(models.Model):
     id = models.AutoField(primary_key=True)
-    code_village = models.PositiveIntegerField(null=True, blank=True)
+    code_village = models.BigIntegerField(null=True, blank=True)
     id_village = models.PositiveIntegerField(null=True, blank=True)
     name_village = models.CharField(max_length=30, null=True, blank=True)
-    longitude = models.CharField(max_length=30, null=True, blank=True)
-    latitude = models.CharField(max_length=30, null=True, blank=True)
+    longitude = models.DecimalField(decimal_places=2, max_digits=8, null=True, blank=True)
+    latitude = models.DecimalField(decimal_places=2, max_digits=8, null=True, blank=True)
     id_commune = models.ForeignKey('Commune', on_delete=models.CASCADE)
 
     def __str__(self):

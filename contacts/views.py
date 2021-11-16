@@ -434,8 +434,7 @@ def mesure(request, *args, **kwargs):
             pat = request.POST.get("patte")
             cre = request.POST.get('created_at')
             upd = request.POST.get('update_at')
-            # pmid = request.POST.get('person_mesure_id'
-            #                         )
+            pmid = request.POST.get('person_mesure_id')
 
             data = Mesure(id=id,
                           coude=coud,
@@ -452,8 +451,7 @@ def mesure(request, *args, **kwargs):
                           patte=pat,
                           update_at=upd,
                           created_at=cre,
-                          # person_mesure_id=pmid,
-                          )
+                          person_mesure_id=pmid,)
             data.save()
 
             return HttpResponseRedirect(reverse('Order'))

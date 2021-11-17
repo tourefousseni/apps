@@ -14,7 +14,8 @@ SECRET_KEY = '$s7p551k75n+3l2iuf*qv92xo+c0i5)@4&_^4ev%q&p%*x75bl'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['137.184.55.218']
+# ALLOWED_HOSTS = ['137.184.55.218']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -27,7 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Our the app
-    'django.contrib.gis',
+    # 'django.contrib.gis',
     'leaflet',
     'contacts',
     # 'bootstrap',
@@ -128,3 +129,6 @@ FORM_RENDERER = 'django.forms.renderers.DjangoTemplates'
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)                    ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# GDAL_LIBRARY_PATH = "/Users/toure/Library/gdal/3.3.2_3/lib/libgdal.dylib"
+# GEOS_LIBRARY_PATH = "/Users/toure/Library/geos/3.9.1/lib/libgeos_c.dylib"

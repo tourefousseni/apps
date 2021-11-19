@@ -1,5 +1,5 @@
 #! /bin/bash
-python manage.py dumpdata --format=json contacts > /Users/toure/PycharmProjects/douniyasoba/tmp/$(date +"%Y%m%d_%H:%M:%S")_data.json;
+#python manage.py dumpdata --format=json contacts > /Users/toure/PycharmProjects/douniyasoba/tmp/$(date +"%Y%m%d_%H:%M:%S")_data.json;
 #psql -U postgresql;
 #drop database plateform;
 #create database plateform;
@@ -14,4 +14,4 @@ python manage.py dumpdata --format=json contacts > /Users/toure/PycharmProjects/
 #python manage.py makemigrations;
 #python manage.py migrate;
 #python manage.py createsuperuser;
-#python manage.py loaddata  /Users/toure/PycharmProjects/douniyasoba/tmp/data1.json
+#python manage.py loaddata  /Users/toure/PycharmProjects/douniyasoba/tmp/$(current +"%Y%m%d_%H:%M:%S")_data.json

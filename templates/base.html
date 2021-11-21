@@ -7,7 +7,7 @@
             <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
             <meta name="generator" content="Hugo 0.84.0">
             <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
-            <title>CADASTRE RURAL - {% block title %}{% endblock %}</title>
+            <title>CADASTRE RURAL{% block title %}{% endblock %}</title>
 {#          <link rel="stylesheet" href="{% static 'leaflet/leaflet.css' %}">#}
             <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
             <link rel="stylesheet" href="{% static 'leaflet.css'%}">
@@ -33,6 +33,11 @@
             position: relative;
             bottom: 450px;
           }
+    map {
+	overflow: hidden;
+	height: 600px;
+	width: 1200px;
+	}
 
         {#footer{#}
             {#background-color: darkgrey;#}

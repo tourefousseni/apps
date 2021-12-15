@@ -132,4 +132,7 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # GDAL_LIBRARY_PATH = "/Users/toure/Library/gdal/3.3.2_3/lib/libgdal.dylib"
+# GDAL_LIBRARY_PATH = "/douniyasoba/venv/lib/python3.6/site-packages/django/contrib/gis/gdal/3.3.2_3/lib/libgdal.dylib"
+# GDAL_LIBRARY_PATH = "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/contrib/gis/gdal/libgdal.py"
+# GDAL_LIBRARY_PATH = "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/contrib/gis/gdal/libgdal.py"
 # GEOS_LIBRARY_PATH = "/Users/toure/Library/geos/3.9.1/lib/libgeos_c.dylib"

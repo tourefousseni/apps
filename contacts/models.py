@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.gis.db import models as gis_models
+# from django.contrib.gis.db.models
 import random
 from random import  randint
 # from django.db.models.AutoField
@@ -101,7 +102,6 @@ class Recette_fiscale(models.Model):
 
     def __str__(self):
         return ('{}').format(self.code_fiscale)
-
 
 class Document_Administration(models.Model):
     id = models.AutoField(primary_key=True)

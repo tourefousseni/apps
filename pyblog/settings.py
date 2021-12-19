@@ -2,28 +2,8 @@ from pathlib import Path
 # from django.contrib.gis.db.backends.XXX
 import os
 
-# if os.name == 'nt':
-#     import platform
-#     OSGEO4W = r"C:\OSGeo4W"
-#     if '64' in platform.architecture()[0]:
-#         OSGEO4W += "64"
-#     assert os.path.isdir(OSGEO4W), "Directory does not exist: " + OSGEO4W
-#     os.environ['OSGEO4W_ROOT'] = OSGEO4W
-#     os.environ['GDAL_DATA'] = OSGEO4W + r"\share\gdal"
-#     os.environ['PROJ_LIB'] = OSGEO4W + r"\share\proj"
-#     os.environ['PATH'] = OSGEO4W + r"\bin;" + os.environ['PATH']
-
-# if os.name == 'nt':
-#         VENV_BASE = os.environ['VIRTUAL_ENV']
-#         os.environ['PATH'] = os.path.join(VENV_BASE, 'Lib\\site-packages\\osgeo') + ';' + os.environ['PATH']
-#         os.environ['PROJ_LIB'] = os.path.join(VENV_BASE, 'Lib\\site-packages\\osgeo\\data\\proj') + ';' + os.environ[
-#             'PATH']
-# import gdal
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -90,14 +70,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'pyblog.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        # 'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'plateform',
         'USER': 'myprojectuser',
         'PASSWORD':'password',
@@ -105,7 +83,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -151,17 +128,5 @@ FORM_RENDERER = 'django.forms.renderers.DjangoTemplates'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-# os.path.join(BASE_DIR, ...) BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-#   TEMPLATE_DIR=os.path.join(BASE_DIR,'templates')
-# GDAL_LIBRARY_PATH = r'C:\OSGeo4W64\bin\gdal204.dll'
-# GEOS_LIBRARY_PATH = r'C:\OSGeo4W64\bin\geos_c.dll'
-
-# GDAL_LIBRARY_PATH = 'GDAL_LIBRARY_PATH'
-# GEOS_LIBRARY_PATH = 'GEOS_LIBRARY_PATH'
-# GDAL_LIBRARY_PATH ='/venv/lib/python3.6/site-packages/django/contrib/gis/gdal/libgdal.py'
-# GDAL_LIBRARY_PATH = '/Users/foussenytoure/Documents/ProjectPycharm/douniyasoba/venv/lib/python3.6/site-packages/django/contrib/gis/gdal/libgdal.py'
-# GDAL_LIBRARY_PATH='/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/contrib/gis/gdal/libgdal.py'
 GDAL_LIBRARY_PATH = "/Applications/Postgres.app/Contents/Versions/10/lib/libgdal.dylib"
-# GDAL_LIBRARY_PATH = "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/contrib/gis/gdal/libgdal.py"
-# GDAL_LIBRARY_PATH = "/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/contrib/gis/gdal/libgdal.py"
 GEOS_LIBRARY_PATH = "/Applications/Postgres.app/Contents/Versions/10/lib/libgeos_c.dylib"

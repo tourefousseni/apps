@@ -250,6 +250,7 @@ class OrderForm(forms.Form):
             id_person = forms.ModelChoiceField(queryset=Person.objects.all())
             # produit = forms.MultipleChoiceField(required=False, widget=forms.CheckboxSelectMultiple, choices=PRODUIT)
             reception = forms.DateField()
+
             rendez_vous = forms.DateField()
 
             class Meta:
@@ -285,6 +286,7 @@ class OrderDetailForm(forms.Form):
     person_id = forms.ModelChoiceField(queryset=Person.objects.all())
     order_id = forms.ModelChoiceField(queryset=Order.objects.all())
     produit = forms.MultipleChoiceField(required=False, widget=forms.CheckboxSelectMultiple, choices=PRODUIT)
+    submontant = forms.DecimalField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
     quantity = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
     remise = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
     create_at = forms.DateField()

@@ -386,19 +386,44 @@ def order_detail(request, order_id):
 
     return render(request, 'kalaliso/order_detail.html', context)
 
-def orderdetail(request):
+# def orderdetail(request):
+#     if request.method == 'POST':
+#         ca = request.POST.get("category")
+#         qt = request.POST.get("quantity")
+#         tv = request.POST.get("tva")
+#         rm = request.POST.get("remise")
+#         creat = request.POST.get("create_at")
+#
+#         data = OrderDetail(category=ca,
+#                            remise=rm,
+#                            quantity=qt,
+#                            tva=tv,
+#                            create_at=creat,)
+#
+#         # CODE FOR INSTANCIATION
+#         # form = PartialAuthorForm(request.POST, instance=author)
+#
+#         data.save()
+#         return HttpResponseRedirect(reverse('orderdetail'))
+#     else:
+#         form = OrderDetailForm()
+#     return render(request, 'kalaliso/orderdetail.html', {'form': form})
+
+def orderdetail(request, ):
     if request.method == 'POST':
+        subm = request.POST.get("submontant")
         ca = request.POST.get("category")
         qt = request.POST.get("quantity")
-        tv = request.POST.get("tva")
+        # tv = request.POST.get("tva")
         rm = request.POST.get("remise")
         creat = request.POST.get("create_at")
 
         data = OrderDetail(
+                           submontant=subm,
                            category=ca,
                            remise=rm,
                            quantity=qt,
-                           tva=tv,
+                           # tva=tv,
                            create_at=creat,)
 
         # CODE FOR INSTANCIATION
@@ -409,8 +434,7 @@ def orderdetail(request):
     else:
         form = OrderDetailForm()
     return render(request, 'kalaliso/orderdetail.html', {'form': form})
-#
-#
+
 def orderdetail_detail(request, orderdetail_id):
 
     qs = OrderDetail.objects.all().order_by(Order)
@@ -474,14 +498,14 @@ def mesure_detail(request, mesure_id):
 
 def payment(request,):
         if request.method == 'POST':
-            subm = request.POST.get("submontant")
+
             rm = request.POST.get("remise")
             tv = request.POST.get("tva")
             mt = request.POST.get("montant_total")
             rd = request.POST.get("rendez_vous")
             lv = request.POST.get("livre")
             creat = request.POST.get("create_at")
-            data = Payment(submontant=subm,
+            data = Payment(
                            remise=rm,
                            tva=tv,
                            montant_total=mt,

@@ -11,16 +11,13 @@ from django.conf.urls.static import static
 
 
 app_name = 'contacts'
-           # 'authenticate',
 
 urlpatterns = [
-      # path('', admin.site.urls),
       # =================================
       #         ULRS KALALISO
       #             START
       # =================================
       path('', views.homepage, name='homepage'),
-      path('workspaces/', views.workspaces, name='workspaces'), path('about/', views.about, name='about'),
       path('login/', views.user_login, name='login'), path('logout/', views.logout_user, name='logout'),
       path('register/', views.register_user, name='register'),
       path('edit/profile/', views.edit_profile, name='edit_profile'),
@@ -41,8 +38,9 @@ urlpatterns = [
       path('arrondissement/', views.arrondissement, name='arrondissement'),
       path('commune/', views.commune, name='commune'), path('village/', views.village, name='village'),
 
-      # =================================
-      #         ULRS KALALISO
-      #             END
-      # =================================
 ]
+
+# =================================
+#         ULRS KALALISO
+#             END
+# =================================

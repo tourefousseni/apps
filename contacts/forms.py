@@ -16,7 +16,6 @@ from .models import Person, \
                     Order, \
                     Mesure, \
                     OrderDetail, \
-                    Contact, \
                     Payment
 
 

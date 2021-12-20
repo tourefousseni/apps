@@ -27,7 +27,6 @@ from reportlab.platypus import Table
 from django.shortcuts import render
 from django.urls import reverse
 from django.template import context
-from contacts.models import Contact
 # from .forms import UploadFileForm
 from django.shortcuts import render, redirect
 from django.http import Http404
@@ -59,19 +58,6 @@ from .forms import SignUpForm, \
                    OrderForm, \
                    PaymentForm, \
                    OrderDetailForm
-
-def home(request):
-    return render(request, 'contacts/home.html', {})
-
-def program(request):
-    return render(request, 'contacts/home.html', {})
-
-def about(request):
-    return render(request, 'contacts/about.html', {})
-
-def workspaces(request):
-    return render(request, 'contacts/workspaces.html', {})
-
 
 def user_login(request):
     if request.method == 'POST':
@@ -396,28 +382,6 @@ def payment_detail(request, payment_id):
 
     return render(request, 'kalaliso/payment_detail.html', context)
 
-
-# ===========================
-#      VIEWS KALALISO
-#          END
-# ===========================
-
-
-
-def member(request):
-    
-    return None
-
-
-def cotisation(request):
-    return None
-
-
-
-# ===========================
-#      VIEWS LOCALISATION
-#          STARTING
-# ===========================
 def region(request):
     qs = Region.objects.all()
     return render(region, 'kalaliso/region.html')
@@ -438,7 +402,9 @@ def cercle(request):
 def village(request):
     return None
 
+
 # ===========================
-#      VIEWS LOCALISATION
+#      VIEWS KALALISO
 #          END
 # ===========================
+

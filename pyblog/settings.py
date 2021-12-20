@@ -128,5 +128,6 @@ FORM_RENDERER = 'django.forms.renderers.DjangoTemplates'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
+#CONNECTOR TO GDAL
 GDAL_LIBRARY_PATH = "/Applications/Postgres.app/Contents/Versions/10/lib/libgdal.dylib"
 GEOS_LIBRARY_PATH = "/Applications/Postgres.app/Contents/Versions/10/lib/libgeos_c.dylib"

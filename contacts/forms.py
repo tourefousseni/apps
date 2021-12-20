@@ -11,81 +11,13 @@ from crispy_forms.bootstrap import InlineRadios
 from django.forms import ModelForm
 from django.forms import widgets
 import datetime
-from .models import Contact, \
-                     Person, \
+from .models import Person, \
                     Product, \
                     Order, \
                     Mesure, \
                     OrderDetail, \
+                    Contact, \
                     Payment
-
-
-# from django_bootstrap_datetimepicker.widgets import BootstrapDateTimeInput
-
-
-# ==============================================
-#                  FORM CADASTRE
-#                        START
-# ==============================================
-class ContactForm(forms.Form):
-    STATUS = (('PERSONNE',    'Personne'),('SOCIETE', 'Societe'))
-    status = forms.ChoiceField(choices=STATUS)
-    SEXE = (('HOMME',      'Homme'), ('FEMME',      'Femme'))
-    sexe = forms.ChoiceField(choices=SEXE,)
-    nom = forms.CharField(max_length=100,)
-    prenom = forms.CharField( max_length=100,)
-    matricule = forms.CharField(max_length=100,)
-    photo = forms.ImageField()
-    contact = forms.CharField( max_length=8,)
-    n_cin = forms.CharField(max_length=50,)
-    nina = forms.CharField(label="NINA", max_length=50,)
-    profession = forms.CharField( max_length=50)
-    rcimm = forms.CharField( max_length=50,)
-    nif = forms.CharField( max_length=50,)
-    siege_social = forms.CharField( max_length=50,)
-    responsable = forms.CharField( max_length=50,)
-    email = forms.EmailField(max_length=50, )
-    created_at = forms.DateTimeField(
-        input_formats=['%d/%m/%Y %H:%M'],)
-
-    class Meta:
-            model = Contact
-            fields = ('__all__')
-
-
-class ParcelForm(forms.Form):
-    Nature = (
-        ('BATI',   'Bati'),
-        ('NON BATIE',    'Non Bati'),)
-    nature = forms.ChoiceField(choices=Nature)
-    contact = forms.ModelMultipleChoiceField(
-        queryset=Contact.objects.all(),
-        widget=forms.CheckboxSelectMultiple)
-    # geom = forms.JSONField()
-    superficie = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
-    # geom = forms.M
-    perimeter = forms.IntegerField( widget=forms.NumberInput(attrs={'class': 'form-control'}))
-    code = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    created_at = forms.DateTimeField(
-        input_formats=['%d/%m/%Y %H:%M'],
-        widget=forms.DateTimeInput(attrs={
-            'class': 'form-control datetimepicker-input',
-            'data-target': 'datetimepicker1'
-        })
-    )
-    update_at = forms.DateTimeField(
-        input_formats=['%d/%m/%Y %H:%M'],
-        widget=forms.DateTimeInput(attrs={
-            'class': 'form-control datetimepicker-input',
-            'data-target': 'datetimepicker1'
-        })
-    )
-# ==============================================
-#                  FORM CADASTRE
-#                        END
-# ==============================================
-
-
 
 
 # ==============================================
@@ -166,9 +98,6 @@ class PersonForm(forms.ModelForm):
                 'contact_1',
 
             )
-
-
-
 
 class MesureForm(forms.Form):
         person_mesure = forms.ModelChoiceField(queryset=Person.objects.all())

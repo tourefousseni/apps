@@ -39,14 +39,20 @@ from django.http import HttpResponseRedirect
 from django.views.generic import FormView
 from django.template import context
 from django.template import defaulttags
-from contacts.models import Contact, Parcel, Person, Mesure, \
-                            Order, Product, Payment, OrderDetail, Region, Cercle, Commune, Village
+from contacts.models import Person, \
+                            Mesure, \
+                            Order, \
+                            Product, \
+                            Payment, \
+                            OrderDetail, \
+                            Region, \
+                            Cercle, \
+                            Commune, \
+                            Village
 
 
 from .forms import SignUpForm, \
                    EditProfileForm, \
-                   ContactForm, \
-                   ParcelForm, \
                    PersonForm,\
                    MesureForm,\
                    ProductForm,\
@@ -59,141 +65,6 @@ def home(request):
 
 def program(request):
     return render(request, 'contacts/home.html', {})
-
-# ==============================================
-#                  VIEWS CADASTRE
-#                        START
-# ==============================================
-
-def contact(request):
-
-    if request.method == 'POST':
-        sta = request.POST.get('status')
-        sx = request.POST.get('sexe')
-        no = request.POST.get('nom')
-        pre = request.POST.get('prenom')
-        mle = request.POST.get('matricule')
-        cont = request.POST.get('contact')
-        cin = request.POST.get('n_cin')
-        ni = request.POST.get('nina')
-        prof = request.POST.get('profession')
-        rci = request.POST.get('rcimm')
-        nf = request.POST.get('nif')
-        s_s = request.POST.get('siege_social')
-        res = request.POST.get('responsable')
-        ema = request.POST.get('email')
-        cre = request.POST.get('created_at')
-
-        data = Contact(status=sta,
-                       sexe=sx,
-                       nom=no,
-                       prenom=pre,
-                       matricule=mle,
-                       contact=cont,
-                       n_cin=cin,
-                       nina=ni,
-                       profession=prof,
-                       rcimm=rci,
-                       nif=nf,
-                       siege_social=s_s,
-                       responsable=res,
-                       email=ema,
-                       created_at=cre)
-
-        data.save()
-
-        return HttpResponseRedirect(reverse('parcel'))
-    else:
-        blog = ContactForm()
-    return render(request, 'contacts/contacts.html', {'form': blog})
-
-
-def contact_detail(request, contact_id):
-        qs = Contact.objects.all()
-        context = {'contacts': qs,}
-        return render(request, 'contacts/contacts_detail.html', context)
-
-
-def parcel(request):
-
-    if request.method == 'POST':
-        nat = request.POST.get('nature')
-        sup = request.POST.get('superficie')
-        pe = request.POST.get('perimeter')
-        cod = request.POST.get('code')
-        cre = request.POST.get('created_at')
-        upd = request.POST.get('update_at')
-
-        data = Parcel(
-                      nature=nat,
-                      superficie=sup,
-                      perimeter=pe,
-                      code=cod,
-                      created_at=cre,
-                      update_at=upd,)
-        data.save()
-
-        return HttpResponseRedirect(reverse('home'))
-    else:
-        blog = ParcelForm()
-    return render(request, 'contacts/parcel.html', {'form': blog})
-
-
-def parcel_detail(request, parcel_id):
-    qs = Parcel.objects.all()
-    context = {'detenteur': qs,}
-
-    return render(request, 'contacts/parcel_detail.html', context)
-
-# GENERATED FILE PROFIL PDF
-
-def profil_pdf(request,):
-    # create Bytestream buffer
-    buf = io.BytesIO()
-    # Create a Canvas
-    p = canvas.Canvas(buf,  pagesize=A5, bottomup=0)
-    #Create a text object
-    textob = p.beginText()
-    textob.setTextOrigin(inch, inch)
-    textob.setFont('Helvetica', 14)
-
-    contacts = Contact.objects.all()
-    # Loop
-    lines = []
-    for contact in contacts:
-        lines.append(contact.status)
-        lines.append(contact.sexe)
-        lines.append(contact.nom)
-        lines.append(contact.prenom)
-        lines.append(contact.matricule)
-        lines.append(contact.contact)
-        lines.append('===============')
-
-    for line in lines:
-        textob.textLine(line)
-    # Finish Up
-    p.drawText(textob)
-    p.showPage()
-    p.save()
-    buf.seek(0)
-
-    # Return something
-
-    return FileResponse(buf, as_attachment=True, filename='profil.pdf')
-
-    # context = {'contacts': ps,}
-
-    # return render(request, 'contacts/profil.html', context)
-
-#
-# def fiche(request):
-#     return None
-
-# ==============================================
-#                  VIEWS CADASTRE
-#                        END
-# ==============================================
-
 
 def about(request):
     return render(request, 'contacts/about.html', {})

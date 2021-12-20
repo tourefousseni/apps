@@ -15,43 +15,16 @@ app_name = 'contacts'
 
 urlpatterns = [
       # path('', admin.site.urls),
-      # path('thanks/', views.thanks, name='thanks'),
-
-      # =================================
-      #         ULRS INVOICE
-      #             START
-      # =================================
-      # path('fiche/', views.fiche, name='fiche'),
-      # path('header/', views.genHeaderTable, name='header'),
-      # path('body/', views.genBodyTable, name='body'),
-      # path('footer/', views.genFooterTable, name='footer'),
-      path('program/', views.program, name='program'),
-      # =================================
-      #         ULRS INVOICE
-      #             START
-      # =================================
-
-      # =================================
-      #         ULRS CADASTRE
-      #             START
-      # =================================
-
-      path('profil_pdf/', views.profil_pdf, name='profil_pdf'),
-      path('parcel/', views.parcel, name='parcel'),
-      path('parcels/detail/<int:parcel_id>/', views.parcel_detail, name='parcel_detail'),
-      path('contact/', views.contact, name='adresses'),
-      path('contact/detail/<int:contact_id>/', views.contact_detail, name='contact-detail'),
-      path('', views.home, name='home'),
-      # =================================
-      #         ULRS CADASTRE
-      #             END
-      # =================================
-
       # =================================
       #         ULRS KALALISO
       #             START
       # =================================
-      path('homepage/', views.homepage, name='homepage'),
+      path('', views.homepage, name='homepage'),
+      path('workspaces/', views.workspaces, name='workspaces'), path('about/', views.about, name='about'),
+      path('login/', views.user_login, name='login'), path('logout/', views.logout_user, name='logout'),
+      path('register/', views.register_user, name='register'),
+      path('edit/profile/', views.edit_profile, name='edit_profile'),
+      path('change/password/', views.change_password, name='change_password'),
       path('orderdetail/', views.orderdetail, name='orderdetail'),
       path('orderdetail/detail/<int:orderdetail_id>/', views.orderdetail_detail, name='orderdetail_detail'),
       path('order/', views.order, name='order'),
@@ -64,53 +37,12 @@ urlpatterns = [
       path('payment/detail/<int:payment_id>/', views.payment_detail, name='payment_detail'),
       path('mesure/', views.mesure, name='mesure'),
       path('mesure/detail/<int:mesure_id>/', views.mesure_detail, name='mesure_detail'),
+      path('region/', views.region, name='region'), path('cercle/', views.cercle, name='cercle'),
+      path('arrondissement/', views.arrondissement, name='arrondissement'),
+      path('commune/', views.commune, name='commune'), path('village/', views.village, name='village'),
 
       # =================================
       #         ULRS KALALISO
-      #             END
-      # =================================
-
-      # =================================
-      #         ULRS LOGIN
-      #             START
-      # =================================
-      path('workspaces/', views.workspaces, name='workspaces'),
-      path('about/', views.about, name='about'),
-      path('login/', views.user_login, name='login'),
-      path('logout/', views.logout_user, name='logout'),
-      path('register/', views.register_user, name='register'),
-      path('edit/profile/', views.edit_profile, name='edit_profile'),
-      path('change/password/', views.change_password, name='change_password'),
-      # =================================
-      #         ULRS LOGIN
-      #             END
-      # =================================
-
-      # =================================
-      #         ULRS MEMBER
-      #             START
-      # =================================
-      path('member/', views.member, name='member'),
-      path('cotisation/', views.cotisation, name='cotisation'),
-
-      # =================================
-      #         ULRS MEMBER
-      #             END
-      # =================================
-
-
-      # =================================
-      #         ULRS LOCALISATION
-      #             START
-      # =================================
-      path('region/', views.region, name='region'),
-      path('cercle/', views.cercle, name='cercle'),
-      path('arrondissement/', views.arrondissement, name='arrondissement'),
-      path('commune/', views.commune, name='commune'),
-      path('village/', views.village, name='village'),
-
-      # =================================
-      #         ULRS LOCALISATION
       #             END
       # =================================
 ]

@@ -1,25 +1,25 @@
+
 from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls import url
-from . import views
+# from  contacts import views
 # from  . import views  program, genFooterTable, genBodyTable, genHeaderTable
 from reportlab.platypus import Table
-# from  .import views
+from contacts import views
 # from  reportlab.pdfgen views  genFooterTable, genBodyTable, genHeaderTable
-from django.conf import settings
-from django.conf.urls.static import static
+
 
 
 app_name = 'contacts'
 
 urlpatterns = [
-      # =================================
-      #         ULRS KALALISO
-      #             START
-      # =================================
-      # path('admin/', admin.site.urls),
-      path('', views.homepage, name='homepage'),
-      path('login/', views.user_login, name='login'), path('logout/', views.logout_user, name='logout'),
+
+      path('', views.HomePageView, name='homepage'),
+      # path('', HomePageView.as_view(), name='homepage'),
+      path('post', views.CreatePostView, name='add_post'),
+      # path('post', CreatePostView.as_view(), name='add_post'),
+      path('login/', views.user_login, name='login'),
+      path('logout/', views.logout_user, name='logout'),
       path('register/', views.register_user, name='register'),
       path('edit/profile/', views.edit_profile, name='edit_profile'),
       path('change/password/', views.change_password, name='change_password'),

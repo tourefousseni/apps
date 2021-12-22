@@ -1,40 +1,11 @@
-# import hashlib
-from math import sin, cos, tan, pi, ceil
-# from reportlab import rl_config, ascii, xrange
-from reportlab.pdfbase import pdfutils
-from reportlab.pdfbase import pdfdoc
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfgen  import pdfgeom, pathobject
-from reportlab.lib.utils import import_zlib, ImageReader, isSeq, isStr, isUnicode, _digester
-from reportlab.lib.rl_accel import fp_str, escapePDF
-from reportlab.lib.boxstuff import aspectRatioFix
-from reportlab.pdfgen import canvas
-from reportlab.platypus import Table
-from django.http import FileResponse
-import io
-# import reportlab.pdfgen
-from reportlab.lib.units import inch
-from reportlab.lib.pagesizes import letter, A5
-from reportlab.pdfgen import canvas
-from django.core.serializers  import serialize
-# import genHeaderTable
-# import genBodyTable
-# import genFooterTable
-# import reportlab genFooterTable, genBodyTable, genHeaderTable
-# from reportlab.lib.pagesizes import A4
-from reportlab.platypus import Table
-# from .forms import UploadFileForm
-from django.shortcuts import render
+# from django.urls import reverse_lazy
 from django.urls import reverse
-from django.template import context
-# from .forms import UploadFileForm
-from django.http import Http404
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
-from django.views.generic import FormView
+from django.views.generic import ListView, CreateView
 from django.template import context
 from django.template import defaulttags
 from  .models import Person, \
@@ -47,7 +18,7 @@ from  .models import Person, \
                             Cercle, \
                             Commune, \
                             Village, \
-                            Image
+                            Post
 
 
 from .forms import SignUpForm, \
@@ -58,7 +29,7 @@ from .forms import SignUpForm, \
                    OrderForm, \
                    PaymentForm, \
                    OrderDetailForm, \
-                   ImageForm
+                   PostForm
 
 
 def user_login(request):
@@ -134,19 +105,38 @@ def change_password(request):
 #          START
 # ===========================
 
+def  HomePageView(request,):
+    qp = Post.objects.all()
+    model = Post
+    context = { 'homepage': qp}
+    template_name =  'kalaliso/homepage.html'
+    return render(request, 'kalaliso/homepage.html', context)
+
+
+
+class  CreatePostView(CreateView):
+    model = Post
+    form_class = PostForm
+    template_name =  'kalaliso/post.html'
+    # success_url = reverse_lazy ('kalaliso/homepage.html')
+
+
+
 
 def homepage(request):
-    global image
-    if request.method == "POST":
-        form=ImageForm(data=request.POST, files=request.FILES)
-        if form.is_valid():
-            form.save()
-            obj=form.instance
-            return render(request,'kalaliso/homepage.html', {"obj":obj})
-    else:
-       form=ImageForm()
-       image=Image.objects.all()
-    return render(request, 'kalaliso/homepage.html', {"image":image, "form":form})
+
+    return render(request, 'kalaliso/homepage.html',)
+#     global image
+#     if request.method == "POST":
+#         form=ImageForm(data=request.POST, files=request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             obj=form.instance
+#             return render(request,'kalaliso/homepage.html', {"obj":obj})
+#     else:
+#        form=ImageForm()
+#        image=Image.objects.all()
+#     return render(request, 'kalaliso/homepage.html', {"image":image, "form":form})
 
 
 

@@ -1,18 +1,48 @@
 {% extends 'base_kalaliso.html' %}
-
 {% load static %}
-{% block content %}
-<h4 class="text-center">CATEGORY FOR ALBUMS</h4><br />
 
-<div class="container">
-    {% for x in Image %}
-    <div class="card" style="width: 18rem;">
-        <img src='{{x.image.url}}' class="card-img-top" alt="...">
-        <h5 class="card-title">{x.title}}</h5>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+{% block content %}
+<a href="{% url 'add_post' %}" class="btn btn-primary"> Upload Image</a>
+<br>
+  <div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+           {% for post in object_list %}
+                    <div class="col-md-4">
+                      <p class="card-text">{% post.title %}</p>
+                      <p class="card-text">{% post.slug %}</p>
+                      <p class="card-text">{% post.tags %}</p>
+                      <p class="card-text">{% post.image %}</p>
+                     <p class="card-text">{% post.type %}</p>
+                      <p class="card-text">{% post.category %}</p>
+                      <p class="card-text">{% post.genre %}</p>
+                        <div class="card mb-4 shadow-sm">
+                            <img class="card-img-top" src="{{ post.cover.url }}" alt="{{ post.title }}" width="400" height="400">
+        <!--                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>-->
+        <!--                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+                        </div>
+                        <small class="text-muted">9 mins</small>
+                      </div>
+             {% endfor %}
+        </div>
     </div>
-    {% endfor %}
-</div>
+   </div>
+
+
+
+<!--<h4 class="text-center">CATEGORY FOR ALBUMS</h4><br />-->
+
+<!--<div class="container">-->
+<!--&lt;!&ndash;    {% for x in Image %}&ndash;&gt;-->
+<!--    <div class="card" style="width: 18rem;">-->
+<!--        <img src='{{x.image.url}}' class="card-img-top" alt="...">-->
+<!--        <h5 class="card-title">{x.title}}</h5>-->
+<!--        <a href="#" class="btn btn-primary">Go somewhere</a>-->
+<!--    </div>-->
+<!--&lt;!&ndash;    {% endfor %}&ndash;&gt;-->
+<!--</div>-->
+
+
 <!--</div>-->
 {% endblock %}
 

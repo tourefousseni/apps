@@ -4,6 +4,7 @@ from django.contrib.gis.db import models as gis_models
 import random
 from random import randint
 # from django.db.models.AutoField
+from django.forms import ModelForm
 from django.db.models.signals import pre_save
 from .utils import unique_matricule_id_generator, \
     unique_product_id_generator, \
@@ -122,7 +123,7 @@ class Product(models.Model):
     code_product = models.CharField(max_length=30, blank=True, null=True, verbose_name='Code Produit')
     description = models.CharField(max_length=30, blank=True, null=True)
     photo = models.ImageField(upload_to='albums/%Y/%m/%d')
-    album = models.ForeignKey('Album', on_delete=models.CASCADE, verbose_name='ALBUM')
+    # album = models.ForeignKey('Album', on_delete=models.CASCADE, verbose_name='ALBUM')
     price = models.DecimalField(decimal_places=2, max_digits=20, default=50.25, null=True, blank=True)
     create_at = models.DateField(auto_now=True)
 
@@ -135,7 +136,8 @@ def pre_save_produit_id(instance, sender, *args, **kwargs):
 
 pre_save.connect(pre_save_produit_id, sender=Product)
 
-class Album(models.Model):
+class Image(models.Model):
+    objects = None
     TYPE = (
         ('Broderie', 'Broderie'),
         ('Couture simple', 'COUTURE SIMPLE'),
@@ -154,13 +156,10 @@ class Album(models.Model):
 
     id = models.AutoField(primary_key=True)
     nom = models.CharField(max_length=100, null=True, blank=True)
-    image = models.ImageField(upload_to='albums/%Y/%m/%d')
+    image = models.ImageField(upload_to='img/%Y')
     type = models.CharField(max_length=20, choices=TYPE, default='Broderie')
     category = models.CharField(max_length=20, choices=CATEGORY, default='Grande')
     genre = models.CharField(max_length=20, choices=GENRE, default='Homme')
-    activated = models.BooleanField(default=False)
-    date_ajout = models.DateField(auto_now=True)
-
 
     def __str__(self):
         return'{} {} {}'.format(self.nom, self.genre, self.type)

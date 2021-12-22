@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls import url
-from contacts import views
+from contacts  import views
 # from  . import views  program, genFooterTable, genBodyTable, genHeaderTable
 from reportlab.platypus import Table
 # from  .import views
@@ -17,6 +17,7 @@ urlpatterns = [
       #         ULRS KALALISO
       #             START
       # =================================
+      # path('admin/', admin.site.urls),
       path('', views.homepage, name='homepage'),
       path('login/', views.user_login, name='login'), path('logout/', views.logout_user, name='logout'),
       path('register/', views.register_user, name='register'),

@@ -28,17 +28,16 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.template import context
 # from .forms import UploadFileForm
-from django.shortcuts import render, redirect
 from django.http import Http404
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.views.generic import FormView
 from django.template import context
 from django.template import defaulttags
-from contacts.models import Person, \
+from  .models import Person, \
                             Mesure, \
                             Order, \
                             Product, \
@@ -47,7 +46,8 @@ from contacts.models import Person, \
                             Region, \
                             Cercle, \
                             Commune, \
-                            Village
+                            Village, \
+                            Image
 
 
 from .forms import SignUpForm, \
@@ -57,7 +57,9 @@ from .forms import SignUpForm, \
                    ProductForm,\
                    OrderForm, \
                    PaymentForm, \
-                   OrderDetailForm
+                   OrderDetailForm, \
+                   ImageForm
+
 
 def user_login(request):
     if request.method == 'POST':
@@ -134,7 +136,19 @@ def change_password(request):
 
 
 def homepage(request):
-    return render(request, 'kalaliso/homepage.html')
+    global img
+    if request.method == "POST":
+        form=ImageForm(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            obj=form.instance
+            return render(request,'kalaliso/homepage.html', {"obj":obj})
+    else:
+         form = ImageForm()
+         img = Image.objects.all()
+    # return render(request, 'kalaliso/homepage.html', {"img":img})
+    return render(request, 'kalaliso/homepage.html', {"img":img, "form":form})
+
 
 
 def person(request):

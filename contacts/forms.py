@@ -16,13 +16,18 @@ from .models import Person, \
                     Order, \
                     Mesure, \
                     OrderDetail, \
-                    Payment
+                    Image
+                    # Payment
 
 
 # ==============================================
 #                  FORM KALALISO
 #                        START
 # ==============================================
+class ImageForm(forms.ModelForm):
+    class Meta:
+        model= Image
+        fields = "__all__"
 
 class PersonForm(forms.ModelForm):
 

@@ -136,7 +136,7 @@ def change_password(request):
 
 
 def homepage(request):
-    global img
+    global image
     if request.method == "POST":
         form=ImageForm(data=request.POST, files=request.FILES)
         if form.is_valid():
@@ -144,10 +144,9 @@ def homepage(request):
             obj=form.instance
             return render(request,'kalaliso/homepage.html', {"obj":obj})
     else:
-         form = ImageForm()
-         img = Image.objects.all()
-    # return render(request, 'kalaliso/homepage.html', {"img":img})
-    return render(request, 'kalaliso/homepage.html', {"img":img, "form":form})
+       form=ImageForm()
+       image=Image.objects.all()
+    return render(request, 'kalaliso/homepage.html', {"image":image, "form":form})
 
 
 

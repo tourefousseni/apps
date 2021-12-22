@@ -29,6 +29,8 @@ class ImageForm(forms.ModelForm):
         model= Image
         fields = "__all__"
 
+
+
 class PersonForm(forms.ModelForm):
 
     STATUS = (

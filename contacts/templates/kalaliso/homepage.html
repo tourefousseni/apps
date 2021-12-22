@@ -1,32 +1,41 @@
 {% extends 'base_kalaliso.html' %}
-{% load static %}
 
+{% load static %}
 {% block content %}
-    <h4 class="text-center">CATEGORY FOR ALBUMS</h4><br />
+<h4 class="text-center">CATEGORY FOR ALBUMS</h4><br />
 
 <div class="container">
-<!--    <form action="{% url 'homepage' %}" method="post" enctype="multipart/form-data ">-->
-    <form action="." method="post" enctype="multipart/form-data ">
-    {% csrf_token %}
-    {{form.as_p}}
-        <button type="submit" class="btn btn-lg btn-success">Upload</button>
-    </form>
-
-    {% if obj %}
-    <h4> Successfully upload : {{img_obj.caption}}</h4>
-    <img src="{{obj.homepage.url}}" alt="image" class="img-thumbnail" height="70%" width="70%" >
-    {% endif %}
-
-    {% for x in img %}
-    <img src="{{obj.image.url}}" alt="image" class="img-thumbnail" height="70%" width="70%" >
-    <h5 class="text-center">{{x.nom}}</h5>
-    <h5 class="text-center">{{x.category}}</h5>
-    <h5 class="text-center">{{x.type}}</h5>
-    <h5 class="text-center">{{x.genre}}</h5>
+    {% for x in Image %}
+    <div class="card" style="width: 18rem;">
+        <img src='{{x.image.url}}' class="card-img-top" alt="...">
+        <h5 class="card-title">{x.title}}</h5>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
     {% endfor %}
-
 </div>
+<!--</div>-->
 {% endblock %}
+
+<!--    <form action="{% url 'homepage' %}" method="post" enctype="multipart/form-data ">-->
+<!--    {% csrf_token %}-->
+<!--    {{form.as_p}}-->
+<!--        <button type="submit" class="btn btn-lg btn-success">Upload</button>-->
+<!--    </form>-->
+
+<!--    {% if obj %}-->
+<!--    <h4> Successfully upload : {{img_obj.nom}}</h4>-->
+<!--    <img src="{{obj.homepage.url}}" alt="image" class="img-thumbnail" height="70%" width="70%" >-->
+<!--    {% endif %}-->
+
+<!--    {% for x in img %}-->
+<!--    <img src="{{obj.image.url}}" alt="image" class="img-thumbnail" height="70%" width="70%" >-->
+<!--    <h5 class="text-center">{{x.nom}}</h5>-->
+<!--    <h5 class="text-center">{{x.category}}</h5>-->
+<!--    <h5 class="text-center">{{x.type}}</h5>-->
+<!--    <h5 class="text-center">{{x.genre}}</h5>-->
+<!--    {% endfor %}-->
+
+
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

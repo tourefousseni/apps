@@ -104,23 +104,19 @@ def change_password(request):
 #      VIEWS KALALISO
 #          START
 # ===========================
-
-def  HomePageView(request,):
-    qp = Post.objects.all()
-    model = Post
-    context = { 'homepage': qp}
-    template_name =  'kalaliso/homepage.html'
-    return render(request, 'kalaliso/homepage.html', context)
-
-
-
-class  CreatePostView(CreateView):
+def CreatePostView(CreateView):
     model = Post
     form_class = PostForm
     template_name = 'kalaliso/post.html'
     # success_url = reverse_lazy ('kalaliso/homepage.html')
+    return render(CreateView, 'kalaliso/post.html')
 
-
+def HomePageView(ListView):
+    qp = Post.objects.all()
+    model = Post
+    context = { 'homepage': qp}
+    # template_name =  'kalaliso/homepage.html'
+    return render(ListView, 'kalaliso/homepage.html', context)
 
 
 def homepage(request):

@@ -8,27 +8,26 @@
     <div class="container">
         <div class="row">
            {% for post in object_list %}
-
                     <div class="col-md-4">
-<!--                      <p class="card-text">{% post.title %}</p>-->
-<!--                      <p class="card-text">{% post.slug %}</p>-->
-<!--                      <p class="card-text">{% post.tags %}</p>-->
-<!--                      <p class="card-text">{% post.image %}</p>-->
-<!--                     <p class="card-text">{% post.type %}</p>-->
-<!--                      <p class="card-text">{% post.category %}</p>-->
-<!--                      <p class="card-text">{% post.genre %}</p>-->
+                      <p class="card-text1">{% post.title %}</p>
+                      <p class="card-text2">{% post.slug %}</p>
+                      <p class="card-text3">{% post.tags %}</p>
+                      <p class="card-text4">{% post.image %}</p>
+                     <p class="card-text5">{% post.type %}</p>
+                      <p class="card-text6">{% post.category %}</p>
+                      <p class="card-text7">{% post.genre %}</p>
                         <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" src="{{ post.cover.url }}" alt="{{ post.title }}" width="400" height="400">
-        <!--                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>-->
-        <!--                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
-                        </div>
+                        <img class="card-img-top" src="{{post.url}}" alt="{{ post.title }}" width="400" height="400">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+             </div>
                         <small class="text-muted">9 mins</small>
                       </div>
             {% endfor %}
         </div>
     </div>
    </div>
-
+{% endblock %}
 
 
 <!--<h4 class="text-center">CATEGORY FOR ALBUMS</h4><br />-->
@@ -45,7 +44,7 @@
 
 
 <!--</div>-->
-{% endblock %}
+<!--{% endblock %}-->
 
 <!--    <form action="{% url 'homepage' %}" method="post" enctype="multipart/form-data ">-->
 <!--    {% csrf_token %}-->

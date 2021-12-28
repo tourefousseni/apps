@@ -27,7 +27,13 @@ from .models import Person, \
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'slug', 'tags', 'image', 'type', 'category', 'genre')
+        fields = ('title',
+                  'slug',
+                  'tags',
+                  'image',
+                  'type',
+                  'category',
+                  'genre')
 
 
 

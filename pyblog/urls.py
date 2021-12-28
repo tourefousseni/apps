@@ -16,7 +16,7 @@ urlpatterns = [
 
       path('', views.HomePageView, name='homepage'),
       # path('', HomePageView.as_view(), name='homepage'),
-      path('post', views.CreatePostView, name='add_post'),
+      path('post/', views.CreatePostView, name='add_post'),
       # path('post', CreatePostView.as_view(), name='add_post'),
       path('login/', views.user_login, name='login'),
       path('logout/', views.logout_user, name='logout'),

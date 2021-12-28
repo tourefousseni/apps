@@ -117,7 +117,7 @@ def  HomePageView(request,):
 class  CreatePostView(CreateView):
     model = Post
     form_class = PostForm
-    template_name =  'kalaliso/post.html'
+    template_name = 'kalaliso/post.html'
     # success_url = reverse_lazy ('kalaliso/homepage.html')
 
 

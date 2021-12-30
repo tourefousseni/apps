@@ -9,13 +9,13 @@
         <div class="row">
            {% for post in object_list %}
                     <div class="col-md-4">
-                      <p class="card-text1">{% post.title %}</p>
-                      <p class="card-text2">{% post.slug %}</p>
-                      <p class="card-text3">{% post.tags %}</p>
-                      <p class="card-text4">{% post.image %}</p>
-                     <p class="card-text5">{% post.type %}</p>
-                      <p class="card-text6">{% post.category %}</p>
-                      <p class="card-text7">{% post.genre %}</p>
+                      <p class="card-text1">{% contacts_post.title %}</p>
+                      <p class="card-text2">{% contacts_post.slug %}</p>
+                      <p class="card-text3">{% contacts_post.tags %}</p>
+                      <p class="card-text4">{% contacts_post.image %}</p>
+                     <p class="card-text5">{% contacts_post.type %}</p>
+                      <p class="card-text6">{% contacts_post.category %}</p>
+                      <p class="card-text7">{% contacts_post.genre %}</p>
                         <div class="card mb-4 shadow-sm">
                         <img class="card-img-top" src="{{post.url}}" alt="{{ post.title }}" width="400" height="400">
                         <button type="button" class="btn btn-sm btn-outline-secondary">View</button>

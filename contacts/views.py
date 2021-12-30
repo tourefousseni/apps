@@ -119,9 +119,11 @@ def HomePageView(ListView):
     return render(ListView, 'kalaliso/homepage.html', context)
 
 
-def homepage(request):
+# def homepage(request):
+#
+#     return render(request, 'kalaliso/homepage.html',)
 
-    return render(request, 'kalaliso/homepage.html',)
+
 #     global image
 #     if request.method == "POST":
 #         form=ImageForm(data=request.POST, files=request.FILES)

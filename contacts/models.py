@@ -137,7 +137,7 @@ def pre_save_produit_id(instance, sender, *args, **kwargs):
 pre_save.connect(pre_save_produit_id, sender=Product)
 
 class Post(models.Model):
-    objects = None
+    # objects = None
     TYPE = (
         ('Broderie', 'Broderie'),
         ('Couture simple', 'COUTURE SIMPLE'),

@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
-from django.views.generic import ListView, CreateView
+# from django.views.generic import ListView, CreateView
 from django.template import context
 from django.template import defaulttags
 from  .models import Person, \
@@ -104,24 +104,25 @@ def change_password(request):
 #      VIEWS KALALISO
 #          START
 # ===========================
-def CreatePostView(CreateView):
-    model = Post
-    form_class = PostForm
-    template_name = 'kalaliso/post.html'
-    # success_url = reverse_lazy ('kalaliso/homepage.html')
-    return render(CreateView, 'kalaliso/post.html')
-
-def HomePageView(ListView):
-    qp = Post.objects.all()
-    model = Post
-    context = { 'homepage': qp}
-    # template_name =  'kalaliso/homepage.html'
-    return render(ListView, 'kalaliso/homepage.html', context)
-
-
-# def homepage(request):
+# def CreatePostView(CreateView):
+#     model = Post
+#     form_class = PostForm
+#     template_name = 'kalaliso/post.html'
+#     # success_url = reverse_lazy ('kalaliso/homepage.html')
+#     return render(CreateView, 'kalaliso/post.html')
 #
-#     return render(request, 'kalaliso/homepage.html',)
+# def HomePageView(ListView):
+#     qp = Post.objects.all()
+#     model = Post
+#     context = { 'homepage': qp}
+#     # template_name =  'kalaliso/homepage.html'
+#     return render(ListView, 'kalaliso/homepage.html', context)
+
+
+
+def homepage(request):
+
+    return render(request, 'kalaliso/homepage.html',)
 
 
 #     global image

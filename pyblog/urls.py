@@ -12,9 +12,14 @@ app_name = 'contacts'
 urlpatterns = [
       path('admin/', admin.site.urls),
       # path('home/', views.HomePageView, name='homepage'),
-      path('home/', HomePageView.as_view(), name='homepage'),
-      # path('post', views.CreatePostView, name='add_post'),
-      path('post', CreatePostView.as_view(), name='add_post'),
+      # path('home/', HomePageView.as_view(), name='homepage'),
+      path('homepage/', views.homepage, name='homepage'),
+
+      # path('post/', views.createpost, name='add_post'),
+
+      # path('post', CreatePostView.as_view(), name='add_post'),
+
+
       path('login/', views.user_login, name='login'),
       path('logout/', views.logout_user, name='logout'),
       path('register/', views.register_user, name='register'),

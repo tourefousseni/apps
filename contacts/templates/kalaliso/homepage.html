@@ -1,13 +1,12 @@
 {% extends 'base_kalaliso.html' %}
 {% load static %}
-
 {% block content %}
 <a href="{% url 'add_post' %}" class="btn btn-primary"> Upload Image</a>
 <br>
   <div class="album py-5 bg-light">
     <div class="container">
         <div class="row">
-           {% for post in object_list %}
+           {% for post in obj %}
                     <div class="col-md-4">
                       <p class="card-text1">{% contacts_post.title %}</p>
                       <p class="card-text2">{% contacts_post.slug %}</p>
@@ -17,10 +16,10 @@
                       <p class="card-text6">{% contacts_post.category %}</p>
                       <p class="card-text7">{% contacts_post.genre %}</p>
                         <div class="card mb-4 shadow-sm">
-                        <img class="card-img-top" src="{{post.url}}" alt="{{ post.title }}" width="400" height="400">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-             </div>
+                                <img class="card-img-top" src="{{post.cover.url}}" alt="{{ contacts_post.title }}" width="400" height="400">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                         </div>
                         <small class="text-muted">9 mins</small>
                       </div>
             {% endfor %}

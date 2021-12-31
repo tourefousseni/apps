@@ -9,14 +9,14 @@ from contacts import views
 
 app_name = 'contacts'
 
-urlpatterns = [
-      path('admin/', admin.site.urls),
+urlpatterns = (
+      # path('admin/', admin.site.urls),
       # path('home/', views.HomePageView, name='homepage'),
       # path('home/', HomePageView.as_view(), name='homepage'),
       path('homepage/', views.homepage, name='homepage'),
+      # path('', views.homepage, name='add_post'),
 
       # path('post/', views.createpost, name='add_post'),
-
       # path('post', CreatePostView.as_view(), name='add_post'),
 
 
@@ -41,7 +41,7 @@ urlpatterns = [
       path('arrondissement/', views.arrondissement, name='arrondissement'),
       path('commune/', views.commune, name='commune'), path('village/', views.village, name='village'),
 
-]
+)
 
 # =================================
 #         ULRS KALALISO

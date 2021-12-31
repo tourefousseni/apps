@@ -123,18 +123,16 @@ def change_password(request):
 def homepage(request):
 
     return render(request, 'kalaliso/homepage.html',)
-
-
 #     global image
 #     if request.method == "POST":
-#         form=ImageForm(data=request.POST, files=request.FILES)
+#         form=PostForm(data=request.POST, files=request.FILES)
 #         if form.is_valid():
 #             form.save()
 #             obj=form.instance
 #             return render(request,'kalaliso/homepage.html', {"obj":obj})
 #     else:
-#        form=ImageForm()
-#        image=Image.objects.all()
+#        form=PostForm()
+#        image=Post.objects.all()
 #     return render(request, 'kalaliso/homepage.html', {"image":image, "form":form})
 
 

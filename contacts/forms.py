@@ -16,7 +16,7 @@ from .models import Person, \
                     Order, \
                     Mesure, \
                     OrderDetail, \
-                    Post
+                    Image
                     # Payment
 
 
@@ -24,9 +24,9 @@ from .models import Person, \
 #                  FORM KALALISO
 #                        START
 # ==============================================
-class PostForm(forms.ModelForm):
+class ImageForm(forms.ModelForm):
     class Meta:
-        model = Post
+        model = Image
         fields = ('title',
                   'slug',
                   'tags',

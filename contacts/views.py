@@ -18,7 +18,7 @@ from  .models import Person, \
                             Cercle, \
                             Commune, \
                             Village, \
-                            Post
+                            Image
 
 
 from .forms import SignUpForm, \
@@ -29,7 +29,7 @@ from .forms import SignUpForm, \
                    OrderForm, \
                    PaymentForm, \
                    OrderDetailForm, \
-                   PostForm
+                   ImageForm
 
 
 def user_login(request):
@@ -135,6 +135,16 @@ def homepage(request):
 #        image=Post.objects.all()
 #     return render(request, 'kalaliso/homepage.html', {"image":image, "form":form})
 
+def image_upload_view(request):
+    if request.method == "POST":
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+
+            img_obj = form.instance
+            return render(request, 'kalaliso/index.html', {'form': form, 'img_obj': img_obj})
+        else:
+            form = ImageForm
 
 
 def person(request):

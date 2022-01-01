@@ -136,24 +136,23 @@ def pre_save_produit_id(instance, sender, *args, **kwargs):
 
 pre_save.connect(pre_save_produit_id, sender=Product)
 
-class Post(models.Model):
+class Image(models.Model):
     # objects = None
-    TYPE = (
+    TYPE      = (
         ('Broderie', 'Broderie'),
         ('Couture simple', 'COUTURE SIMPLE'),
         ('Couture a main', 'COUTURE A MAIN'),
         ('Finition', 'FINITION'),)
 
-    GENRE = (
+    GENRE     = (
         ('H', 'Homme'),
         ('F', 'Femme'),
         ('A', 'Autres'),)
 
-    CATEGORY = (
+    CATEGORY  = (
         ('G', 'Grande'),
         ('M', 'Moyenne'),
         ('P', 'Petite'),)
-
     id        = models.AutoField(primary_key=True)
     title     = models.CharField(max_length=100)
     slug      = models.SlugField(unique=True)
@@ -165,7 +164,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-        # return '{} {} {}'.format(self.title, self.genre, self.type)
+
 
 
 class Order(models.Model):

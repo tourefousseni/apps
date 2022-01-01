@@ -14,6 +14,7 @@ urlpatterns = (
       # path('home/', views.HomePageView, name='homepage'),
       # path('home/', HomePageView.as_view(), name='homepage'),
       path('homepage/', views.homepage, name='homepage'),
+      path('Upload/', views.image_upload_view, ),
       # path('', views.homepage, name='add_post'),
 
       # path('post/', views.createpost, name='add_post'),

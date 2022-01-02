@@ -135,9 +135,8 @@ def change_password(request):
 
 
 def homepage(request, contacts_image, *args, **kwargs):
-    poster = contacts_image.objects.all().order_by("Date")
-    return render(request, 'kalaliso/images_list.html',)
-
+    images = contacts_image.objects.all().order_by("Date")
+    return render(request, 'kalaliso/images_list.html', {'images': images})
 
 
 def image_upload_view(request):

@@ -25,6 +25,30 @@ from .models import Person, \
 #                        START
 # ==============================================
 class ImageForm(forms.ModelForm):
+    TYPE      = (
+        ('Broderie', 'Broderie'),
+        ('Couture simple', 'COUTURE SIMPLE'),
+        ('Couture a main', 'COUTURE A MAIN'),
+        ('Finition', 'FINITION'),)
+
+    GENRE     = (
+        ('H', 'Homme'),
+        ('F', 'Femme'),
+        ('A', 'Autres'),)
+
+    CATEGORY  = (
+        ('G', 'Grande'),
+        ('M', 'Moyenne'),
+        ('P', 'Petite'),)
+    # id        = forms.AutoField(primary_key=True)
+    title     = forms.CharField()
+    slug      = forms.SlugField()
+    tags      = forms.CharField()
+    image     = forms.ImageField()
+    type      = forms.ChoiceField( choices=TYPE, label='Broderie')
+    category  = forms.ChoiceField( choices=CATEGORY, label='Grande')
+    genre     = forms.ChoiceField( choices=GENRE, label='Homme')
+
     class Meta:
         model = Image
         fields = ('title',
@@ -34,8 +58,6 @@ class ImageForm(forms.ModelForm):
                   'type',
                   'category',
                   'genre')
-
-
 
 class PersonForm(forms.ModelForm):
 

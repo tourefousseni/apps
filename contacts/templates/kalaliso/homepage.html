@@ -1,32 +1,44 @@
-{% extends 'base_kalaliso.html' %}
-{% load static %}
-{% block content %}
-<a href="{% url 'add_post' %}" class="btn btn-primary"> Upload Image</a>
-<br>
-  <div class="album py-5 bg-light">
-    <div class="container">
-        <div class="row">
-           {% for post in obj %}
-                    <div class="col-md-4">
-                      <p class="card-text1">{% contacts_post.title %}</p>
-                      <p class="card-text2">{% contacts_post.slug %}</p>
-                      <p class="card-text3">{% contacts_post.tags %}</p>
-                      <p class="card-text4">{% contacts_post.image %}</p>
-                     <p class="card-text5">{% contacts_post.type %}</p>
-                      <p class="card-text6">{% contacts_post.category %}</p>
-                      <p class="card-text7">{% contacts_post.genre %}</p>
-                        <div class="card mb-4 shadow-sm">
-                                <img class="card-img-top" src="{{post.cover.url}}" alt="{{ contacts_post.title }}" width="400" height="400">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                         </div>
-                        <small class="text-muted">9 mins</small>
-                      </div>
-            {% endfor %}
-        </div>
-    </div>
-   </div>
-{% endblock %}
+<!--{% extends 'base_kalaliso.html' %}-->
+<!--{% load crispy_forms_filters %}-->
+<!--{% load crispy_forms_tags %}-->
+<!--{% load static %}-->
+
+<!--{% block content %}-->
+<!--<a href="{% url 'add_post' %}" class="btn btn-primary"> Upload Image</a>-->
+<!--<br>-->
+<!--  <div class="album py-5 bg-light">-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--           {% for image in obj %}-->
+<!--                    <div class="col-md-4">-->
+<!--                          <p >{% contacts_image.title %}</p>-->
+<!--                          <p >{% contacts_image.slug %}</p>-->
+<!--                          <p >{% contacts_image.tags %}</p>-->
+<!--                          <p>{% contacts_image.image %}</p>-->
+<!--                          <p>{% contacts_image.type %}</p>-->
+<!--                          <p>{% contacts_image.category %}</p>-->
+<!--                          <p >{% contacts_image.genre %}</p>-->
+<!--                        <div class="card mb-4 shadow-sm">-->
+<!--                                <img class="card-img-top" src="{{ . }}" alt="{{ contacts_image.title }}" width="400" height="400">-->
+<!--                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>-->
+<!--                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+<!--                         </div>-->
+<!--                        <small class="text-muted">9 mins</small>-->
+<!--                     </div>-->
+<!--            {% endfor %}-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--   </div>-->
+<!--{% endblock %}-->
+
+
+
+
+
+
+
+
 
 
 <!--<h4 class="text-center">CATEGORY FOR ALBUMS</h4><br />-->

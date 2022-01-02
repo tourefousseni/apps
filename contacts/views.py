@@ -120,9 +120,7 @@ def change_password(request):
 
 
 
-def homepage(request):
 
-    return render(request, 'kalaliso/homepage.html',)
 #     global image
 #     if request.method == "POST":
 #         form=PostForm(data=request.POST, files=request.FILES)
@@ -135,16 +133,27 @@ def homepage(request):
 #        image=Post.objects.all()
 #     return render(request, 'kalaliso/homepage.html', {"image":image, "form":form})
 
+
+def homepage(request, contacts_image, *args, **kwargs):
+    poster = contacts_image.objects.all().order_by("Date")
+    return render(request, 'kalaliso/images_list.html',)
+
+
+
 def image_upload_view(request):
-    if request.method == "POST":
-        form = ImageForm(request.POST, request.FILES)
+    form = ImageForm
+    if request.method == "POST" or None:
+        form=ImageForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-
-            img_obj = form.instance
+            img_obj=form.instance
             return render(request, 'kalaliso/index.html', {'form': form, 'img_obj': img_obj})
+            # return HttpResponseRedirect('kalaliso/homepage')
         else:
-            form = ImageForm
+            form = ImageForm()
+            img_obj = form.instance
+    return render(request, 'kalaliso/index.html', {'form': form })
+
 
 
 def person(request):
@@ -412,6 +421,10 @@ def cercle(request):
 def village(request):
     return None
 
+
+def profile(request):
+
+    return render(request, 'kalaliso/profil.html')
 
 # ===========================
 #      VIEWS KALALISO

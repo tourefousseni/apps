@@ -11,7 +11,7 @@ from django.conf.urls.static import static
 app_name = 'contacts'
 
 urlpatterns = [
-      # path('admin/', admin.site.urls),
+      path('admin/', admin.site.urls),
       path('', include('contacts.urls')),
 ]
 if settings.DEBUG:

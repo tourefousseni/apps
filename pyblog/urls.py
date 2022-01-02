@@ -10,11 +10,11 @@ from contacts import views
 app_name = 'contacts'
 
 urlpatterns = (
-      # path('admin/', admin.site.urls),
+
       # path('home/', views.HomePageView, name='homepage'),
       # path('home/', HomePageView.as_view(), name='homepage'),
-      path('homepage/', views.homepage, name='homepage'),
-      path('Upload/', views.image_upload_view, ),
+      path('homepage/', views.homepage, name='add_post'),
+      path('upload/', views.image_upload_view, name='upload'),
       # path('', views.homepage, name='add_post'),
 
       # path('post/', views.createpost, name='add_post'),
@@ -24,6 +24,7 @@ urlpatterns = (
       path('login/', views.user_login, name='login'),
       path('logout/', views.logout_user, name='logout'),
       path('register/', views.register_user, name='register'),
+      path('profile/', views.profile, name='profile'),
       path('edit/profile/', views.edit_profile, name='edit_profile'),
       path('change/password/', views.change_password, name='change_password'),
       path('orderdetail/', views.orderdetail, name='orderdetail'),

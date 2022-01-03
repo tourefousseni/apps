@@ -5,17 +5,16 @@
 {% load static %}
 
 {% block content %}
-          <div class="album py-5 bg-light">
-              <a href="{% url 'upload' %}" class="btn btn-primary"> Upload Image</a><br>
-<!--            <div class="container">-->
+      <a href="{% url 'upload' %}"></a><br>
+            <div class="album offset-md-1">
                 <div class="row">
-                     <div class="col-md-4">
+<!--                     <div class="col-md-4">-->
                           <form  method="post" enctype="multipart/form-data">
                           {% csrf_token %}
                                 {{ form.as_p }}
                                <button type="submit" class="btn btn-primary"> Submit</button>
                            </form>
-                      </div>
+<!--                      </div>-->
                  </div>
-           </div>
+             </div>
 {% endblock %}

@@ -115,15 +115,9 @@ def change_password(request):
 #     return render(request, 'kalaliso/homepage.html', {"image":image, "form":form})
 
 
-def homepage(request, **kwargs):
-    # images = contacts_image.objects.all().order_by("Date")
-    # images = contacts_image.objects.all().order_by("Date")
-
-    return render(request, 'kalaliso/homepage.html')
-
-
-
-    # return render(request, 'kalaliso/images_list.html', {'images': images})
+def homepage(request,):
+    image = Image.objects.all()
+    return render(request, 'kalaliso/homepage.html', {'image':image})
 
 
 def image_upload_view(request, **kwargs):
@@ -136,7 +130,6 @@ def image_upload_view(request, **kwargs):
             return render(request, 'kalaliso/index.html', {'form': f, 'img_obj': img_obj})
         else:
             form = ImageForm()
-            # img_obj = form.instance
     return render(request, 'kalaliso/index.html', {'form': f})
 
 

@@ -5,29 +5,17 @@
 {% load static %}
 
 {% block content %}
-     <a href="{% url 'upload' %}" class="btn btn-primary"> Upload Image</a><br>
           <div class="album py-5 bg-light">
-            <div class="container">
+              <a href="{% url 'upload' %}" class="btn btn-primary"> Upload Image</a><br>
+<!--            <div class="container">-->
                 <div class="row">
-                   {% for image in images %}
-<!--                     <div class="col-md-4">-->
-                          <form action="{% url 'upload' %}" method="post">
-                                <p>{{ image.title }}</p>
-                                <p>{{ image.tags }}</p>
-                                <p>{{ image.image }}</p>
-                                <p>{{ image.type }}</p>
-                                <p>{{ image.category }}</p>
-                                <p>{{ image.genre }}</p>
-                            <form>
-                                <div class="card mb-4 shadow-sm">
-                                        <img class="card-img-top" src="{{ image.url }}" alt="{{ contacts_image.title }}" width="400" height="400">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                 </div>
-                                <small class="text-muted">9 mins</small>
-<!--                             </div>-->
-                   {% endfor %}
-                </div>
-            </div>
+                     <div class="col-md-4">
+                          <form  method="post" enctype="multipart/form-data">
+                          {% csrf_token %}
+                                {{ form.as_p }}
+                               <button type="submit" class="btn btn-primary"> Submit</button>
+                           </form>
+                      </div>
+                 </div>
            </div>
 {% endblock %}

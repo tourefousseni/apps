@@ -1,4 +1,4 @@
-# from django.urls import reverse_lazy
+from django.urls import reverse_lazy
 from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
@@ -8,28 +8,9 @@ from django.http import HttpResponseRedirect
 # from django.views.generic import ListView, CreateView
 from django.template import context
 from django.template import defaulttags
-from  .models import Person, \
-                            Mesure, \
-                            Order, \
-                            Product, \
-                            Payment, \
-                            OrderDetail, \
-                            Region, \
-                            Cercle, \
-                            Commune, \
-                            Village, \
-                            Image
+from  .models import *
+from .forms import *
 
-
-from .forms import SignUpForm, \
-                   EditProfileForm, \
-                   PersonForm,\
-                   MesureForm,\
-                   ProductForm,\
-                   OrderForm, \
-                   PaymentForm, \
-                   OrderDetailForm, \
-                   ImageForm
 
 
 def user_login(request):
@@ -134,24 +115,29 @@ def change_password(request):
 #     return render(request, 'kalaliso/homepage.html', {"image":image, "form":form})
 
 
-def homepage(request, contacts_image, *args, **kwargs):
-    images = contacts_image.objects.all().order_by("Date")
-    return render(request, 'kalaliso/images_list.html', {'images': images})
+def homepage(request, **kwargs):
+    # images = contacts_image.objects.all().order_by("Date")
+    # images = contacts_image.objects.all().order_by("Date")
+
+    return render(request, 'kalaliso/homepage.html')
 
 
-def image_upload_view(request):
-    form = ImageForm
+
+    # return render(request, 'kalaliso/images_list.html', {'images': images})
+
+
+def image_upload_view(request, **kwargs):
+    f = ImageForm
     if request.method == "POST" or None:
-        form=ImageForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            img_obj=form.instance
-            return render(request, 'kalaliso/index.html', {'form': form, 'img_obj': img_obj})
-            # return HttpResponseRedirect('kalaliso/homepage')
+        f=ImageForm(request.POST, request.FILES)
+        if f.is_valid():
+            f.save()
+            img_obj=f.instance
+            return render(request, 'kalaliso/index.html', {'form': f, 'img_obj': img_obj})
         else:
             form = ImageForm()
-            img_obj = form.instance
-    return render(request, 'kalaliso/index.html', {'form': form })
+            # img_obj = form.instance
+    return render(request, 'kalaliso/index.html', {'form': f})
 
 
 

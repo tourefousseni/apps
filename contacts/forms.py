@@ -6,17 +6,13 @@ from crispy_forms.bootstrap import StrictButton
 from crispy_forms.layout import Submit, Layout, Row, Column, Div, Field
 from crispy_forms.bootstrap import TabHolder, Tab
 from crispy_forms.bootstrap import InlineRadios
-# from django import forms
+from django import forms
 # from django.forms import forms
 from django.forms import ModelForm
 from django.forms import widgets
 import datetime
-from .models import Person, \
-                    Product, \
-                    Order, \
-                    Mesure, \
-                    OrderDetail, \
-                    Image
+from .models import *
+
                     # Payment
 
 
@@ -25,39 +21,11 @@ from .models import Person, \
 #                        START
 # ==============================================
 class ImageForm(forms.ModelForm):
-    TYPE      = (
-        ('Broderie', 'Broderie'),
-        ('Couture simple', 'COUTURE SIMPLE'),
-        ('Couture a main', 'COUTURE A MAIN'),
-        ('Finition', 'FINITION'),)
-
-    GENRE     = (
-        ('H', 'Homme'),
-        ('F', 'Femme'),
-        ('A', 'Autres'),)
-
-    CATEGORY  = (
-        ('G', 'Grande'),
-        ('M', 'Moyenne'),
-        ('P', 'Petite'),)
-    # id        = forms.AutoField(primary_key=True)
-    title     = forms.CharField()
-    slug      = forms.SlugField()
-    tags      = forms.CharField()
-    image     = forms.ImageField()
-    type      = forms.ChoiceField( choices=TYPE, label='Broderie')
-    category  = forms.ChoiceField( choices=CATEGORY, label='Grande')
-    genre     = forms.ChoiceField( choices=GENRE, label='Homme')
-
     class Meta:
         model = Image
-        fields = ('title',
-                  'slug',
-                  'tags',
-                  'image',
-                  'type',
-                  'category',
-                  'genre')
+        fields = ['title', 'slug','tags', 'image', 'type', 'category', 'genre']
+
+
 
 class PersonForm(forms.ModelForm):
 

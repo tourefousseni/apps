@@ -13,13 +13,9 @@ urlpatterns = (
 
       # path('home/', views.HomePageView, name='homepage'),
       # path('home/', HomePageView.as_view(), name='homepage'),
-      path('homepage/', views.homepage, name='add_post'),
+      path('', views.homepage, name='homepage'),
       path('upload/', views.image_upload_view, name='upload'),
       # path('', views.homepage, name='add_post'),
-
-      # path('post/', views.createpost, name='add_post'),
-      # path('post', CreatePostView.as_view(), name='add_post'),
-
 
       path('login/', views.user_login, name='login'),
       path('logout/', views.logout_user, name='logout'),
@@ -27,6 +23,8 @@ urlpatterns = (
       path('profile/', views.profile, name='profile'),
       path('edit/profile/', views.edit_profile, name='edit_profile'),
       path('change/password/', views.change_password, name='change_password'),
+
+
       path('orderdetail/', views.orderdetail, name='orderdetail'),
       path('orderdetail/detail/<int:orderdetail_id>/', views.orderdetail_detail, name='orderdetail_detail'),
       path('order/', views.order, name='order'),

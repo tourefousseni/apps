@@ -1,36 +1,28 @@
-<!--{% extends 'base_kalaliso.html' %}-->
-<!--{% load crispy_forms_filters %}-->
-<!--{% load crispy_forms_tags %}-->
-<!--{% load static %}-->
+{% extends 'base_kalaliso.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% load static %}
 
-<!--{% block content %}-->
-<!--<a href="{% url 'add_post' %}" class="btn btn-primary"> Upload Image</a>-->
-<!--<br>-->
-<!--  <div class="album py-5 bg-light">-->
+{% block content %}
+<!--<a href="{% url 'upload' %}" class="btn btn-primary "> Upload Image</a><br><br>-->
+  <div class="album py-5 bg-light">
 <!--    <div class="container">-->
-<!--        <div class="row">-->
-<!--           {% for image in obj %}-->
-<!--                    <div class="col-md-4">-->
-<!--                          <p >{% contacts_image.title %}</p>-->
-<!--                          <p >{% contacts_image.slug %}</p>-->
-<!--                          <p >{% contacts_image.tags %}</p>-->
-<!--                          <p>{% contacts_image.image %}</p>-->
-<!--                          <p>{% contacts_image.type %}</p>-->
-<!--                          <p>{% contacts_image.category %}</p>-->
-<!--                          <p >{% contacts_image.genre %}</p>-->
-<!--                        <div class="card mb-4 shadow-sm">-->
-<!--                                <img class="card-img-top" src="{{ . }}" alt="{{ contacts_image.title }}" width="400" height="400">-->
-<!--                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>-->
-<!--                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
-<!--                         </div>-->
-<!--                        <small class="text-muted">9 mins</small>-->
-<!--                     </div>-->
-<!--            {% endfor %}-->
+    {% for image in images %}
+                      <form action="{% url 'homepage' %}" method="post"><br><br>
+                  {% csrf_token %}
+                  <div class="row offset-1">
+                       <p>{{ image.title }}</p>
+                         <p>{{ image.tags }}</p>
+                         <p>{{ image.image }}</p>
+                         <p>{{ image.type }}</p>
+                         <p>{{ image.category }}</p>
+                         <p>{{ image.genre }}</p>}
+                  </div>
+     {% endfor %}
+   </form>
+</div>
+{% endblock %}
 
-<!--        </div>-->
-<!--    </div>-->
-<!--   </div>-->
-<!--{% endblock %}-->
 
 
 
@@ -55,7 +47,7 @@
 
 
 <!--</div>-->
-<!--{% endblock %}-->
+
 
 <!--    <form action="{% url 'homepage' %}" method="post" enctype="multipart/form-data ">-->
 <!--    {% csrf_token %}-->

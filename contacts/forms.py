@@ -23,8 +23,8 @@ from .models import *
 class ImageForm(forms.ModelForm):
     class Meta:
         model = Image
-        fields = ['title', 'slug','tags', 'image', 'type', 'category', 'genre']
-
+        fields = ['title', 'slug','tags','type', 'category', 'genre', 'image', ]
+        exclude = ['tags']
 
 
 class PersonForm(forms.ModelForm):

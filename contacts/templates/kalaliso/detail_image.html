@@ -1,0 +1,22 @@
+{% extends 'base_kalaliso.html' %}
+{% block title %} Upload {% endblock %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+        {% for image in images %}
+
+         <a href="{% url 'vuesimg' %}">
+
+                                 <p>{{ image.title }}</p>
+                                 <p>{{ image.tags }}</p>
+                                 <p>{{ image.image }}</p>
+                                 <p>{{ image.type }}</p>
+                                 <p>{{ image.category }}</p>
+                                 <p>{{ image.genre }}</p>}
+                            <img src="/media/image/{{ image.image.url }}" alt="{{ image.title }}" class="card-img-top">
+
+         {% endfor %}
+
+{% endblock %}

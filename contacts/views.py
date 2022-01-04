@@ -116,8 +116,17 @@ def change_password(request):
 
 
 def homepage(request,):
-    image = Image.objects.all()
-    return render(request, 'kalaliso/homepage.html', {'image':image})
+    # image = Image.objects.all()   {'image':image}
+    return render(request, 'kalaliso/homepage.html', )
+
+
+def vuesimg(request,):
+    images = Image.objects.all().order_by('Date')
+    # images = Product_image.objects.all()
+    context = {'images':images}
+    # return HttpResponseRedirect(reverse('kalaliso/detail_image.html', args=[pk]))
+    return redirect('kalaliso/detail_image.html')
+# return HttpResponseRedirect(reverse('app_blog:blog_detail',args=[pk]))
 
 
 def image_upload_view(request, **kwargs):

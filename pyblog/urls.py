@@ -13,6 +13,7 @@ urlpatterns = [
 
       # path('home/', views.HomePageView, name='homepage'),
       # path('home/', HomePageView.as_view(), name='homepage'),
+      path('admin/', admin.site.urls),
       path('homepage/', views.homepage, name='homepage'),
       path('upload/', views.image_upload_view, name='upload'),
       path('upload/detail/<int:upload_id>/', views.vuesimg, name='vues_img'),

@@ -21,10 +21,10 @@ def user_login(request):
         if user is not None:
             login(request, user)
             messages.success(request, ('You Have been Logged In !'))
-            return redirect('homepage.html')
+            return redirect('homepage')
         else:
             messages.success(request, ('Error you can try again !'))
-            return redirect('login')
+            return redirect('kalaliso/login')
     else:
         return render(request, 'kalaliso/login.html', {})
 
@@ -32,7 +32,7 @@ def user_login(request):
 def logout_user(request):
      logout(request)
      messages.success(request, ('You Have Been Logged out...'))
-     return redirect('kalaliso/homepage.html')
+     return redirect('login')
 
 
 def register_user(request):
@@ -45,7 +45,7 @@ def register_user(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             messages.success(request,('You Have Registered now...'))
-            return redirect('kalaliso/homepage.html')
+            return redirect('kalaliso/homepage')
     else:
         form = SignUpForm(request.POST)
     context = {'form': form}
@@ -58,7 +58,7 @@ def edit_profile(request):
         if form.is_valid():
             form.save()
             messages.success(request, ('You Have Edited Your Profiel...'))
-            return redirect('kalaliso/homepage.html')
+            return redirect('kalaliso/homepage')
     else:
         form = EditProfileForm(instance=request.user)
         context = {'form': form}

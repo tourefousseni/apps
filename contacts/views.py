@@ -21,18 +21,18 @@ def user_login(request):
         if user is not None:
             login(request, user)
             messages.success(request, ('You Have been Logged In !'))
-            return redirect('home')
+            return redirect('homepage.html')
         else:
             messages.success(request, ('Error you can try again !'))
             return redirect('login')
     else:
-        return render(request, 'contacts/login.html', {})
+        return render(request, 'kalaliso/login.html', {})
 
 
 def logout_user(request):
      logout(request)
      messages.success(request, ('You Have Been Logged out...'))
-     return redirect('home')
+     return redirect('kalaliso/homepage.html')
 
 
 def register_user(request):
@@ -45,11 +45,11 @@ def register_user(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             messages.success(request,('You Have Registered now...'))
-            return redirect('home')
+            return redirect('kalaliso/homepage.html')
     else:
         form = SignUpForm(request.POST)
     context = {'form': form}
-    return render(request, 'contacts/register.html', context)
+    return render(request, 'kalaliso/register.html', context)
 
 
 def edit_profile(request):
@@ -58,11 +58,11 @@ def edit_profile(request):
         if form.is_valid():
             form.save()
             messages.success(request, ('You Have Edited Your Profiel...'))
-            return redirect('home')
+            return redirect('kalaliso/homepage.html')
     else:
         form = EditProfileForm(instance=request.user)
         context = {'form': form}
-    return render(request, 'contacts/edit_profile.html', context)
+    return render(request, 'kalaliso/edit_profile.html', context)
 
 
 def change_password(request):
@@ -72,13 +72,13 @@ def change_password(request):
             form.save()
             update_session_auth_hash(request, form.user)
             messages.success(request,('You Have Edited Your Password...'))
-            return redirect('home')
+            return redirect('kalaliso/homepage.html')
     else:
         form = PasswordChangeForm(user=request.user)
 
     context = {'form': form}
 
-    return render(request, 'contacts/change_password.html', context)
+    return render(request, 'kalaliso/change_password.html', context)
 
 
 # ===========================
@@ -116,8 +116,7 @@ def change_password(request):
 
 
 def homepage(request,):
-    # image = Image.objects.all()   {'image':image}
-    return render(request, 'kalaliso/homepage.html', )
+    return render(request, 'kalaliso/homepage.html', {})
 
 
 def vuesimg(request,):

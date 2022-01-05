@@ -259,21 +259,13 @@ class EditProfileForm(UserChangeForm):
                       'password')
 
 class SignUpForm(UserCreationForm):
-        email = forms.EmailField(widget=forms.EmailInput(
-            attrs={'class': 'form-control'}))
-        last_name = forms.CharField( max_length=100,
-                                    widget=forms.TextInput(attrs={'class': 'form-control'}))
-        first_name = forms.CharField(max_length=100, widget=forms.TextInput(
-            attrs={'class': 'form-control'}))
+        email = forms.EmailField(label='', widget=forms.EmailInput(attrs={'class': 'form-control','placeholder':'Enter Email Here' }))
+        last_name = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Last Name' }))
+        first_name = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'First Name' }))
 
         class Meta:
             model = User
-            fields = ('username',
-                      'first_name',
-                      'last_name',
-                      'email',
-                      'password1',
-                      'password2')
+            fields = ('username','first_name','last_name','email','password1','password2')
 
         def __init__(self, *args, **kwargs):
             super(SignUpForm, self).__init__(*args, **kwargs)

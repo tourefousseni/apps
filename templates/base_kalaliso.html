@@ -25,6 +25,7 @@
             background-color: whitesmoke;
             margin: 0px;
             padding: 0px;
+            height: 100%;
             /*height: 600px;*/
             /*width: auto;*/
         }
@@ -210,13 +211,15 @@
       </li>
 
 
-
-     <li>
-     <a href="{% url 'homepage' %}" class="nav-link">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+<!--     {% if user.is_authenticated %}-->
+             <li>
+            <a href="{% url 'homepage' %}" class="nav-link">
+           <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
           Homepage
-        </a>
-      </li>
+            </a>
+            </li>
+<!--     {% endif %}-->
+
       <li>
         <a href="{% url 'person' %}" class="nav-link link-dark">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>

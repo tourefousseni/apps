@@ -24,7 +24,7 @@ def user_login(request):
             return redirect('homepage')
         else:
             messages.success(request, ('Error you can try again !'))
-            return redirect('kalaliso/login')
+            return redirect('login')
     else:
         return render(request, 'kalaliso/login.html', {})
 
@@ -45,7 +45,7 @@ def register_user(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             messages.success(request,('You Have Registered now...'))
-            return redirect('kalaliso/homepage')
+            return redirect('homepage')
     else:
         form = SignUpForm(request.POST)
     context = {'form': form}
@@ -58,7 +58,7 @@ def edit_profile(request):
         if form.is_valid():
             form.save()
             messages.success(request, ('You Have Edited Your Profiel...'))
-            return redirect('kalaliso/homepage')
+            return redirect('homepage')
     else:
         form = EditProfileForm(instance=request.user)
         context = {'form': form}

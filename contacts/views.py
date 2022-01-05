@@ -1,64 +1,16 @@
-# import hashlib
-from math import sin, cos, tan, pi, ceil
-# from reportlab import rl_config, ascii, xrange
-from reportlab.pdfbase import pdfutils
-from reportlab.pdfbase import pdfdoc
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfgen  import pdfgeom, pathobject
-from reportlab.lib.utils import import_zlib, ImageReader, isSeq, isStr, isUnicode, _digester
-from reportlab.lib.rl_accel import fp_str, escapePDF
-from reportlab.lib.boxstuff import aspectRatioFix
-from reportlab.pdfgen import canvas
-from reportlab.platypus import Table
-from django.http import FileResponse
-import io
-# import reportlab.pdfgen
-from reportlab.lib.units import inch
-from reportlab.lib.pagesizes import letter, A5
-from reportlab.pdfgen import canvas
-from django.core.serializers  import serialize
-# import genHeaderTable
-# import genBodyTable
-# import genFooterTable
-# import reportlab genFooterTable, genBodyTable, genHeaderTable
-# from reportlab.lib.pagesizes import A4
-from reportlab.platypus import Table
-# from .forms import UploadFileForm
-from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.urls import reverse
-from django.template import context
-# from .forms import UploadFileForm
-from django.http import Http404
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
-from django.views.generic import FormView
+# from django.views.generic import ListView, CreateView
 from django.template import context
 from django.template import defaulttags
-from  .models import Person, \
-                            Mesure, \
-                            Order, \
-                            Product, \
-                            Payment, \
-                            OrderDetail, \
-                            Region, \
-                            Cercle, \
-                            Commune, \
-                            Village, \
-                            Image
+from  .models import *
+from .forms import *
 
-
-from .forms import SignUpForm, \
-                   EditProfileForm, \
-                   PersonForm,\
-                   MesureForm,\
-                   ProductForm,\
-                   OrderForm, \
-                   PaymentForm, \
-                   OrderDetailForm, \
-                   ImageForm
 
 
 def user_login(request):
@@ -69,18 +21,18 @@ def user_login(request):
         if user is not None:
             login(request, user)
             messages.success(request, ('You Have been Logged In !'))
-            return redirect('home')
+            return redirect('homepage')
         else:
             messages.success(request, ('Error you can try again !'))
             return redirect('login')
     else:
-        return render(request, 'contacts/login.html', {})
+        return render(request, 'kalaliso/login.html', {})
 
 
 def logout_user(request):
      logout(request)
      messages.success(request, ('You Have Been Logged out...'))
-     return redirect('home')
+     return redirect('login')
 
 
 def register_user(request):
@@ -93,11 +45,11 @@ def register_user(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             messages.success(request,('You Have Registered now...'))
-            return redirect('home')
+            return redirect('homepage')
     else:
         form = SignUpForm(request.POST)
     context = {'form': form}
-    return render(request, 'contacts/register.html', context)
+    return render(request, 'kalaliso/register.html', context)
 
 
 def edit_profile(request):
@@ -106,11 +58,11 @@ def edit_profile(request):
         if form.is_valid():
             form.save()
             messages.success(request, ('You Have Edited Your Profiel...'))
-            return redirect('home')
+            return redirect('homepage')
     else:
         form = EditProfileForm(instance=request.user)
         context = {'form': form}
-    return render(request, 'contacts/edit_profile.html', context)
+    return render(request, 'kalaliso/edit_profile.html', context)
 
 
 def change_password(request):
@@ -120,33 +72,73 @@ def change_password(request):
             form.save()
             update_session_auth_hash(request, form.user)
             messages.success(request,('You Have Edited Your Password...'))
-            return redirect('home')
+            return redirect('kalaliso/homepage.html')
     else:
         form = PasswordChangeForm(user=request.user)
 
     context = {'form': form}
 
-    return render(request, 'contacts/change_password.html', context)
+    return render(request, 'kalaliso/change_password.html', context)
 
 
 # ===========================
 #      VIEWS KALALISO
 #          START
 # ===========================
+# def CreatePostView(CreateView):
+#     model = Post
+#     form_class = PostForm
+#     template_name = 'kalaliso/post.html'
+#     # success_url = reverse_lazy ('kalaliso/homepage.html')
+#     return render(CreateView, 'kalaliso/post.html')
+#
+# def HomePageView(ListView):
+#     qp = Post.objects.all()
+#     model = Post
+#     context = { 'homepage': qp}
+#     # template_name =  'kalaliso/homepage.html'
+#     return render(ListView, 'kalaliso/homepage.html', context)
 
 
-def homepage(request):
-    global image
-    if request.method == "POST":
-        form=ImageForm(data=request.POST, files=request.FILES)
-        if form.is_valid():
-            form.save()
-            obj=form.instance
-            return render(request,'kalaliso/homepage.html', {"obj":obj})
-    else:
-       form=ImageForm()
-       image=Image.objects.all()
-    return render(request, 'kalaliso/homepage.html', {"image":image, "form":form})
+
+
+#     global image
+#     if request.method == "POST":
+#         form=PostForm(data=request.POST, files=request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             obj=form.instance
+#             return render(request,'kalaliso/homepage.html', {"obj":obj})
+#     else:
+#        form=PostForm()
+#        image=Post.objects.all()
+#     return render(request, 'kalaliso/homepage.html', {"image":image, "form":form})
+
+
+def homepage(request,):
+    return render(request, 'kalaliso/homepage.html', {})
+
+
+def vuesimg(request,):
+    images = Image.objects.all().order_by('Date')
+    # images = Product_image.objects.all()
+    context = {'images':images}
+    # return HttpResponseRedirect(reverse('kalaliso/detail_image.html', args=[pk]))
+    return redirect('kalaliso/detail_image.html')
+# return HttpResponseRedirect(reverse('app_blog:blog_detail',args=[pk]))
+
+
+def image_upload_view(request, **kwargs):
+    f = ImageForm
+    if request.method == "POST" or None:
+        f=ImageForm(request.POST, request.FILES)
+        if f.is_valid():
+            f.save()
+            img_obj=f.instance
+            return render(request, 'kalaliso/index.html', {'form': f, 'img_obj': img_obj})
+        else:
+            form = ImageForm()
+    return render(request, 'kalaliso/index.html', {'form': f})
 
 
 
@@ -415,6 +407,10 @@ def cercle(request):
 def village(request):
     return None
 
+
+def profile(request):
+
+    return render(request, 'kalaliso/profil.html')
 
 # ===========================
 #      VIEWS KALALISO

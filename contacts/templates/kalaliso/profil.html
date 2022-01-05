@@ -1,16 +1,46 @@
 {% extends 'base_kalaliso.html' %}
-
 {% block title %} Profil {% endblock %}
 
 {% block content %}
 
-    <di>
-        <h4>
-            Profil
-        </h4>
-        <p>
-            Welcome to profil customers
-        </p>
-    </di>
+
+     {% if user.is_authenticated %}
+         <p> This is profile page </p>
+
+           <p> Username: {{user.username}} </p>
+           <p> First_name : {{user.first_name}}  {{user.last_name}}</p>
+           <p> Email: {{user.email}} </p>
+
+     {% endif %}
 
 {% endblock content %}
+
+<!--<fieldset>-->
+<!--    <legend >-->
+<!--        <h4 style="color: darkred" class="fw-bold offset-md-1">-->
+<!--            Profil-->
+<!--        </h4>-->
+<!--    </legend>-->
+<!--    <div >-->
+<!--        <h6 class="offset-md-1">-->
+<!--            Address to customer:-->
+<!--            <div>-->
+<!--            <ul class="border-bottom">-->
+<!--                <ol>-->
+<!--                    Nom : .......-->
+<!--                </ol>-->
+<!--                 <ol>-->
+<!--                    Prenom : .......-->
+<!--                </ol>-->
+<!--                 <ol>-->
+<!--                    Tel : .......-->
+<!--                </ol>-->
+<!--            </ul>-->
+<!--     </div>-->
+
+<!--        </h6>-->
+<!--    </div>-->
+<!--</fieldset>-->
+
+
+

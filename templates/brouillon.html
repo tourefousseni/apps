@@ -1,6 +1,55 @@
 {#          <script src="{% static 'jq/jquery.slim.min.js'%}"></script>#}
 {#           <script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>#}
 
+      <li class="nav-item">
+        <a href="{% url 'vues_img' upload.id %}" class="nav-link"  aria-current="page">
+<!--        <a href="{% url 'contacts:upload_detail' upload.id %}" class="nav-link"  aria-current="page">-->
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+         Views Image
+        </a>
+       </li>
+
+
+
+
+         {% if form.errors %}
+
+                <div class="alert alert-warning alert-dismissable" role="alert">
+                      <button class="close"  data-dismiss="alert">
+                          <small><sup>x</sup></small>
+                      </button>
+                     <p> Your Form has Errors ....</p>
+<!--                      {% for field in form %}-->
+<!--{#                        {% if field.errors %}#}-->
+<!--{#                          {{ field.errors }}#}-->
+<!--{#                        {% endif %}#}-->
+<!--                      {% endfor %}-->
+
+
+
+    # TYPE      = (
+    #     ('Broderie', 'Broderie'),
+    #     ('Couture simple', 'COUTURE SIMPLE'),
+    #     ('Couture a main', 'COUTURE A MAIN'),
+    #     ('Finition', 'FINITION'),)
+    #
+    # GENRE     = (
+    #     ('H', 'Homme'),
+    #     ('F', 'Femme'),
+    #     ('A', 'Autres'),)
+    #
+    # CATEGORY  = (
+    #     ('G', 'Grande'),
+    #     ('M', 'Moyenne'),
+    #     ('P', 'Petite'),)
+    # # id        = forms.AutoField(primary_key=True)
+    # title     = forms.CharField()
+    # slug      = forms.SlugField()
+    # tags      = forms.CharField()
+    # image     = forms.ImageField()
+    # type      = forms.ChoiceField(choices=TYPE, label='Broderie')
+    # category  = forms.ChoiceField(choices=CATEGORY, label='Grande')
+    # genre     = forms.ChoiceField(choices=GENRE, label='Homme')
 
 {#CONTENT NOTE#}
 {#    <div >#}

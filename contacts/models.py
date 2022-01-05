@@ -137,34 +137,35 @@ def pre_save_produit_id(instance, sender, *args, **kwargs):
 pre_save.connect(pre_save_produit_id, sender=Product)
 
 class Image(models.Model):
+
     objects = None
-    TYPE = (
+    TYPE      = (
         ('Broderie', 'Broderie'),
         ('Couture simple', 'COUTURE SIMPLE'),
         ('Couture a main', 'COUTURE A MAIN'),
         ('Finition', 'FINITION'),)
 
-    GENRE = (
+    GENRE     = (
         ('H', 'Homme'),
         ('F', 'Femme'),
         ('A', 'Autres'),)
 
-    CATEGORY = (
+    CATEGORY  = (
         ('G', 'Grande'),
         ('M', 'Moyenne'),
         ('P', 'Petite'),)
-
-    id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=100)
-    slug = models.SlugField(unique=True)
-    tags= models.TextField()
-    image = models.ImageField(upload_to='img/%Y')
-    type = models.CharField(max_length=20, choices=TYPE, default='Broderie')
-    category = models.CharField(max_length=20, choices=CATEGORY, default='Grande')
-    genre = models.CharField(max_length=20, choices=GENRE, default='Homme')
+    id        = models.AutoField(primary_key=True)
+    title     = models.CharField(max_length=100)
+    slug      = models.SlugField(unique=True)
+    tags      = models.TextField()
+    image     = models.ImageField(upload_to='image/')
+    type      = models.CharField(max_length=20, choices=TYPE, default='Broderie')
+    category  = models.CharField(max_length=20, choices=CATEGORY, default='Grande')
+    genre     = models.CharField(max_length=20, choices=GENRE, default='Homme')
 
     def __str__(self):
-        return'{} {} {}'.format(self.title, self.genre, self.type)
+        return self.title
+
 
 
 class Order(models.Model):

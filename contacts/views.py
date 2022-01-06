@@ -61,7 +61,7 @@ def edit_profile(request):
             return redirect('homepage')
     else:
         form = EditProfileForm(instance=request.user)
-        context = {'form': form}
+    context = {'form': form}
     return render(request, 'kalaliso/edit_profile.html', context)
 
 
@@ -241,7 +241,7 @@ def order(request):
     return render(request, 'kalaliso/order.html', {'form': form})
 
 
-def order_detail(request, order_id):
+def order_items(request, order_id):
     qs = Order.objects.all().order_by(-order)
 
     context = {'detail_order': qs,}
@@ -280,7 +280,7 @@ def orderdetail(request, ):
         rm = request.POST.get("remise")
         creat = request.POST.get("create_at")
 
-        data = OrderDetail(
+        data = Order_Items(
                            submontant=subm,
                            category=ca,
                            remise=rm,
@@ -299,7 +299,7 @@ def orderdetail(request, ):
 
 def orderdetail_detail(request, orderdetail_id):
 
-    qs = OrderDetail.objects.all().order_by(Order)
+    qs = Order_Items.objects.all().order_by(Order)
     context = {'orderdetail': qs, }
 
     return render(request, 'kalaliso/orderdetail_detail.html', context)

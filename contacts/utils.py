@@ -71,6 +71,18 @@ def unique_person_id_generator(instance):
     if qs_exists:
         return unique_person_id_generator(instance)
     return code_person_new_id
+
+def unique_payment_id_generator(instance):
+    code_payment_new_id = random_string_generator()
+
+    Klass = instance.__class__
+
+    qs_exists = Klass.objects.filter(code_payment=code_payment_new_id).exists()
+    if qs_exists:
+        return unique_payment_id_generator(instance)
+    return code_payment_new_id
+
+
 # =================================
 #         KALALISO RANDOM
 #             END

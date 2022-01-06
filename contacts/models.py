@@ -9,7 +9,8 @@ from django.db.models.signals import pre_save
 from .utils import unique_matricule_id_generator, \
     unique_product_id_generator, \
     unique_order_id_generator, \
-    unique_person_id_generator
+    unique_person_id_generator,\
+    unique_payment_id_generator
 from django.forms import widgets
 # ==============================================
 #                  MODELE KALALISO
@@ -169,14 +170,15 @@ class Image(models.Model):
 
 
 class Order(models.Model):
-    id = models.AutoField(primary_key=True)
-    person_id = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Titulaire Commande',)
+    id          = models.AutoField(primary_key=True)
+    person_id   = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Titulaire Commande',)
     # products = models.ManyToManyField('OrderDetail',  verbose_name='list_commande')
-    code_order = models.CharField(max_length=30, blank=True, verbose_name='Code commande')
-    reception = models.BooleanField(default=False)
+    code_order  = models.CharField(max_length=30, blank=True, verbose_name='Code commande')
+    reception   = models.BooleanField(default=False)
     rendez_vous = models.DateField(auto_now=True)
-    create_at = models.DateField(auto_now=True)
-
+    confirm     =  models.BooleanField(default=True)
+    cancelled   =  models.BooleanField(default=False)
+    create_at   = models.DateField(auto_now=True)
 
     def __str__(self):
         return'{}'.format(self.code_order)
@@ -189,29 +191,52 @@ pre_save.connect(pre_save_order_id, sender=Order)
 
 class OrderDetail(models.Model):
     id = models.AutoField(primary_key=True)
-    CATEGORY = (
+    CATEGORY    = (
         ('Homme', 'Homme'),
         ('Femme', 'Femme'),
         ('Fille', 'Fille'),
         ('Garçon', 'Garçon'),
         ('Autres', 'Autres'),
     )
-    order_id = models.ForeignKey('Order', on_delete=models.CASCADE, verbose_name='Commande', )
-    category = models.CharField(max_length=50, choices=CATEGORY, default='Homme', )
-    product_id = models.ManyToManyField('Product')
-    quantity = models.IntegerField(default=1, blank=True, null=True)
-    submontant = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-    remise = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-    create_at = models.DateField(auto_now=True)
+    order_id     = models.ForeignKey('Order', on_delete=models.CASCADE, verbose_name='Commande', )
+    category     = models.CharField(max_length=50, choices=CATEGORY, default='Homme', )
+    product_id   = models.ManyToManyField('Product')
+    quantity     = models.IntegerField(default=1, blank=True, null=True)
+    submontant   = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
+    remise       = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
+    create_at    = models.DateField(auto_now=True)
 
 
 class Payment(models.Model):
     id = models.AutoField(primary_key=True)
-    paymentOrder = models.ForeignKey('Order', on_delete=models.CASCADE, verbose_name='Payment Facture', )
-    person_id = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Titulaire command', )
-    montant_total = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-    livre = models.BooleanField(default=False)
-    create_at = models.DateField(auto_now=True)
+    MODE_PAYMENT = (
+        ('Espece', 'Espece'),
+        ('Orange Money', 'Orange Money'),
+        ('Mobi Cash', 'Mobi Cash'),
+        ('Sama Money', 'Sama Money'),
+        ('Wave', 'Wave'),
+        ('Virement', 'Virement'),
+        ('Transaction', 'Transaction'), )
+    mode_payment    =  models.CharField(max_length=50, choices=MODE_PAYMENT, default='Homme', )
+    paymentOrder     = models.ForeignKey('Order', on_delete=models.CASCADE, verbose_name='Payment Facture', )
+    code_payment     = models.CharField(max_length=30, blank=True, verbose_name='Code Payement')
+    person_id        = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Titulaire command', )
+    montant_total    = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
+    frais_commission = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
+    livre            = models.BooleanField(default=False)
+    create_at        = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return '{}'.format(self.code_payment)
+
+def pre_save_code_payment_id(instance, sender, *args, **kwargs):
+    if not instance.code_payment:
+        instance.code_payment = unique_payment_id_generator(instance)
+
+pre_save.connect(pre_save_code_payment_id, sender=Payment)
+
+
+
 class Region(models.Model):
     id = models.AutoField(primary_key=True)
     id_reg = models.IntegerField(null=True, blank=True)

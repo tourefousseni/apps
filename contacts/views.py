@@ -1,15 +1,15 @@
 from django.urls import reverse_lazy
 from django.urls import reverse
+from .forms import  *
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
-# from django.views.generic import ListView, CreateView
+# from django.views.generic import ListView, CreateView,  SignUpForm, EditProfileForm
 from django.template import context
 from django.template import defaulttags
 from  .models import *
-from .forms import *
 
 
 
@@ -145,41 +145,37 @@ def image_upload_view(request, **kwargs):
 def person(request):
     if request.method == 'POST':
             sta = request.POST.get("status")
-            se = request.POST.get("sex")
+            ig = request.POST.get("image")
+            gre = request.POST.get("genre")
+            usr = request.POST.get("user_id")
             cat = request.POST.get("category")
             pre = request.POST.get("prenom")
             no = request.POST.get("nom")
             cont = request.POST.get("contact_1")
-            # cin1 = request.POST.get("n_cin")
+            cont2 = request.POST.get("contact_2")
+            cin1 = request.POST.get("n_cin")
             nn = request.POST.get("nina")
             prf = request.POST.get("profession")
+            c_p = request.POST.get("code_person")
             nat = request.POST.get("nationalite")
-            # n_f = request.POST.get("n")
-            # ss = request.POST.get("siege_social")
-            # resp = request.POST.get("responsable")
-            # ema = request.POST.get("email")
+            dom = request.POST.get("domicile")
+            n_f = request.POST.get("n")
+            al = request.POST.get("alias")
+            ss = request.POST.get("siege_social")
+            resp = request.POST.get("responsable")
+            ema = request.POST.get("email")
             cret = request.POST.get('created_at')
 
-            data = Person(status=sta,
-                          prenom=pre,
-                          nom=no,
-                          sex=se,
-                          category=cat,
-                          contact_1=cont,
-                          # n_cin=cin1,
-                          nina=nn,
-                          profession=prf,
-                          nationalite=nat,
-                          # n=n_f,
-                          # siege_social=ss,
-                          # responsable=resp,
-                          # email=ema,
-                          created_at=cret)
+            data = Person(status=sta, prenom=pre, user_id=usr, nom=no,
+                          genre=gre, contact_2=cont2, alias=al, category=cat, contact_1=cont,code_person=c_p,
+                          n_cin=cin1, domicile=dom, nina=nn, profession=prf, nationalite=nat,
+                          n=n_f,  siege_social=ss,responsable=resp, email=ema,
+                          created_at=cret, image=ig)
             data.save()
 
             return HttpResponseRedirect(reverse('mesure'))
     else:
-        form = PersonForm()
+         form = PersonForm()
     return render(request, 'kalaliso/person.html', {'form': form})
 
 
@@ -242,11 +238,11 @@ def order(request):
 
 
 def order_items(request, order_id):
-    qs = Order.objects.all().order_by(-order)
+    qs = Order.objects.all().order_by()
 
-    context = {'detail_order': qs,}
+    context = {'order_items': qs,}
 
-    return render(request, 'kalaliso/order_detail.html', context)
+    return render(request, 'kalaliso/order_items.html', context)
 
 # def orderdetail(request):
 #     if request.method == 'POST':
@@ -271,7 +267,7 @@ def order_items(request, order_id):
 #         form = OrderDetailForm()
 #     return render(request, 'kalaliso/orderdetail.html', {'form': form})
 
-def orderdetail(request, ):
+def order_items(request, ):
     if request.method == 'POST':
         subm = request.POST.get("submontant")
         ca = request.POST.get("category")
@@ -292,10 +288,10 @@ def orderdetail(request, ):
         # form = PartialAuthorForm(request.POST, instance=author)
 
         data.save()
-        return HttpResponseRedirect(reverse('orderdetail'))
+        return HttpResponseRedirect(reverse('order_items'))
     else:
-        form = OrderDetailForm()
-    return render(request, 'kalaliso/orderdetail.html', {'form': form})
+        form = Order_ItemsForm()
+    return render(request, 'kalaliso/order_items.html', {'form': form})
 
 def orderdetail_detail(request, orderdetail_id):
 

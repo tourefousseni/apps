@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
 {% load static %}
-
 <body lang="en">
     <head>
             <meta charset="utf-8">
@@ -208,17 +206,14 @@
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
          Upload Image
         </a>
-      </li>
+     </li>
 
-
-<!--     {% if user.is_authenticated %}-->
-             <li>
-            <a href="{% url 'homepage' %}" class="nav-link">
+    <li>
+          <a href="{% url 'homepage' %}" class="nav-link">
            <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
           Homepage
-            </a>
-            </li>
-<!--     {% endif %}-->
+           </a>
+     </li>
 
       <li>
         <a href="{% url 'person' %}" class="nav-link link-dark">
@@ -251,7 +246,7 @@
         </a>
       </li>
       <li>
-        <a href="{% url 'orderdetail' %}" class="nav-link link-dark">
+        <a href="{% url 'order_items' %}" class="nav-link link-dark">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
           Order Detail
         </a>

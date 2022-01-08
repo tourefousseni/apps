@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.gis',
     'leaflet',
     'contacts',
-    # 'bootstrap',
+    # 'bootstrap module',
     'django_bootstrap_datetimepicker',
     'crispy_forms',
     'crispy_bootstrap5',
@@ -122,7 +122,7 @@ USE_TZ = True
 STATIC_URL       = '/static/'
 MEDIA_URL        = '/media/'
 MEDIA_ROOT       = os.path.join(BASE_DIR, 'media')
-STATIC_ROOT      = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT      = 'static'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'pyblog/static')]
 
 FORM_RENDERER = 'django.forms.renderers.DjangoTemplates'

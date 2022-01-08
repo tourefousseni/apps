@@ -1,3 +1,4 @@
+from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
@@ -5,11 +6,12 @@ from crispy_forms.bootstrap import StrictButton
 from crispy_forms.layout import Submit, Layout, Row, Column, Div, Field
 from crispy_forms.bootstrap import TabHolder, Tab
 from crispy_forms.bootstrap import InlineRadios
+from django import forms
+# from django.forms import forms
 from django.forms import ModelForm
 from django.forms import widgets
 import datetime
 from .models import *
-from django.forms import forms
 
 
 # ==============================================
@@ -29,7 +31,7 @@ class ImageForm(forms.Form):
 class PersonForm(forms.Form):
     class Meta:
         model = Person
-        fields = '__all__'
+        fields = ['__all__']
         # exclude = ('domicile', 'email', 'alias', 'type_tailleur', 'code_person','photo', 'profession', 'responsable', 'numero_reference', 'created_at')
 
         def __init__(self, *args, **kwargs):

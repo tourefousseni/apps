@@ -1,15 +1,15 @@
 from django.urls import reverse_lazy
 from django.urls import reverse
-from .forms import  *
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
-# from django.views.generic import ListView, CreateView,  SignUpForm, EditProfileForm
+# from django.views.generic import ListView, CreateView
 from django.template import context
 from django.template import defaulttags
 from  .models import *
+from .forms import *
 
 
 
@@ -143,7 +143,8 @@ def image_upload_view(request, **kwargs):
 
 
 def person(request):
-    if request.method == 'POST':
+
+    if request.method == 'POST' or None:
             sta = request.POST.get("status")
             ig = request.POST.get("image")
             gre = request.POST.get("genre")
@@ -159,6 +160,9 @@ def person(request):
             c_p = request.POST.get("code_person")
             nat = request.POST.get("nationalite")
             dom = request.POST.get("domicile")
+            nur = request.POST.get("numero_reference")
+            tutl = request.POST.get("tutuelle")
+            telp_fix = request.POST.get("telephonique_fix")
             n_f = request.POST.get("n")
             al = request.POST.get("alias")
             ss = request.POST.get("siege_social")
@@ -168,14 +172,14 @@ def person(request):
 
             data = Person(status=sta, prenom=pre, user_id=usr, nom=no,
                           genre=gre, contact_2=cont2, alias=al, category=cat, contact_1=cont,code_person=c_p,
-                          n_cin=cin1, domicile=dom, nina=nn, profession=prf, nationalite=nat,
-                          n=n_f,  siege_social=ss,responsable=resp, email=ema,
+                          n_cin=cin1, telephonique_fix=telp_fix, numero_reference=nur,
+                          tutuelle=tutl, domicile=dom, nina=nn, profession=prf, nationalite=nat,
+                          n=n_f,  siege_social=ss, responsable=resp, email=ema,
                           created_at=cret, image=ig)
             data.save()
-
             return HttpResponseRedirect(reverse('mesure'))
     else:
-         form = PersonForm()
+         form=PersonForm()
     return render(request, 'kalaliso/person.html', {'form': form})
 
 

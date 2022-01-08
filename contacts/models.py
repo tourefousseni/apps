@@ -53,7 +53,7 @@ class Person(models.Model):
         ('P', 'Petite'),
     )
     status              = models.CharField(max_length=20, choices=STATUS, default='CLIENT')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Utilisateur')
+    user                = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Utilisateur')
     type_tailleur       = models.CharField(max_length=20, choices=TYPE_TAILLEUR,)
     genre               = models.CharField(max_length=20, choices=GENRE, default='Homme')
     category            = models.CharField(max_length=20, choices=CATEGORY, default='Grande')
@@ -123,7 +123,7 @@ class Product(models.Model):
     name              = models.CharField(max_length=50, choices=Name, default='Boubou',)
     code_product      = models.CharField(max_length=30, blank=True, null=True, verbose_name='Code Produit')
     description       = models.CharField(max_length=30, blank=True, null=True)
-    image             = models.ManyToManyField('Image', verbose_name='ALBUM')
+    image             = models.ForeignKey('Image', on_delete=models.CASCADE, verbose_name='ALBUM')
     price             = models.DecimalField(decimal_places=2, max_digits=20, default=100.25, null=True, blank=True)
     create_at         = models.DateField(auto_now=True)
 
@@ -173,7 +173,7 @@ class Order(models.Model):
     person_id   = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Customer',)
     code_order  = models.CharField(max_length=30, blank=True, verbose_name='Code order')
     reception   = models.BooleanField(default=True)
-    order_items = models.ManyToManyField('Order_Items', verbose_name='add_items')
+    order_items = models.ForeignKey('Order_Items', on_delete=models.CASCADE, verbose_name='add_items')
     rendez_vous = models.DateField(auto_now=True)
     localization=  models.ForeignKey('Region', on_delete=models.CASCADE, verbose_name='Localisation',)
     confirmed   =  models.BooleanField(default=True)
@@ -219,7 +219,7 @@ class Payment(models.Model):
         ('Virement', 'Virement'),
         ('Transaction', 'Transaction'), )
     mode_payment     =  models.CharField(max_length=50, choices=MODE_PAYMENT, default='Homme', )
-    payment_Order    = models.ManyToManyField('Order', verbose_name='Payment Facture', )
+    payment_Order    = models.ForeignKey('Order', on_delete=models.CASCADE, blank=True, null=True, verbose_name='Payment Facture', )
     code_payment     = models.CharField(max_length=30, blank=True, verbose_name='Code Payement')
     person_id        = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Titulaire command', )
     mount            = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True, verbose_name='Montant Total')
@@ -240,6 +240,7 @@ pre_save.connect(pre_save_code_payment_id, sender=Payment)
 
 class Region(models.Model):
     id        = models.AutoField(primary_key=True)
+    id_reg    = models.IntegerField( blank=True, null=True)
     name      = models.CharField(max_length=100,)
 
     def __str__(self):
@@ -247,21 +248,24 @@ class Region(models.Model):
 
 class Cercle(models.Model):
     id        = models.AutoField(primary_key=True)
-    name      = models.ManyToManyField('Region',  verbose_name='Cercle',)
+    id_cer    = models.IntegerField( blank=True, null=True)
+    name      = models.ForeignKey('Region', on_delete=models.CASCADE,  verbose_name='Cercle',)
 
     def __str__(self):
         return '{}'.format(self.name)
 
 class Commune(models.Model):
     id        = models.AutoField(primary_key=True)
-    name      = models.ManyToManyField('Cercle', verbose_name='Commune',)
+    id_com    = models.IntegerField( blank=True, null=True)
+    name      = models.ForeignKey('Cercle', on_delete=models.CASCADE, verbose_name='Commune',)
 
     def __str__(self):
         return '{}'.format(self.name)
 
 class Village(models.Model):
     id           = models.AutoField(primary_key=True)
-    name         = models.ManyToManyField('Commune',  verbose_name='Village',)
+    id_vil       = models.IntegerField( blank=True, null=True)
+    name         = models.ForeignKey('Commune', on_delete=models.CASCADE, verbose_name='Village',)
 
     def __str__(self):
         return '{}'.format(self.name)

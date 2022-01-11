@@ -1,4 +1,4 @@
-{% extends 'base_kalaliso.html' %}
+{% extends 'base.html' %}
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 {% block title %} CONTENU COMMANDE {% endblock %}
@@ -27,7 +27,7 @@
       <tbody>
                     {% for order in order_detail %}
                            <tr>
-                                <td><a href="{% url 'order_items' order.id %}"></a></td>
+                                <td><a href="{% url 'order_items' order_items.id %}"></a></td>
 {#                                <td><input type="checkbox" class="checkthis" /></td>#}
                                 <td>{{ order.id }}</td>
                                 <td>{{ order.code_order }}</td>
@@ -54,5 +54,5 @@
                 {% endfor %}
         </tbody>
     </table>
+ </div>
 {% endblock content %}
-</div>

@@ -142,7 +142,7 @@ def image_upload_view(request, **kwargs):
 
 
 
-def person(request):
+def person(request, *args, **kwargs):
 
     if request.method == 'POST' or None:
             sta = request.POST.get("status")
@@ -168,10 +168,10 @@ def person(request):
             ss = request.POST.get("siege_social")
             resp = request.POST.get("responsable")
             ema = request.POST.get("email")
-            cret = request.POST.get('created_at')
+            cret = request.POST.get("created_at")
 
             data = Person(status=sta, prenom=pre, user_id=usr, nom=no,
-                          genre=gre, contact_2=cont2, alias=al, category=cat, contact_1=cont,code_person=c_p,
+                          genre=gre, contact_2=cont2, alias=al, category=cat, contact_1=cont, code_person=c_p,
                           n_cin=cin1, telephonique_fix=telp_fix, numero_reference=nur,
                           tutuelle=tutl, domicile=dom, nina=nn, profession=prf, nationalite=nat,
                           n=n_f,  siege_social=ss, responsable=resp, email=ema,
@@ -180,7 +180,7 @@ def person(request):
             return HttpResponseRedirect(reverse('mesure'))
     else:
          form=PersonForm()
-    return render(request, 'kalaliso/person.html', {'form': form})
+    return render(request, 'kalaliso/person.html', {'form':form})
 
 
 def person_detail(request, person_id):

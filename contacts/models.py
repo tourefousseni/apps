@@ -71,7 +71,7 @@ class Person(models.Model):
     tutuelle            = models.CharField(max_length=30, null=True, blank=True)
     telephonique_fix    = models.CharField(max_length=15, null=True, blank=True)
     numero_reference    = models.PositiveIntegerField(null=True, blank=True)
-    nina = models.CharField(max_length=30,null=True, blank=True)
+    nina = models.CharField(max_length=30, null=True, blank=True)
     created_at          = models.DateField(auto_now=True)
 
     def __str__(self):

@@ -1,12 +1,11 @@
-from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
+# from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
 from crispy_forms.bootstrap import StrictButton
 from crispy_forms.layout import Submit, Layout, Row, Column, Div, Field
 from crispy_forms.bootstrap import TabHolder, Tab
 from crispy_forms.bootstrap import InlineRadios
-from django import forms
+# from django import forms
 # from django.forms import forms
 from django.forms import ModelForm
 from django.forms import widgets
@@ -14,11 +13,13 @@ import datetime
 from .models import *
 
 
+
+
 # ==============================================
 #                  FORM KALALISO
 #                        START
 # ==============================================
-class ImageForm(forms.Form):
+class ImageForm(ModelForm):
     class Meta:
         model = Image
         fields = ['title', 'slug','tags','type', 'category', 'genre', 'image', ]
@@ -28,10 +29,10 @@ class ImageForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)
 
-class PersonForm(forms.Form):
+class PersonForm(ModelForm):
     class Meta:
         model = Person
-        fields = ['__all__']
+        fields = ('__all__')
         # exclude = ('domicile', 'email', 'alias', 'type_tailleur', 'code_person','photo', 'profession', 'responsable', 'numero_reference', 'created_at')
 
         def __init__(self, *args, **kwargs):
@@ -51,7 +52,7 @@ class PersonForm(forms.Form):
                 InlineRadios('category'),
                 'contact_1', )
 
-class MesureForm(forms.Form):
+class MesureForm(ModelForm):
     class Meta:
         model = Mesure
         fields = '__all__'
@@ -61,7 +62,7 @@ class MesureForm(forms.Form):
         self.helper = FormHelper(self)
 
 
-class ProductForm(forms.Form):
+class ProductForm(ModelForm):
     class Meta:
          model = Product
          fields = '__all__'
@@ -71,7 +72,7 @@ class ProductForm(forms.Form):
         self.helper = FormHelper(self)
 
 
-class OrderForm(forms.Form):
+class OrderForm(ModelForm):
     class Meta:
         models = Order
         fields = '__all__'
@@ -81,7 +82,7 @@ class OrderForm(forms.Form):
         self.helper = FormHelper(self)
 
 
-class Order_ItemsForm(forms.Form):
+class Order_ItemsForm(ModelForm):
     class Meta:
         models = Order_Items
         fields = '__all__'
@@ -93,7 +94,7 @@ class Order_ItemsForm(forms.Form):
 
 
 
-class PaymentForm(forms.Form):
+class PaymentForm(ModelForm):
     class Meta:
         models = Payment
         fields = '__all__'

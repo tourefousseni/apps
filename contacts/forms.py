@@ -1,15 +1,16 @@
-# from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth.models import User
 from crispy_forms.helper import FormHelper
 from crispy_forms.bootstrap import StrictButton
 from crispy_forms.layout import Submit, Layout, Row, Column, Div, Field
 from crispy_forms.bootstrap import TabHolder, Tab
 from crispy_forms.bootstrap import InlineRadios
-# from django import forms
-# from django.forms import forms
+
+from django.forms import forms
 from django.forms import ModelForm
 from django.forms import widgets
 import datetime
+# from .forms import *
 from .models import *
 
 
@@ -32,25 +33,36 @@ class ImageForm(ModelForm):
 class PersonForm(ModelForm):
     class Meta:
         model = Person
-        fields = ('__all__')
-        # exclude = ('domicile', 'email', 'alias', 'type_tailleur', 'code_person','photo', 'profession', 'responsable', 'numero_reference', 'created_at')
+        fields = ['status','nom','prenom','contact_1','genre','category', 'domicile', 'email', 'image', 'contact_2',
+                  'alias', 'type_tailleur', 'code_person', 'photo', 'profession', 'responsable', 'date_naissance',
+                  'nationalite', 'tutuelle', 'telephonique_fix', 'nina', 'numero_reference', 'created_at']
+
+        exclude = ['domicile','email','image', 'contact_2','alias',
+                   'type_tailleur', 'code_person', 'photo', 'profession',
+                   'responsable','date_naissance','nationalite', 'tutuelle',
+                   'telephonique_fix','nina', 'numero_reference','created_at']
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
+            self.helper = FormHelper(self)
 
-            self.helper = FormHelper()
-            self.helper.form_method = 'POST'
-            self.helper.add_input(Submit('submit', 'Save Person'))
-            self.helper.add_input(Submit('cancel', css_class='btn btn-danger'))
-            self.helper.layout = Layout(
-                Row(
-                    Column('prenom'),
-                    Column('nom'),
-                ),
-                InlineRadios('status'),
-                InlineRadios('sex'),
-                InlineRadios('category'),
-                'contact_1', )
+        #     self.helper.form_method = 'POST'
+        #     self.helper.add_input(Submit('submit', 'Save Person'))
+        #     self.helper.add_input(Submit('cancel', css_class='btn btn-danger'))
+        #     self.helper.layout = Layout(
+        #         Row(
+        #             Column('prenom'),
+        #             Column('nom'),
+        #             Column('status'),
+        #             Column('email'),
+        #             Column('domicile'),
+        #             Column('alias'),
+        #             Column('contact_1'),
+        #         ),
+        #         InlineRadios('status'),
+        #         InlineRadios('genre'),
+        #         InlineRadios('category'),
+        #     )
 
 class MesureForm(ModelForm):
     class Meta:
@@ -110,7 +122,8 @@ class PaymentForm(ModelForm):
 
 
 # class EditProfileForm(UserChangeForm):
-#         password = forms.CharField(label="", widget=forms.TextInput(attrs={'type': 'hidden'}))
+#         password = forms.CharField(label="", as_widget=forms.TextInput(attrs={'type': 'hidden'}))
+#
 #         class Meta:
 #             model = User
 #             fields = ('username',
@@ -118,7 +131,15 @@ class PaymentForm(ModelForm):
 #                       'last_name',
 #                       'email',
 #                       'password')
-
+#
+#
+# class  PasswordRsestForm(PasswordChangeForm):
+#     password = forms.CharField(label="", as_widget=forms.TextInput(attrs={'type': 'hidden'}))
+#
+#     class Meta:
+#         model = User
+#         fields = ('__all__')
+#
 # class SignUpForm(UserCreationForm):
 #     email      = forms.EmailField(label='', widget=forms.EmailInput(attrs={'class': 'form-control','placeholder':'Enter Email Here' }))
 #     last_name  = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Last Name' }))

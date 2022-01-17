@@ -53,7 +53,7 @@ class Person(models.Model):
         ('P', 'Petite'),
     )
     status              = models.CharField(max_length=20, choices=STATUS, default='CLIENT')
-    user                = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Utilisateur')
+    # user                = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Utilisateur')
     type_tailleur       = models.CharField(max_length=20, choices=TYPE_TAILLEUR,)
     genre               = models.CharField(max_length=20, choices=GENRE, default='Homme')
     category            = models.CharField(max_length=20, choices=CATEGORY, default='Grande')
@@ -71,7 +71,7 @@ class Person(models.Model):
     tutuelle            = models.CharField(max_length=30, null=True, blank=True)
     telephonique_fix    = models.CharField(max_length=15, null=True, blank=True)
     numero_reference    = models.PositiveIntegerField(null=True, blank=True)
-    nina = models.CharField(max_length=30, null=True, blank=True)
+    nina                = models.CharField(max_length=30, null=True, blank=True)
     created_at          = models.DateField(auto_now=True)
 
     def __str__(self):

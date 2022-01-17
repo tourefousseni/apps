@@ -6,15 +6,10 @@
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <meta name="description" content="">
-            <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-            <meta name="generator" content="Hugo 0.84.0">
-            <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
-            <title class="offset-1">KALALISO{% block title %}
-                {% endblock %}
-            </title>
+            <title class="offset-1">KALALISO{% block title %} {% endblock %}</title>
             <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
             <link rel="stylesheet" href="{% static 'bootstrap/css/style.css' %}">
-    <style>
+<style>
         h5{
             color: red;
             margin: 2%;
@@ -37,6 +32,9 @@
             position: relative;
             bottom: 550px;
           }
+        .footer {
+
+        }
 
        album {
             bottom:450px ;
@@ -66,13 +64,8 @@
           font-size: 3.5rem;
         }
       }
+</style>
 
-      /*@media (min-width: 768px) {*/
-      /*  .bd-placeholder-img-lg {*/
-      /*    font-size: 3.5rem;*/
-      /*  }*/
-      /*}*/
-    </style>
 </head>
 
  <header>
@@ -271,12 +264,12 @@
 
 </main>
 </div>
-    <div >
+    <div>
          <div class=container>
                 {% block content %}
                 {% endblock %}<br />
           </div>
-      </div>
+    </div>
 
 </div>
 <footer><br/><hr>

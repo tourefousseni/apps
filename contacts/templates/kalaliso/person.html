@@ -1,44 +1,50 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
 {% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
 {% load static %}
 
 {% block content %}
-    <h4 class="text-left offset-1">INSCRIPTION</h4>
-    <form action="{% url 'person' %}" method="post">
-         {% csrf_token %}
-            <div class="row offset-1">
-                 <div class="form-group col-sm-3 mb-0 ">
-                     {{form.user_id|as_crispy_field}}
-                </div>
-                <div class="form-group col-sm-3 mb-0 ">
-                     {{form.status|as_crispy_field}}
-                </div>
-                <div class=" form-group col-sm-3 mb-0">
-                     {{form.genre|as_crispy_field}}
-                </div>
-                <div class="form-group col-sm-3 mb-0">
-                   {{form.category|as_crispy_field}}
-                </div>
-             </div>
+      <h4 class="text-left offset-1">INSCRIPTION</h4>
+      <div class="row">
+          <div>
+            <form action="{% url 'person' %}" method="post">
+                 {% csrf_token %}
+        <!--        {{ form.as_p }}-->
+                       <div class="row offset-1">
+                        <div class="form-group col-sm-3 mb-0 ">
+                             {{ form.status|as_crispy_field }}
+                        </div>
+                        <div class=" form-group col-sm-3 mb-0">
+                             {{ form.genre|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-sm-3 mb-0">
+                           {{ form.category|as_crispy_field }}
+                        </div>
+                     </div>
 
-             <div class="row offset-1">
-                <div class="form-group col-md-3 mb-0">
-                    {{form.prenom|as_crispy_field}}
-                </div>
-                <div class="form-group col-md-3 mb-0">
-                    {{form.nom|as_crispy_field}}
-                </div>
-                 <div class="form-group col-md-3 mb-0">
-                    {{form.contact_1|as_crispy_field}}
-                 </div>
-              </div>
+                     <div class="row offset-1">
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.prenom|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.nom|as_crispy_field }}
+                        </div>
+                         <div class="form-group col-md-3 mb-0">
+                            {{ form.contact_1|as_crispy_field }}
+                         </div>
+                      </div>
                 <div class="row offset-2">
-                        <div class="col-12 justify-content-center">
-                                 <input type="submit" value="Submit" class="btn btn-primary col-md-4">
-                                 <input type="submit" value="Reset" class="btn btn-danger col-md-4">
-                       </div>
-                </div>
-    </form>
-<!--{#    <script type="text/javascript" src="{% staticfiles '' %}"></script>#}-->
+                                <div class="col-12 justify-content-center">
+                                         <input type="submit" value="Submit" class="btn btn-primary col-md-3">
+                                         <input type="submit" value="Reset" class="btn btn-danger col-md-3">
+                               </div>
+                        </div>
+            </form>
+        </div>
+       </div>
 {% endblock %}
+
+<!--{#    <script type="text/javascript" src="{% staticfiles '' %}"></script>#}-->
+
+
+

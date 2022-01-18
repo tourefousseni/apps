@@ -9,28 +9,11 @@
               <div>
                   <form action="{% url 'product' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <div class="form-group col-sm-6 mb-0">
-                        {{ form.name|as_crispy_field }}
-                    </div>
-
-                    <div class="form-group col-sm-6 mb-0">
-                        {{ form.code_product|as_crispy_field }}
-                    </div>
-
-                   <div class="form-group col-sm-6 mb-0">
-                        {{ form.description|as_crispy_field }}
-                    </div>
-
-                    <div class="form-group col-sm-6 mb-0">
-                        {{ form.price|as_crispy_field }}
-                    </div>
-
-                    <div class="form-group col-sm-6 mb-0">
-                        {{ form.create_at|as_crispy_field }}
-                    </div>
-                   <div class="form-group col-sm-6 mb-0">
-                        {{ form.image_id|as_crispy_field }}
-                   </div>
+                      <div>
+                           <div class="form-group col-sm-4 mb-0">
+                              {{ form|crispy }}
+                           </div>
+                      </div>
                    <br />
                    <div class="row offset-4">
                      <div class="col-12 justify-content-center">

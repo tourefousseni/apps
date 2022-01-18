@@ -169,6 +169,85 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+
+                    <!--                    <div class="form-group col-sm-4 mb-0">-->
+<!--                        {{ form.code_order|as_crispy_field }}-->
+<!--                    </div>-->
+<!--                    <div class="form-group col-sm-4 mb-0">-->
+<!--                        {{ form.reception|as_crispy_field }}-->
+<!--                    </div>-->
+<!--                      <div class="form-group col-sm-4 mb-0">-->
+<!--                        {{ form.rendez_vous|as_crispy_field }}-->
+<!--                    </div>-->
+<!--                     <div class="form-group col-sm-4 mb-0">-->
+<!--                        {{ form.confirmed|as_crispy_field }}-->
+<!--                    </div>-->
+<!--                     <div class="form-group col-sm-4 mb-0">-->
+<!--                        {{ form.cancelled|as_crispy_field }}-->
+<!--                    </div>-->
+<!--                    <div class="form-group col-sm-4 mb-0">-->
+<!--                        {{ form.remise|as_crispy_field }}-->
+<!--                    </div>-->
+<!--                    <div class="form-group col-sm-4 mb-0">-->
+<!--                        {{ form.create_at|as_crispy_field }}-->
+<!--                    </div>-->
+<!--                  <div class="form-group col-sm-4 mb-0">&ndash;&gt;-->
+<!--                        {{ form.localization_id|as_crispy_field }}-->
+<!--                    </div>-->
+<!--                    <div class="form-group col-sm-4 mb-0">-->
+<!--                       {{ form.order_items_id|as_crispy_field }}-->
+<!--                    </div>-->
+<!--                    <div class="form-group col-sm-4 mb-0">-->
+<!--                       {{ form.person_id|as_crispy_field }}-->
+<!--                    </div>-->
+
+
+                    <!--                    <div class="form-group col-sm-6 mb-0">-->
+<!--                        {{ form.name|as_crispy_field }}-->
+<!--                    </div>-->
+
+<!--                    <div class="form-group col-sm-6 mb-0">-->
+<!--                        {{ form.code_product|as_crispy_field }}-->
+<!--                    </div>-->
+
+<!--                   <div class="form-group col-sm-6 mb-0">-->
+<!--                        {{ form.description|as_crispy_field }}-->
+<!--                    </div>-->
+
+<!--                    <div class="form-group col-sm-6 mb-0">-->
+<!--                        {{ form.price|as_crispy_field }}-->
+<!--                    </div>-->
+
+<!--                    <div class="form-group col-sm-6 mb-0">-->
+<!--                        {{ form.create_at|as_crispy_field }}-->
+<!--                    </div>-->
+<!--                   <div class="form-group col-sm-6 mb-0">-->
+<!--                        {{ form.image_id|as_crispy_field }}-->
+<!--                   </div>-->
+
+                    {#            justify-content-center#}
+            <div class="form-group col-sm-4 mb-0">
+                {{ form.montant_total|as_crispy_field }}
+            </div>
+
+            <div class="form-group col-sm-4 mb-0">
+                {{ form.person_id|as_crispy_field }}
+            </div>
+        </div>
+        <div class="row offset-1">
+            <div class="form-group col-sm-4 mb-0">
+                {{ form.paymentOrder|as_crispy_field }}
+            </div>
+             <div class="form-group col-sm-4 mb-0">
+                {{ form.create_at|as_crispy_field }}
+         </div>
+           <div class="row offset-sm-0">
+             <div class="form-group">
+                {{ form.livre|as_crispy_field }}
+            </div>
+            </div>
+
 GDAL_LIBRARY_PATH='/Users/me/.pyenv/versions/3.6.5/lib/python3.6/site-packages/django/contrib/gis/gdal/libgdal.py'
 GDAL_LIBRARY_PATH='/venv/lib/python3.6/site-packages/django/contrib/gis/gdal/libgdal.py'
 GDAL_LIBRARY_PATH='/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/contrib/gis/gdal/libgdal.py'

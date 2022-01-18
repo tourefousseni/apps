@@ -174,12 +174,12 @@ class Order(models.Model):
     code_order  = models.CharField(max_length=30, blank=True, verbose_name='Code order')
     reception   = models.BooleanField(default=True)
     order_items = models.ForeignKey('Order_Items', on_delete=models.CASCADE, verbose_name='add_items')
-    rendez_vous = models.DateField(auto_now=True)
-    localization=  models.ForeignKey('Region', on_delete=models.CASCADE, verbose_name='Localisation',)
-    confirmed   =  models.BooleanField(default=True)
-    cancelled   =  models.BooleanField(default=False)
-    remise = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-    create_at   = models.DateField(auto_now=True)
+    rendez_vous = models.DateField(auto_now=False)
+    localization= models.ForeignKey('Region', on_delete=models.CASCADE, verbose_name='Localisation',)
+    confirmed   = models.BooleanField(default=True)
+    cancelled   = models.BooleanField(default=False)
+    remise      = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
+    create_at   = models.DateField(auto_now=False)
 
     def __str__(self):
         return str(self.code_order)

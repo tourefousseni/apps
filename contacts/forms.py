@@ -33,36 +33,19 @@ class ImageForm(ModelForm):
 class PersonForm(ModelForm):
     class Meta:
         model = Person
-        fields = ['status','nom','prenom','contact_1','genre','category', 'domicile', 'email', 'image', 'contact_2',
-                  'alias', 'type_tailleur', 'code_person', 'photo', 'profession', 'responsable', 'date_naissance',
-                  'nationalite', 'tutuelle', 'telephonique_fix', 'nina', 'numero_reference', 'created_at']
+        fields = ['status','nom','prenom','contact_1','genre','category','domicile','email','image','contact_2',
+                  'alias','type_tailleur','code_person','photo','profession','responsable','date_naissance',
+                  'nationalite','tutuelle','telephonique_fix','nina','numero_reference','created_at']
 
         exclude = ['domicile','email','image', 'contact_2','alias',
-                   'type_tailleur', 'code_person', 'photo', 'profession',
-                   'responsable','date_naissance','nationalite', 'tutuelle',
-                   'telephonique_fix','nina', 'numero_reference','created_at']
+                    'code_person','photo', 'profession',
+                    'responsable','date_naissance','nationalite','tutuelle',
+                    'telephonique_fix','nina','numero_reference','created_at']
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
             self.helper = FormHelper(self)
 
-        #     self.helper.form_method = 'POST'
-        #     self.helper.add_input(Submit('submit', 'Save Person'))
-        #     self.helper.add_input(Submit('cancel', css_class='btn btn-danger'))
-        #     self.helper.layout = Layout(
-        #         Row(
-        #             Column('prenom'),
-        #             Column('nom'),
-        #             Column('status'),
-        #             Column('email'),
-        #             Column('domicile'),
-        #             Column('alias'),
-        #             Column('contact_1'),
-        #         ),
-        #         InlineRadios('status'),
-        #         InlineRadios('genre'),
-        #         InlineRadios('category'),
-        #     )
 
 class MesureForm(ModelForm):
     class Meta:
@@ -77,6 +60,7 @@ class MesureForm(ModelForm):
 class ProductForm(ModelForm):
     class Meta:
          model = Product
+         template_name = 'kalaliso/product.html'
          fields = '__all__'
 
     def __init__(self, *args, **kwargs):
@@ -86,8 +70,15 @@ class ProductForm(ModelForm):
 
 class OrderForm(ModelForm):
     class Meta:
-        models = Order
-        fields = '__all__'
+        model = Order
+        template_name = 'kalaliso/order.html'
+
+        fields = ['reception',
+                  'create_at','confirmed',
+                  'cancelled','person_id','localization',
+                  'order_items','rendez_vous','remise']
+
+        exclude = ['code_order']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -96,7 +87,7 @@ class OrderForm(ModelForm):
 
 class Order_ItemsForm(ModelForm):
     class Meta:
-        models = Order_Items
+        model = Order_Items
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):
@@ -104,11 +95,9 @@ class Order_ItemsForm(ModelForm):
         self.helper = FormHelper(self)
 
 
-
-
 class PaymentForm(ModelForm):
     class Meta:
-        models = Payment
+        model = Payment
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):

@@ -218,19 +218,28 @@ def product_detail(request, product_id):
 
 def order(request):
     if request.method == 'POST':
-            ida = request.POST.get("id")
+            # ida = request.POST.get("id")
             cd = request.POST.get("code_order")
-            recep = request.POST.get("reception")
-            creat = request.POST.get("create_at")
-            data = Order(id=ida,
-                         code_order=cd,
-                         reception=recep,
-                         create_at=creat,)
-            data.save()
+            rend = request.POST.get("rendez_vous")
+            confr = request.POST.get("confirmed")
+            cancel = request.POST.get("cancelled")
+            rem = request.POST.get("remise")
+            recp = request.POST.get("reception")
+            crt = request.POST.get("create_at")
 
+            data = Order(
+                         # id=ida,
+                         code_order=cd,
+                         rendez_vous=rend,
+                         confirmed=confr,
+                         cancelled=cancel,
+                         remise=rem,
+                         reception=recp,
+                         create_at=crt)
+            data.save()
             return HttpResponseRedirect(reverse('order_detail'))
     else:
-        form = OrderForm()
+        form=OrderForm()
     return render(request, 'kalaliso/order.html', {'form': form})
 
 
@@ -270,13 +279,12 @@ def order_items(request, ):
         ca = request.POST.get("category")
         qt = request.POST.get("quantity")
         # tv = request.POST.get("tva")
-        rm = request.POST.get("remise")
+        # rm = request.POST.get("remise")
         creat = request.POST.get("create_at")
 
         data = Order_Items(
                            submontant=subm,
                            category=ca,
-                           remise=rm,
                            quantity=qt,
                            # tva=tv,
                            create_at=creat,)
@@ -314,7 +322,7 @@ def mesure(request,):
             pat = request.POST.get("patte")
             cre = request.POST.get('created_at')
             upd = request.POST.get('update_at')
-            pmid = request.POST.get('person_mesure_id')
+            pmid = request.POST.get('person_mesure_id=id')
 
             data = Mesure(id=id,
                           coude=coud,
@@ -354,17 +362,17 @@ def mesure_detail(request, mesure_id):
 def payment(request,):
         if request.method == 'POST':
 
-            rm = request.POST.get("remise")
+            # rm = request.POST.get("remise")
             tv = request.POST.get("tva")
             mt = request.POST.get("montant_total")
-            rd = request.POST.get("rendez_vous")
+            # rd = request.POST.get("rendez_vous")
             lv = request.POST.get("livre")
             creat = request.POST.get("create_at")
             data = Payment(
-                           remise=rm,
+                           # remise=rm,
                            tva=tv,
                            montant_total=mt,
-                           rendez_vous=rd,
+                           # rendez_vous=rd,
                            livre=lv,
                            create_at=creat,)
             data.save()

@@ -32,9 +32,10 @@ urlpatterns = [
       path('change/password/', views.change_password, name='change_password'),
 
 
-      path('order_items/', views.order_items, name='order_items'),
+
       path('orderdetail/detail/<int:order_items_id>/', views.orderdetail_detail, name='orderdetail_detail'),
       path('order/', views.order, name='order'),
+      path('order_items/', views.order_items, name='order_items'),
       path('order/detail/<int:order_id>/', views.order_items, name='order_items'),
       path('product/', views.product, name='product'),
       path('product/detail/<int:product_id>/', views.product_detail, name='product_detail'),

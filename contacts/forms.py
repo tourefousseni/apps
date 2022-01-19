@@ -4,11 +4,10 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.bootstrap import StrictButton
 from crispy_forms.layout import Submit, Layout, Row, Column, Div, Field
 from crispy_forms.bootstrap import TabHolder, Tab
-from crispy_forms.bootstrap import InlineRadios
-
-from django.forms import forms
+from crispy_forms.bootstrap import InlineRadios, FormActions
 from django.forms import ModelForm
 from django.forms import widgets
+from django import forms
 import datetime
 # from .forms import *
 from .models import *
@@ -61,28 +60,67 @@ class ProductForm(ModelForm):
     class Meta:
          model = Product
          template_name = 'kalaliso/product.html'
-         fields = '__all__'
+         fields = ['name', 'code_product', 'description', 'price', 'create_at', 'image']
+         exclude = ['create_at', 'code_product']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.helper = FormHelper(self)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
 
+        self.helper.layout = Layout(
+            Row(
+                Column('name'),
+                Column('price'),
+            ),
+            'descripttion',
+            'image',
+            FormActions(
+                Submit('save_product', 'Save'),
+                Submit('cancel', 'Cancel', css_class='btn btn-danger')
+            ),
+        )
 
 class OrderForm(ModelForm):
     class Meta:
         model = Order
         template_name = 'kalaliso/order.html'
 
-        fields = ['reception',
-                  'create_at','confirmed',
-                  'cancelled','person_id','localization',
-                  'order_items','rendez_vous','remise']
+        fields = ['person_id',
+                  'reception',
+                  'order_items',
+                  'localization',
+                  'confirmed',
+                  'cancelled',
+                  'rendez_vous',
+                  'create_at',
+                  'remise']
 
         exclude = ['code_order']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.helper = FormHelper(self)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.layout = Layout(
+            Row(
+                Column('person_id'),
+                Column('reception'),
+            ),
+            InlineRadios('confirmed'),
+            InlineRadios('cancelled'),
+
+            'remise',
+            'order_items',
+            'localization',
+            'rendez_vous',
+
+             FormActions(
+                Submit('save_product', 'Save'),
+                Submit('cancel', 'Cancel', css_class='btn btn-danger')
+            )
+
+        )
 
 
 class Order_ItemsForm(ModelForm):

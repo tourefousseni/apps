@@ -43,20 +43,18 @@ def random_string_generator():
     return result
 
 def unique_product_id_generator(instance):
-    code_produit_new_id = random_string_generator()
+    code_product_new_id = random_string_generator()
 
     Klass = instance.__class__
-
-    qs_exists = Klass.objects.filter(code_produit=code_produit_new_id).exists()
+    qs_exists = Klass.objects.filter(code_produit=code_product_new_id).exists()
     if qs_exists:
         return unique_product_id_generator(instance)
-    return code_produit_new_id
+    return code_product_new_id
 
 def unique_order_id_generator(instance):
     code_order_new_id = random_string_generator()
 
     Klass = instance.__class__
-
     qs_exists = Klass.objects.filter(code_order=code_order_new_id).exists()
     if qs_exists:
         return unique_order_id_generator(instance)
@@ -71,6 +69,17 @@ def unique_person_id_generator(instance):
     if qs_exists:
         return unique_person_id_generator(instance)
     return code_person_new_id
+
+def unique_payment_id_generator(instance):
+    code_payment_new_id = random_string_generator()
+
+    Klass = instance.__class__
+    qs_exists = Klass.objects.filter(code_payment=code_payment_new_id).exists()
+    if qs_exists:
+        return unique_payment_id_generator(instance)
+    return code_payment_new_id
+
+
 # =================================
 #         KALALISO RANDOM
 #             END

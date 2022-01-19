@@ -1,5 +1,5 @@
-{% extends 'base_kalaliso.html' %}
-{% block title %} Upload {% endblock %}
+{% extends 'base.html' %}
+<!--{% block title %} Upload {% endblock %}-->
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 {% load static %}
@@ -11,7 +11,7 @@
 <!--                     <div class="col-md-4">-->
                           <form  method="post" enctype="multipart/form-data">
                           {% csrf_token %}
-                                {{ form.as_ul }}
+                                {{ form|crispy }}
                                <button type="submit" class="btn btn-primary"> Submit</button>
                            </form>
 <!--                      </div>-->

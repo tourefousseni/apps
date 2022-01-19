@@ -1,0 +1,32 @@
+
+h5{
+    color: red;
+    margin-top: auto;
+}
+
+body{
+    background-color: beige;
+}
+
+.target{
+    background-color: red;
+}
+
+/*map{  !* all maps *!*/
+        /*width:  1600px;*/
+        /*height: 1400px;*/
+        /*border: red;*/
+    /*}*/
+
+navbar{
+    text-decoration-color: red;
+}
+/*#specialbigmap {*/
+        /*height: 800px;*/
+    /*}*/
+
+    /* Resize the "display_raw" textbox */
+/*.django-leaflet-raw-textarea {*/
+        /*width: 100%;*/
+    /*}*/
+

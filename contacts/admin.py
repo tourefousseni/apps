@@ -5,6 +5,8 @@ from django.db import models
 # from leaflet.admin import LeafletGeoAdmin
 
 # Register your models here.
+
 from .models import Image
+
 
 admin.site.register(Image)

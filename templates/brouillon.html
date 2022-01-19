@@ -154,6 +154,8 @@ ALTER ROLE myprojectuser SET client_encoding TO 'utf8';
 ALTER ROLE myprojectuser SET timezone TO 'UTC';
 GRANT ALL PRIVILEGES ON DATABASE plateform TO myprojectuser;
 
+<!--            <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">-->
+
 
 how create account with django 1.11 https://youtu.be/V1DOQyB5LXA
 
@@ -167,6 +169,85 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+
+                    <!--                    <div class="form-group col-sm-4 mb-0">-->
+<!--                        {{ form.code_order|as_crispy_field }}-->
+<!--                    </div>-->
+<!--                    <div class="form-group col-sm-4 mb-0">-->
+<!--                        {{ form.reception|as_crispy_field }}-->
+<!--                    </div>-->
+<!--                      <div class="form-group col-sm-4 mb-0">-->
+<!--                        {{ form.rendez_vous|as_crispy_field }}-->
+<!--                    </div>-->
+<!--                     <div class="form-group col-sm-4 mb-0">-->
+<!--                        {{ form.confirmed|as_crispy_field }}-->
+<!--                    </div>-->
+<!--                     <div class="form-group col-sm-4 mb-0">-->
+<!--                        {{ form.cancelled|as_crispy_field }}-->
+<!--                    </div>-->
+<!--                    <div class="form-group col-sm-4 mb-0">-->
+<!--                        {{ form.remise|as_crispy_field }}-->
+<!--                    </div>-->
+<!--                    <div class="form-group col-sm-4 mb-0">-->
+<!--                        {{ form.create_at|as_crispy_field }}-->
+<!--                    </div>-->
+<!--                  <div class="form-group col-sm-4 mb-0">&ndash;&gt;-->
+<!--                        {{ form.localization_id|as_crispy_field }}-->
+<!--                    </div>-->
+<!--                    <div class="form-group col-sm-4 mb-0">-->
+<!--                       {{ form.order_items_id|as_crispy_field }}-->
+<!--                    </div>-->
+<!--                    <div class="form-group col-sm-4 mb-0">-->
+<!--                       {{ form.person_id|as_crispy_field }}-->
+<!--                    </div>-->
+
+
+                    <!--                    <div class="form-group col-sm-6 mb-0">-->
+<!--                        {{ form.name|as_crispy_field }}-->
+<!--                    </div>-->
+
+<!--                    <div class="form-group col-sm-6 mb-0">-->
+<!--                        {{ form.code_product|as_crispy_field }}-->
+<!--                    </div>-->
+
+<!--                   <div class="form-group col-sm-6 mb-0">-->
+<!--                        {{ form.description|as_crispy_field }}-->
+<!--                    </div>-->
+
+<!--                    <div class="form-group col-sm-6 mb-0">-->
+<!--                        {{ form.price|as_crispy_field }}-->
+<!--                    </div>-->
+
+<!--                    <div class="form-group col-sm-6 mb-0">-->
+<!--                        {{ form.create_at|as_crispy_field }}-->
+<!--                    </div>-->
+<!--                   <div class="form-group col-sm-6 mb-0">-->
+<!--                        {{ form.image_id|as_crispy_field }}-->
+<!--                   </div>-->
+
+                    {#            justify-content-center#}
+            <div class="form-group col-sm-4 mb-0">
+                {{ form.montant_total|as_crispy_field }}
+            </div>
+
+            <div class="form-group col-sm-4 mb-0">
+                {{ form.person_id|as_crispy_field }}
+            </div>
+        </div>
+        <div class="row offset-1">
+            <div class="form-group col-sm-4 mb-0">
+                {{ form.paymentOrder|as_crispy_field }}
+            </div>
+             <div class="form-group col-sm-4 mb-0">
+                {{ form.create_at|as_crispy_field }}
+         </div>
+           <div class="row offset-sm-0">
+             <div class="form-group">
+                {{ form.livre|as_crispy_field }}
+            </div>
+            </div>
+
 GDAL_LIBRARY_PATH='/Users/me/.pyenv/versions/3.6.5/lib/python3.6/site-packages/django/contrib/gis/gdal/libgdal.py'
 GDAL_LIBRARY_PATH='/venv/lib/python3.6/site-packages/django/contrib/gis/gdal/libgdal.py'
 GDAL_LIBRARY_PATH='/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/contrib/gis/gdal/libgdal.py'
@@ -398,3 +479,125 @@ View file for Order and Items_order
 {#</div>#}
 
 class="img-thumbnail"
+
+
+        def __init__(self, *args, **kwargs):
+                super().__init__(*args, **kwargs)
+
+                self.helper = FormHelper()
+                self.helper.form_method = 'post'
+                self.helper.layout = Layout(
+                            Div(
+                                Field('coude', wrapper_class='col-md-3'),
+                                Field('epaule', wrapper_class='col-md-3'),
+                    css_class='form-row')
+                    )
+
+        person_mesure = forms.ModelChoiceField(queryset=Person.objects.all())
+        coude = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        epaule = forms.IntegerField( widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        manche = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        tour_manche = forms.IntegerField( widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        taille = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        poitrine = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        longueur_boubou = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        longueur_patanlon = forms.IntegerField( widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        fesse = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        ceinture = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        cuisse = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        patte = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        # create_at = forms.DateField()
+        # update_at = forms.DateField()
+
+
+
+        NAME = (
+            ('Boubou', 'Boubou'),
+            ('Grand Boubou', 'Grand Boubou'),
+            ('Chemise Complet', 'Chemise Complet'),
+            ('Chemise Manche Long', 'Chemise Manche Long'),
+            ('Chemise Manche Court', 'Chemise Manche Court'),
+            ('Pagne Jupe', 'Pagne Jupe'),
+            ('Pagne Complet', 'Pagne Complet'),
+            ('Pagne Maniere', 'Pagne Maniere'),
+            ('Patanlon', 'Patanlon'),
+            ('Tenu Scolaire', 'Tenu Scolaire'),
+            ('Tenu Securite', 'Tenu Securite'),
+            ('AUTRES', 'AUTRES'),)
+        name = forms.ChoiceField( choices=NAME, required='Boubou')
+        code_product = forms.CharField(
+                                 widget=forms.TextInput(attrs={'class': 'form-control'}))
+        # price = forms.IntegerField(label="price", widget=forms.NumberInput(attrs={'class': 'form-control', 'price'}))
+        # name = forms.CharField(label="Name Product", max_length=50, widget=forms.TextInput(attrs={'class': 'form-control', 'Name Product'}))
+        photo = forms.ImageField()
+        price = forms.DecimalField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+        # create_at = forms.DateField()
+           def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+
+
+
+            PRODUIT = [
+                ('Boubou', 'Boubou'),
+                ('Grand Boubou', 'Grand Boubou'),
+                ('Chemise Complet', 'Chemise Complet'),
+                ('Chemise Manche Long', 'Chemise Manche Long'),
+                ('Chemise Manche Court', 'Chemise Manche Court'),
+                ('Pagne Jupe', 'Pagne Jupe'),
+                ('Pagne Complet', 'Pagne Complet'),
+                ('Pagne Maniere', 'Pagne Maniere'),
+                ('Patanlon', 'Patanlon'),
+                ('Tenu Scolaire', 'Tenu Scolaire'),
+                ('Tenu Securite', 'Tenu Securite'),
+                ('AUTRES', 'AUTRES'),]
+            id_person = forms.ModelChoiceField(queryset=Person.objects.all())
+            # produit = forms.MultipleChoiceField(required=False, widget=forms.CheckboxSelectMultiple, choices=PRODUIT)
+            reception = forms.DateField()
+
+            rendez_vous = forms.DateField()
+
+            def __init__(self, *args, **kwargs):
+                super().__init__(*args, **kwargs)
+    CATEGORY = (
+        ('Homme', 'Homme'),
+        ('Femme', 'Femme'),
+        ('Fille', 'Fille'),
+        ('Garçon', 'Garçon'),
+        ('Autres', 'Autres'),
+    )
+    category = forms.ChoiceField(label='Category', choices=CATEGORY, required='HOMME')
+
+    PRODUIT = [
+        ('Boubou', 'Boubou'),
+        ('Grand Boubou', 'Grand Boubou'),
+        ('Chemise Complet', 'Chemise Complet'),
+        ('Chemise Manche Long', 'Chemise Manche Long'),
+        ('Chemise Manche Court', 'Chemise Manche Court'),
+        ('Pagne Jupe', 'Pagne Jupe'),
+        ('Pagne Complet', 'Pagne Complet'),
+        ('Pagne Maniere', 'Pagne Maniere'),
+        ('Patanlon', 'Patanlon'),
+        ('Tenu Scolaire', 'Tenu Scolaire'),
+        ('Tenu Securite', 'Tenu Securite'),
+        ('AUTRES', 'AUTRES'), ]
+    person_id = forms.ModelChoiceField(queryset=Person.objects.all())
+    order_id = forms.ModelChoiceField(queryset=Order.objects.all())
+    produit = forms.MultipleChoiceField(required=False, widget=forms.CheckboxSelectMultiple, choices=PRODUIT)
+    submontant = forms.DecimalField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    quantity = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    remise = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    create_at = forms.DateField()
+
+    # id = forms.AutoField(primary_key=True)
+    paymentOrder = forms.ModelChoiceField(queryset=Order.objects.all())
+    person_id = forms.ModelChoiceField(queryset=Person.objects.all())
+    montant_total = forms.DecimalField( widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    livre = forms.BooleanField()
+    create_at = forms.DateField()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)

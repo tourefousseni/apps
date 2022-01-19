@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 # from django.views.generic import ListView, CreateView
 from django.template import context
 from django.template import defaulttags
-from  .models import *
+from  django.db.models import *
 from .forms import *
 
 
@@ -61,7 +61,7 @@ def edit_profile(request):
             return redirect('homepage')
     else:
         form = EditProfileForm(instance=request.user)
-        context = {'form': form}
+    context = {'form': form}
     return render(request, 'kalaliso/edit_profile.html', context)
 
 
@@ -142,44 +142,41 @@ def image_upload_view(request, **kwargs):
 
 
 
-def person(request):
+def person(request,):
     if request.method == 'POST':
+            ig = request.POST.get("image")
             sta = request.POST.get("status")
-            se = request.POST.get("sex")
+            type_tail = request.POST.get("type_tailleur")
+            gre = request.POST.get("genre")
             cat = request.POST.get("category")
+            c_p = request.POST.get("code_person")
             pre = request.POST.get("prenom")
             no = request.POST.get("nom")
             cont = request.POST.get("contact_1")
-            # cin1 = request.POST.get("n_cin")
-            nn = request.POST.get("nina")
+            ema = request.POST.get("email")
+            dom = request.POST.get("domicile")
+            al = request.POST.get("alias")
             prf = request.POST.get("profession")
+            cont2 = request.POST.get("contact_2")
+            nais_date = request.POST.get("date_naissance")
             nat = request.POST.get("nationalite")
-            # n_f = request.POST.get("n")
-            # ss = request.POST.get("siege_social")
-            # resp = request.POST.get("responsable")
-            # ema = request.POST.get("email")
-            cret = request.POST.get('created_at')
+            tut = request.POST.get("tutuelle")
+            tele_fix = request.POST.get("telephonique_fix")
+            nur = request.POST.get("numero_reference")
+            nn = request.POST.get("nina")
+            dacreat = request.POST.get("created_at")
 
-            data = Person(status=sta,
-                          prenom=pre,
-                          nom=no,
-                          sex=se,
-                          category=cat,
-                          contact_1=cont,
-                          # n_cin=cin1,
-                          nina=nn,
-                          profession=prf,
-                          nationalite=nat,
-                          # n=n_f,
-                          # siege_social=ss,
-                          # responsable=resp,
-                          # email=ema,
-                          created_at=cret)
+            data = Person(status=sta, prenom=pre, nom=no,
+                          genre=gre, contact_2=cont2, alias=al, category=cat,
+                          contact_1=cont, code_person=c_p, type_tailleur=type_tail,
+                          telephonique_fix=tele_fix, numero_reference=nur, date_naissance=nais_date,
+                          tutuelle=tut, domicile=dom, nina=nn, profession=prf,
+                          nationalite=nat, email=ema, created_at=dacreat, image=ig,)
             data.save()
-
             return HttpResponseRedirect(reverse('mesure'))
     else:
-        form = PersonForm()
+       form=PersonForm()
+
     return render(request, 'kalaliso/person.html', {'form': form})
 
 
@@ -192,27 +189,23 @@ def person_detail(request, person_id):
 
 
 def product(request):
-
     if request.method == 'POST':
-            pri = request.POST.get("price")
             na = request.POST.get("name")
             cod = request.POST.get("code_product")
             des = request.POST.get("description")
-            ph = request.POST.get("photo")
+            pric = request.POST.get("price")
             dat = request.POST.get("create_at")
-
-            data = Product(
-                           price=pri,
+            im = request.POST.get("image_id")
+            data = Product(price=pric,
                            name=na,
                            code_product=cod,
                            description=des,
-                           photo=ph,
-                           create_at=dat)
+                           create_at=dat,
+                           image_id=im)
             data.save()
-
             return HttpResponseRedirect(reverse('order'))
     else:
-        form = ProductForm()
+       form = ProductForm()
     return render(request, 'kalaliso/product.html', {'form': form})
 
 
@@ -225,28 +218,37 @@ def product_detail(request, product_id):
 
 def order(request):
     if request.method == 'POST':
-            ida = request.POST.get("id")
+            # ida = request.POST.get("id")
             cd = request.POST.get("code_order")
-            recep = request.POST.get("reception")
-            creat = request.POST.get("create_at")
-            data = Order(id=ida,
-                         code_order=cd,
-                         reception=recep,
-                         create_at=creat,)
-            data.save()
+            rend = request.POST.get("rendez_vous")
+            confr = request.POST.get("confirmed")
+            cancel = request.POST.get("cancelled")
+            rem = request.POST.get("remise")
+            recp = request.POST.get("reception")
+            crt = request.POST.get("create_at")
 
+            data = Order(
+                         # id=ida,
+                         code_order=cd,
+                         rendez_vous=rend,
+                         confirmed=confr,
+                         cancelled=cancel,
+                         remise=rem,
+                         reception=recp,
+                         create_at=crt)
+            data.save()
             return HttpResponseRedirect(reverse('order_detail'))
     else:
-        form = OrderForm()
+        form=OrderForm()
     return render(request, 'kalaliso/order.html', {'form': form})
 
 
-def order_detail(request, order_id):
-    qs = Order.objects.all().order_by(-order)
+def order_items(request, order_id):
+    qs = Order.objects.all().order_by()
 
-    context = {'detail_order': qs,}
+    context = {'order_items': qs,}
 
-    return render(request, 'kalaliso/order_detail.html', context)
+    return render(request, 'kalaliso/order_items.html', context)
 
 # def orderdetail(request):
 #     if request.method == 'POST':
@@ -271,19 +273,18 @@ def order_detail(request, order_id):
 #         form = OrderDetailForm()
 #     return render(request, 'kalaliso/orderdetail.html', {'form': form})
 
-def orderdetail(request, ):
+def order_items(request, ):
     if request.method == 'POST':
         subm = request.POST.get("submontant")
         ca = request.POST.get("category")
         qt = request.POST.get("quantity")
         # tv = request.POST.get("tva")
-        rm = request.POST.get("remise")
+        # rm = request.POST.get("remise")
         creat = request.POST.get("create_at")
 
-        data = OrderDetail(
+        data = Order_Items(
                            submontant=subm,
                            category=ca,
-                           remise=rm,
                            quantity=qt,
                            # tva=tv,
                            create_at=creat,)
@@ -292,19 +293,19 @@ def orderdetail(request, ):
         # form = PartialAuthorForm(request.POST, instance=author)
 
         data.save()
-        return HttpResponseRedirect(reverse('orderdetail'))
+        return HttpResponseRedirect(reverse('order_items'))
     else:
-        form = OrderDetailForm()
-    return render(request, 'kalaliso/orderdetail.html', {'form': form})
+        form = Order_ItemsForm()
+    return render(request, 'kalaliso/order_items.html', {'form': form})
 
 def orderdetail_detail(request, orderdetail_id):
 
-    qs = OrderDetail.objects.all().order_by(Order)
+    qs = Order_Items.objects.all().order_by(Order)
     context = {'orderdetail': qs, }
 
     return render(request, 'kalaliso/orderdetail_detail.html', context)
 
-def mesure(request, *args, **kwargs):
+def mesure(request,):
     if request.method == 'POST':
             id = request.POST.get("id")
             coud = request.POST.get("coude")
@@ -321,7 +322,7 @@ def mesure(request, *args, **kwargs):
             pat = request.POST.get("patte")
             cre = request.POST.get('created_at')
             upd = request.POST.get('update_at')
-            pmid = request.POST.get('person_mesure_id')
+            pmid = request.POST.get('person_mesure_id=id')
 
             data = Mesure(id=id,
                           coude=coud,
@@ -361,17 +362,17 @@ def mesure_detail(request, mesure_id):
 def payment(request,):
         if request.method == 'POST':
 
-            rm = request.POST.get("remise")
+            # rm = request.POST.get("remise")
             tv = request.POST.get("tva")
             mt = request.POST.get("montant_total")
-            rd = request.POST.get("rendez_vous")
+            # rd = request.POST.get("rendez_vous")
             lv = request.POST.get("livre")
             creat = request.POST.get("create_at")
             data = Payment(
-                           remise=rm,
+                           # remise=rm,
                            tva=tv,
                            montant_total=mt,
-                           rendez_vous=rd,
+                           # rendez_vous=rd,
                            livre=lv,
                            create_at=creat,)
             data.save()

@@ -218,7 +218,7 @@ class Payment(models.Model):
         ('Wave', 'Wave'),
         ('Virement', 'Virement'),
         ('Transaction', 'Transaction'), )
-    mode_payment     =  models.CharField(max_length=50, choices=MODE_PAYMENT, default='Homme', )
+    mode_payment     =  models.CharField(max_length=50, choices=MODE_PAYMENT, default='Espece', )
     payment_Order    = models.ForeignKey('Order', on_delete=models.CASCADE, blank=True, null=True, verbose_name='Payment Facture', )
     code_payment     = models.CharField(max_length=30, blank=True, verbose_name='Code Payement')
     person_id        = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Titulaire command', )

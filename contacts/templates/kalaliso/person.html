@@ -9,7 +9,6 @@
           <div class="personform">
             <form action="{% url 'person' %}" method="post">
                  {% csrf_token %}
-        <!--        {{ form.as_p }}-->
                        <div class="row offset-1">
                         <div class="form-group col-sm-3 mb-0 ">
                              {{ form.status|as_crispy_field }}

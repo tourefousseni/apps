@@ -5,7 +5,8 @@
 
 {% block content %}
     <h2 class="text-left offset-1">BORD DE PAYEMENT</h2>
-    <form action="{% url 'payment' %}" method="post">
+<div class="paymentform">
+      <form action="{% url 'payment' %}" method="post">
         {% csrf_token %}
         <div class="row offset-1">
         <div class="form-group col-sm-4 mb-0">
@@ -15,9 +16,18 @@
         <div class="row offset-1">
             <div class="col-12 justify-content-center">
                      <input type="submit" value="Submit" class="btn btn-primary col-md-4">
-                     <input type="submit" value="Reset" class="btn btn-danger col-md-4">
-           </div>
+                     <input type="reset" value="Reset" class="btn btn-danger col-md-4">
+            </div>
         </div>
     </form>
+</div>
+<script>
+    $(document).ready(() => {
+        $('#Reset').click(function(event) {
+            event.preventDefault();
+            $('#paymentform').clearForm();
+        });
+    });
+</script>
 
 {% endblock %}

@@ -137,43 +137,14 @@ def image_upload_view(request, **kwargs):
             form = ImageForm()
     return render(request, 'kalaliso/index.html', {'form': f})
 
-
-
 def person(request,):
     if request.method == 'POST':
-            ig = request.POST.get("image")
-            sta = request.POST.get("status")
-            type_tail = request.POST.get("type_tailleur")
-            gre = request.POST.get("genre")
-            cat = request.POST.get("category")
-            c_p = request.POST.get("code_person")
-            pre = request.POST.get("prenom")
-            no = request.POST.get("nom")
-            cont = request.POST.get("contact_1")
-            ema = request.POST.get("email")
-            dom = request.POST.get("domicile")
-            al = request.POST.get("alias")
-            prf = request.POST.get("profession")
-            cont2 = request.POST.get("contact_2")
-            nais_date = request.POST.get("date_naissance")
-            nat = request.POST.get("nationalite")
-            tut = request.POST.get("tutuelle")
-            tele_fix = request.POST.get("telephonique_fix")
-            nur = request.POST.get("numero_reference")
-            nn = request.POST.get("nina")
-            dacreat = request.POST.get("created_at")
-
-            data = Person(status=sta, prenom=pre, nom=no,
-                          genre=gre, contact_2=cont2, alias=al, category=cat,
-                          contact_1=cont, code_person=c_p, type_tailleur=type_tail,
-                          telephonique_fix=tele_fix, numero_reference=nur, date_naissance=nais_date,
-                          tutuelle=tut, domicile=dom, nina=nn, profession=prf,
-                          nationalite=nat, email=ema, created_at=dacreat, image=ig,)
-            data.save()
+        form = PersonForm(request.POST)
+        if form.is_valid():
+            form.save()
             return HttpResponseRedirect(reverse('mesure'))
     else:
        form=PersonForm()
-
     return render(request, 'kalaliso/person.html', {'form': form})
 
 
@@ -187,19 +158,9 @@ def person_detail(request, person_id):
 
 def product(request):
     if request.method == 'POST':
-            na = request.POST.get("name")
-            cod = request.POST.get("code_product")
-            des = request.POST.get("description")
-            pric = request.POST.get("price")
-            dat = request.POST.get("create_at")
-            im = request.POST.get("image_id")
-            data = Product(price=pric,
-                           name=na,
-                           code_product=cod,
-                           description=des,
-                           create_at=dat,
-                           image_id=im)
-            data.save()
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
             return HttpResponseRedirect(reverse('order'))
     else:
        form = ProductForm()
@@ -215,25 +176,9 @@ def product_detail(request, product_id):
 
 def order(request):
     if request.method == 'POST':
-            # ida = request.POST.get("id")
-            cd = request.POST.get("code_order")
-            rend = request.POST.get("rendez_vous")
-            confr = request.POST.get("confirmed")
-            cancel = request.POST.get("cancelled")
-            rem = request.POST.get("remise")
-            recp = request.POST.get("reception")
-            crt = request.POST.get("create_at")
-
-            data = Order(
-                         # id=ida,
-                         code_order=cd,
-                         rendez_vous=rend,
-                         confirmed=confr,
-                         cancelled=cancel,
-                         remise=rem,
-                         reception=recp,
-                         create_at=crt)
-            data.save()
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            form.save()
             return HttpResponseRedirect(reverse('order_detail'))
     else:
         form=OrderForm()
@@ -247,50 +192,13 @@ def order_items(request, order_id):
 
     return render(request, 'kalaliso/order_items.html', context)
 
-# def orderdetail(request):
-#     if request.method == 'POST':
-#         ca = request.POST.get("category")
-#         qt = request.POST.get("quantity")
-#         tv = request.POST.get("tva")
-#         rm = request.POST.get("remise")
-#         creat = request.POST.get("create_at")
-#
-#         data = OrderDetail(category=ca,
-#                            remise=rm,
-#                            quantity=qt,
-#                            tva=tv,
-#                            create_at=creat,)
-#
-#         # CODE FOR INSTANCIATION
-#         # form = PartialAuthorForm(request.POST, instance=author)
-#
-#         data.save()
-#         return HttpResponseRedirect(reverse('orderdetail'))
-#     else:
-#         form = OrderDetailForm()
-#     return render(request, 'kalaliso/orderdetail.html', {'form': form})
 
 def order_items(request, ):
     if request.method == 'POST':
-        subm = request.POST.get("submontant")
-        ca = request.POST.get("category")
-        qt = request.POST.get("quantity")
-        # tv = request.POST.get("tva")
-        # rm = request.POST.get("remise")
-        creat = request.POST.get("create_at")
-
-        data = Order_Items(
-                           submontant=subm,
-                           category=ca,
-                           quantity=qt,
-                           # tva=tv,
-                           create_at=creat,)
-
-        # CODE FOR INSTANCIATION
-        # form = PartialAuthorForm(request.POST, instance=author)
-
-        data.save()
-        return HttpResponseRedirect(reverse('order_items'))
+        form=Order_ItemsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('order_items'))
     else:
         form = Order_ItemsForm()
     return render(request, 'kalaliso/order_items.html', {'form': form})
@@ -304,42 +212,10 @@ def orderdetail_detail(request, orderdetail_id):
 
 def mesure(request,):
     if request.method == 'POST':
-            id = request.POST.get("id")
-            coud = request.POST.get("coude")
-            epau = request.POST.get("epaule")
-            ma = request.POST.get("manche")
-            to_ma = request.POST.get("tour_manche")
-            tail = request.POST.get("taille")
-            poitr = request.POST.get("pointrine")
-            lo_bo = request.POST.get("longueur_boubou")
-            lo_pa = request.POST.get("longueur_patanlon")
-            fes = request.POST.get("fesse")
-            cei = request.POST.get("ceinture")
-            cui = request.POST.get("cuisse")
-            pat = request.POST.get("patte")
-            cre = request.POST.get('created_at')
-            upd = request.POST.get('update_at')
-            pmid = request.POST.get('person_mesure_id=id')
-
-            data = Mesure(id=id,
-                          coude=coud,
-                          epaule=epau,
-                          manche=ma,
-                          tour_manche=to_ma,
-                          taille=tail,
-                          poitrine=poitr,
-                          longueur_boubou=lo_bo,
-                          longueur_patanlon=lo_pa,
-                          fesse=fes,
-                          ceinture=cei,
-                          cuisse=cui,
-                          patte=pat,
-                          update_at=upd,
-                          created_at=cre,
-                          person_mesure_id=pmid,)
-            data.save()
-
-            return HttpResponseRedirect(reverse('Order'))
+        form = MesureForm(request.POST)
+        if form.is_valid():
+             form.save()
+             return HttpResponseRedirect(reverse('Order'))
     else:
        form = MesureForm()
     return render(request, 'kalaliso/mesure.html', {'form': form})
@@ -358,22 +234,10 @@ def mesure_detail(request, mesure_id):
 
 def payment(request,):
         if request.method == 'POST':
-
-            # rm = request.POST.get("remise")
-            tv = request.POST.get("tva")
-            mt = request.POST.get("montant_total")
-            # rd = request.POST.get("rendez_vous")
-            lv = request.POST.get("livre")
-            creat = request.POST.get("create_at")
-            data = Payment(
-                           # remise=rm,
-                           tva=tv,
-                           montant_total=mt,
-                           # rendez_vous=rd,
-                           livre=lv,
-                           create_at=creat,)
-            data.save()
-            return HttpResponseRedirect(reverse('Order'))
+          form = PaymentForm(request.POST)
+          if form.is_valid():
+              form.save()
+              return HttpResponseRedirect(reverse('Order'))
         else:
             form = PaymentForm()
         return render(request, 'kalaliso/payment.html', {'form': form})

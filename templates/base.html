@@ -180,7 +180,6 @@
 <main>
 
   <div class="b-example-divider"></div>
-
   <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
       <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
@@ -188,25 +187,46 @@
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
-
+       <li>
+            <a href="{% url 'payment' %}" class="nav-link link-dark">
+              <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+              Payment
+            </a>
+       </li>
       <li class="nav-item">
         <a href="{% url 'upload' %}" class="nav-link"  aria-current="page">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
          Upload Image
         </a>
      </li>
-
-    <li>
-          <a href="{% url 'homepage' %}" class="nav-link">
+      <li>
+        <a href="{% url 'order' %}" class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+          Orders
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'order_items' %}" class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+          Order Detail
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'homepage' %}" class="nav-link">
            <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
           Homepage
-           </a>
-     </li>
-
+        </a>
+      </li>
       <li>
         <a href="{% url 'person' %}" class="nav-link link-dark">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
           Person
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'mesure' %}" class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+          Mesure
         </a>
       </li>
       <li>
@@ -221,30 +241,7 @@
           Products
         </a>
       </li>
-      <li>
-        <a href="{% url 'mesure' %}" class="nav-link link-dark">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-          Mesure
-        </a>
-      </li>
-      <li>
-        <a href="{% url 'order' %}" class="nav-link link-dark">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-          Orders
-        </a>
-      </li>
-      <li>
-        <a href="{% url 'order_items' %}" class="nav-link link-dark">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-          Order Detail
-        </a>
-      </li>
-      <li>
-        <a href="{% url 'payment' %}" class="nav-link link-dark">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-          Payment
-        </a>
-      </li>
+
     </ul>
     <hr>
     <div class="dropdown">
@@ -266,17 +263,14 @@
 </div>
     <div>
          <div class="container">
-
                 {% block content %}
                 {% endblock %}<br />
-
           </div>
     </div>
-
 </div>
 <footer><br/><hr>
     <div class="text-center">
-        <small>Copyright @ 2018-2021 GisConsulting4</small>
+        <small>Copyright @ 2018-2022 GisConsulting4</small>
     </div>
 </footer>
 </body>
@@ -286,6 +280,5 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
 </html>
-
 
 

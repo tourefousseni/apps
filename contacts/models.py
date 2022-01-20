@@ -31,32 +31,35 @@ class Person(models.Model):
     image           = models.ImageField(upload_to='profil', null=True, blank=True, verbose_name='Photo_commande')
     STATUS          = (
         ('Client', 'CLIENT'),
-        ('Tailleur', 'TAILLEUR'),
+        ('Ouvrier', 'OUVRIER'),
         ('Apprenti', 'APPRENTI'),
         ('Fournisseur', 'FOURNISSEUR'),
         ('Company', 'COMPANY'),)
 
     TYPE_TAILLEUR    = (
-        ('Brodeur', 'Brodeur'),
-        ('Tailleur simple', 'TAILLEUR SIMPLE'),
-        ('Tailleur simple', 'TAILLEUR SIMPLE'),
-        ('Boutouman', 'BOUTOUMAN'),)
+        ('Brodeur', 'BRODEUR'),
+        ('Couture simple', 'COUTURE SIMPLE'),
+        ('Couture a main', 'COUTURE A MAIN'),
+        ('Boutouman', 'BUTTOUMAN'),
+        ('Perleuse', 'PERLEUSE'),
+        ('No qualifie', 'NO QUALIFIE'),
+    )
 
     GENRE             = (
-        ('H', 'Homme'),
-        ('F', 'Femme'),
-        ('A', 'Autres'),
+        ('H', 'HOMME'),
+        ('F', 'FEMME'),
+        ('A', 'AUTRES'),
     )
     CATEGORY           = (
-        ('G', 'Grande'),
-        ('M', 'Moyenne'),
-        ('P', 'Petite'),
+        ('G', 'GRANDE'),
+        ('M', 'MOYENNE'),
+        ('P', 'PETIT'),
     )
-    status              = models.CharField(max_length=20, choices=STATUS, default='CLIENT')
+    status              = models.CharField(max_length=20, choices=STATUS, )
     # user                = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Utilisateur')
-    type_tailleur       = models.CharField(max_length=20, choices=TYPE_TAILLEUR,)
-    genre               = models.CharField(max_length=20, choices=GENRE, default='Homme')
-    category            = models.CharField(max_length=20, choices=CATEGORY, default='Grande')
+    type_tailleur       = models.CharField(max_length=20, choices=TYPE_TAILLEUR, verbose_name='Specialité')
+    genre               = models.CharField(max_length=20, choices=GENRE,)
+    category            = models.CharField(max_length=20, choices=CATEGORY,)
     code_person         = models.CharField(max_length=30, blank=True, verbose_name='Code person')
     prenom              = models.CharField(max_length=30, null=True, blank=True)
     nom                 = models.CharField(max_length=30, null=True, blank=True)
@@ -176,7 +179,7 @@ class Order(models.Model):
     order_items = models.ForeignKey('Order_Items', on_delete=models.CASCADE, verbose_name='add_items')
     rendez_vous = models.DateField(auto_now=False)
     localization= models.ForeignKey('Region', on_delete=models.CASCADE, verbose_name='Localisation',)
-    confirmed   = models.BooleanField(default=True)
+    confirmed   = models.BooleanField(default=False)
     cancelled   = models.BooleanField(default=False)
     remise      = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
     create_at   = models.DateField(auto_now=False)

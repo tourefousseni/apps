@@ -99,9 +99,6 @@ def change_password(request):
 #     # template_name =  'kalaliso/homepage.html'
 #     return render(ListView, 'kalaliso/homepage.html', context)
 
-
-
-
 #     global image
 #     if request.method == "POST":
 #         form=PostForm(data=request.POST, files=request.FILES)
@@ -410,8 +407,7 @@ def village(request):
 
 
 def profile(request):
-
-    return render(request, 'kalaliso/profil.html')
+    return render(request, 'kalaliso/profile.html', {})
 
 # ===========================
 #      VIEWS KALALISO

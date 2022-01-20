@@ -9,7 +9,7 @@
       <div>
                  <form action="{% url 'order' %}" method="post">
                      {% csrf_token %}
-                        <div class="">
+                        <div class="orderform">
                         <div class="col-lg-4 mb-0 offset-md-1">
                             {{ form|crispy }}
                         </div>
@@ -25,3 +25,6 @@
       </div>
 <!--  </div>-->
 {% endblock %}
+
+
+

@@ -126,7 +126,7 @@ class Product(models.Model):
     name              = models.CharField(max_length=50, choices=Name, default='Boubou',)
     code_product      = models.CharField(max_length=30, blank=True, null=True, verbose_name='Code Produit')
     description       = models.CharField(max_length=30, blank=True, null=True)
-    image             = models.ForeignKey('Image', on_delete=models.CASCADE, verbose_name='ALBUM')
+    # image             = models.ForeignKey('Image', on_delete=models.CASCADE, verbose_name='ALBUM')
     price             = models.DecimalField(decimal_places=2, max_digits=20, default=100.25, null=True, blank=True)
     create_at         = models.DateField(auto_now=True)
 

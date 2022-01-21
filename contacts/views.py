@@ -10,8 +10,10 @@ from django.template import context
 from django.template import defaulttags
 from  django.db.models import *
 from .forms import *
-
-
+from django.forms import ModelForm
+#
+# class DateTimeInput(forms.DateTimeInput):
+#     input_type: datetime
 
 def user_login(request):
     if request.method == 'POST':
@@ -177,6 +179,7 @@ def product_detail(request, product_id):
 def order(request):
     if request.method == 'POST':
         form = OrderForm(request.POST)
+        form = PersonForm(request.get(unique_person_id_generator(id=id)))
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('order_detail'))

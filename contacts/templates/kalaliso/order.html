@@ -10,16 +10,16 @@
                  <form action="{% url 'order' %}" method="post">
                      {% csrf_token %}
                         <div class="orderform">
-                        <div class="col-lg-4 mb-0 offset-md-1">
+                          <div class="col-md-4 offset-md-1">
                             {{ form|crispy }}
-                        </div>
-                      </div><br />
-                     <div class="row offset-4">
-                        <div class="col-12 justify-content-center">
-                            <button type="submit" class="btn btn-primary col-md-4"> Save</button>
-                            <button type="reset" class="btn btn-danger col-md-4">Cancel</button>
-                       </div>
-                   </div>
+                          </div>
+                        </div><br />
+                             <div class="row offset-4">
+                                <div class="col-12 justify-content-center">
+                                    <button type="submit" class="btn btn-primary col-md-4"> Save</button>
+                                    <button type="reset" class="btn btn-danger col-md-4">Cancel</button>
+                               </div>
+                           </div>
             </form>
       </div>
 <script>

@@ -5,9 +5,9 @@ from crispy_forms.bootstrap import StrictButton
 from crispy_forms.layout import Submit, Layout, Row, Column, Div, Field
 from crispy_forms.bootstrap import TabHolder, Tab
 from crispy_forms.bootstrap import InlineRadios, FormActions
+from django import forms
 from django.forms import ModelForm
 from django.forms import widgets
-from django import forms
 import datetime
 # from .forms import *
 from .models import *
@@ -60,8 +60,9 @@ class ProductForm(ModelForm):
     class Meta:
          model = Product
          template_name = 'kalaliso/product.html'
-         fields = ['name', 'code_product', 'description', 'price', 'create_at', 'image']
-         exclude = ['create_at', 'code_product']
+         fields = ['name', 'code_product', 'description', 'price', 'create_at']
+         exclude = ['create_at'
+                   ]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -81,11 +82,17 @@ class ProductForm(ModelForm):
             ),
         )
 
+
+# class DateInput(ModelForm):
+#     input_type = 'date'
+
+# class DateTimeInput(forms.DateTimeInput):
+#     input_type: datetime
+
 class OrderForm(ModelForm):
     class Meta:
         model = Order
         template_name = 'kalaliso/order.html'
-
         fields = ['person_id',
                   'reception',
                   'order_items',
@@ -98,6 +105,12 @@ class OrderForm(ModelForm):
 
         exclude = ['code_order']
 
+        # widgets = {
+        #     'create_at': (DateTimeInput)
+        # }
+        # created_at = widget=forms.DateTimeInput(
+        #     attrs={'class': 'form-control datetimepicker-input', 'data-target': 'datetimepicker1'})
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -106,21 +119,19 @@ class OrderForm(ModelForm):
             Row(
                 Column('person_id'),
                 Column('reception'),
-            ),
-            InlineRadios('confirmed'),
-            InlineRadios('cancelled'),
+                ),
+            InlineRadios('confirmed', 'cancelled'),
+                'remise',
+                'order_items',
+                'localization',
+                'rendez_vous',
 
-            'remise',
-            'order_items',
-            'localization',
-            'rendez_vous',
+            FormActions(
+                    Submit('save_product', 'Save'),
+                    Submit('cancel', 'Cancel', css_class='btn btn-danger')
+                )
 
-             FormActions(
-                Submit('save_product', 'Save'),
-                Submit('cancel', 'Cancel', css_class='btn btn-danger')
             )
-
-        )
 
 
 class Order_ItemsForm(ModelForm):
@@ -136,7 +147,14 @@ class Order_ItemsForm(ModelForm):
 class PaymentForm(ModelForm):
     class Meta:
         model = Payment
-        fields = '__all__'
+        template_name = 'kalaliso/payment.html'
+        fields = ['mode_payment',
+                  'code_payment',
+                  'mount',
+                  'frees_commission',
+                  'livre' ]
+
+        exclude = ['code_payment', 'create_at']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

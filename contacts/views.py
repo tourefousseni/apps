@@ -183,10 +183,10 @@ def order(request):
 
         if form.is_valid():
             form.save()
-    #         return HttpResponseRedirect(reverse('order_detail'))
-    # else:
-    #     form=OrderForm(){'form': form}
-    return render(request, 'kalaliso/order.html', )
+            return HttpResponseRedirect(reverse('order_detail'))
+    else:
+        form=OrderForm()
+    return render(request, 'kalaliso/order.html', {'form': form} )
 
 
 def order_items(request, order_id):

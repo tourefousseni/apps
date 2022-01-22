@@ -5,8 +5,8 @@
 
 {% block content %}
     <h4 class="text-center">BORD DE COMMANDE</h4>
-
-      <div class="orderform">
+    <div class="row">
+              <div class="orderform">
                  <form action="{% url 'order' %}" method="post">
                      {% csrf_token %}
                         <div class="orderform">
@@ -22,6 +22,7 @@
                            </div>
             </form>
       </div>
+    </div>
 <script>
     $(document).ready(() => {
         $('#Reset').click(function(event) {

@@ -151,7 +151,7 @@ def person(request,):
 
 
 def person_detail(request, person_id):
-    qs = Person.objects.all()
+    qs = Person.objects.all().order_by('-created_at')
 
     context = {'detail_person': qs,}
 
@@ -177,15 +177,16 @@ def product_detail(request, product_id):
 
 
 def order(request):
+    # person = Person.objects.get(person_id_id=id)
     if request.method == 'POST':
         form = OrderForm(request.POST)
-        form = PersonForm(request.get(unique_person_id_generator(id=id)))
+
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('order_detail'))
-    else:
-        form=OrderForm()
-    return render(request, 'kalaliso/order.html', {'form': form})
+    #         return HttpResponseRedirect(reverse('order_detail'))
+    # else:
+    #     form=OrderForm(){'form': form}
+    return render(request, 'kalaliso/order.html', )
 
 
 def order_items(request, order_id):

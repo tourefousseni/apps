@@ -31,8 +31,6 @@ urlpatterns = [
       path('edit/profile/', views.edit_profile, name='edit_profile'),
       path('change/password/', views.change_password, name='change_password'),
 
-
-
       path('orderdetail/detail/<int:order_items_id>/', views.orderdetail_detail, name='orderdetail_detail'),
       path('order/', views.order, name='order'),
       path('order_items/', views.order_items, name='order_items'),
@@ -40,6 +38,7 @@ urlpatterns = [
       path('product/', views.product, name='product'),
       path('product/detail/<int:product_id>/', views.product_detail, name='product_detail'),
       path('person/', views.person, name='person'),
+      # path('?P<person_id>[0-9]+)\/$', views.person_detail, name='person_detail'),
       path('person/detail/<int:person_id>/', views.person_detail, name='person_detail'),
       path('payment/', views.payment, name='payment'),
       path('payment/detail/<int:payment_id>/', views.payment_detail, name='payment_detail'),
@@ -48,7 +47,6 @@ urlpatterns = [
       path('region/', views.region, name='region'), path('cercle/', views.cercle, name='cercle'),
       path('arrondissement/', views.arrondissement, name='arrondissement'),
       path('commune/', views.commune, name='commune'), path('village/', views.village, name='village'),
-
 ]
 
 # =================================

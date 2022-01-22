@@ -4,22 +4,24 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.bootstrap import StrictButton
 from crispy_forms.layout import Submit, Layout, Row, Column, Div, Field
 from crispy_forms.bootstrap import TabHolder, Tab
-from crispy_forms.bootstrap import InlineRadios, FormActions
+from crispy_forms.bootstrap import InlineRadios, FormActions, StrictButton
 from django import forms
-from django.forms import ModelForm
+# from crispy_bootstrap5_datetime.widgets import DateTimePicker
+# from django_bootstrap_datetimepicker import
 from django.forms import widgets
 import datetime
-# from .forms import *
-from .models import *
 
-
+from .models import Image, Person, Payment, Product, Mesure, Order, Order_Items, Commune, Region, Cercle
 
 
 # ==============================================
 #                  FORM KALALISO
 #                        START
 # ==============================================
-class ImageForm(ModelForm):
+
+
+
+class ImageForm(forms.ModelForm):
     class Meta:
         model = Image
         fields = ['title', 'slug','tags','type', 'category', 'genre', 'image', ]
@@ -29,7 +31,8 @@ class ImageForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)
 
-class PersonForm(ModelForm):
+
+class PersonForm(forms.ModelForm):
     class Meta:
         model = Person
         fields = ['status','nom','prenom','contact_1','genre','category','domicile','email','image','contact_2',
@@ -46,7 +49,7 @@ class PersonForm(ModelForm):
             self.helper = FormHelper(self)
 
 
-class MesureForm(ModelForm):
+class MesureForm(forms.ModelForm):
     class Meta:
         model = Mesure
         fields = '__all__'
@@ -56,40 +59,46 @@ class MesureForm(ModelForm):
         self.helper = FormHelper(self)
 
 
-class ProductForm(ModelForm):
+class ProductForm(forms.ModelForm):
     class Meta:
          model = Product
          template_name = 'kalaliso/product.html'
          fields = ['name', 'code_product', 'description', 'price', 'create_at']
-         exclude = ['create_at'
-                   ]
+         exclude = ['create_at']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_method = 'post'
-
         self.helper.layout = Layout(
             Row(
-                Column('name'),
-                Column('price'),
+                Column('name', ),
+                Column('price', ),
             ),
             'descripttion',
             'image',
+            'create_at',
+
             FormActions(
                 Submit('save_product', 'Save'),
                 Submit('cancel', 'Cancel', css_class='btn btn-danger')
             ),
         )
-
-
-# class DateInput(ModelForm):
+# class DateForm(forms.ModelForm):
+#     date=forms.DateTimeField(
+#         input_formats=['%d/%m/%Y %H:%M'],
+#         widget=forms.DateTimeInput(attrs={
+#             'class': 'form-control datetimepicker-input',
+#             'data-target': '#datetimepicker1'
+#         })
+#     )
+# class DateInput(forms.ModelForm):
 #     input_type = 'date'
-
+#
 # class DateTimeInput(forms.DateTimeInput):
 #     input_type: datetime
 
-class OrderForm(ModelForm):
+class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
         template_name = 'kalaliso/order.html'
@@ -106,10 +115,9 @@ class OrderForm(ModelForm):
         exclude = ['code_order']
 
         # widgets = {
-        #     'create_at': (DateTimeInput)
-        # }
+        #     'create_at': ('DateTimeInput') }
         # created_at = widget=forms.DateTimeInput(
-        #     attrs={'class': 'form-control datetimepicker-input', 'data-target': 'datetimepicker1'})
+        #     attrs={'class': 'form-control DateTimeInput', 'data-target': 'DateTimeInput'})
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -134,7 +142,7 @@ class OrderForm(ModelForm):
             )
 
 
-class Order_ItemsForm(ModelForm):
+class Order_ItemsForm(forms.ModelForm):
     class Meta:
         model = Order_Items
         fields = '__all__'
@@ -144,7 +152,7 @@ class Order_ItemsForm(ModelForm):
         self.helper = FormHelper(self)
 
 
-class PaymentForm(ModelForm):
+class PaymentForm(forms.ModelForm):
     class Meta:
         model = Payment
         template_name = 'kalaliso/payment.html'
@@ -166,51 +174,51 @@ class PaymentForm(ModelForm):
 # ==============================================
 
 
-# class EditProfileForm(UserChangeForm):
-#         password = forms.CharField(label="", as_widget=forms.TextInput(attrs={'type': 'hidden'}))
-#
-#         class Meta:
-#             model = User
-#             fields = ('username',
-#                       'first_name',
-#                       'last_name',
-#                       'email',
-#                       'password')
-#
-#
-# class  PasswordRsestForm(PasswordChangeForm):
-#     password = forms.CharField(label="", as_widget=forms.TextInput(attrs={'type': 'hidden'}))
-#
-#     class Meta:
-#         model = User
-#         fields = ('__all__')
-#
-# class SignUpForm(UserCreationForm):
-#     email      = forms.EmailField(label='', widget=forms.EmailInput(attrs={'class': 'form-control','placeholder':'Enter Email Here' }))
-#     last_name  = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Last Name' }))
-#     first_name = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'First Name' }))
-#
-#     class Meta:
-#             model = User
-#             fields = ('username','first_name','last_name','email','password1','password2')
-#
-#     def __init__(self, *args, **kwargs):
-#             super(SignUpForm, self).__init__(*args, **kwargs)
-#
-#             self.fields['username'].widget.attrs['class']        = 'form-control'
-#             self.fields['username'].widget.attrs['placeholder']  = 'Pseudo'
-#             self.fields['username'].label                        = ''
-#             self.fields['username'].help_text = '<span class= "form-text text-muted"><small>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small></span>'
-#
-#             self.fields['password1'].widget.attrs['class']       = 'form-control'
-#             self.fields['password1'].widget.attrs['placeholder'] = 'Password'
-#             self.fields['password1'].label                       = ''
-#             self.fields['password1'].help_text                   = '<ul class ="form-text text-muted small" ><li>Your password can\'t be too similar to your other personal information.</li><li>Your password must contain at least 8 characters.</li><li>Your password can\' t be a commonly used password.</li><li>Your password can\' t be entirely numeric.</li></ul>'
-#
-#             self.fields['password2'].widget.attrs['class']       = 'form-control'
-#             self.fields['password2'].widget.attrs['placeholder'] = 'Comfirm password'
-#             self.fields['password2'].label                       = ''
-#             self.fields['password2'].help_text                   = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
+class EditProfileForm(UserChangeForm):
+        password = forms.CharField(label="", widget=forms.TextInput(attrs={'type': 'hidden'}))
+
+        class Meta:
+            model = User
+            fields = ('username',
+                      'first_name',
+                      'last_name',
+                      'email',
+                      'password')
+
+
+class  PasswordRsestForm(PasswordChangeForm):
+    password = forms.CharField(label="", widget=forms.TextInput(attrs={'type': 'hidden'}))
+
+    class Meta:
+        model = User
+        fields = ('__all__')
+
+class SignUpForm(UserCreationForm):
+    email      = forms.EmailField(label='', widget=forms.EmailInput(attrs={'class': 'form-control','placeholder':'Enter Email Here' }))
+    last_name  = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Last Name' }))
+    first_name = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'First Name' }))
+
+    class Meta:
+            model = User
+            fields = ('username','first_name','last_name','email','password1','password2')
+
+    def __init__(self, *args, **kwargs):
+            super(SignUpForm, self).__init__(*args, **kwargs)
+
+            self.fields['username'].widget.attrs['class']        = 'form-control'
+            self.fields['username'].widget.attrs['placeholder']  = 'Pseudo'
+            self.fields['username'].label                        = ''
+            self.fields['username'].help_text = '<span class= "form-text text-muted"><small>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small></span>'
+
+            self.fields['password1'].widget.attrs['class']       = 'form-control'
+            self.fields['password1'].widget.attrs['placeholder'] = 'Password'
+            self.fields['password1'].label                       = ''
+            self.fields['password1'].help_text                   = '<ul class ="form-text text-muted small" ><li>Your password can\'t be too similar to your other personal information.</li><li>Your password must contain at least 8 characters.</li><li>Your password can\' t be a commonly used password.</li><li>Your password can\' t be entirely numeric.</li></ul>'
+
+            self.fields['password2'].widget.attrs['class']       = 'form-control'
+            self.fields['password2'].widget.attrs['placeholder'] = 'Comfirm password'
+            self.fields['password2'].label                       = ''
+            self.fields['password2'].help_text                   = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
 
 
 

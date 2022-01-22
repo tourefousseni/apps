@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
+
 # from django.views.generic import ListView, CreateView
 from django.template import context
 from django.template import defaulttags
@@ -118,6 +119,8 @@ def homepage(request,):
     return render(request, 'kalaliso/homepage.html', {})
 
 
+
+
 def vuesimg(request,):
     images = Image.objects.all().order_by('Date')
     # images = Product_image.objects.all()
@@ -176,10 +179,15 @@ def product_detail(request, product_id):
     return render(request, 'kalaliso/product_detail.html', context)
 
 
+class DateTimePickerInput():
+    pass
+
+
 def order(request):
     # person = Person.objects.get(person_id_id=id)
     if request.method == 'POST':
         form = OrderForm(request.POST)
+        form.fields['create_at'].widget = DateTimePickerInput()
 
         if form.is_valid():
             form.save()
@@ -253,25 +261,46 @@ def payment_detail(request, payment_id):
 
     return render(request, 'kalaliso/payment_detail.html', context)
 
+
 def region(request):
-    qs = Region.objects.all()
-    return render(region, 'kalaliso/region.html')
-
-
-def commune(request):
-    return None
-
-
-def arrondissement(request):
-    return None
-
+    if request.method == 'POST':
+        form = RegionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('cercle')
+    else:
+            form = RegionForm()
+    return render(request, 'localisation/region.html', {'form': form})
 
 def cercle(request):
-    return None
+    if request.method == 'POST':
+        form = CercleForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('commune')
+    else:
+        form = CercleForm()
+    return render(request, 'localisation/cercle.html', {'form': form})
 
+def commune(request):
+    if request.method == 'POST':
+        form = CommuneForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('village')
+    else:
+        form = CommuneForm()
+    return render(request, 'localisation/commune.html', {'form': form})
 
 def village(request):
-    return None
+    if request.method == 'POST':
+        form = VillageForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('village'))
+    else:
+        form = VillageForm()
+    return render(request, 'localisation/village.html', {'form': form})
 
 
 def profile(request):

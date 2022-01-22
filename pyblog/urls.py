@@ -44,10 +44,12 @@ urlpatterns = [
       path('payment/detail/<int:payment_id>/', views.payment_detail, name='payment_detail'),
       path('mesure/', views.mesure, name='mesure'),
       path('mesure/detail/<int:mesure_id>/', views.mesure_detail, name='mesure_detail'),
-      path('region/', views.region, name='region'), path('cercle/', views.cercle, name='cercle'),
-      path('arrondissement/', views.arrondissement, name='arrondissement'),
-      path('commune/', views.commune, name='commune'), path('village/', views.village, name='village'),
+      path('region/', views.region, name='region'),
+      path('region/cercle/', views.cercle, name='cercle'),
+      path('region/cercle/commune/', views.commune, name='commune'),
+      path('region/cercle/commune/village/', views.village, name='village'),
 ]
+
 
 # =================================
 #         ULRS KALALISO

@@ -6,12 +6,14 @@ from crispy_forms.layout import Submit, Layout, Row, Column, Div, Field
 from crispy_forms.bootstrap import TabHolder, Tab
 from crispy_forms.bootstrap import InlineRadios, FormActions, StrictButton
 from django import forms
-# from crispy_bootstrap5_datetime.widgets import DateTimePicker
-# from django_bootstrap_datetimepicker import
+# from .widgets import BootstrapDateTimePickerInput *
+# from django_bootstrap_datetimepicker import *
+# from crispy_bootstrap_datetime.widgets import DateTimePicker
+from django_bootstrap_datetimepicker import *
 from django.forms import widgets
 import datetime
 
-from .models import Image, Person, Payment, Product, Mesure, Order, Order_Items, Commune, Region, Cercle
+from .models import Image, Person, Payment, Product, Mesure, Order, Order_Items, Commune, Region, Cercle, Village
 
 
 # ==============================================
@@ -116,8 +118,7 @@ class OrderForm(forms.ModelForm):
 
         # widgets = {
         #     'create_at': ('DateTimeInput') }
-        # created_at = widget=forms.DateTimeInput(
-        #     attrs={'class': 'form-control DateTimeInput', 'data-target': 'DateTimeInput'})
+        # created_at = widget=forms.DateTimeInput(attrs={'class': 'form-control DateTimeInput', 'data-target': 'DateTimeInput'})
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -168,6 +169,41 @@ class PaymentForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)
 
+class RegionForm(forms.ModelForm):
+    class Meta:
+        model = Region
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+
+class CercleForm(forms.ModelForm):
+    class Meta:
+        model = Cercle
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+
+class CommuneForm(forms.ModelForm):
+    class Meta:
+        model = Commune
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+
+class VillageForm(forms.ModelForm):
+    class Meta:
+        model = Village
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
 # ==============================================
 #                  FORM KALALISO
 #                        END

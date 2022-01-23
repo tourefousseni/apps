@@ -28,6 +28,7 @@ from django.forms import widgets
 #         return self.name
 
 class Person(models.Model):
+    objects = None
     id              = models.AutoField(primary_key=True)
     image           = models.ImageField(upload_to='profil', null=True, blank=True, verbose_name='Photo_commande')
     STATUS          = (
@@ -173,6 +174,7 @@ class Image(models.Model):
 
 
 class Order(models.Model):
+    objects = None
     id          = models.AutoField(primary_key=True)
     person_id   = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Customer',)
     code_order  = models.CharField(max_length=30, blank=True, verbose_name='Code order')

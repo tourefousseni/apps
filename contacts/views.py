@@ -116,9 +116,10 @@ def change_password(request):
 
 
 def homepage(request,):
-    return render(request, 'kalaliso/homepage.html', {})
-
-
+    p = Person.objects.count()
+    o = Order.objects.count()
+    context = {'p': p, 'o': o}
+    return render(request, 'kalaliso/homepage.html', context)
 
 
 def vuesimg(request,):

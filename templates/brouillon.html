@@ -753,3 +753,127 @@ class="img-thumbnail"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+
+
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+    <h5 class="text-left offset-1">BORD DE COMMANDE</h5><hr>
+    <div class="row col-md-4 offset-md-1">
+              <div class="orderform">
+                 <form action="{% url 'order' %}" method="post">
+                     {% csrf_token %}
+                        <div class="orderform">
+                            {{ form|crispy }}
+                        </div><br />
+                             <div class="row offset-md-1">
+                                <div class="col-12 justify-content-center">
+                                    <button type="submit" class="btn btn-primary col-md-4"> Save</button>
+                                    <button type="reset" class="btn btn-danger col-md-4">Cancel</button>
+                               </div>
+                           </div>
+                 </form>
+              </div>
+    </div>
+
+<script>
+    $(document).ready(() => {
+        $('#Reset').click(function(event) {
+            event.preventDefault();
+            $('#orderform').clearForm();
+        });
+    });
+</script>
+
+{% endblock %}
+
+
+
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+    <h5 class="text-left offset-1">BORD DE PAYEMENT</h5> <hr>
+<div class="paymentform">
+      <form action="{% url 'payment' %}" method="post">
+        {% csrf_token %}
+        <div class="row offset-1">
+        <div class="form-group col-sm-4 mb-0">
+                {{ form|crispy}}
+        </div>
+        </div><br />
+        <div class="row offset-1">
+            <div class="col-12 justify-content-center">
+                     <input type="submit" value="Submit" class="btn btn-primary col-md-4">
+                     <input type="reset" value="Reset" class="btn btn-danger col-md-4">
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    $(document).ready(() => {
+        $('#Reset').click(function(event) {
+            event.preventDefault();
+            $('#paymentform').clearForm();
+        });
+    });
+</script>
+
+{% endblock %}
+
+
+
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+  <h5 class="text-left offset-1">ADD PRODUCTS</h5><hr>
+          <div class="row">
+<!--              <div>-->
+                  <form action="{% url 'product' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                      <div class="col-lg-3 offset-md-1">
+                           <div>
+                              {{ form|crispy }}
+                           </div>
+                      </div>
+                   <br />
+                      <div class="offset-md-1">
+                          <button type="submit"  class="btn btn-primary">Save</button>
+                          <button type="button"  class="btn btn-danger">Cancel</button>
+                      </div>
+
+                </form>
+<!--          </div>-->
+       </div>
+{% endblock %}
+
+
+{% extends 'base.html' %}
+<!--{% block title %} Upload {% endblock %}-->
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+      <a href="{% url 'upload' %}"></a><br>
+            <div class="album offset-md-1">
+                <div class="row">
+<!--                     <div class="col-md-4">-->
+                          <form  method="post" enctype="multipart/form-data">
+                          {% csrf_token %}
+                                {{ form|crispy }}
+                               <button type="submit" class="btn btn-primary"> Submit</button>
+                           </form>
+<!--                      </div>-->
+                 </div>
+             </div>
+{% endblock %}

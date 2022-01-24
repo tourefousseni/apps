@@ -13,7 +13,9 @@ from django_bootstrap_datetimepicker import *
 from django.forms import widgets
 import datetime
 
-from .models import Image, Person, Payment, Product, Mesure, Order, Order_Items, Commune, Region, Cercle, Village
+from .models import Image, Person, Payment, \
+    Product, Mesure, Order, Order_Items, Commune, \
+    Region, Cercle, Village
 
 
 # ==============================================
@@ -32,6 +34,27 @@ class ImageForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)
+        self.helper.form_method = 'post'
+        self.helper.layout = Layout(
+            Row(
+                Column('image', ),
+            ),
+            Row(
+                Column('title', ),
+                Column('slug', ),
+                Column('tags', ), ),
+            Row(
+                Column('type', ),
+                Column('category', ),
+                Column('genre', ),
+            ),
+
+
+            FormActions(
+                Submit('save_product', 'Save'),
+                Submit('cancel', 'Cancel', css_class='btn btn-danger')
+            ),
+        )
 
 
 class PersonForm(forms.ModelForm):
@@ -76,29 +99,18 @@ class ProductForm(forms.ModelForm):
             Row(
                 Column('name', ),
                 Column('price', ),
+                Column('description', ),
             ),
-            'descripttion',
-            'image',
-            'create_at',
+            # Row(
+            #     Column('code_product', ),
+            #     # Column('create_at', ),
+            # ),
 
             FormActions(
                 Submit('save_product', 'Save'),
                 Submit('cancel', 'Cancel', css_class='btn btn-danger')
             ),
         )
-# class DateForm(forms.ModelForm):
-#     date=forms.DateTimeField(
-#         input_formats=['%d/%m/%Y %H:%M'],
-#         widget=forms.DateTimeInput(attrs={
-#             'class': 'form-control datetimepicker-input',
-#             'data-target': '#datetimepicker1'
-#         })
-#     )
-# class DateInput(forms.ModelForm):
-#     input_type = 'date'
-#
-# class DateTimeInput(forms.DateTimeInput):
-#     input_type: datetime
 
 class OrderForm(forms.ModelForm):
     class Meta:
@@ -116,10 +128,6 @@ class OrderForm(forms.ModelForm):
 
         exclude = ['code_order']
 
-        # widgets = {
-        #     'create_at': ('DateTimeInput') }
-        # created_at = widget=forms.DateTimeInput(attrs={'class': 'form-control DateTimeInput', 'data-target': 'DateTimeInput'})
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -127,19 +135,28 @@ class OrderForm(forms.ModelForm):
         self.helper.layout = Layout(
             Row(
                 Column('person_id'),
-                Column('reception'),
+                Column('order_items'),
+                Column('localization'),
                 ),
-            InlineRadios('confirmed', 'cancelled'),
-                'remise',
-                'order_items',
-                'localization',
-                'rendez_vous',
+            Row(
+                Column('remise'),
+                Column('rendez_vous'),
+            ),
+
+            Row(
+                Column('reception'),
+                Column('confirmed'),
+                Column('cancelled'),
+            ),
+            #
+            # InlineRadios('confirmed'),
+            # InlineRadios('cancelled'),
+            # InlineRadios('rendez_vous'),
 
             FormActions(
                     Submit('save_product', 'Save'),
                     Submit('cancel', 'Cancel', css_class='btn btn-danger')
                 )
-
             )
 
 
@@ -167,6 +184,18 @@ class PaymentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)
+        self.helper.form_method = 'post'
+        self.helper.layout = Layout(
+            Row(
+                Column('mode_payment'),
+                Column('mount'),
+                Column('frees_commission'),
+                ),
+            Row(
+                Column('create_at'),
+                Column('livre'),
+                 ),
+        )
 
 class RegionForm(forms.ModelForm):
     class Meta:

@@ -1,20 +1,10 @@
 {% extends 'base.html' %}
-<!--{% block title %} Upload {% endblock %}-->
-{% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 {% load static %}
 
 {% block content %}
-      <a href="{% url 'upload' %}"></a><br>
-            <div class="album offset-md-1">
-                <div class="row">
-<!--                     <div class="col-md-4">-->
-                          <form  method="post" enctype="multipart/form-data">
-                          {% csrf_token %}
-                                {{ form|crispy }}
-                               <button type="submit" class="btn btn-primary"> Submit</button>
-                           </form>
-<!--                      </div>-->
-                 </div>
-             </div>
-{% endblock %}
+<div class="col-lg-8 offset-md-1">
+     {% crispy form %}
+</div>
+
+{% endblock  %}

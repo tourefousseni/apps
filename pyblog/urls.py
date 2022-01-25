@@ -44,6 +44,8 @@ urlpatterns = [
       path('payment/detail/<int:payment_id>/', views.payment_detail, name='payment_detail'),
       path('mesure/', views.mesure, name='mesure'),
       path('mesure/detail/<int:mesure_id>/', views.mesure_detail, name='mesure_detail'),
+
+      path('maps/', views.maps, name='maps'),
       path('region/', views.region, name='region'),
       path('region/cercle/', views.cercle, name='cercle'),
       path('region/cercle/commune/', views.commune, name='commune'),

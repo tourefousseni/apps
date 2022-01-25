@@ -261,6 +261,11 @@ def payment_detail(request, payment_id):
     return render(request, 'kalaliso/payment_detail.html', context)
 
 
+
+def maps(request, ):
+    return render(request, 'maps/maps.html',)
+
+
 def region(request):
     if request.method == 'POST':
         form = RegionForm(request.POST)

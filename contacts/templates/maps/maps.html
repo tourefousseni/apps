@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load leaflet_tags %}
+{% block content %}
+
+
+<!--{#       <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">#}-->
+<!--{#       <link rel="stylesheet" href="{% static 'bootstrap/css/style.css' %}">#}-->
+
+<style>
+    .leaflet-container {  /* all maps */
+        width:  900px;
+        height: 600px;
+        /*border-color: #1b1b1b;*/
+        /*margin-top: auto;*/
+        margin-left: 10px;
+    }
+
+</style>
+
+<!--{#<container>#}-->
+              <div class="row col-12">
+<!--                 <div class="col-sm-9 ">-->
+                      <h4 class="text-center">MAPS</h4> <br/>
+                              <div class="map ">
+                                  {% leaflet_map "map"%}
+                              </div>
+                               <div>
+                                    {% leaflet_js %}
+                                    {% leaflet_css %}
+                               </div>
+<!--{#                 </div>#}-->
+               </div>
+
+<!--{#</container>#}-->
+<!--{# <script src="{% static 'bootstrap/js/index.js'%}"></script>#}-->
+<!--{# <script src="{% static 'bootstrap/js/bootstrap.js'%}"></script>#}-->
+
+
+ <script>
+    $( "p" ).click(function( event ) {
+      alert("Your book is overdue.");// This is my case irrigation
+    });
+
+</script>
+
+{% endblock %}

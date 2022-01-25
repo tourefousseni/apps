@@ -29,7 +29,7 @@ def user_login(request):
             messages.success(request, ('Error you can try again !'))
             return redirect('login')
     else:
-        return render(request, 'kalaliso/login.html', {})
+        return render(request, 'account/login.html', {})
 
 
 def logout_user(request):
@@ -52,7 +52,7 @@ def register_user(request):
     else:
         form = SignUpForm(request.POST)
     context = {'form': form}
-    return render(request, 'kalaliso/register.html', context)
+    return render(request, 'account/register.html', context)
 
 
 def edit_profile(request):
@@ -65,7 +65,7 @@ def edit_profile(request):
     else:
         form = EditProfileForm(instance=request.user)
     context = {'form': form}
-    return render(request, 'kalaliso/edit_profile.html', context)
+    return render(request, 'account/edit_profile.html', context)
 
 
 def change_password(request):
@@ -75,13 +75,13 @@ def change_password(request):
             form.save()
             update_session_auth_hash(request, form.user)
             messages.success(request,('You Have Edited Your Password...'))
-            return redirect('kalaliso/homepage.html')
+            return redirect('account/homepage.html')
     else:
         form = PasswordChangeForm(user=request.user)
 
     context = {'form': form}
 
-    return render(request, 'kalaliso/change_password.html', context)
+    return render(request, 'account/change_password.html', context)
 
 
 # ===========================
@@ -151,7 +151,8 @@ def person(request,):
             return HttpResponseRedirect(reverse('mesure'))
     else:
        form=PersonForm()
-    return render(request, 'kalaliso/person.html', {'form': form})
+
+    return render(request, 'kalaliso/person.html', {'form': form,})
 
 
 def person_detail(request, person_id):

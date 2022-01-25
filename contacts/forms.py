@@ -101,10 +101,10 @@ class ProductForm(forms.ModelForm):
                 Column('price', ),
                 Column('description', ),
             ),
-            # Row(
-            #     Column('code_product', ),
-            #     # Column('create_at', ),
-            # ),
+            Row(
+                Column('code_product', ),
+                # Column('create_at', ),
+            ),
 
             FormActions(
                 Submit('save_product', 'Save'),
@@ -168,6 +168,26 @@ class Order_ItemsForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)
+        self.helper.form_method = 'post'
+        self.helper.layout = Layout(
+            Row(
+                Column('category', ),
+                Column('quantity', ),
+                Column('submontant', ),
+            ),
+            Row(
+                Column('product_id', ),
+                # Column('create_at', ),
+            ),
+
+            FormActions(
+                Submit('save_product', 'Save'),
+                Submit('cancel', 'Cancel', css_class='btn btn-danger')
+            ),
+        )
+
+
+
 
 class PaymentForm(forms.ModelForm):
     class Meta:

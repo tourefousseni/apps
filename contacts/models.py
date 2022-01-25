@@ -179,7 +179,7 @@ class Order(models.Model):
     person_id   = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Customer',)
     code_order  = models.CharField(max_length=30, blank=True, verbose_name='Code order')
     reception   = models.BooleanField(default=True)
-    order_items = models.ForeignKey('Order_Items', on_delete=models.CASCADE, verbose_name='add_items')
+    order_items = models.ManyToManyField('Order_Items', verbose_name='add_items')
     rendez_vous = models.DateField(auto_now=False)
     localization= models.ForeignKey('Region', on_delete=models.CASCADE, verbose_name='Localisation',)
     confirmed   = models.BooleanField(default=False)

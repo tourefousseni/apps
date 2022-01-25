@@ -7,15 +7,17 @@
 
 <fieldset>
      <br />
-    <div class="row">
+    <div class="row col-lg-8 offset-0">
     <div class="mesureform">
-        <h5 class="text-left offset-1"> MESURE CLIENT</h5><hr>
+        <h5 class="text-left offset-0"> MESURE CLIENT</h5><hr>
         <form action="{% url 'mesure' %}" method="post">
         {% csrf_token %}
-        <div class="row offset-1">
-            <div class="form-group col-sm-4 mb-0">
+        <div class="row offset-0">
+            <div class="form-group col-sm-8 mb-0">
                 {{ form.person_mesure|as_crispy_field }}
             </div>
+        </div>
+         <div class="row offset-0">
             <div class="form-group col-sm-4  mb-0">
                 {{ form.coude|as_crispy_field }}
             </div>
@@ -45,7 +47,7 @@
             </div>
         </div>
 
-       <div class="row offset-4">
+       <div class="row offset-1">
             <div class="col-12 justify-content-center">
                      <input type="submit" value="Submit" class="btn btn-primary col-md-4">
                      <input type="reset" value="Reset" class="btn btn-danger col-md-4">

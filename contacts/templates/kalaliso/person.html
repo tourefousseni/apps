@@ -4,12 +4,12 @@
 {% load static %}
 
 {% block content %}
-<h5 class="text-left offset-1">INSCRIPTION</h5><hr>
-      <div class="row">
+<h5 class="text-left">INSCRIPTION</h5><hr>
+      <div class="row col-lg-10 offset-0">
           <div class="personform">
             <form action="{% url 'person' %}" method="post">
                  {% csrf_token %}
-                       <div class="row offset-1">
+                       <div class="row offset-0">
                         <div class="form-group col-sm-3 mb-0 ">
                              {{ form.status|as_crispy_field }}
                         </div>
@@ -24,7 +24,7 @@
                         </div>
                      </div>
 
-                     <div class="row offset-1">
+                     <div class="row offset-0">
                         <div class="form-group col-md-3 mb-0">
                             {{ form.prenom|as_crispy_field }}
                         </div>
@@ -35,15 +35,17 @@
                             {{ form.contact_1|as_crispy_field }}
                          </div>
                       </div>
-                <div class="row offset-2">
+                <div class="row offset-1">
                                 <div class="col-12 justify-content-center">
                                          <input type="submit" value="Submit" class="btn btn-primary col-md-3">
                                          <input type="reset" value="Reset" class="btn btn-danger col-md-3">
                                </div>
                         </div>
             </form>
+
         </div>
        </div>
+
 
 <script>
     $(document).ready(() => {

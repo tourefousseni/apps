@@ -45,6 +45,7 @@ urlpatterns = [
       path('mesure/', views.mesure, name='mesure'),
       path('mesure/detail/<int:mesure_id>/', views.mesure_detail, name='mesure_detail'),
 
+     # PARTY MAPS LOCALISATION #
       path('maps/', views.maps, name='maps'),
       path('region/', views.region, name='region'),
       path('region/cercle/', views.cercle, name='cercle'),

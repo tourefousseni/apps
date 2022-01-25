@@ -37,9 +37,11 @@ urlpatterns = [
       path('order/detail/<int:order_id>/', views.order_items, name='order_items'),
       path('product/', views.product, name='product'),
       path('product/detail/<int:product_id>/', views.product_detail, name='product_detail'),
+
       path('person/', views.person, name='person'),
-      # path('?P<person_id>[0-9]+)\/$', views.person_detail, name='person_detail'),
       path('person/detail/<int:person_id>/', views.person_detail, name='person_detail'),
+
+
       path('payment/', views.payment, name='payment'),
       path('payment/detail/<int:payment_id>/', views.payment_detail, name='payment_detail'),
       path('mesure/', views.mesure, name='mesure'),

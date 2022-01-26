@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 
+
 # from django.views.generic import ListView, CreateView
 from django.template import context
 from django.template import defaulttags
@@ -140,7 +141,7 @@ def image_upload_view(request, **kwargs):
             img_obj=f.instance
             return render(request, 'kalaliso/index.html', {'form': f, 'img_obj': img_obj})
         else:
-            form = ImageForm()
+            f = ImageForm()
     return render(request, 'kalaliso/index.html', {'form': f})
 
 def person(request,):

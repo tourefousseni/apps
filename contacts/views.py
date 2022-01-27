@@ -123,12 +123,12 @@ def homepage(request,):
     return render(request, 'kalaliso/homepage.html', context)
 
 
-def vuesimg(request,):
-    images = Image.objects.all().order_by('Date')
+def vuesimg(request, upload_id):
+    images = Image.objects.get(id=upload_id)
     # images = Product_image.objects.all()
-    context = {'images':images}
-    # return HttpResponseRedirect(reverse('kalaliso/detail_image.html', args=[pk]))
-    return redirect('kalaliso/detail_image.html')
+    context = {'images':images }
+    # return HttpResponseRedirect(reverse('kalaliso/detail_image.html', context))
+    return HttpResponseRedirect('kalaliso/homepage.html', context)
 # return HttpResponseRedirect(reverse('app_blog:blog_detail',args=[pk]))
 
 

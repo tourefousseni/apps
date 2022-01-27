@@ -35,11 +35,24 @@
 </div><hr>
 
 <div>
-         {% for f in img_obj %}
 
-         {% endfor %}
+ <br>
+    <a href="{% url 'homepage' %}">Views Images</a>
+        <div class="card">
+            <div class="container">
+                <div class="row">
+           {% for image in images %}
+                   <div class="col-md-4">
+                     <p class="card-text"> {{ image.title }}</p>
+                       <div class="card mb-4 shadow-sm">
+                          <img src="{{ image.image.url }}" class="card-img-top" alt="{{ image.title }}" >
+                       </div>
+                    </div>
+            {% endfor %}
+     </div>
+    </div>
+   </div>
 </div>
-
 {% endblock %}
 
 
@@ -108,17 +121,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
 
-<!--{#           <div class="row">#}-->
-<!--              <div class="row row-cols-2 row-cols-md-2 g-4">-->
-<!--                  <div class="col-md-4 offset-2">-->
-<!--                    <div class="card">-->
-<!--                      <img src="plateform.png" class="card-img-top" alt="Merci4">-->
-<!--                      <div class="card-body">-->
-<!--                        <h5 class="card-title">ALBUM GALAXY</h5>-->
-<!--                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                  </div>-->
+
 <!--                  <div class="col-md-4 offset-md-0">-->
 <!--                    <div class="card">-->
 <!--                      <img src="plateform.png" class="card-img-top" alt="Merci3">-->

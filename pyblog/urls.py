@@ -16,7 +16,7 @@ urlpatterns = [
       path('admin/', admin.site.urls),
       path('', views.homepage, name='homepage'),
       path('upload/', views.image_upload_view, name='upload'),
-      path('upload/detail/<int:upload_id>/', views.vuesimg, name='vues_img'),
+      path('vuesimg/<int:upload_id>/', views.vuesimg, name='vues_img'),
 
       # path('(?P<id>[0-9]+)/upload_detaitl/$', views.upload_detail, name='upload_detail'),
       # path('upload_detail/<int:id>/', views.upload_detail, name='upload_detail'),

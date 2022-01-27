@@ -38,14 +38,14 @@
 
  <br>
     <a href="{% url 'homepage' %}">Views Images</a>
-        <div class="card">
+        <div class="card-img">
             <div class="container">
                 <div class="row">
            {% for image in images %}
                    <div class="col-md-4">
                      <p class="card-text"> {{ image.title }}</p>
                        <div class="card mb-4 shadow-sm">
-                          <img src="{{ image.image.url }}" class="card-img-top" alt="{{ image.title }}" >
+                          <img src="{{ media.image.url }}" class="card-img-top" alt="{{ image.title }}" >
                        </div>
                     </div>
             {% endfor %}

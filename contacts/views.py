@@ -133,16 +133,19 @@ def vuesimg(request, upload_id):
 
 
 def image_upload_view(request, **kwargs):
-    f = ImageForm
-    if request.method == "POST" or None:
-        f=ImageForm(request.POST, request.FILES)
-        if f.is_valid():
-            f.save()
-            img_obj=f.instance
-            return render(request, 'kalaliso/index.html', {'form': f, 'img_obj': img_obj})
-        else:
-            f = ImageForm()
-    return render(request, 'kalaliso/index.html', {'form': f})
+    form = ImageForm
+    if request.method == "POST":
+        form=ImageForm(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            obj=form.instance
+            return render(request, 'kalaliso/homepage.html', {'obj': obj})
+    else:
+        form = ImageForm()
+    img = Image.objects.all()
+    return render(request, 'kalaliso/homepage.html', {'img': img, 'form': form})
+
+
 
 def person(request,):
     if request.method == 'POST':

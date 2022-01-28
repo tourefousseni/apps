@@ -33,25 +33,62 @@
         </div>
   </div>
 </div><hr>
+<div class="container">
+    <div id="content-img">
 
-<div>
+        <h4 class="text-center">NEW POST</h4>
+            <div class="col-md-6 offset-md-3">
+                    <form action="{ % url 'upload' %}" method="post" enctype="multipart/form-data" >
+                        {% csrf_token %}
+                         {{ form.as_p }}
+                         <button type="submit" value="Submit" class ="btn btn-primary">UPLOAD IMAGE</button>
+                    </form>
+                <hr>
+
+                {% if obj %}
+                       <h3> Successuf upload : {{ obj.title }}</h3>
+                      <img src="{{ obj.image.url }}" alt="image" class="img-thumbnail">
+                {% endif %}
+
+                {% for x in img %}
+                {% if forloop.first %}<div class="row"> {% endif %}
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="text-center mt-2">
+                                <img src="{{ x.media.image.url }}" height="100%" width="100%" class="img-thumbnail" alt="Modèle"/>
+                                <h4 class="text-center"> {{x.title}}</h4>
+                        </div>
+                      </div>
+
+                 {% if forloop.counter|divisibleby:3 %}
+
+                </div>
+
+                <div class="row">{% endif %}
+
+                     {% if forloop.last %}></div> {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
 
  <br>
-    <a href="{% url 'homepage' %}">Views Images</a>
-        <div class="card-img">
-            <div class="container">
-                <div class="row">
-           {% for image in images %}
-                   <div class="col-md-4">
-                     <p class="card-text"> {{ image.title }}</p>
-                       <div class="card mb-4 shadow-sm">
-                          <img src="{{ media.image.url }}" class="card-img-top" alt="{{ image.title }}" >
-                       </div>
-                    </div>
-            {% endfor %}
-     </div>
-    </div>
-   </div>
+<!--    <a href="{% url 'homepage' %}">Views Images</a>-->
+<!--        <div class="card-img">-->
+<!--            <div class="container">-->
+<!--                <div class="row">-->
+<!--           {% for image in images %}-->
+<!--                   <div class="col-md-4">-->
+<!--                     <p class="card-text"> {{ image.title }}</p>-->
+<!--                       <div class="card mb-4 shadow-sm">-->
+<!--                          <img src="{{ media.image.url }}" class="card-img-top" alt="{{ image.title }}" >-->
+<!--                       </div>-->
+<!--                    </div>-->
+<!--            {% endfor %}-->
+<!--     </div>-->
+<!--    </div>-->
+<!--   </div>-->
 </div>
 {% endblock %}
 

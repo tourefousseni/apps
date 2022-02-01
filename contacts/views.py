@@ -119,12 +119,15 @@ def change_password(request):
 def homepage(request,):
     p = Person.objects.count()
     o = Order.objects.count()
-    context = {'p': p, 'o': o}
+    context = {
+        'p': p,
+        'o': o
+    }
     return render(request, 'kalaliso/homepage.html', context)
 
 
 def vuesimg(request, upload_id):
-    images = Image.objects.get(id=upload_id)
+    images = get_object_or_404(Image, id=1)
     # images = Product_image.objects.all()
     context = {'images':images }
     # return HttpResponseRedirect(reverse('kalaliso/detail_image.html', context))

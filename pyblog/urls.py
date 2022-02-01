@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls import url
-# from  contacts import views
 # from  . import views  program, genFooterTable, genBodyTable, genHeaderTable
 from reportlab.platypus import Table
 from contacts import views

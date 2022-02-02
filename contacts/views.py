@@ -162,12 +162,11 @@ def person(request,):
     return render(request, 'kalaliso/person.html', {'form': form,})
 
 
-def person_detail(request, person_id):
+def person_list(request, person_id):
     qs = Person.objects.all().order_by('-created_at')
+    context = {'person_list': qs,}
 
-    context = {'detail_person': qs,}
-
-    return render(request, 'kalaliso/person_detail.html', context)
+    return render(request, 'kalaliso/person_list.html', context)
 
 
 def product(request):

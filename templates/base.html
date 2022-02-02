@@ -213,19 +213,19 @@
 
     <ul class="nav nav-pills flex-column mb-auto">
        <li>
-        <a href="{% url 'homepage' %}" class="nav-link bg-black">
+        <a href="{% url 'homepage' %}" class="nav-link link-dark">
            <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
           Homepage
         </a>
        </li>
        <li>
-        <a href="{% url 'order' %}" class="nav-link link-dark">
+        <a href="{% url 'order' %}" class="nav-link link-dark ">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
           Order
         </a>
        </li>
        <li>
-        <a href="{% url 'order_items' %}" class="nav-link link-dark">
+        <a href="{% url 'order_items' %}" class="nav-link link-dark ">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
           Items
         </a>
@@ -302,9 +302,9 @@
 
 </div>
 <footer><br/><hr>
-    <div class="text-center">
-        <small>Copyright @ 2018-2022 GisConsulting4</small>
-    </div>
+            <div class="text-center">
+                    <small>Copyright @ 2018-2022 GisConsulting4</small>
+            </div>
 </footer>
 </body>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="crossorigin=""/>
@@ -386,5 +386,6 @@ L.control.measure({
       $( this ).slideUp()
       });
 
+// $('.dropdown-toggle').dropdown()
 </script>
 

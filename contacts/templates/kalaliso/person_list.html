@@ -23,9 +23,9 @@
       </thead>
 
       <tbody>
-             {% for person in detail_person %}
+             {% for person in person_list %}
                            <tr>
-                       <td><a href="{% url 'person_detail' person.pk %}"></a></td>
+                       <td><a href="{% url 'person_list' person.pk %}"></a></td>
 <!--                                <td><input type="checkbox" class="checkthis" /></td>-->
                                 <td>{{ person.status }}</td>
                                 <td>{{ person.genre }}</td>

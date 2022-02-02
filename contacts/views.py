@@ -202,12 +202,11 @@ def order(request):
     return render(request, 'kalaliso/order.html', {'form': form})
 
 
-def order_items(request, order_id):
+def order_list(request, order_id):
     qs = Order.objects.all().order_by()
+    context = {'order_list': qs,}
 
-    context = {'order_items': qs,}
-
-    return render(request, 'kalaliso/order_items.html', context)
+    return render(request, 'kalaliso/order_list.html', context)
 
 
 def order_items(request, ):

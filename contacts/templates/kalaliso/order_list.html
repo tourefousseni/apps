@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
-{% block title %} CONTENU COMMANDE {% endblock %}
 
+{% block title %} CONTENU COMMANDE {% endblock %}
 {% block content %}
     <div class="table-responsive">
     <table id="bootstrapdatable" class="table table-striped table-bordered" width="100%">
@@ -25,9 +25,9 @@
       </thead>
 
       <tbody>
-                    {% for items in order_items %}
+                    {% for items in order_list %}
                            <tr>
-                                <td><a href="{% url '' %}"></a></td>
+                                <td><a href="{% url 'order_list' order.pk %}"></a></td>
 {#                              <td><input type="checkbox" class="checkthis" /></td>#}
                                 <td>{{ order.id }}</td>
                                 <td>{{ order.code_order }}</td>
@@ -36,15 +36,15 @@
                                 <td>{{ order.livre }}</td>
                                 <td>{{ order.created_at }}</td>
                                                         <td> <p data-placement="top" data-toggle="tooltip"
-                                                        title="Edit"><a href="/edit/{{ order_items.id }}"
+                                                        title="Edit"><a href="/edit/{{ order_list.id }}"
                                                         class="btn btn-primary btn-xs" data-title="Edit"
                                                         data-toggle="modal" data-target="Edit">
                                                         <span class="glyphicon glyphicon">
                                                         </span></a>Edit</p></td>
 
                                                           <td> <p data-placement="top" data-toggle="tooltip"
-                                                          title="Delete"><a href="/delete/{{ order_items.id }}"
-                                                          class="btn btn-danger btn-xs" data-title="Deletete"
+                                                          title="Delete"><a href="/delete/{{ order_list.id }}"
+                                                          class="btn btn-danger btn-xs" data-title="Delete"
                                                           data-toggle="modal" data-target="Delete">
                                                           <span class="glyphicon glyphicon">
                                                           </span></a>Delete</p></td>
@@ -55,4 +55,5 @@
         </tbody>
     </table>
  </div>
+
 {% endblock content %}

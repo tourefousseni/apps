@@ -17,12 +17,6 @@ urlpatterns = [
       path('upload/', views.image_upload_view, name='upload'),
       path('vuesimg/<int:upload_id>/', views.vuesimg, name='vues_img'),
 
-      # path('(?P<id>[0-9]+)/upload_detaitl/$', views.upload_detail, name='upload_detail'),
-      # path('upload_detail/<int:id>/', views.upload_detail, name='upload_detail'),
-      # path('upload/<int:id>/', views.image_upload_view_detail, name='upload-detail'),
-      # path('product/<int:id>/', views.product_detail, name='product-detail'),
-      # path('', views.homepage, name='add_post'),
-
       path('login/', views.user_login, name='login'),
       path('logout/', views.logout_user, name='logout'),
       path('register/', views.register_user, name='register'),

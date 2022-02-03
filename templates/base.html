@@ -31,7 +31,7 @@
             width: 1000px;
             float: right;
             position: relative;
-            bottom: 550px;
+            bottom: 500px;
           }
         .card{
             position: relative;
@@ -93,6 +93,10 @@
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
         }
+      /*.main .container .navbar {*/
+
+      /*}*/
+
       }
 </style>
 
@@ -107,7 +111,7 @@
                     <span class="navbar-toggler-icon"></span>
                   </button>
 
-                  <div class="collapse navbar-collapse" id="navbar">
+                  <div class="collapse navbar-collapse">
                       <ul class="navbar-nav col-sm-4 offset-5">
 
                           <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
@@ -204,7 +208,7 @@
 
 <div class="row col-lg-12">
 <div class=".col-md-4">
-<main>
+<main class="main">
 
   <div class="b-example-divider"></div>
   <div class="d-flex flex-column  bg-light" style="width: 200px">
@@ -264,16 +268,10 @@
          Maps
         </a>
      </li><hr>
-      <li>
-        <a href="{% url 'profile' %}" class="nav-link link-dark">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-          Profile
-        </a>
-      </li>
     </ul>
 
     <div class="dropdown">
-      <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+      <a href="{% url 'profile' %}" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
         <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
         <strong>fulani</strong>
       </a>
@@ -301,7 +299,7 @@
 </div>
 <footer><br/><hr>
             <div class="text-center">
-                    <small>Copyright @ 2018-2022 GisConsulting4</small>
+                    <small>Copyright @ 2016-2022 GisConsulting4</small>
             </div>
 </footer>
 </body>

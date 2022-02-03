@@ -31,23 +31,21 @@ urlpatterns = [
       path('change/password/', views.change_password, name='change_password'),
 
 
-      path('product/', views.product, name='product'),
-      path('product/detail/<int:product_id>/', views.product_detail, name='product_detail'),
-
       path('person/', views.person, name='person'),
       path('person/list/<int:person_id>/', views.person_list, name='person_list'),
-
 
       path('order/', views.order, name='order'), path('order_items/', views.order_items, name='order_items'),
       path('order/list/<int:order_id>/', views.order_list, name='order_list'),
 
-      path('orderdetail/detail/<int:order_items_id>/', views.orderdetail_detail, name='orderdetail_detail'),
+      path('mesure/', views.mesure, name='mesure'),
+      path('mesure/list/<int:mesure_id>/', views.mesure_list, name='mesure_list'),
 
+      path('product/', views.product, name='product'),
+      path('product/list/<int:product_id>/', views.product_list, name='product_list'),
 
       path('payment/', views.payment, name='payment'),
-      path('payment/detail/<int:payment_id>/', views.payment_detail, name='payment_detail'),
-      path('mesure/', views.mesure, name='mesure'),
-      path('mesure/detail/<int:mesure_id>/', views.mesure_detail, name='mesure_detail'),
+      path('payment/list/<int:payment_id>/', views.payment_list, name='payment_list'),
+
 
      # PARTY MAPS LOCALISATION #
       path('maps/', views.maps, name='maps'),
@@ -55,6 +53,8 @@ urlpatterns = [
       path('region/cercle/', views.cercle, name='cercle'),
       path('region/cercle/commune/', views.commune, name='commune'),
       path('region/cercle/commune/village/', views.village, name='village'),
+
+      path('orderdetail/detail/<int:order_items_id>/', views.orderdetail_detail, name='orderdetail_detail'),
 ]
 
 

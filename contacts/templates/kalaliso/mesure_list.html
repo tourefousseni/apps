@@ -32,11 +32,11 @@
       </thead>
 
       <tbody>
-                    {% for mesure in detail_mesure %}
+                {% for mesure in mesure_list %}
                            <tr>
-                                <td><a href="{% url 'mesure_detail' mesure.pk %}"></a></td>
+                                <td><a href="{% url 'mesure_list' mesure.pk %}"></a></td>
 {#                                <td><input type="checkbox" class="checkthis" /></td>#}
-{#                                <td>{{ contact.id }}</td>#}
+{#                              <td>{{ contact.id }}</td>#}
                                 <td>{{ mesure.coude }}</td>
                                 <td>{{ mesure.epaule }}</td>
                                 <td>{{ mesure.manche }}</td>
@@ -53,14 +53,14 @@
                                 <td>{{ mesure.update_at }}</td>
                                 <td>{{ order.created_at }}</td>
                                                         <td> <p data-placement="top" data-toggle="tooltip"
-                                                        title="Edit"><a href="/edit/{{ detail_order.id }}"
+                                                        title="Edit"><a href="/edit/{{ mesure_list.id }}"
                                                         class="btn btn-primary btn-xs" data-title="Edit"
                                                         data-toggle="modal" data-target="Edit">
                                                         <span class="glyphicon glyphicon">
                                                         </span></a>Edit</p></td>
 
                                                           <td> <p data-placement="top" data-toggle="tooltip"
-                                                          title="Delete"><a href="/delete/{{ detail_order.id }}"
+                                                          title="Delete"><a href="/delete/{{mesure_list.id}}"
                                                           class="btn btn-danger btn-xs" data-title="Deletete"
                                                           data-toggle="modal" data-target="Delete">
                                                           <span class="glyphicon glyphicon">

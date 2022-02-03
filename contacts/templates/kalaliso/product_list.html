@@ -21,9 +21,9 @@
             </tr>
       </thead>
       <tbody>
-                    {% for product in product %}
+                    {% for product in product_list %}
                            <tr>
-                                <td><a href="{% url 'product_detail' product.id %}"></a></td>
+                                <td><a href="{% url 'product_list' product.id %}"></a></td>
 <!--                               <td><input type="checkbox" class="checkthis" /></td>-->
                                 <td>{{ product.name }}</td>
                                 <td>{{ product.code_product }}</td>
@@ -31,14 +31,14 @@
                                 <td>{{ product.price }}</td>
                                 <td>{{ product.create_at }}</td>
                                                         <td> <p data-placement="top" data-toggle="tooltip"
-                                                        title="Edit"><a href="/edit/{{ detail_product.id }}"
+                                                        title="Edit"><a href="/edit/{{ product_list.id }}"
                                                         class="btn btn-primary btn-xs" data-title="Edit"
                                                         data-toggle="modal" data-target="Edit">
                                                         <span class="glyphicon glyphicon">
                                                         </span></a>Edit</p></td>
 
                                                           <td> <p data-placement="top" data-toggle="tooltip"
-                                                          title="Delete"><a href="/delete/{{ detail_product.id }}"
+                                                          title="Delete"><a href="/delete/{{ product_list.id }}"
                                                           class="btn btn-danger btn-xs" data-title="Deletete"
                                                           data-toggle="modal" data-target="Delete">
                                                           <span class="glyphicon glyphicon">

@@ -7,17 +7,17 @@
         <thead><br/>
 
         <div class="text-center">
-            <h5>Payment Contenu</h5><br/><hr>
+                  <h5>Etat des Payments </h5><br/><hr>
         </div>
             <tr>
-{#                  <td><input type="checkbox" id="checkall" /></td>#}
+                 <td><input type="checkbox" id="checkall" /></td>
                   <th>N°</th>
                   <th>submontant</th>
                   <th>Remise</th>
                   <th>Tva</th>
                   <th>Montant Total</th>
                   <th>Rendez Vous</th>
-{#                  <th>Livre</th>#}
+                  <th>Livre</th>
                   <th>Date Creation</th>
                   <th>Edit</th>
                   <th>Delete</th>
@@ -25,28 +25,28 @@
       </thead>
 
       <tbody>
-                    {% for payment in detail_payment %}
+                    {% for payment in payment_list %}
                            <tr>
-                                <td><a href="{% url 'payment_detail' payment.pk %}"></a></td>
-{#                                <td><input type="checkbox" class="checkthis" /></td>#}
-{#                                <td>{{ contact.id }}</td>#}
+                                <td><a href="{% url 'payment_list' payment.pk %}"></a></td>
+                                <td><input type="checkbox" class="checkthis" /></td>
+                                <td>{{ contact.id }}</td>
                                 <td>{{ payment.id }}</td>
                                 <td>{{ payment.submontant }}</td>
                                 <td>{{ payment.remise }}</td>
                                 <td>{{ payment.tva }}</td>
                                 <td>{{ payment.montant_total }}</td>
                                 <td>{{ payment.rendez_vous }}</td>
-{#                                <td>{{ payment.livre }}</td>#}
-                                <td>{{ order.created_at }}</td>
+                                <td>{{ payment.livre }}</td>
+                                <td>{{ payment.created_at }}</td>
                                                         <td> <p data-placement="top" data-toggle="tooltip"
-                                                        title="Edit"><a href="/edit/{{ detail_order.id }}"
+                                                        title="Edit"><a href="/edit/{{ payment_list.id }}"
                                                         class="btn btn-primary btn-xs" data-title="Edit"
                                                         data-toggle="modal" data-target="Edit">
                                                         <span class="glyphicon glyphicon">
                                                         </span></a>Edit</p></td>
 
                                                           <td> <p data-placement="top" data-toggle="tooltip"
-                                                          title="Delete"><a href="/delete/{{ detail_order.id }}"
+                                                          title="Delete"><a href="/delete/{{ payment_list.id }}"
                                                           class="btn btn-danger btn-xs" data-title="Deletete"
                                                           data-toggle="modal" data-target="Delete">
                                                           <span class="glyphicon glyphicon">

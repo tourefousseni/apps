@@ -180,11 +180,11 @@ def product(request):
     return render(request, 'kalaliso/product.html', {'form': form})
 
 
-def product_detail(request, product_id):
+def product_list(request, product_id):
     qs = Product.objects.all()
-    context = {'product': qs,}
+    context = {'product_list': qs,}
 
-    return render(request, 'kalaliso/product_detail.html', context)
+    return render(request, 'kalaliso/product_list.html', context)
 
 
 class DateTimePickerInput():
@@ -240,12 +240,12 @@ def mesure(request,):
 
 # response = wrapped_callback(request, *callback_args, **callback_kwargs)
 
-def mesure_detail(request, mesure_id):
+def mesure_list(request, mesure_id):
     qs = Mesure.objects.all()
 
-    context = {'detail_mesure': qs,}
+    context = {'mesure_list': qs,}
 
-    return render(request, 'kalaliso/mesure_detail.html', context)
+    return render(request, 'kalaliso/mesure_list.html', context)
 
 
 def payment(request,):
@@ -258,12 +258,12 @@ def payment(request,):
             form = PaymentForm()
         return render(request, 'kalaliso/payment.html', {'form': form})
 
-def payment_detail(request, payment_id):
+def payment_list(request, payment_id):
     qs = Payment.objects.all()
 
-    context = {'detail_payment': qs, }
+    context = {'payment_list': qs, }
 
-    return render(request, 'kalaliso/payment_detail.html', context)
+    return render(request, 'kalaliso/payment_list.html', context)
 
 
 

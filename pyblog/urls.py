@@ -10,14 +10,12 @@ app_name = 'contacts'
 
 urlpatterns = [
 
-      # path('home/', views.HomePageView, name='homepage'),
-      # path('home/', HomePageView.as_view(), name='homepage'),
       path('admin/', admin.site.urls),
-      path('', views.homepage, name='homepage'),
+      path('homepage/', views.homepage, name='homepage'),
       path('upload/', views.image_upload_view, name='upload'),
       path('vuesimg/<int:upload_id>/', views.vuesimg, name='vues_img'),
 
-      path('login/', views.user_login, name='login'),
+      path('', views.user_login, name='login'),
       path('logout/', views.logout_user, name='logout'),
       path('register/', views.register_user, name='register'),
       path('profile/', views.profile, name='profile'),

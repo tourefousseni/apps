@@ -187,10 +187,6 @@ def product_list(request, product_id):
     return render(request, 'kalaliso/product_list.html', context)
 
 
-class DateTimePickerInput():
-    pass
-
-
 def order(request):
     if request.method == 'POST':
         form = OrderForm(request.POST)

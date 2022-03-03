@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'pyblog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'plateform',
+        'NAME': 'kaladb',
         'USER': 'myprojectuser',
         'PASSWORD':'password',
         'HOST': '127.0.0.1',
@@ -111,7 +111,7 @@ STATIC_URL       = '/static/'
 MEDIA_URL        = '/media/'
 MEDIA_ROOT       = os.path.join(BASE_DIR, 'media/')
 STATIC_ROOT      = os.path.join(BASE_DIR, 'static_root')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'pyblog/static')]
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'pyblog/static')]
 
 FORM_RENDERER = 'django.forms.renderers.DjangoTemplates'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

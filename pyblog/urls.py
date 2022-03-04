@@ -25,7 +25,8 @@ urlpatterns = [
       path('change/password/', views.change_password, name='change_password'),
 
       path('person/', views.person, name='person'),
-      path('person/<int:person_id>/', views.person_list, name='person_list'),
+      path('person/<int:person_id>/', views.list, name='list'),
+      path('person/detail/<int:person_id>/', views.detail_person, name='detail_person'),
 
       path('order/', views.order, name='order'), path('order_items/', views.order_items, name='order_items'),
       path('order/list/<int:order_id>/', views.order_list, name='order_list'),

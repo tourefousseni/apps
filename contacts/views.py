@@ -160,10 +160,14 @@ def person(request):
        form=PersonForm()
     return render(request, 'kalaliso/person.html', {'form': form,})
 
-def person_list(request, person_id):
-    lp = get_object_or_404(Person, pk=person_id)
-    context     = {'list_person': lp}
-    return render(request, 'kalaliso/person_list.html', context)
+def list(request, person_id):
+    list_person = get_object_or_404(Person, pk=person_id)
+    # context     = {'list_person': lp}
+    return render(request, 'kalaliso/person_list.html', {'list_person': list_person})
+
+def detail_person(request, person_id):
+    detail = get_object_or_404(Person, pk=person_id)
+    return render(request, 'kalaliso/detail_person.html', {'detail': detail})
 
 
 def product(request):

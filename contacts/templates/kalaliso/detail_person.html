@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+           <h3> Detail Personnel:</h3>
+                {% for person in person_list %}
+                        <h6>Status : {{ person.status }}</h6>
+                        <h6>Nom    : {{ person.nom }}</h6>
+                        <h6>Prenom : {{ person.prenom }}</h6>
+                        <h6>Tel    : {{ person.contact_1 }}</h6>
+                        <h6>Code   : {{ person.code }}</h6>
+                {% endfor %}
+
+{% endblock %}

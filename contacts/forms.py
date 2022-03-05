@@ -87,7 +87,7 @@ class MesureForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
     class Meta:
          model = Product
-         template_name = 'kalaliso/product.html'
+         template_name = 'kalalso/product.html'
          fields = ['name', 'code_product', 'description', 'price', 'create_at']
          exclude = ['create_at']
 
@@ -115,7 +115,7 @@ class ProductForm(forms.ModelForm):
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        template_name = 'kalaliso/order.html'
+        template_name = 'kalalso/order.html'
         fields = ['person_id',
                   'reception',
                   'order_items',
@@ -192,7 +192,7 @@ class Order_ItemsForm(forms.ModelForm):
 class PaymentForm(forms.ModelForm):
     class Meta:
         model = Payment
-        template_name = 'kalaliso/payment.html'
+        template_name = 'kalalso/payment.html'
         fields = ['mode_payment',
                   'code_payment',
                   'mount',

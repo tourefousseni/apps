@@ -3,13 +3,13 @@
 
 {% block content %}
         <h2 class="text-center"> Hello every body! welcome to profile</h2>
-<!--     {% if user.is_authenticated %}-->
-<!--         <p> This is profile page </p>-->
-
-<!--           <p> Username: {{user.username}} </p>-->
-<!--           <p> First_name : {{user.first_name}}  {{user.last_name}}</p>-->
-<!--           <p> Email: {{user.email}} </p>-->
-<!--     {% endif %}-->
+     {% if user.is_authenticated %}
+          <p> This is profile page </p>
+           <p> Username: {{user.username}} </p>
+<!--           <p> Password: {{user.password}} </p>-->
+           <p> First_name : {{user.first_name}}  {{user.last_name}}</p>
+           <p> Email: {{user.email}} </p>
+     {% endif %}
 {% endblock content %}
 
 

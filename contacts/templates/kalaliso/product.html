@@ -4,24 +4,26 @@
 
 {% block content %}
 
-          <h1 class="text-center"> Album for all photos </h1><hr>
-          {% for product in products.all %}
-          <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-                    <img class="card-img-top" src="{{ product.photo.url }}">
-                  <div class="card-body">
-                  {{ product.name }}
-                  {{ product.price }}
-<!--                  {{ product.code_product }}-->
-<!--                  {{ product.description }}-->
-<!--                  {{ product.create_at }}-->
+<h1 class="text-center"> Album for all photos </h1><hr> <br />
+     <div class="row">
+             {% for product in products.all %}
+                  <div class="col-md-4">
+                  <div class="card mb-4 shadow-sm">
+                      <a href="{% url 'product_detail' product.id  %}">
+                           <img class="card-img-top" src="{{ product.photo.url }}">
+                      </a>
+                      <div class="card-body">
+                     <p>Model: {{ product.name }} </p>
+                     <p>Prix: {{ product.price }}Fcfa</p>
+    <!--                  {{ product.code_product }}-->
+    <!--                  {{ product.description }}-->
+    <!--                  {{ product.create_at }}-->
+                      </div>
                   </div>
-
               </div>
 
-          </div>
-
-
           {% endfor %}
+     </div>
+
 
 {% endblock  %}

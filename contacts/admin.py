@@ -6,10 +6,8 @@ from django.db import models
 
 # Register your models here.
 
-from .models import Image, Product
+from .models import Product
 
-
-admin.site.register(Image)
 
 admin.site.register(Product)
 

@@ -13,7 +13,7 @@ from django_bootstrap_datetimepicker import *
 from django.forms import widgets
 import datetime
 
-from .models import Image, Person, Payment, \
+from .models import  Person, Payment, \
     Product, Mesure, Order, Order_Items, Commune, \
     Region, Cercle, Village
 
@@ -25,36 +25,36 @@ from .models import Image, Person, Payment, \
 
 
 
-class ImageForm(forms.ModelForm):
-    class Meta:
-        model = Image
-        fields = ['title', 'slug','tags','type', 'category', 'genre', 'image', ]
-        exclude = ['tags']
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper(self)
-        self.helper.form_method = 'post'
-        self.helper.layout = Layout(
-            Row(
-                Column('image', ),
-            ),
-            Row(
-                Column('title', ),
-                Column('slug', ),
-                Column('tags', ), ),
-            Row(
-                Column('type', ),
-                Column('category', ),
-                Column('genre', ),
-            ),
-
-
-            FormActions(
-                Submit('save_product', 'Save'),
-                Submit('cancel', 'Cancel', css_class='btn btn-danger')
-            ),
-        )
+# class ImageForm(forms.ModelForm):
+#     class Meta:
+#         model = Image
+#         fields = ['title', 'slug','tags','type', 'category', 'genre', 'image', ]
+#         exclude = ['tags']
+#
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.helper = FormHelper(self)
+#         self.helper.form_method = 'post'
+#         self.helper.layout = Layout(
+#             Row(
+#                 Column('image', ),
+#             ),
+#             Row(
+#                 Column('title', ),
+#                 Column('slug', ),
+#                 Column('tags', ), ),
+#             Row(
+#                 Column('type', ),
+#                 Column('category', ),
+#                 Column('genre', ),
+#             ),
+#
+#
+#             FormActions(
+#                 Submit('save_product', 'Save'),
+#                 Submit('cancel', 'Cancel', css_class='btn btn-danger')
+#             ),
+#         )
 
 
 class PersonForm(forms.ModelForm):

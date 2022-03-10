@@ -135,18 +135,18 @@ def homepage(request,):
 # return HttpResponseRedirect(reverse('app_blog:blog_detail',args=[pk]))
 
 
-def image_upload_view(request, **kwargs):
-    form = ImageForm
-    if request.method == "POST":
-        form=ImageForm(data=request.POST, files=request.FILES)
-        if form.is_valid():
-            form.save()
-            obj=form.instance
-            return render(request, 'kalaliso/homepage.html', {'obj': obj})
-    else:
-        form = ImageForm()
-    img = Image.objects.all()
-    return render(request, 'kalaliso/homepage.html', {'img': img, 'form': form})
+# def image_upload_view(request, **kwargs):
+#     form = ImageForm
+#     if request.method == "POST":
+#         form=ImageForm(data=request.POST, files=request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             obj=form.instance
+#             return render(request, 'kalaliso/homepage.html', {'obj': obj})
+#     else:
+#         form = ImageForm()
+#     img = Image.objects.all()
+#     return render(request, 'kalaliso/homepage.html', {'img': img, 'form': form})
 
 
 def person(request):
@@ -185,8 +185,8 @@ def product(request):
 
 def product_detail(request, product_id):
     product_detail = get_object_or_404(Product, pk=product_id)
-    context = {'pd': product_detail,}
-    return render(request, 'kalaliso/product_detail.html', context)
+    return render(request, 'kalaliso/product_detail.html', {'product_detail': product_detail,})
+
 
 
 def order(request):

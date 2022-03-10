@@ -15,7 +15,7 @@ urlpatterns = [
 
       path('admin/', admin.site.urls),
       path('homepage/', views.homepage, name='homepage'),
-      path('upload/', views.image_upload_view, name='upload'),
+      # path('upload/', views.image_upload_view, name='upload'),
 
       path('product/', views.product, name='product'),
       path('<int:product_id>/', views.product_detail, name='product_detail'),

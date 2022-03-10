@@ -18,7 +18,7 @@ urlpatterns = [
       path('upload/', views.image_upload_view, name='upload'),
 
       path('product/', views.product, name='product'),
-      path('product/list/<int:product_id>/', views.product_list, name='product_list'),
+      path('<int:product_id>/', views.product_detail, name='product_detail'),
 
       # path('vuesimg/<int:upload_id>/', views.vuesimg, name='vues_img'),
 

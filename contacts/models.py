@@ -141,37 +141,6 @@ def pre_save_product_id(instance, sender, *args, **kwargs):
 
 pre_save.connect(pre_save_product_id, sender=Product)
 
-# class Image(models.Model):
-#
-#     objects = None
-#     TYPE      = (
-#         ('Broderie', 'Broderie'),
-#         ('Couture simple', 'COUTURE SIMPLE'),
-#         ('Couture a main', 'COUTURE A MAIN'),
-#         ('Finition', 'FINITION'),)
-#
-#     GENRE     = (
-#         ('H', 'Homme'),
-#         ('F', 'Femme'),
-#         ('A', 'Autres'),)
-#
-#     CATEGORY  = (
-#         ('G', 'Grande'),
-#         ('M', 'Moyenne'),
-#         ('P', 'Petite'),)
-#     id        = models.AutoField(primary_key=True)
-#     title     = models.CharField(max_length=100)
-#     slug      = models.SlugField(unique=True)
-#     tags      = models.TextField()
-#     image    = models.ImageField(upload_to='image/')
-#     type      = models.CharField(max_length=20, choices=TYPE, default='Broderie')
-#     category  = models.CharField(max_length=20, choices=CATEGORY, default='Grande')
-#     genre     = models.CharField(max_length=20, choices=GENRE, default='Homme')
-#
-#     def __str__(self):
-#         return self.title
-
-
 
 class Order(models.Model):
     objects = None
@@ -228,9 +197,9 @@ class Payment(models.Model):
     payment_Order    = models.ForeignKey('Order', on_delete=models.CASCADE, blank=True, null=True, verbose_name='Payment Facture', )
     code_payment     = models.CharField(max_length=30, blank=True, verbose_name='Code Payement')
     person_id        = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Titulaire command', )
-    mount            = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True, verbose_name='Montant Total')
-    frees_commission = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-    livre            = models.BooleanField(default=False)
+    amount            = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True, verbose_name='Montant Total')
+    fees_commission = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
+    delivered           = models.BooleanField(default=False)
     create_at        = models.DateField(auto_now=True)
 
     def __str__(self):

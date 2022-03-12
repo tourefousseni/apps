@@ -162,12 +162,17 @@ def person(request):
 def list(request, person_id):
     list_person = get_object_or_404(Person, pk=person_id)
     # context     = {'list_person': lp}
-    return render(request, 'kalaliso/person_list.html', {'list_person': list_person})
+    return render(request, 'kalaliso/person_list.html', {'list_person': list_person })
 
-def detail_person(request, person_id):
-    detail = get_object_or_404(Person, pk=person_id)
-    return render(request, 'kalaliso/detail_person.html', {'detail': detail})
+def detail_person(request, p_detail_id):
+    # detail_p = get_object_or_404(Person, pk=p_detail_id)
+    detail_p = Person.objects
+    return render(request, 'kalaliso/d_person.html', {'detail_p': detail_p})
 
+
+# def detail_person(request, person_id):
+#     detail = get_object_or_404(Person, pk=person_id)
+#     return render(request, 'kalaliso/detail_person.html', {'detail': detail})
 
 # def product(request):
 #     if request.method == 'POST':
@@ -186,6 +191,12 @@ def product(request):
 def product_detail(request, product_id):
     product_detail = get_object_or_404(Product, pk=product_id)
     return render(request, 'kalaliso/product_detail.html', {'product_detail': product_detail,})
+
+
+# def product_count(request):
+    # product_count = Product.objects
+    # return render(request, )
+    # return render(request, 'kalaliso/product_count.html', {'product_count': product_count, } )
 
 
 

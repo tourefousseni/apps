@@ -84,33 +84,33 @@ class MesureForm(forms.ModelForm):
         self.helper = FormHelper(self)
 
 
-# class ProductForm(forms.ModelForm):
-#     class Meta:
-#          model = Product
-#          template_name = 'kalaliso/product.html'
-#          fields = ['name', 'code_product','image', 'description', 'price', 'create_at']
-#          exclude = ['create_at']
+class ProductForm(forms.ModelForm):
+    class Meta:
+         model = Product
+         template_name = 'kalaliso/product.html'
+         fields = ['name', 'code_product','description', 'price', 'create_at']
+         exclude = ['create_at']
 
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     self.helper = FormHelper()
-    #     self.helper.form_method = 'post'
-    #     self.helper.layout = Layout(
-    #         Row(
-    #             Column('name', ),
-    #             Column('price', ),
-    #             Column('description', ),
-    #         ),
-    #         Row(
-    #             Column('code_product', ),
-    #             # Column('create_at', ),
-    #         ),
-    #
-    #         FormActions(
-    #             Submit('save_product', 'Save'),
-    #             Submit('cancel', 'Cancel', css_class='btn btn-danger')
-    #         ),
-    #     )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.layout = Layout(
+            Row(
+                Column('name', ),
+                Column('price', ),
+                Column('description', ),
+            ),
+            Row(
+                Column('code_product', ),
+                # Column('create_at', ),
+            ),
+
+            FormActions(
+                Submit('save_product', 'Save'),
+                Submit('cancel', 'Cancel', css_class='btn btn-danger')
+            ),
+        )
 
 class OrderForm(forms.ModelForm):
     class Meta:
@@ -195,9 +195,9 @@ class PaymentForm(forms.ModelForm):
         template_name = 'kalaliso/payment.html'
         fields = ['mode_payment',
                   'code_payment',
-                  'mount',
-                  'frees_commission',
-                  'livre' ]
+                  'amount',
+                  'fees_commission',
+                  'delivered' ]
 
         exclude = ['code_payment', 'create_at']
 
@@ -208,12 +208,12 @@ class PaymentForm(forms.ModelForm):
         self.helper.layout = Layout(
             Row(
                 Column('mode_payment'),
-                Column('mount'),
-                Column('frees_commission'),
+                Column('amount'),
+                Column('fees_commission'),
                 ),
             Row(
                 Column('create_at'),
-                Column('livre'),
+                Column('delivered'),
                  ),
         )
 

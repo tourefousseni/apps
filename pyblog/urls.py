@@ -19,6 +19,7 @@ urlpatterns = [
 
       path('product/', views.product, name='product'),
       path('<int:product_id>/', views.product_detail, name='product_detail'),
+      # path('product_count/', views.product_count, name='number_product'),
 
       # path('vuesimg/<int:upload_id>/', views.vuesimg, name='vues_img'),
 
@@ -31,7 +32,8 @@ urlpatterns = [
 
       path('person/', views.person, name='person'),
       path('person/<int:person_id>/', views.list, name='list'),
-      path('person/detail/<int:person_id>/', views.detail_person, name='detail_person'),
+      path('person/detail/<int:p_detail_id>/', views.detail_person, name='detail_person'),
+      # path('person/detail/<int:person_id>/', views.detail_person, name='detail_person'),
 
       path('order/', views.order, name='order'),
       path('order_items/', views.order_items, name='order_items'),

@@ -48,14 +48,14 @@ class Person(models.Model):
     )
 
     GENRE             = (
-        ('H', 'HOMME'),
-        ('F', 'FEMME'),
-        ('A', 'AUTRES'),
+        ('Homme', 'HOMME'),
+        ('Femme', 'FEMME'),
+        ('Autres', 'AUTRES'),
     )
     CATEGORY           = (
-        ('G', 'GRANDE'),
-        ('M', 'MOYENNE'),
-        ('P', 'PETIT'),
+        ('Grande', 'GRANDE'),
+        ('Moyenne', 'MOYENNE'),
+        ('Petit', 'PETIT'),
     )
     status              = models.CharField(max_length=20, choices=STATUS, )
     # user                = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Utilisateur')

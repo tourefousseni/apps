@@ -1,6 +1,4 @@
 {% extends 'base.html' %}
-{% load crispy_forms_filters %}
-{% load crispy_forms_tags %}
 {% load static %}
 
 {% block content %}
@@ -8,11 +6,11 @@
   <div class="col-sm-6">
     <div class="card" style="background: white ">
       <div class="card-body">
-        <h6 class="card-text text-center">Information  personnelle </h6><hr>
+        <h6 class="card-text ">Information  personnelle </h6><hr>
           {% for person in detail_p.all %}
 
                   <h4 class="text-center" style="color: white"></h4>
-                  <p> Nom et Prenom : {{ person.prenom }} {{ person.nom }} </p>
+                  <p> Nom et Prenom : {{ person.nom }}  {{ person.prenom }} </p>
                   <p>Telephone      : {{ person.contact_1 }}</p>
                   <p>Category       : {{ person.category }}</p>
                   <p>Status         : {{ person.status }}</p>

@@ -31,7 +31,9 @@ urlpatterns = [
       path('change/password/', views.change_password, name='change_password'),
 
       path('person/', views.person, name='person'),
-      path('person/<int:person_id>/', views.list, name='list'),
+
+      path('person/list/', views.list, name='list'),
+      # path('person/list/<int:person_id>/', views.list, name='list'),
       path('person/detail/<int:p_detail_id>/', views.detail_person, name='detail_person'),
       # path('person/detail/<int:person_id>/', views.detail_person, name='detail_person'),
 

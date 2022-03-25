@@ -19,7 +19,7 @@ urlpatterns = [
 
       path('product/', views.product, name='product'),
       path('<int:product_id>/', views.product_detail, name='product_detail'),
-      # path('product_count/', views.product_count, name='number_product'),
+      path('product_sum/', views.product_sum, name='product_sum'),
 
       # path('vuesimg/<int:upload_id>/', views.vuesimg, name='vues_img'),
 
@@ -37,12 +37,15 @@ urlpatterns = [
       path('person/detail/<int:p_detail_id>/', views.detail_person, name='detail_person'),
       # path('person/detail/<int:person_id>/', views.detail_person, name='detail_person'),
 
+      path('mesure/', views.mesure, name='mesure'),
+      path('mesure/list/', views.mesure_list, name='mesure_list'),
+
+
       path('order/', views.order, name='order'),
       path('order_items/', views.order_items, name='order_items'),
-      path('<int:order_id>/', views.order_list, name='order_list'),
+      path('order_list/', views.order_list, name='order_list'),
 
-      path('mesure/', views.mesure, name='mesure'),
-      path('mesure/list/<int:mesure_id>/', views.mesure_list, name='mesure_list'),
+
 
 
 

@@ -5,8 +5,12 @@
 {% block content %}
 
 <h1 class="text-center"> Number Models </h1><hr>
+    {% for product in product_sum %}
 
-        {{ product.count }}
+            {{ product.count }}
+
+    {% endfor%}
+
 
 <!--             {% for product in products.count %}-->
 

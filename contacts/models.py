@@ -90,6 +90,7 @@ pre_save.connect(pre_save_person_id, sender=Person)
 
 
 class Mesure(models.Model):
+    objects = None
     id                 = models.AutoField(primary_key=True)
     person_mesure      = models.OneToOneField('Person', on_delete=models.CASCADE, verbose_name='Mesure Client')
     coude              = models.FloatField(null=True, blank=True)

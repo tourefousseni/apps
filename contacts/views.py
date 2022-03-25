@@ -89,50 +89,6 @@ def change_password(request):
 #      VIEWS KALALISO
 #          START
 # ===========================
-# def CreatePostView(CreateView):
-#     model = Post
-#     form_class = PostForm
-#     template_name = 'kalaliso/post.html'
-#     # success_url = reverse_lazy ('kalaliso/homepage.html')
-#     return render(CreateView, 'kalaliso/post.html')
-#
-# def HomePageView(ListView):
-#     qp = Post.objects.all()
-#     model = Post
-#     context = { 'homepage': qp}
-#     # template_name =  'kalaliso/homepage.html'
-#     return render(ListView, 'kalaliso/homepage.html', context)
-
-#     global image
-#     if request.method == "POST":
-#         form=PostForm(data=request.POST, files=request.FILES)
-#         if form.is_valid():
-#             form.save()
-#             obj=form.instance
-#             return render(request,'kalaliso/homepage.html', {"obj":obj})
-#     else:
-#        form=PostForm()
-#        image=Post.objects.all()
-#     return render(request, 'kalaliso/homepage.html', {"image":image, "form":form})
-
-
-def homepage(request,):
-    p = Person.objects.count()
-    o = Order.objects.count()
-    context = {
-        'p': p,
-        'o': o
-    }
-    return render(request, 'kalaliso/homepage.html', context)
-
-
-# def vuesimg(request, upload_id):
-    # images = get_object_or_404(Image, id=1)
-    # images = Product_image.objects.all()
-    # context = {'images':images }
-    # return HttpResponseRedirect(reverse('kalaliso/detail_image.html', context))
-    # return HttpResponseRedirect('kalaliso/homepage.html', context)
-# return HttpResponseRedirect(reverse('app_blog:blog_detail',args=[pk]))
 
 
 # def image_upload_view(request, **kwargs):
@@ -148,6 +104,8 @@ def homepage(request,):
 #     img = Image.objects.all()
 #     return render(request, 'kalaliso/homepage.html', {'img': img, 'form': form})
 
+def homepage(request,):
+    return render(request, 'kalaliso/homepage.html')
 
 def person(request):
     if request.method == 'POST':
@@ -192,10 +150,10 @@ def product_detail(request, product_id):
     return render(request, 'kalaliso/product_detail.html', {'product_detail': product_detail,})
 
 
-# def product_count(request):
-    # product_count = Product.objects
-    # return render(request, )
-    # return render(request, 'kalaliso/product_count.html', {'product_count': product_count, } )
+def product_sum(request):
+    product_sum = Product.objects
+    return render(request, 'kalaliso/product_count.html', {'product_sum': product_sum, } )
+
 
 
 
@@ -210,11 +168,10 @@ def order(request):
     return render(request, 'kalaliso/order.html', {'form': form})
 
 
-def order_list(request, order_id):
-    # qs = Order.objects.all().order_by()
-    qs = get_object_or_404(Order, pk=order_id )
+def order_list(request,):
+    qs = Order.objects.all().order_by()
+    # qs = get_object_or_404(Order, pk=order_id)
     context = {'order_list': qs,}
-
     return render(request, 'kalaliso/order_list.html', context)
 
 
@@ -249,12 +206,9 @@ def mesure(request,):
 
 # response = wrapped_callback(request, *callback_args, **callback_kwargs)
 
-def mesure_list(request, mesure_id):
-    qs = Mesure.objects.all()
-
-    context = {'mesure_list': qs,}
-
-    return render(request, 'kalaliso/mesure_list.html', context)
+def mesure_list(request):
+    qs = Mesure.objects
+    return render(request, 'kalaliso/mesure_list.html', {'mesure_list': qs,})
 
 
 def payment(request,):

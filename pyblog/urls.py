@@ -45,6 +45,8 @@ urlpatterns = [
       path('order_items/', views.order_items, name='order_items'),
       path('order_list/', views.order_list, name='order_list'),
 
+      path('show_video/', views.show_video, name='show_video'),
+
 
 
 

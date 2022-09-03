@@ -5,8 +5,7 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
-
-
+from .models import *
 # from django.views.generic import ListView, CreateView
 from django.template import context
 from django.template import defaulttags
@@ -16,6 +15,11 @@ from django.forms import ModelForm
 #
 # class DateTimeInput(forms.DateTimeInput):
 #     input_type: datetime
+
+def show_video(request):
+    video=Video.objects.all()
+    return render(request,"kalaliso/video.html",{"video":video})
+
 
 def user_login(request):
     if request.method == 'POST':
@@ -83,6 +87,7 @@ def change_password(request):
     context = {'form': form}
 
     return render(request, 'account/change_password.html', context)
+
 
 
 # ===========================

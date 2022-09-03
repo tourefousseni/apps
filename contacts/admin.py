@@ -6,8 +6,9 @@ from django.db import models
 
 # Register your models here.
 
-from .models import Product
+from .models import Product, Video
 
 
 admin.site.register(Product)
 
+admin.site.register(Video)

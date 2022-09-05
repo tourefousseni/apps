@@ -14,6 +14,7 @@ from .utils import unique_matricule_id_generator, \
     unique_person_id_generator,\
     unique_payment_id_generator
 from django.forms import widgets
+from .validators import file_size
 
 
 # ==============================================

@@ -15,14 +15,17 @@ import datetime
 
 from .models import  Person, Payment, \
     Product, Mesure, Order, Order_Items, Commune, \
-    Region, Cercle, Village
+    Region, Cercle, Village, Video
 
 
 # ==============================================
 #                  FORM KALALISO
 #                        START
 # ==============================================
-
+class Video_form(forms.ModelForm):
+   class Meta:
+         model=Video
+         fields=("title","video")
 
 
 # class ImageForm(forms.ModelForm):

@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from .models import *
 # from django.views.generic import ListView, CreateView
 from django.template import context
@@ -16,9 +16,20 @@ from django.forms import ModelForm
 # class DateTimeInput(forms.DateTimeInput):
 #     input_type: datetime
 
+# def show_video(request):
+#     video=Video.objects.all()
+#     return render(request,"kalaliso/video.html",{"video":video})
+
 def show_video(request):
-    video=Video.objects.all()
-    return render(request,"kalaliso/video.html",{"video":video})
+    all_video=Video.objects.all()
+    if request.method == "POST":
+        form=Video_form(data=request.POST,files=request.FILES)
+        if form.is_valid():
+         form.save()
+        return HttpResponse("<h1> Uploaded successfully </h1>")
+    else:
+         form=Video_form()
+         return render(request,'kalaliso/add_videos.html',{"form":form,"all":all_video})
 
 
 def user_login(request):

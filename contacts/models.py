@@ -282,12 +282,13 @@ class Village(models.Model):
         return '{}'.format(self.name)
 class Video(models.Model):
     title = models.CharField(max_length=50, blank=True, null=True)
-    video =models.FileField(upload_to="video/%y")
+    video =models.FileField(upload_to="video/%y", validators=[file_size])
     # comment = models.CharField(max_length=250, blank=True, null=True)
     # like   = models.IntegerField()
     # shared = models.IntegerField()
     def __str__(self):
         return '{}'.format(self.title)
+
 
 # ==============================================
 #                  MODELE KALALISO

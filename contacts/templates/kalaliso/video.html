@@ -1,16 +1,16 @@
-{% extends 'base.html' %}
-{% load crispy_forms_filters %}
-{% load crispy_forms_tags %}
-{% load static %}
-
-
-{% block content %}
-<div class="card">
-        {% for x in video %}
-        <h3 class="text-center mt-2 mb-2">{{x.title}}</h3>
-        <video class="embed-responsive embed-responsive-16by9" controls="controls" >
-            <source src="{{x.video.url}}" type="video/mp4" />
-          </video>
-        {% endfor %}
-</div>
-{% endblock %}
+{#{% extends 'base.html' %}#}
+{#{% load crispy_forms_filters %}#}
+{#{% load crispy_forms_tags %}#}
+{#{% load static %}#}
+{##}
+{##}
+{#{% block content %}#}
+{#<div class="card">#}
+{#        {% for x in video %}#}
+{#        <h3 class="text-center mt-2 mb-2">{{x.title}}</h3>#}
+{#        <video class="embed-responsive embed-responsive-16by9" controls="controls" >#}
+{#            <source src="{{x.video.url}}" type="video/mp4" />#}
+{#          </video>#}
+{#        {% endfor %}#}
+{#</div>#}
+{#{% endblock %}#}

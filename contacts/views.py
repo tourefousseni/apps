@@ -16,10 +16,6 @@ from django.forms import ModelForm
 # class DateTimeInput(forms.DateTimeInput):
 #     input_type: datetime
 
-# def show_video(request):
-#     video=Video.objects.all()
-#     return render(request,"kalaliso/video.html",{"video":video})
-
 def show_video(request):
     all_video=Video.objects.all()
     if request.method == "POST":

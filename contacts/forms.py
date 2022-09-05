@@ -52,7 +52,6 @@ class Video_form(forms.ModelForm):
 #                 Column('genre', ),
 #             ),
 #
-#
 #             FormActions(
 #                 Submit('save_product', 'Save'),
 #                 Submit('cancel', 'Cancel', css_class='btn btn-danger')

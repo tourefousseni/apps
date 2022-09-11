@@ -1,20 +1,4 @@
 
-                  <td><input type="checkbox" id="checkall" /></td>
-
-
-{#          <script src="{% static 'jq/jquery.slim.min.js'%}"></script>#}
-{#           <script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>#}
-
-      <li class="nav-item">
-        <a href="{% url 'vues_img' upload.id %}" class="nav-link"  aria-current="page">
-<!--        <a href="{% url 'contacts:upload_detail' upload.id %}" class="nav-link"  aria-current="page">-->
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-         Views Image
-        </a>
-       </li>
-
-
-
 
          {% if form.errors %}
 
@@ -173,8 +157,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
-
                     <!--                    <div class="form-group col-sm-4 mb-0">-->
 <!--                        {{ form.code_order|as_crispy_field }}-->
 <!--                    </div>-->

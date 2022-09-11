@@ -124,13 +124,13 @@ def person(request):
         form = PersonForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('mesure'))
+            return HttpResponseRedirect('list')
     else:
        form=PersonForm()
     return render(request, 'kalaliso/person.html', {'form': form,})
 
 def list(request):
-    list_person = Person.objects
+    list_person = Person.objects.all()
     return render(request, 'kalaliso/person_list.html', {'list_person': list_person})
 
 def detail_person(request, p_detail_id):
@@ -138,6 +138,9 @@ def detail_person(request, p_detail_id):
     # detail_p = Person.objects
     return render(request, 'kalaliso/d_person.html', {'detail_p': detail_p})
 
+def user(request):
+    user_list = User.objects
+    return render(request, 'kalaliso/user_list.html', {'user_list':user_list})
 
 # def detail_person(request, person_id):
 #     detail = get_object_or_404(Person, pk=person_id)
@@ -167,25 +170,23 @@ def product_sum(request):
     return render(request, 'kalaliso/product_count.html', {'product_sum': product_sum, } )
 
 
-
-
 def order(request):
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('order_detail'))
+            return HttpResponse('order_list')
     else:
         form=OrderForm()
     return render(request, 'kalaliso/order.html', {'form': form})
-
 
 def order_list(request,):
     qs = Order.objects.all().order_by()
     # qs = get_object_or_404(Order, pk=order_id)
     context = {'order_list': qs,}
-    return render(request, 'kalaliso/order_list.html', context)
-
+    # return render(request, 'kalaliso/order_list.html', context)
+    return HttpResponseRedirect(reverse('order'))
+    # return render(request, 'kalaliso/order_list.html', context)
 
 def order_items(request, ):
     if request.method == 'POST':
@@ -201,15 +202,15 @@ def orderdetail_detail(request, orderdetail_id):
 
     qs = Order_Items.objects.all().order_by(Order)
     context = {'orderdetail': qs, }
-
     return render(request, 'kalaliso/orderdetail_detail.html', context)
+
 
 def mesure(request,):
     if request.method == 'POST':
         form = MesureForm(request.POST)
         if form.is_valid():
              form.save()
-             return HttpResponseRedirect(reverse('Order'))
+             return HttpResponseRedirect('mesure_list')
     else:
        form = MesureForm()
     return render(request, 'kalaliso/mesure.html', {'form': form})
@@ -294,4 +295,15 @@ def profile(request):
 #      VIEWS KALALISO
 #          END
 # ===========================
+
+
+def customer(request):
+    customer = Person.objects.count()
+    context = {'customer': customer, }
+    return render(request, 'kalaliso/homepage.html', context)
+
+def order_count(request):
+    order_count = Order.objects.count()
+    context = {'order_count': order_count, }
+    return render(request, 'kalaliso/homepage.html', context)
 

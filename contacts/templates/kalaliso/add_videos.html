@@ -5,13 +5,15 @@
 
 {% block content %}
         <div class="card">
-            <div class="mt-5 col-md-4">
+{#            <div class="mt-5 col-md-4">#}
                     <form action="." method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                        {{form|crispy}}
-                    <button class="btn btn-success btn-lg">Upload</button>
+                    <button class="btn btn-success btn-lg ">Upload</button>
                     </form>
-            </div><hr>
+{#            </div>#}
+            <hr>
+
                     {% for x in all %}
                         <h3 class="text-center mt-2 mb-2">{{x.title}}</h3>
                         <video class="embed-responsive embed-responsive-16by9" controls="controls">

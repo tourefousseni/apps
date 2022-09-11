@@ -37,18 +37,22 @@ urlpatterns = [
       path('person/detail/<int:p_detail_id>/', views.detail_person, name='detail_person'),
       # path('person/detail/<int:person_id>/', views.detail_person, name='detail_person'),
 
+      path('user/', views.user, name='user'),
+
+      path('customer/', views.customer, name='customer'),
+      path('order_count/', views.order_count, name='order_count'),
+
       path('mesure/', views.mesure, name='mesure'),
       path('mesure/list/', views.mesure_list, name='mesure_list'),
 
 
+
       path('order/', views.order, name='order'),
       path('order_items/', views.order_items, name='order_items'),
+      path('orderdetail/detail/<int:order_items_id>/', views.orderdetail_detail, name='orderdetail_detail'),
       path('order_list/', views.order_list, name='order_list'),
 
       path('show_video/', views.show_video, name='show_video'),
-
-
-
 
 
       path('payment/', views.payment, name='payment'),
@@ -61,7 +65,6 @@ urlpatterns = [
       path('region/cercle/commune/', views.commune, name='commune'),
       path('region/cercle/commune/village/', views.village, name='village'),
 
-      path('orderdetail/detail/<int:order_items_id>/', views.orderdetail_detail, name='orderdetail_detail'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

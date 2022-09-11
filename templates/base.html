@@ -101,7 +101,6 @@
 </style>
 
 </head>
-
  <header>
        <div>
            <div>
@@ -136,6 +135,9 @@
                                 <a class="nav-link" href="{% url 'register' %}">Register</a>
                               </li>
                               <li class="nav-item">
+                               <a class="nav-link" href="{% url 'user' %}">User</a>
+                              </li>
+                             <li class="nav-item">
                                <a class="nav-link" href="{% url 'profile' %}">Profil</a>
                               </li>
 
@@ -147,6 +149,7 @@
 
        </div>
 </header>
+
 
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="bootstrap" viewBox="0 0 118 94">
@@ -224,7 +227,7 @@
        <li>
         <a href="{% url 'show_video' %}" class="nav-link link-dark">
            <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-          Views all videos
+           Videos
         </a>
        </li>
 
@@ -264,10 +267,10 @@
           Mesure
         </a>
       </li>
-     <li>
-        <a href="#" class="nav-link link-dark">
+        <li>
+        <a href="{% url 'customer' %}" class="nav-link link-dark">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-          Vide
+          Count customers
         </a>
       </li>
 

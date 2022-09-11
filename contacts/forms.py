@@ -27,6 +27,10 @@ class Video_form(forms.ModelForm):
          model=Video
          fields=("title","video")
 
+class UserForm(forms.ModelForm):
+    class Meta:
+        model=User
+        fields='__all__'
 
 # class ImageForm(forms.ModelForm):
 #     class Meta:
@@ -62,9 +66,7 @@ class Video_form(forms.ModelForm):
 class PersonForm(forms.ModelForm):
     class Meta:
         model = Person
-        fields = ['status','nom','prenom','contact_1','genre','category','domicile','email','image','contact_2',
-                  'alias','type_tailleur','code_person','photo','profession','responsable','date_naissance',
-                  'nationalite','tutuelle','telephonique_fix','nina','numero_reference','created_at']
+        fields = '__all__'
 
         exclude = ['domicile','email','image', 'contact_2','alias',
                     'code_person','photo', 'profession',

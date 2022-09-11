@@ -199,9 +199,9 @@ class Payment(models.Model):
     payment_Order    = models.ForeignKey('Order', on_delete=models.CASCADE, blank=True, null=True, verbose_name='Payment Facture', )
     code_payment     = models.CharField(max_length=30, blank=True, verbose_name='Code Payement')
     person_id        = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Titulaire command', )
-    amount            = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True, verbose_name='Montant Total')
-    fees_commission = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-    delivered           = models.BooleanField(default=False)
+    amount           = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True, verbose_name='Montant Total')
+    fees_commission  = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
+    delivered        = models.BooleanField(default=False)
     create_at        = models.DateField(auto_now=True)
 
     def __str__(self):
@@ -235,7 +235,7 @@ class Depense(models.Model):
 
     mode_payment_depense     =  models.CharField(max_length=50, choices=MODE_PAYMENT_DEPENSE, default='Espece', )
     person           = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Titulaire Depense', )
-    amount            = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True, verbose_name='Montant depensé')
+    amount           = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True, verbose_name='Montant depensé')
     pattern          = models.CharField(max_length=50, choices=PATTERN, default='Paiement Ouvrier',)
     description      = models.CharField(max_length=200, blank=True, verbose_name='Description du depense')
     status           = models.BooleanField(default=False)
@@ -249,7 +249,7 @@ class Region(models.Model):
     id        = models.AutoField(primary_key=True)
     id_reg    = models.IntegerField( blank=True, null=True)
     name      = models.CharField(max_length=100,)
-    point = models.PointField(geography=True, blank=True, null=True)
+    point     = models.PointField(geography=True, blank=True, null=True)
 
     def __str__(self):
         return'{}'.format(self.name)
@@ -258,7 +258,7 @@ class Cercle(models.Model):
     id        = models.AutoField(primary_key=True)
     id_cer    = models.IntegerField( blank=True, null=True)
     name      = models.ForeignKey('Region', on_delete=models.CASCADE,  verbose_name='Cercle',)
-    point = models.PointField(geography=True, blank=True, null=True)
+    point     = models.PointField(geography=True, blank=True, null=True)
 
     def __str__(self):
         return '{}'.format(self.name)
@@ -267,7 +267,7 @@ class Commune(models.Model):
     id        = models.AutoField(primary_key=True)
     id_com    = models.IntegerField( blank=True, null=True)
     name      = models.ForeignKey('Cercle', on_delete=models.CASCADE, verbose_name='Commune',)
-    point = models.PointField(geography=True,blank=True, null=True)
+    point     = models.PointField(geography=True,blank=True, null=True)
 
     def __str__(self):
         return '{}'.format(self.name)
@@ -276,16 +276,19 @@ class Village(models.Model):
     id           = models.AutoField(primary_key=True)
     id_vil       = models.IntegerField( blank=True, null=True)
     name         = models.ForeignKey('Commune', on_delete=models.CASCADE, verbose_name='Quartier/Village',)
-    point = models.PointField(geography=True, blank=True, null=True)
+    point        = models.PointField(geography=True, blank=True, null=True)
 
     def __str__(self):
         return '{}'.format(self.name)
+
 class Video(models.Model):
     title = models.CharField(max_length=50, blank=True, null=True)
     video =models.FileField(upload_to="video/%y", validators=[file_size])
     # comment = models.CharField(max_length=250, blank=True, null=True)
     # like   = models.IntegerField()
     # shared = models.IntegerField()
+    # create_at = models.DateField(auto_now=True)
+
     def __str__(self):
         return '{}'.format(self.title)
 

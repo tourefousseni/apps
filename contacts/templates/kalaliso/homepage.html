@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
-{% load crispy_forms_filters %}
-{% load crispy_forms_tags %}
 {% load static %}
+
 
 {% block content %}
 <div class="row offset-md-0">
@@ -9,8 +8,10 @@
     <div class="card" style="background: cornflowerblue ">
       <div class="card-body">
         <h6 class="card-text text-center">CUSTOMERS</h6><hr>
-<!--        <a href="#" class="btn btn-primary">Go somewhere</a>-->
-          <h4 class="text-center" style="color: white">10</h4>
+         <a href="{% url 'customer' %}">Views  </a>
+          <h4 class="text-center" style="color: white">
+           {{ customer }}
+          </h4>
       </div>
     </div>
   </div>
@@ -18,8 +19,10 @@
     <div class="card" style="background: cornflowerblue ">
       <div class="card-body">
         <h6 class="card-text text-center">ORDERS</h6><hr>
-<!--        <a href="#" class="btn btn-primary">Go somewhere</a>-->
-          <h4 class="text-center " style="color: red">10</h4>
+         <a href="{% url 'order_count' %}">Views  </a>
+          <h4 class="text-center " style="color: red">
+              {{ order_count }}
+          </h4>
       </div>
     </div>
   </div>
@@ -33,6 +36,29 @@
         </div>
   </div>
 </div><hr>
+{#    <div class="col-md-4">#}
+{##}
+{##}
+{#                <h6 >Create Customer</h6>#}
+{#           <div>#}
+{##}
+{#                </div>#}
+{##}
+{#                 <div>#}
+{#                      {% include 'kalaliso/mesure.html' %}#}
+{#                 </div>#}
+
+{#    </div>#}
+{#    <div class="col-md-4 offset-md-4">#}
+{##}
+{##}
+{#                <h6 >Create Mesure</h6>#}
+{##}
+{#                 {% include 'kalaliso/mesure.html' %}#}
+{##}
+{#    </div>#}
+
+
 <!--  <h4 class="text-center">Hello !</h4>-->
 
 <!--<div class="container">-->
@@ -40,39 +66,39 @@
 
 <!--        <h6 class="text-center">NEW POST</h6>-->
 <!--            <div class="col-md-6 offset-md-3">-->
-<!--                    <form action="{% url 'homepage' %}" method="post" enctype="multipart/form-data" >-->
-<!--                        {% csrf_token %}-->
-<!--                         {{ form.as_p }}-->
-<!--                         <button type="submit" value="Submit" class ="btn btn-primary">UPLOAD IMAGE</button>-->
-<!--                    </form>-->
-<!--                <hr>-->
-
-<!--                {% if obj %}-->
-<!--                       <h4> Successuf upload : {{ obj.title }}</h4>-->
-<!--                      <img src="{{ obj.image.url }}"  class="img-thumbnail" alt="image">-->
-<!--                {% endif %}-->
-
-<!--                {% for x in img %}-->
-<!--                       {% if forloop.first %}-->
-<!--                                <div class="row"> {% endif %}-->
-<!--                                          <div class="col-lg-4 col-md-4 col-12">-->
-<!--                                                <div class="text-center mt-2">-->
-<!--                                                        <img src="{{ x.image.url }}" class="img-thumbnail" height="70%" width="70%" alt="...">-->
-<!--                                                        <h6 class="text-left"> {{ x.title }} </h6>-->
-<!--                                                </div>-->
-<!--                                          </div>-->
-
-<!--                                        {% if forloop.counter|divisibleby:3 %}-->
-<!--                                </div>-->
-<!--                                        <div class="row">{% endif %}-->
-<!--                                            {% if forloop.last %}-->
-<!--                                        </div>-->
-<!--                   {% endif %}-->
-
-<!--                {% endfor %}-->
-<!--            </div>-->
-        </div>
-    </div>
-</div>
+{#<!--                    <form action="{% url 'homepage' %}" method="post" enctype="multipart/form-data" >-->#}
+{#<!--                        {% csrf_token %}-->#}
+{#<!--                         {{ form.as_p }}-->#}
+{#<!--                         <button type="submit" value="Submit" class ="btn btn-primary">UPLOAD IMAGE</button>-->#}
+{#<!--                    </form>-->#}
+{#<!--                <hr>-->#}
+{##}
+{#<!--                {% if obj %}-->#}
+{#<!--                       <h4> Successuf upload : {{ obj.title }}</h4>-->#}
+{#<!--                      <img src="{{ obj.image.url }}"  class="img-thumbnail" alt="image">-->#}
+{#<!--                {% endif %}-->#}
+{##}
+{#<!--                {% for x in img %}-->#}
+{#<!--                       {% if forloop.first %}-->#}
+{#<!--                                <div class="row"> {% endif %}-->#}
+{#<!--                                          <div class="col-lg-4 col-md-4 col-12">-->#}
+{#<!--                                                <div class="text-center mt-2">-->#}
+{#<!--                                                        <img src="{{ x.image.url }}" class="img-thumbnail" height="70%" width="70%" alt="...">-->#}
+{#<!--                                                        <h6 class="text-left"> {{ x.title }} </h6>-->#}
+{#<!--                                                </div>-->#}
+{#<!--                                          </div>-->#}
+{##}
+{#<!--                                        {% if forloop.counter|divisibleby:3 %}-->#}
+{#<!--                                </div>-->#}
+{#<!--                                        <div class="row">{% endif %}-->#}
+{#<!--                                            {% if forloop.last %}-->#}
+{#<!--                                        </div>-->#}
+{#<!--                   {% endif %}-->#}
+{##}
+{#<!--                {% endfor %}-->#}
+{#<!--            </div>-->#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
 {% endblock %}
 

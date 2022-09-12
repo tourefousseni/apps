@@ -170,7 +170,7 @@ def product_sum(request):
     return render(request, 'kalaliso/product_count.html', {'product_sum': product_sum, } )
 
 
-def order(request):
+def order(request,):
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
@@ -180,13 +180,15 @@ def order(request):
         form=OrderForm()
     return render(request, 'kalaliso/order.html', {'form': form})
 
-def order_list(request,):
-    qs = Order.objects.all().order_by()
-    # qs = get_object_or_404(Order, pk=order_id)
+
+def order_list(request, order_id):
+    # qs = Order.objects.all().order_by()
+    qs = get_object_or_404(Order, pk=order_id)
     context = {'order_list': qs,}
     # return render(request, 'kalaliso/order_list.html', context)
-    return HttpResponseRedirect(reverse('order'))
-    # return render(request, 'kalaliso/order_list.html', context)
+    # return HttpResponse('order')
+    return render(request, 'kalaliso/order_list.html', context)
+
 
 def order_items(request, ):
     if request.method == 'POST':
@@ -307,3 +309,7 @@ def order_count(request):
     context = {'order_count': order_count, }
     return render(request, 'kalaliso/homepage.html', context)
 
+def product_count(request):
+    product_count = Product.objects.count()
+    context = {'product_count': product_count, }
+    return render(request, 'kalaliso/homepage.html', context)

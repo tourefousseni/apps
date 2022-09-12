@@ -8,9 +8,8 @@
     <div class="card" style="background: cornflowerblue ">
       <div class="card-body">
         <h6 class="card-text text-center">CUSTOMERS</h6><hr>
-         <a href="{% url 'customer' %}">Views  </a>
+         <a href="{% url 'customer' %}">Views : {{ customer }} </a>
           <h4 class="text-center" style="color: white">
-           {{ customer }}
           </h4>
       </div>
     </div>
@@ -19,9 +18,8 @@
     <div class="card" style="background: cornflowerblue ">
       <div class="card-body">
         <h6 class="card-text text-center">ORDERS</h6><hr>
-         <a href="{% url 'order_count' %}">Views  </a>
-          <h4 class="text-center " style="color: red">
-              {{ order_count }}
+         <a href="{% url 'order_count' %}">Views : {{ order_count }} </a>
+          <h4 class="text-center " style="color: white">
           </h4>
       </div>
     </div>
@@ -29,9 +27,9 @@
     <div class="col-sm-4">
         <div class="card" style="background: cornflowerblue ">
           <div class="card-body">
-            <h6 class="card-text text-center">MODELES</h6><hr>
-<!--            <a href="#" class="btn btn-primary">Go somewhere</a>-->
-              <h4 class="text-center " style="color: goldenrod "> 10 </h4>
+            <h6 class="card-text text-center">PRODUCTS</h6><hr>
+              <a href="{% url 'product_count' %}">Views : {{ product_count }} </a>
+              <h4 class="text-center " style="color: white "> </h4>
           </div>
         </div>
   </div>

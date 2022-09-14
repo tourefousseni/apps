@@ -39,9 +39,9 @@ urlpatterns = [
 
       path('user/', views.user, name='user'),
 
-      path('customer/', views.customer, name='customer'),
-      path('order_count/', views.order_count, name='order_count'),
-      path('product_count/', views.product_count, name='product_count'),
+      path('n_customers/', views.n_customers, name='customer'),
+      path('n_orders/', views.n_orders, name='order_count'),
+      path('n_products/', views.n_products, name='product_count'),
 
       path('mesure/', views.mesure, name='mesure'),
       path('mesure/list/', views.mesure_list, name='mesure_list'),
@@ -51,7 +51,7 @@ urlpatterns = [
       path('order/', views.order, name='order'),
       path('order_items/', views.order_items, name='order_items'),
       path('orderdetail/detail/<int:order_items_id>/', views.orderdetail_detail, name='orderdetail_detail'),
-      path('order_list/<int:order_id>/', views.order_list, name='order_list'),
+      # path('order_list/<int:order_id>/', views.order_list, name='order_list'),
 
       path('show_video/', views.show_video, name='show_video'),
 

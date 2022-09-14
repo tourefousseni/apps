@@ -1,10 +1,16 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
 {% load static %}
 
 {% block content %}
 <div class="col-lg-8 offset-md-0">
-     {% crispy form %}
+<div class="PaymentForm">
+    <form action="{% url 'payment' %}" method="post">
+      {% csrf_token %}
+        {{  form | crispy }}
+    </form>
+</div>
 </div>
 
 {% endblock  %}

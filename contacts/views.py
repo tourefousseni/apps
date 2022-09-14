@@ -170,20 +170,20 @@ def product_sum(request):
     return render(request, 'kalaliso/product_count.html', {'product_sum': product_sum, } )
 
 
-def order(request,):
+def order(request):
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse('order_list')
+            return HttpResponse('order')
     else:
         form=OrderForm()
     return render(request, 'kalaliso/order.html', {'form': form})
 
 
 def order_list(request, order_id):
-    # qs = Order.objects.all().order_by()
-    qs = get_object_or_404(Order, pk=order_id)
+    qs = Order.objects.all().order_by(-id)
+    # qs = get_object_or_404(Order, pk=order_id)
     context = {'order_list': qs,}
     # return render(request, 'kalaliso/order_list.html', context)
     # return HttpResponse('order')
@@ -299,17 +299,17 @@ def profile(request):
 # ===========================
 
 
-def customer(request):
+def n_customers(request):
     customer = Person.objects.count()
     context = {'customer': customer, }
     return render(request, 'kalaliso/homepage.html', context)
 
-def order_count(request):
+def n_orders(request):
     order_count = Order.objects.count()
     context = {'order_count': order_count, }
     return render(request, 'kalaliso/homepage.html', context)
 
-def product_count(request):
+def n_products(request):
     product_count = Product.objects.count()
     context = {'product_count': product_count, }
     return render(request, 'kalaliso/homepage.html', context)

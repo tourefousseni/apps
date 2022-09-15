@@ -21,11 +21,11 @@
                   <div class="col-md-4">
                   <div class="card mb-4 shadow-sm">
                       <a href="{% url 'product_detail' product.id  %}">
-                           <img class="card-img-top" src="{{ product.photo.url }}" height="200">
+                           <img class="card-img-top" src="{{ product.photo.url }}" height="400">
                       </a>
                       <div class="card-body">
-                     <p>Model: {{ product.name }} </p>
-                     <p>Price: {{ product.price }} Fcfa</p>
+                          <p>Model: {{ product.name }} </p>
+                          <p>Price: {{ product.price }} Fcfa</p>
     <!--                  {{ product.code_product }}-->
     <!--                  {{ product.description }}-->
     <!--                  {{ product.create_at }}-->

@@ -3,10 +3,19 @@
 {% load crispy_forms_filters %}
 {% load static %}
 
-{% block content %}
+<style>
+    #img{
+        height: 60%;
+        width: 100%;
+        bottom: auto;
+        padding-bottom: auto;
+        margin-top: auto;
+    }
+</style>
 
-<fieldset>
-     <br />
+{% block content %}
+<div class="row col-lg-12">
+<div >
     <div class="row col-lg-8 offset-0">
     <div class="mesureform">
 {#        <h5 class="text-left offset-0"> MESURE CLIENT</h5><hr>#}
@@ -18,37 +27,37 @@
             </div>
         </div>
          <div class="row offset-0">
-            <div class="form-group col-sm-4  mb-0">
+            <div class="form-group col-sm-3  mb-0">
                 {{ form.coude|as_crispy_field }}
             </div>
-            <div class=" form-group col-sm-4  mb-0">
+            <div class=" form-group col-sm-3 mb-0">
                 {{ form.epaule|as_crispy_field }}
             </div>
-            <div class="form-group col-sm-4  mb-0">
+            <div class="form-group col-sm-3  mb-0">
                 {{ form.manche|as_crispy_field }}
             </div>
-            <div class="form-group col-sm-4  mb-0">
+            <div class="form-group col-sm-3  mb-0">
                 {{ form.cuisse|as_crispy_field }}
             </div>
-            <div class="form-group col-sm-4  mb-0">
+            <div class="form-group col-sm-3  mb-0">
                  {{ form.tour_manche|as_crispy_field }}
             </div>
-            <div class=" form-group col-sm-4  mb-0">
+            <div class=" form-group col-sm-3 mb-0">
                 {{ form.poitrine|as_crispy_field }}
             </div>
-            <div class="form-group col-sm-4  mb-0">
+            <div class="form-group col-sm-3  mb-0">
                 {{ form.longueur_boubou|as_crispy_field }}
             </div>
-            <div class="form-group col-sm-4  mb-0">
+            <div class="form-group col-sm-3  mb-0">
                  {{ form.longueur_patanlon|as_crispy_field }}
             </div>
-            <div class=" form-group col-sm-4  mb-0">
+            <div class=" form-group col-sm-3  mb-0">
                {{ form.ceinture|as_crispy_field }}
             </div>
-             <div class=" form-group col-sm-4  mb-0">
+             <div class=" form-group col-sm-3  mb-0">
                {{ form.fesse|as_crispy_field }}
             </div>
-            <div class="form-group col-sm-4  mb-0">
+            <div class="form-group col-sm-3 mb-0">
                 {{ form.patte|as_crispy_field }}
             </div>
         </div>
@@ -58,12 +67,19 @@
                      <input type="submit" value="Submit" class="btn btn-primary col-md-4">
                      <input type="reset" value="Reset" class="btn btn-danger col-md-4">
            </div>
-
         </div>
     </form>
     </div>
  </div>
-</fieldset>
+</div>
+    <div class="col-md-4 offset-md-8">
+        <p>
+            Corps Humains
+        </p>
+           <img src="/media/image/img1.jpeg" id="img" class="img-fluid" alt="Responsive image">
+    </div>
+</div>
+
 
 <script>
     $(document).ready(() => {

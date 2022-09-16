@@ -212,14 +212,14 @@ def mesure(request,):
         form = MesureForm(request.POST)
         if form.is_valid():
              form.save()
-             return HttpResponseRedirect('mesure_list')
+             return HttpResponse('mesure_list')
     else:
        form = MesureForm()
     return render(request, 'kalaliso/mesure.html', {'form': form})
 
 # research for OVER STACK FLOW this Bug
-
 # response = wrapped_callback(request, *callback_args, **callback_kwargs)
+
 
 def mesure_list(request):
     qs = Mesure.objects

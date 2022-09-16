@@ -4,7 +4,13 @@ from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, FileResponse
+# from django.http import
+import io
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import inch
+from reportlab.lib.pagesizes import letter, A8
+
 from .models import *
 # from django.views.generic import ListView, CreateView
 from django.template import context
@@ -313,3 +319,24 @@ def n_products(request):
     product_count = Product.objects.count()
     context = {'product_count': product_count, }
     return render(request, 'kalaliso/homepage.html', context)
+
+
+def venue_pdf(request):
+    buf = io.BytesIO()
+    c = canvas.Canvas(buf, pagesize=A8, bottomup=0)
+    textob = c.beginText()
+    textob.setTextOrigin(inch, inch)
+    textob.setFont("Helvetica", 12)
+
+    lines  = [
+        "this is line 1",
+        "this is line 2",
+        "this is line 3",
+    ]
+    for line in lines:
+        textob.textLine(line)
+        c.drawText(textob)
+        c.showPage()
+        # c.save()
+        buf.seek(0)
+    return FileResponse(buf, as_attachment=True, filename="carnet_mesure_pdf")

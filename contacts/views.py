@@ -5,22 +5,22 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, FileResponse
-# from django.http import
 import io
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter, A8
-
+# from contacts.models import Mesure
 from .models import *
+from .forms import *
+# from django.contrib.gis.db import models Mesure
+
 # from django.views.generic import ListView, CreateView
 from django.template import context
 from django.template import defaulttags
 from  django.db.models import *
-from .forms import *
+import datetime
 from django.forms import ModelForm
-#
-# class DateTimeInput(forms.DateTimeInput):
-#     input_type: datetime
+
 
 def show_video(request):
     all_video=Video.objects.all()
@@ -321,22 +321,46 @@ def n_products(request):
     return render(request, 'kalaliso/homepage.html', context)
 
 
-def venue_pdf(request):
+def report_pdf(request):
     buf = io.BytesIO()
     c = canvas.Canvas(buf, pagesize=A8, bottomup=0)
     textob = c.beginText()
     textob.setTextOrigin(inch, inch)
-    textob.setFont("Helvetica", 12)
+    textob.setFont("Helvetica", 10)
+   # Designate The Model
+   #  mesures = Mesure.objects.all()
+    qs = Mesure.objects.all()
+    # create blank list
+    lines = []
+        # "One it is true",
+        # "Two it is false",
+        # "Free it is black",
+        # "Four it is white",
 
-    lines  = [
-        "this is line 1",
-        "this is line 2",
-        "this is line 3",
-    ]
+    for mesure in qs:
+        lines.append(mesure.id)
+        lines.append(mesure.person_mesure)
+        lines.append(mesure.coude)
+        lines.append(mesure.epaule)
+        lines.append(mesure.manche)
+        lines.append(mesure.tour_manche)
+        lines.append(mesure.taille)
+        lines.append(mesure.poitrine)
+        lines.append(mesure.longueur_boubou)
+        lines.append(mesure.longueur_patanlon)
+        lines.append(mesure.fesse)
+        lines.append(mesure.ceinture)
+        lines.append(mesure.cuisse)
+        lines.append(mesure.patte)
+        lines.append(mesure.created_at)
+        lines.append(mesure.update_at)
+        lines.append('=================')
+    # for loop
     for line in lines:
-        textob.textLine(line)
-        c.drawText(textob)
-        c.showPage()
-        # c.save()
-        buf.seek(0)
-    return FileResponse(buf, as_attachment=True, filename="carnet_mesure_pdf")
+        textob.textLine(lines)
+    # Finish Up
+    c.drawText(textob)
+    c.showPage()
+    c.save()
+    buf.seek(0)
+    return FileResponse(buf,  as_attachment=True, filename="carnet_mesure_pdf")

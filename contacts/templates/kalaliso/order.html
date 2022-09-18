@@ -9,14 +9,13 @@
                {% crispy form %}
           </div>
          <a href="{% url 'order' %}"></a>
-{#         <a href="{% url 'order_list' order.id %}">List Commande</a>#}
 </div>
-<script>
-    $(document).ready(() => {
-        $('#Reset').click(function(event) {
-            event.preventDefault();
-            $('#orderform').clearForm();
+    <script>
+        $(document).ready(() => {
+            $('#Reset').click(function(event) {
+                event.preventDefault();
+                $('#orderform').clearForm();
+            });
         });
-    });
-</script>
+    </script>
 {% endblock  %}

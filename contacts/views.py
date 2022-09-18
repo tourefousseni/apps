@@ -187,16 +187,6 @@ def order(request):
         form=OrderForm()
     return render(request, 'kalaliso/order.html', {'form': form})
 
-
-def order_list(request, order_id):
-    qs = Order.objects.all().order_by(-id)
-    # qs = get_object_or_404(Order, pk=order_id)
-    context = {'order_list': qs,}
-    # return render(request, 'kalaliso/order_list.html', context)
-    # return HttpResponse('order')
-    return render(request, 'kalaliso/order_list.html', context)
-
-
 def order_items(request, ):
     if request.method == 'POST':
         form=Order_ItemsForm(request.POST)
@@ -212,6 +202,16 @@ def orderdetail_detail(request, orderdetail_id):
     qs = Order_Items.objects.all().order_by(Order)
     context = {'orderdetail': qs, }
     return render(request, 'kalaliso/orderdetail_detail.html', context)
+
+
+def order_list(request, order_id):
+    qs = Order.objects.all().order_by(-id)
+    # qs = get_object_or_404(Order, pk=order_id)
+    context = {'order_list': qs,}
+    # return render(request, 'kalaliso/order_list.html', context)
+    # return HttpResponse('order')
+    return render(request, 'kalaliso/order_list.html', context)
+
 
 
 def mesure(request,):

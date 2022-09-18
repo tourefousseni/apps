@@ -8,7 +8,8 @@
           <div class="col-lg-8 offset-md-1">
                {% crispy form %}
           </div>
-         <a href="{% url 'order_list' order.id %}">List Commande</a>
+         <a href="{% url 'order' %}">Commande</a>
+{#         <a href="{% url 'order_list' order.id %}">List Commande</a>#}
 </div>
 <script>
     $(document).ready(() => {

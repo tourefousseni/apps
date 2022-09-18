@@ -44,8 +44,7 @@ urlpatterns = [
       path('n_products/', views.n_products, name='product_count'),
 
 
-      path('report_pdf', views.report_pdf, name='report_pdf'),
-
+      path('report_pdf/', views.report_pdf, name='report_pdf'),
 
       path('mesure/', views.mesure, name='mesure'),
       path('mesure_list/<int:mesure_id>/', views.mesure_list, name='mesure_list'),

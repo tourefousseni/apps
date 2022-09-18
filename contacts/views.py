@@ -181,7 +181,8 @@ def order(request):
         form = OrderForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse('order')
+            return render('kalaliso/order.html')
+            # return HttpResponse('order')
     else:
         form=OrderForm()
     return render(request, 'kalaliso/order.html', {'form': form})
@@ -328,15 +329,10 @@ def report_pdf(request):
     textob.setTextOrigin(inch, inch)
     textob.setFont("Helvetica", 10)
    # Designate The Model
-   #  mesures = Mesure.objects.all()
+
     qs = Mesure.objects.all()
     # create blank list
     lines = []
-        # "One it is true",
-        # "Two it is false",
-        # "Free it is black",
-        # "Four it is white",
-
     for mesure in qs:
         lines.append(mesure.id)
         lines.append(mesure.person_mesure)
@@ -357,10 +353,10 @@ def report_pdf(request):
         lines.append('=================')
     # for loop
     for line in lines:
-        textob.textLine(lines)
+        textob.textLine(line)
     # Finish Up
-    c.drawText(textob)
-    c.showPage()
-    c.save()
-    buf.seek(0)
+        c.drawText(textob)
+        c.showPage()
+        c.save()
+        buf.seek(0)
     return FileResponse(buf,  as_attachment=True, filename="carnet_mesure_pdf")

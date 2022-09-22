@@ -69,6 +69,10 @@ urlpatterns = [
       path('region/cercle/commune/', views.commune, name='commune'),
       path('region/cercle/commune/village/', views.village, name='village'),
 
+      # GENERATED PDF
+      path('pdf_view/', views.ViewPDF.as_view(), name="pdf_view"),
+      path('pdf_download/', views.DownloadPDF.as_view(), name="pdf_download"),
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

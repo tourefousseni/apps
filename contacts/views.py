@@ -9,6 +9,8 @@ import io
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter, A8
+import time
+# from xhtml2pdf import pisa
 # from contacts.models import Mesure
 from .models import *
 from .forms import *
@@ -20,7 +22,49 @@ from django.template import defaulttags
 from  django.db.models import *
 import datetime
 from django.forms import ModelForm
+from io import BytesIO
+from django.template.loader import get_template
+from django.views import View
+from xhtml2pdf import pisa
+from reportlab.lib.utils import *
 
+def render_to_pdf(template_src, context_dict={}):
+    template = get_template(template_src)
+    html = template.render(context_dict)
+    result = BytesIO()
+    pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), content_type='application/pdf')
+    return None
+
+data = {
+         "company": "Dennnis Ivanov Company",
+         "address": "123 Street name",
+         "city": "Vancouver",
+         "state": "WA",
+         "zipcode": "98663",
+
+         "phone": "555-555-2345",
+         "email": "youremail@dennisivy.com",
+         "website": "dennisivy.com", }
+
+# Opens up page as PDF
+class ViewPDF(View):
+    def get(self, request, *args, **kwargs):
+        pdf = render_to_pdf('pdf/pdf_customer.html', data)
+        return HttpResponse(pdf, content_type='application/pdf')
+
+# Automaticly downloads to PDF file
+class DownloadPDF(View):
+    def get(self, request, *args, **kwargs):
+        pdf = render_to_pdf('app/pdf_customer.html', data)
+        response = HttpResponse(pdf, content_type='application/pdf')
+        filename = "Customer_%s.pdf" % ("12341231")
+        content = "attachment; filename='%s'" % (filename)
+        response['Content-Disposition'] = content
+        return response
+
+    #END GENERATED PDF
 
 def show_video(request):
     all_video=Video.objects.all()
@@ -219,7 +263,7 @@ def mesure(request,):
         form = MesureForm(request.POST)
         if form.is_valid():
              form.save()
-             return HttpResponse('mesure_list')
+             return HttpResponse('mesure')
     else:
        form = MesureForm()
     return render(request, 'kalaliso/mesure.html', {'form': form})
@@ -228,10 +272,9 @@ def mesure(request,):
 # response = wrapped_callback(request, *callback_args, **callback_kwargs)
 
 
-def mesure_list(request):
+def mesure_list(request, mesure_id):
     qs = Mesure.objects
     return render(request, 'kalaliso/mesure_list.html', {'mesure_list': qs,})
-
 
 def payment(request,):
         if request.method == 'POST':

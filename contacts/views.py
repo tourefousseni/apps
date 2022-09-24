@@ -263,7 +263,7 @@ def mesure(request):
         form = MesureForm(request.POST)
         if form.is_valid():
              form.save()
-             return HttpResponse('mesure')
+             return HttpResponseRedirect('mesure_list')
     else:
        form = MesureForm()
     return render(request, 'kalaliso/mesure.html', {'form': form})
@@ -275,6 +275,7 @@ def mesure(request):
 def mesure_list(request):
     qs = Mesure.objects
     return render(request, 'kalaliso/mesure_list.html', {'mesure_list': qs,})
+
 
 def payment(request,):
         if request.method == 'POST':

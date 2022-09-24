@@ -73,6 +73,9 @@ urlpatterns = [
       path('pdf_view/', views.ViewPDF.as_view(), name="pdf_view"),
       path('pdf_download/', views.DownloadPDF.as_view(), name="pdf_download"),
 
+    # Filter Person
+      path('person_filter/', views.person_filter, name='person_filter'),
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -258,7 +258,7 @@ def order_list(request, order_id):
 
 
 
-def mesure(request,):
+def mesure(request):
     if request.method == 'POST':
         form = MesureForm(request.POST)
         if form.is_valid():
@@ -272,7 +272,7 @@ def mesure(request,):
 # response = wrapped_callback(request, *callback_args, **callback_kwargs)
 
 
-def mesure_list(request, mesure_id):
+def mesure_list(request):
     qs = Mesure.objects
     return render(request, 'kalaliso/mesure_list.html', {'mesure_list': qs,})
 
@@ -403,3 +403,8 @@ def report_pdf(request):
         c.save()
         buf.seek(0)
     return FileResponse(buf,  as_attachment=True, filename="carnet_mesure_pdf")
+
+
+def person_filter(request):
+    p_f = Person.objects.filter(code_person="")
+    return p_f

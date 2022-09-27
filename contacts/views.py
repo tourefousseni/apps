@@ -6,17 +6,25 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, FileResponse
 import io
-from reportlab.pdfgen import canvas
-from reportlab.lib.units import inch
-from reportlab.lib.pagesizes import letter, A8
-import time
-# from xhtml2pdf import pisa
-# from contacts.models import Mesure
-from .models import *
-from .forms import *
-# from django.contrib.gis.db import models Mesure
+# from reportlab.pdfgen import canvas
+# from reportlab.lib.units import inch
+# from reportlab.lib.pagesizes import letter, A8
 
-# from django.views.generic import ListView, CreateView
+import time
+time.sleep(5)
+
+import os
+import os.path
+import ssl
+import stat
+import subprocess
+import sys
+
+from contacts.models import *
+from contacts.models import Person
+from .forms import *
+# from django.contrib.gis.db import models Person
+
 from django.template import context
 from django.template import defaulttags
 from  django.db.models import *
@@ -26,45 +34,34 @@ from io import BytesIO
 from django.template.loader import get_template
 from django.views import View
 from xhtml2pdf import pisa
-from reportlab.lib.utils import *
+import xhtml2pdf.default
+from xhtml2pdf.util import getSize
 
-def render_to_pdf(template_src, context_dict={}):
-    template = get_template(template_src)
-    html = template.render(context_dict)
-    result = BytesIO()
-    pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
-    if not pdf.err:
-        return HttpResponse(result.getvalue(), content_type='application/pdf')
-    return None
+#BEGIN GENERATED PDF
 
-data = {
-         "company": "Dennnis Ivanov Company",
-         "address": "123 Street name",
-         "city": "Vancouver",
-         "state": "WA",
-         "zipcode": "98663",
+def report_person_pdf(request):
 
-         "phone": "555-555-2345",
-         "email": "youremail@dennisivy.com",
-         "website": "dennisivy.com", }
+    persons = Person.objects.all()
 
-# Opens up page as PDF
-class ViewPDF(View):
-    def get(self, request, *args, **kwargs):
-        pdf = render_to_pdf('pdf/pdf_customer.html', data)
-        return HttpResponse(pdf, content_type='application/pdf')
+    template_path = 'kalaliso/report_persons.html'
 
-# Automaticly downloads to PDF file
-class DownloadPDF(View):
-    def get(self, request, *args, **kwargs):
-        pdf = render_to_pdf('app/pdf_customer.html', data)
-        response = HttpResponse(pdf, content_type='application/pdf')
-        filename = "Customer_%s.pdf" % ("12341231")
-        content = "attachment; filename='%s'" % (filename)
-        response['Content-Disposition'] = content
-        return response
+    context = {'list_person': persons}
 
-    #END GENERATED PDF
+    response = HttpResponse(content_type='application/pdf')
+
+    response['Content-Disposition'] = 'filename="report_person.pdf"'
+
+    template = get_template(template_path)
+
+    html = template.render(context)
+
+    pisa_status = pisa.CreatePDF(html, dest=response)
+
+    if pisa_status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
+# END GENERATED PDF
 
 def show_video(request):
     all_video=Video.objects.all()
@@ -236,10 +233,12 @@ def order_items(request, ):
         form=Order_ItemsForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('order_items'))
+            return HttpResponseRedirect(reverse('order'))
+            # return HttpResponseRedirect(reverse('order_items'))
     else:
         form = Order_ItemsForm()
-    return render(request, 'kalaliso/order_items.html', {'form': form})
+    return render(request, 'kalaliso/order.html', {'form': form})
+    # return render(request, 'kalaliso/order_items.html', {'form': form})
 
 def orderdetail_detail(request, orderdetail_id):
 
@@ -272,7 +271,7 @@ def mesure(request):
 # response = wrapped_callback(request, *callback_args, **callback_kwargs)
 
 
-def mesure_list(request):
+def _list(request):
     qs = Mesure.objects
     return render(request, 'kalaliso/mesure_list.html', {'mesure_list': qs,})
 
@@ -366,46 +365,7 @@ def n_products(request):
     return render(request, 'kalaliso/homepage.html', context)
 
 
-def report_pdf(request):
-    buf = io.BytesIO()
-    c = canvas.Canvas(buf, pagesize=A8, bottomup=0)
-    textob = c.beginText()
-    textob.setTextOrigin(inch, inch)
-    textob.setFont("Helvetica", 10)
-   # Designate The Model
-
-    qs = Mesure.objects.all()
-    # create blank list
-    lines = []
-    for mesure in qs:
-        lines.append(mesure.id)
-        lines.append(mesure.person_mesure)
-        lines.append(mesure.coude)
-        lines.append(mesure.epaule)
-        lines.append(mesure.manche)
-        lines.append(mesure.tour_manche)
-        lines.append(mesure.taille)
-        lines.append(mesure.poitrine)
-        lines.append(mesure.longueur_boubou)
-        lines.append(mesure.longueur_patanlon)
-        lines.append(mesure.fesse)
-        lines.append(mesure.ceinture)
-        lines.append(mesure.cuisse)
-        lines.append(mesure.patte)
-        lines.append(mesure.created_at)
-        lines.append(mesure.update_at)
-        lines.append('=================')
-    # for loop
-    for line in lines:
-        textob.textLine(line)
-    # Finish Up
-        c.drawText(textob)
-        c.showPage()
-        c.save()
-        buf.seek(0)
-    return FileResponse(buf,  as_attachment=True, filename="carnet_mesure_pdf")
-
-
 def person_filter(request):
-    p_f = Person.objects.filter(code_person="")
-    return p_f
+    p_f = Person.objects.filter.get(id)
+    context = {p_f: p_f}
+    return render(request, 'kalaliso/person_list.html', context)

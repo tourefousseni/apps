@@ -9,11 +9,14 @@
          <h5>LISTE DES CLIENTS</h5>
         <div class="row">
             <div class="col-md-6">
-                  <input type="search" class="form-control form-control-dark" placeholder="Contact" aria-label="Search">
+
+                  <input type="search" class="form-control form-control-dark" placeholder="Recherche..." aria-label="Search">
+
             </div>
-             <div class="col-md-6">
-                  <input type="search" class="form-control form-control-dark" placeholder="Code person" aria-label="Search">
-             </div>
+              <div class="col-md-6">
+                   <a class="btn btn-info" href="{% url 'report_person_pdf'  %}">Create PDF</a>
+              </div>
+
 {#             <div class="col-md-4">#}
 {#                  <input type="search" class="form-control form-control-dark" placeholder="" aria-label="Search">#}
 {#            </div>#}

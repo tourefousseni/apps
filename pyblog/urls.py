@@ -43,10 +43,8 @@ urlpatterns = [
       path('n_orders/', views.n_orders, name='order_count'),
       path('n_products/', views.n_products, name='product_count'),
 
-      path('report_pdf/', views.report_pdf, name='report_pdf'),
-
       path('mesure/', views.mesure, name='mesure'),
-      path('mesure/mesure_list/', views.mesure_list, name='mesure_list'),
+      path('mesure/_list/<int:mesure_id>/', views._list, name='_list'),
       # path('mesure_list/<int:mesure_id>/', views.mesure_list, name='mesure_list'),
 
       path('order/', views.order, name='order'),
@@ -66,9 +64,9 @@ urlpatterns = [
       path('region/cercle/commune/', views.commune, name='commune'),
       path('region/cercle/commune/village/', views.village, name='village'),
 
-      # GENERATED PDF
-      path('pdf_view/', views.ViewPDF.as_view(), name="pdf_view"),
-      path('pdf_download/', views.DownloadPDF.as_view(), name="pdf_download"),
+      # GENERATED XHTML TO PDF
+      path('person/list/report-person-pdf/', views.report_person_pdf, name="report_person_pdf"),
+
 
     # Filter Person
       path('person_filter/', views.person_filter, name='person_filter'),

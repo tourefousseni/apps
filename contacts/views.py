@@ -41,7 +41,7 @@ from xhtml2pdf.util import getSize
 
 def report_person_pdf(request):
 
-    persons = Person.objects.all()
+    persons = Person.objects.all().order_by('-id')
 
     template_path = 'kalaliso/report_persons.html'
 
@@ -177,7 +177,8 @@ def person(request):
     return render(request, 'kalaliso/person.html', {'form': form,})
 
 def list(request):
-    list_person = Person.objects.all()
+    list_person = Person.objects.all().order_by('-id')
+
     return render(request, 'kalaliso/person_list.html', {'list_person': list_person})
 
 def detail_person(request, p_detail_id):

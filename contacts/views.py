@@ -186,6 +186,11 @@ def detail_person(request, p_detail_id):
     # detail_p = Person.objects
     return render(request, 'kalaliso/d_person.html', {'detail_p': detail_p})
 
+def info_person(request, id):
+    info_p = Person.objects.get(id=1)
+    # detail_p = Person.objects
+    return render(request, 'kalaliso/info_person.html', {'info_p': info_p })
+
 def user(request):
     user_list = User.objects
     return render(request, 'kalaliso/user_list.html', {'user_list':user_list})

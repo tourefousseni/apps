@@ -66,7 +66,7 @@ urlpatterns = [
 
       # GENERATED XHTML TO PDF
       path('person/list/report-person-pdf/', views.report_person_pdf, name="report_person_pdf"),
-      path('person/detail/<int:p_detail_id>/', views.detail_person, name='detail_person'),
+      path('person/info_person/<int:id>/', views.info_person, name='info_person'),
 
 
     # Filter Person

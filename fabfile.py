@@ -1,8 +1,5 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 
-from virtualenv.activation import bash
-#!/usr/bash
 # -*- coding: utf-8 -*-
 # os.environ["PYTHONIOENCODING"] = "utf-8"
 
@@ -38,42 +35,68 @@ timestamp="release_%s" % int(time.time() * 1000)
 # ssh key path
 # env.ssh_keys_dir = os.path.join(abs_dir_path, 'ssh-keys')
 
+from fabric.api import env
+from fabric.api import run
+from fabric.operations import sudo
+
+GIT_REPO = "https://github.com/........"
+
+env.user = 'root'
+env.password = '...'
+
+env.hosts = ['demo....com']
+env.port = '22'
 
 
-def _install_doc():
-    sudo("%s && pip install -r requirements.txt" % venv)
+def deploy():
+    source_folder = '/home/.../sites/..../...'
 
-
-def _get_code():
-    cd("%s git fetch origin main_kalaliso")
-
-
-def _makemigrations():
-
-    sudo("%s && python manage.py makemigrations" % venv)
-
-def _migrate():
-    sudo("%s && python manage.py migrate" % venv)
-
-def _reload():
-    cd("touch rebuild")
+    run('cd %s && git pull' % source_folder)
+    run("""
+        cd {} &&
+        ../env/bin/pip install -r requirements.txt &&
+        ../env/bin/python3 manage.py collectstatic --noinput &&
+        ../env/bin/python3 manage.py migrate
+        """.format(source_folder))
+    sudo('restart gunicorn-demo.charon.me')
     sudo('service nginx reload')
 
-@task(alias="d")
-def basic_deploy():
-     with cd('/home/fulani/kala'):
-        _install_doc()
-        _get_code()
-        _reload()
 
-@task(alias="dwn")
-def deploy():
-     with cd('/home/fulani/kala'):
-        _install_doc()
-        _get_code()
-        _makemigrations()
-        _migrate()
-        _reload()
+
+# def _install_doc():
+#     sudo("%s && pip install -r requirements.txt" % venv)
+#
+#
+# def _get_code():
+#     cd("%s git fetch origin main_kalaliso")
+#
+#
+# def _makemigrations():
+#
+#     sudo("%s && python manage.py makemigrations" % venv)
+#
+# def _migrate():
+#     sudo("%s && python manage.py migrate" % venv)
+#
+# def _reload():
+#     cd("touch rebuild")
+#     sudo('service nginx reload')
+#
+# @task(alias="d")
+# def basic_deploy():
+#      with cd('/home/fulani/kala'):
+#         _install_doc()
+#         _get_code()
+#         _reload()
+#
+# @task(alias="dwn")
+# def deploy():
+#      with cd('/home/fulani/kala'):
+#         _install_doc()
+#         _get_code()
+#         _makemigrations()
+#         _migrate()
+#         _reload()
 
 
 

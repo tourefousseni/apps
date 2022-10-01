@@ -44,12 +44,22 @@ from xhtml2pdf.util import getSize
 # SEARCH NAME OR CONTACT PERSON IN DATABASE
 def search_person(request):
     search = request.GET.get('search')
-    person = Person.objects.filter(Q(nom__icontains=search ))
-                                                          # |
-                                   # Q(nom__icontains=search |
-                                   # Q(prenom__icontains=search))))
+    list_person = Person.objects.filter(Q(nom__icontains=search) |
+                                        Q(code_person__icontains=search) |
+                                        Q(contact_1__icontains=search) |
+                                        Q(genre__icontains=search) |
+                                        Q(status__icontains=search)
+                                        )
+    person_number = list_person.count()
+
+    message = f'{person_number } results :'
+    if person_number == 1:
+          message = f'{person_number } results:'
+
+
     context = {
-        'person': person,
+        'list_person': list_person,
+        'message': message
     }
     return render(request, 'kalaliso/search_person.html', context)
 

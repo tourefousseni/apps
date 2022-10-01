@@ -13,12 +13,12 @@ import io
 import time
 time.sleep(5)
 
-import os
-import os.path
-import ssl
-import stat
-import subprocess
-import sys
+# import os
+# import os.path
+# import ssl
+# import stat
+# import subprocess
+# import sys
 
 from contacts.models import *
 from contacts.models import Person
@@ -34,27 +34,35 @@ from io import BytesIO
 from django.template.loader import get_template
 from django.views import View
 from xhtml2pdf import pisa
+from django.core.paginator import Paginator
+from django.db.models import Q
 import xhtml2pdf.default
 from xhtml2pdf.util import getSize
 
-#BEGIN GENERATED PDF
+
+
+# SEARCH NAME OR CONTACT PERSON IN DATABASE
+def search_person(request):
+    search = request.GET.get('search')
+    person = Person.objects.filter(Q(nom__icontains=search ))
+                                                          # |
+                                   # Q(nom__icontains=search |
+                                   # Q(prenom__icontains=search))))
+    context = {
+        'person': person,
+    }
+    return render(request, 'kalaliso/search_person.html', context)
+
+# BEGIN GENERATED PDF
 
 def report_person_pdf(request):
-
     persons = Person.objects.all().order_by('-id')
-
     template_path = 'kalaliso/report_persons.html'
-
     context = {'list_person': persons}
-
     response = HttpResponse(content_type='application/pdf')
-
     response['Content-Disposition'] = 'filename="report_person.pdf"'
-
     template = get_template(template_path)
-
     html = template.render(context)
-
     pisa_status = pisa.CreatePDF(html, dest=response)
 
     if pisa_status.err:
@@ -178,8 +186,38 @@ def person(request):
 
 def list(request):
     list_person = Person.objects.all().order_by('-id')
-
     return render(request, 'kalaliso/person_list.html', {'list_person': list_person})
+
+# def list(request):
+#     list_person = Person.objects.all().order_by('-id')
+#     paginator   = Paginator(list_person, 10)
+#     page_number = request.GET.get('page')
+#     page_object = paginator.get_page(page_number)
+#     person_number = list_person.count()
+#
+#     message = f'{person_number } person :'
+#     context = {
+#         'list_person': page_object,
+#         'message': message,
+#     }
+#     return render(request, 'kalaliso/person_list.html', context)
+
+def person_paginator(request):
+    person      = Person.objects.all().order_by('-id')
+    paginator   = Paginator(person, 10)
+    page_number = request.GET.get('page')
+    page_object = paginator.get_page(page_number)
+    person_number = Person.objects.count()
+
+    message = f'{ person_number } list_person :'
+    if person_number == 1:
+        message = f'{ person_number } person :'
+
+    context = {
+        'person': page_object,
+        'message': message,
+    }
+    return render(request, 'kalaliso/person_list.html', context)
 
 def detail_person(request, p_detail_id):
     detail_p = get_object_or_404(Person, pk=p_detail_id)
@@ -187,8 +225,7 @@ def detail_person(request, p_detail_id):
     return render(request, 'kalaliso/d_person.html', {'detail_p': detail_p})
 
 def info_person(request, id):
-    info_p = Person.objects.get(id=1)
-    # detail_p = Person.objects
+    info_p = Person.objects.get(id=id)
     return render(request, 'kalaliso/info_person.html', {'info_p': info_p })
 
 def user(request):
@@ -254,8 +291,8 @@ def orderdetail_detail(request, orderdetail_id):
 
 
 def order_list(request, order_id):
-    qs = Order.objects.all().order_by(-id)
-    # qs = get_object_or_404(Order, pk=order_id)
+    # qs = Order.objects.all().order_by(-id)
+    qs = get_object_or_404(Order, pk=order_id)
     context = {'order_list': qs,}
     # return render(request, 'kalaliso/order_list.html', context)
     # return HttpResponse('order')

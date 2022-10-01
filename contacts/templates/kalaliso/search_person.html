@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block  title %} Search Person {% endblock %}
+
+{% block content  %}
+    <h3 class="text-center">Resultats :</h3>
+    {% for person in list_person %}
+         {{ person.nom }}
+{#         {{ person.contact_1}}#}
+{#         {{ person.prenom}}#}
+    {% endfor %}
+
+{% endblock  %}

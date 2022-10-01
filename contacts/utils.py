@@ -10,7 +10,7 @@ import string
 #             START
 # =================================
 def random_string_generator():
-    characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-_'
+    characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
     result = ''
     for i in range(0, 11):
         result += random.choice(characters)
@@ -36,7 +36,7 @@ def unique_matricule_id_generator(instance):
 #             START
 # =================================
 def random_string_generator():
-    characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
     result = ''
     for i in range(0, 6):
         result += random.choice(characters)

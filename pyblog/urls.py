@@ -23,6 +23,12 @@ urlpatterns = [
 
       # path('vuesimg/<int:upload_id>/', views.vuesimg, name='vues_img'),
 
+     # PATH FOR SEARCH CONTACTS OR NAME IN DATABASE
+     #  path('search_person/', views.search_person, name='search_person'),
+      path('person/list/search_person/', views.search_person, name='search_person'),
+      path('person/list/person_paginator/', views.person_paginator, name='person_paginator'),
+
+
       path('', views.user_login, name='login'),
       path('logout/', views.logout_user, name='logout'),
       path('register/', views.register_user, name='register'),
@@ -50,7 +56,7 @@ urlpatterns = [
       path('order/', views.order, name='order'),
       path('order_items/', views.order_items, name='order_items'),
       path('orderdetail/detail/<int:order_items_id>/', views.orderdetail_detail, name='orderdetail_detail'),
-      path('order_list/<int:order_id>/', views.order_list, name='order_list'),
+      path('order/order_list/<int:order_id>/', views.order_list, name='order_list'),
 
       path('show_video/', views.show_video, name='show_video'),
 

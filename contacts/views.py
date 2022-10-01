@@ -283,7 +283,7 @@ def order_items(request, ):
     return render(request, 'kalaliso/order.html', {'form': form})
     # return render(request, 'kalaliso/order_items.html', {'form': form})
 
-def orderdetail_detail(request, orderdetail_id):
+def orderdetail_detail(request,):
 
     qs = Order_Items.objects.all().order_by(Order)
     context = {'orderdetail': qs, }

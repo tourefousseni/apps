@@ -2,13 +2,30 @@
 {% block title %} Profile {% endblock %}
 
 {% block content %}
-        <h1 class="text-center"> It's my profile</h1>
-          {% if user.is_authenticated %}
-           <p> Username: {{user.username}} </p>
-<!--           <p> Password: {{user.password}} </p>-->
-           <p> First_name : {{user.first_name}}  {{user.last_name}}</p>
-           <p> Email: {{user.email}} </p>
-     {% endif %}
+    <div class="row">
+        <h1 class="text-center">Profile Custom</h1>
+{#            <a {% url 'profile' %} class="btn btn-primary">View profile</a>#}
+          {% for person in list_person  %}
+              <div class="col-md-4">
+              <div class="card" style="width: 18rem;>
+                <img class="card-img-top" src="..." alt="Card image cap">
+                  <div class="card-body">
+                      <h5 class="card-title">Carnet Adresse</h5>
+{#                      <p class="card-text">Hello</p>#}
+                       <ul>
+                            <li >Nom: {{ person.nom }}</li>
+                            <li >Prenom: {{ person.prenom }}</li>
+                            <li >Code : {{ person.code_person }}</li>
+                            <li>Telephone: {{ person.contact_1 }} </li>
+                            <li>Genre: {{ person.genre }}</li>
+                       </ul>
+                  </div>
+            <a href="{% url 'list' %}" class="card-link">Return in list</a>
+            <a href="#" class="card-link">Create PDF</a>
+          </div>
+    </div>
+          {% endfor %}
+   </div>
 {% endblock content %}
 
 

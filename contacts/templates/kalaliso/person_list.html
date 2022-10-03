@@ -4,9 +4,7 @@
 {% block content %}
     <div class="table-responsive">
     <table id="bootstrapdatable" class="table table-responsive-md table-bordered" width="80%">
-
         <thead>
-
         <h5>LISTE DES CLIENTS</h5>
         <div class="row">
          <div class="col-md-4 ">
@@ -48,17 +46,18 @@
                                 <td>{{ person.status }}</td>
                                 <td>{{ person.genre }}</td>
                                 <td>{{ person.contact_1 }}</td>
+
                                 <td> <p data-placement="top" data-toggle="tooltip"
-                                 title="Detail"><a href="#"
-                                 class="btn btn-info btn" data-title="Detail"
-                                 data-toggle="modal" data-target="Detail">
+                                 title="View"><a href="#"
+                                 class="btn btn-info btn" data-title="View"
+                                 data-toggle="modal" data-target="View">
                                  <span class="glyphicon glyphicon">
                                  </span></a></p></td>
 
                                 <td> <p data-placement="top" data-toggle="tooltip"
-                                 title="Edit"><a href="/edit/{{ detail_order.id }}"
-                                 class="btn btn-secondary btn" data-title="Edit"
-                                 data-toggle="modal" data-target="Edit">
+                                 title="Update"><a href="/update/{{ detail_order.id }}"
+                                 class="btn btn-secondary btn" data-title="Update"
+                                 data-toggle="modal" data-target="Update">
                                  <span class="glyphicon glyphicon">
                                  </span></a></p></td>
 

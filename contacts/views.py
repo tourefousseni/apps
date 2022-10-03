@@ -409,13 +409,19 @@ def village(request):
 
 
 def profile(request):
-    return render(request, 'kalaliso/profile.html', {})
+    #id,  *args,  **kwargs
+    # list_person  = Person.objects.get(id=id)
+    list_person  = Person.objects.all().order_by('-id')
+
+    context = {
+        'list_person': list_person,
+    }
+    return render(request, 'kalaliso/profile.html', context)
 
 # ===========================
 #      VIEWS KALALISO
 #          END
 # ===========================
-
 
 def n_customers(request):
     customer = Person.objects.count()

@@ -32,7 +32,9 @@ urlpatterns = [
       path('', views.user_login, name='login'),
       path('logout/', views.logout_user, name='logout'),
       path('register/', views.register_user, name='register'),
-      path('profile/', views.profile, name='profile'),
+
+      path('person/list/profile/', views.profile, name='profile'),
+
       path('edit/profile/', views.edit_profile, name='edit_profile'),
       path('change/password/', views.change_password, name='change_password'),
 

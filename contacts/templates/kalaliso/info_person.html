@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<body>
+<p>Information Profile</p>
+<div>
+    {% for x in list_person %}
+                  <h4 class="text-center" style="color: red"></h4>
+                  <h4> Nom et Prenom : {{ x.nom }} | {{ person.prenom }} </h4>
+                  <p>Code personnel : {{ x.code_person }}</p>
+                  <p>Telephone      : {{ x.contact_1 }}</p>
+                  <p>Category       : {{ x.category }}</p>
+                  <p>Status         : {{ x.status }}</p>
+                  <p>Genre          : {{ x.genre }}</p>
+
+           <p><a href="{% url 'info_person' id %}" class="btn btn-primary my-2">View profil</a></p>
+
+    {% endfor %}
+</div>
+{% endblock %}

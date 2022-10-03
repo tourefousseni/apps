@@ -50,7 +50,7 @@ urlpatterns = [
       path('n_products/', views.n_products, name='product_count'),
 
       path('mesure/', views.mesure, name='mesure'),
-      path('mesure/_list/<int:mesure_id>/', views._list, name='_list'),
+      path('mesure/mesure_list/<int:mesure_id>/', views.mesure_list, name='mesure_list'),
       # path('mesure_list/<int:mesure_id>/', views.mesure_list, name='mesure_list'),
 
       path('order/', views.order, name='order'),
@@ -72,11 +72,10 @@ urlpatterns = [
 
       # GENERATED XHTML TO PDF
       path('person/list/report-person-pdf/', views.report_person_pdf, name="report_person_pdf"),
+
+      # VIEWS PROFIL CUSTOMER
       path('person/info_person/<int:id>/', views.info_person, name='info_person'),
 
-
-    # Filter Person
-      path('person_filter/', views.person_filter, name='person_filter'),
 
 ]
 if settings.DEBUG:

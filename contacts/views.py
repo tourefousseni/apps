@@ -46,16 +46,15 @@ def search_person(request):
     search = request.GET.get('search')
     list_person = Person.objects.filter(Q(nom__icontains=search) |
                                         Q(code_person__icontains=search) |
+                                        Q(prenom__icontains=search) |
                                         Q(contact_1__icontains=search) |
                                         Q(genre__icontains=search) |
                                         Q(status__icontains=search)
                                         )
     person_number = list_person.count()
-
-    message = f'{person_number } results :'
+    message = f' results : {person_number }'
     if person_number == 1:
-          message = f'{person_number } results:'
-
+          message = f' results : {person_number }'
 
     context = {
         'list_person': list_person,
@@ -213,21 +212,30 @@ def list(request):
 #     return render(request, 'kalaliso/person_list.html', context)
 
 def person_paginator(request):
-    person      = Person.objects.all().order_by('-id')
-    paginator   = Paginator(person, 10)
-    page_number = request.GET.get('page')
-    page_object = paginator.get_page(page_number)
-    person_number = Person.objects.count()
+    persons     = Person.objects.all().order_by('-id')
 
-    message = f'{ person_number } list_person :'
-    if person_number == 1:
-        message = f'{ person_number } person :'
+    paginator   = Paginator(persons, 5)
+
+    page_number = request.GET.get('page')
+
+    page_object = paginator.get_page(page_number)
+
+    person_number = persons.count()
+
+    message = f'{ person_number } Nombre:'
+
+    if page_number==1:
+       message = f'{ page_number } Nombre :'
 
     context = {
-        'person': page_object,
+        'persons': page_object,
+        'person_number': person_number,
         'message': message,
     }
-    return render(request, 'kalaliso/person_list.html', context)
+    return render(request, 'kalaliso/paginators/person_paginator.html', context)
+    # return render(request, 'kalaliso/person_list.html', context)
+
+
 
 def detail_person(request, p_detail_id):
     detail_p = get_object_or_404(Person, pk=p_detail_id)
@@ -235,8 +243,11 @@ def detail_person(request, p_detail_id):
     return render(request, 'kalaliso/d_person.html', {'detail_p': detail_p})
 
 def info_person(request, id):
-    info_p = Person.objects.get(id=id)
-    return render(request, 'kalaliso/info_person.html', {'info_p': info_p })
+    x = Person.objects.get(id=id)
+    context = {
+        'list_person': x
+    }
+    return render(request, 'kalaliso/info_person.html', context)
 
 def user(request):
     user_list = User.objects
@@ -316,6 +327,7 @@ def mesure(request):
         if form.is_valid():
              form.save()
              return HttpResponseRedirect('mesure_list')
+             # return HttpResponseRedirect('mesure_list')
     else:
        form = MesureForm()
     return render(request, 'kalaliso/mesure.html', {'form': form})
@@ -324,9 +336,12 @@ def mesure(request):
 # response = wrapped_callback(request, *callback_args, **callback_kwargs)
 
 
-def _list(request):
-    qs = Mesure.objects
-    return render(request, 'kalaliso/mesure_list.html', {'mesure_list': qs,})
+def mesure_list(request,):
+    qs = Mesure.objects.all()
+    context = {
+        'mesure_list': qs, }
+
+    return render(request, 'kalaliso/mesure_list.html', context )
 
 
 def payment(request,):
@@ -418,7 +433,4 @@ def n_products(request):
     return render(request, 'kalaliso/homepage.html', context)
 
 
-def person_filter(request):
-    p_f = Person.objects.filter.get(id)
-    context = {p_f: p_f}
-    return render(request, 'kalaliso/person_list.html', context)
+

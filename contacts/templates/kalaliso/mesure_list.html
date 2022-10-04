@@ -11,6 +11,8 @@
         <thead><br/>
             <tr>
                   <th>N°</th>
+                  <th>Nom</th>
+                  <th>Prenom</th>
                   <th>Coude</th>
                   <th>Epaule</th>
                   <th>Manche</th>
@@ -31,10 +33,12 @@
       </thead>
 
       <tbody>
-                {% for mesure in mesure_list.all %}
+                {% for mesure in mesure_list %}
                            <tr>
 
                                 <td>{{ mesure.id }}</td>
+                               <td>{{ mesure.person_mesure.nom }}</td>
+                               <td>{{ mesure.person_mesure.prenom }}</td>
                                 <td>{{ mesure.coude }}</td>
                                 <td>{{ mesure.epaule }}</td>
                                 <td>{{ mesure.manche }}</td>
@@ -64,7 +68,7 @@
                                                           <span class="glyphicon glyphicon">
                                                           </span></a>Delete</p></td>
                                                         <td>
-                                                         <a href="{% url 'mesure_list' mesure.id %}" class="btn btn-info">View Mesure></a>
+{#                                                         <a href="{% url 'mesure_list' mesure.id %}" class="btn btn-info">View Mesure></a>#}
                                                         </td>
 
 

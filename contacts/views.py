@@ -326,7 +326,7 @@ def mesure(request):
         form = MesureForm(request.POST)
         if form.is_valid():
              form.save()
-             return HttpResponseRedirect('mesure_list')
+             return HttpResponse('mesure_list')
              # return HttpResponseRedirect('mesure_list')
     else:
        form = MesureForm()
@@ -336,8 +336,8 @@ def mesure(request):
 # response = wrapped_callback(request, *callback_args, **callback_kwargs)
 
 
-def mesure_list(request,):
-    qs = Mesure.objects.all()
+def mesure_list(request):
+    qs = Mesure.objects.all().order_by('-id')
     context = {
         'mesure_list': qs, }
 

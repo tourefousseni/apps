@@ -53,6 +53,7 @@ urlpatterns = [
 
       path('mesure/', views.mesure, name='mesure'),
       path('mesure/mesure_list/', views.mesure_list, name='mesure_list'),
+      path('mesure/mesure_list/search_mesure/', views.search_mesure, name='search_mesure'),
       # path('mesure_list/<int:mesure_id>/', views.mesure_list, name='mesure_list'),
 
       path('order/', views.order, name='order'),

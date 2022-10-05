@@ -2,17 +2,15 @@
 {% block title %} CARNET DE MESURE {% endblock %}
 
 {% block content %}
-
-            <div class="col-md-4 ">
-                  <form action="{% url 'search_person'  %}" method="get">
+     <div class="col-md-4 ">
+                  <form action="{% url 'search_mesure'  %}" method="get">
                       <input placeholder="Search ..." class="form-control form-control-dark" type="search" name="search">
                       <button class="btn btn-primary my-2" type="submit" >Search</button>
                   </form>
                    <div>
-                     <a href="{% url 'mesure'  %}" class="btn btn-secondary btn ">Add new mesure</a>
+                     <a href="{% url 'mesure_list'  %}" class="btn btn-secondary btn ">Return in list</a>
                    </div>
             </div>
-
         <div class="text-center">
             <h2>CARNET DES MESURES</h2>
         </div>

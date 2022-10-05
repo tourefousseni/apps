@@ -62,6 +62,23 @@ def search_person(request):
     }
     return render(request, 'kalaliso/search_person.html', context)
 
+
+def search_mesure(request):
+    search = request.GET.get('search')
+    filter_mesure = Mesure.objects.filter(Q(coude__icontains=search))
+                                          # |
+                                          # Q(epaule__icontains=search))
+    # person_number = list_person.count()
+    # message = f' results : {person_number }'
+    # if person_number == 1:
+    #       message = f' results : {person_number }'
+
+    context = {
+        'filter_mesure': filter_mesure,
+        # 'message': message
+    }
+    return render(request, 'kalaliso/search_mesure.html', context)
+
 # BEGIN GENERATED PDF
 
 def report_person_pdf(request):

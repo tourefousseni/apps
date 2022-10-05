@@ -16,6 +16,8 @@
 {% block content %}
 <div class="row col-lg-12">
 <div >
+    <a href="{% url 'mesure_list'  %}" class="btn btn-primary btn col-md-4 ">View List Mesure</a>
+
     <div class="row col-lg-8 offset-0">
     <div class="mesureform">
 {#        <h5 class="text-left offset-0"> MESURE CLIENT</h5><hr>#}
@@ -66,6 +68,7 @@
             <div class="col-12 justify-content-center">
                      <input type="submit" value="Submit" class="btn btn-primary col-md-4">
                      <input type="reset" value="Reset" class="btn btn-danger col-md-4">
+
            </div>
         </div>
 {#                <a href="{% url 'mesure_list' mesure.id %}"></a>#}

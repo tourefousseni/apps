@@ -57,9 +57,10 @@ urlpatterns = [
       # path('mesure_list/<int:mesure_id>/', views.mesure_list, name='mesure_list'),
 
       path('order/', views.order, name='order'),
+      path('order/order_list', views.order_list, name='order_list'),
       path('order_items/', views.order_items, name='order_items'),
       path('orderdetail/detail/<int:order_items_id>/', views.orderdetail_detail, name='orderdetail_detail'),
-      path('order/order_list/<int:order_id>/', views.order_list, name='order_list'),
+      # path('order/order_list/<int:order_id>/', views.order_list, name='order_list'),
 
       path('show_video/', views.show_video, name='show_video'),
 

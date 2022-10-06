@@ -12,29 +12,37 @@
             <h2>LISTE DES COMMANDES</h2><br/>
         </div>
             <tr>
-{#                <td><input type="checkbox" id="checkall" /></td>#}
+                <td><input type="checkbox" id="checkall" /></td>
                   <th>N°</th>
+                  <th>Nom</th>
+                  <th>prenom</th>
                   <th>Code commande</th>
                   <th>Reception</th>
+                  <th>Products</th>
                   <th>Rendez Vous</th>
-                  <th>Livre</th>
                   <th>Date Creation</th>
+                  <th>Remise</th>
+                  <th>Livre</th>
                   <th>Edit</th>
                   <th>Delete</th>
             </tr>
       </thead>
 
       <tbody>
-                    {% for items in order_list %}
+                    {% for order in order_list %}
+                        <a href="{% url 'order_list'  %}"></a>
                            <tr>
-                                <td><a href="{% url 'order_list'  %}"></a></td>
-{#                              <td><input type="checkbox" class="checkthis" /></td>#}
+                                <td><input type="checkbox" class="checkthis" /></td>
                                 <td>{{ order.id }}</td>
+                                <td>{{ order.person_id.nom }}</td>
+                                <td>{{ order.person_id.prenom }}</td>
                                 <td>{{ order.code_order }}</td>
                                 <td>{{ order.reception }}</td>
+                                <td>{{ order.order_items }}</td>
                                 <td>{{ order.rendez_vous }}</td>
+                                <td>{{ order.remise }}</td>
                                 <td>{{ order.livre }}</td>
-                                <td>{{ order.created_at }}</td>
+                                <td>{{ order.create_at }}</td>
                                                         <td> <p data-placement="top" data-toggle="tooltip"
                                                         title="Edit"><a href="/edit/{{ order_list.id }}"
                                                         class="btn btn-primary btn-xs" data-title="Edit"

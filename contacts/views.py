@@ -287,6 +287,14 @@ def product(request):
     products = Product.objects
     return render(request, 'kalaliso/product.html', {'products':products})
 
+def products_list(request):
+    p_l = Product.objects.all().order_by('-id')
+
+    context = {
+        'products_list': p_l,
+    }
+    return render(request, 'kalaliso/products_list.html', context)
+
 
 def product_detail(request, product_id):
     product_detail = get_object_or_404(Product, pk=product_id)

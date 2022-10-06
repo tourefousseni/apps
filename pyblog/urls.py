@@ -18,6 +18,7 @@ urlpatterns = [
       # path('upload/', views.image_upload_view, name='upload'),
 
       path('product/', views.product, name='product'),
+      path('product/products_list', views.products_list, name='products_list'),
       path('<int:product_id>/', views.product_detail, name='product_detail'),
       path('product_sum/', views.product_sum, name='product_sum'),
 

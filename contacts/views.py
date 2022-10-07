@@ -359,8 +359,8 @@ def mesure(request):
         form = MesureForm(request.POST)
         if form.is_valid():
              form.save()
-             return HttpResponse('mesure_list')
-             # return HttpResponseRedirect('mesure_list')
+             # return HttpResponse('mesure_list')
+             return HttpResponseRedirect('mesure_list')
     else:
        form = MesureForm()
     return render(request, 'kalaliso/mesure.html', {'form': form})

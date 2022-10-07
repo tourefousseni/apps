@@ -28,6 +28,8 @@ from .validators import file_size
 #     def __str__(self):
 #         return self.name
 
+
+
 class Person(models.Model):
     objects = None
     id              = models.AutoField(primary_key=True)
@@ -79,7 +81,9 @@ class Person(models.Model):
     numero_reference    = models.PositiveIntegerField(null=True, blank=True)
     nina                = models.CharField(max_length=30, null=True, blank=True)
     created_at          = models.DateField(auto_now=True)
+    
 
+    
     def __str__(self):
         return'{} {} {}'.format(self.prenom, self.nom, self.contact_1)
 

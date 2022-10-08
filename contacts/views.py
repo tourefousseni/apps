@@ -13,13 +13,6 @@ import io
 import time
 time.sleep(5)
 
-# import os
-# import os.path
-# import ssl
-# import stat
-# import subprocess
-# import sys
-
 from contacts.models import *
 from contacts.models import Person
 from .forms import *
@@ -176,8 +169,6 @@ def change_password(request):
 
     return render(request, 'account/change_password.html', context)
 
-
-
 # ===========================
 #      VIEWS KALALISO
 #          START
@@ -214,6 +205,18 @@ def list(request):
     list_person = Person.objects.all().order_by('-id')
     return render(request, 'kalaliso/person_list.html', {'list_person': list_person})
 
+
+# def detail_person(request, person_id):
+#
+#     d_person = get_object_or_404(Person, pk=person_id)
+#     context = {
+#         'list_person': d_person,
+#     }
+#     return render(request, 'kalaliso/d_person.html', context)
+
+
+
+
 # def list(request):
 #     list_person = Person.objects.all().order_by('-id')
 #     paginator   = Paginator(list_person, 10)
@@ -230,20 +233,13 @@ def list(request):
 
 def person_paginator(request):
     persons     = Person.objects.all().order_by('-id')
-
     paginator   = Paginator(persons, 5)
-
     page_number = request.GET.get('page')
-
     page_object = paginator.get_page(page_number)
-
     person_number = persons.count()
-
     message = f'{ person_number } Nombre:'
-
     if page_number==1:
        message = f'{ page_number } Nombre :'
-
     context = {
         'persons': page_object,
         'person_number': person_number,
@@ -254,17 +250,15 @@ def person_paginator(request):
 
 
 
-def detail_person(request, p_detail_id):
-    detail_p = get_object_or_404(Person, pk=p_detail_id)
-    # detail_p = Person.objects
-    return render(request, 'kalaliso/d_person.html', {'detail_p': detail_p})
 
-def info_person(request, id):
-    x = Person.objects.get(id=id)
-    context = {
-        'list_person': x
-    }
-    return render(request, 'kalaliso/info_person.html', context)
+
+# def info_person(request, id):
+#     x = Person.objects.get(id=id)
+#     context = {
+#         'list_person': x
+#     }
+#     return render(request, 'kalaliso/info_person.html', context)
+
 
 def user(request):
     user_list = User.objects
@@ -455,6 +449,9 @@ def profile(request):
 #      VIEWS KALALISO
 #          END
 # ===========================
+
+
+# PARTY STATISTIQUES FOR APP KALALISO
 
 def n_customers(request):
     customer = Person.objects.count()

@@ -1,4 +1,4 @@
-{#{% extends 'base.html' %}#}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
@@ -6,28 +6,31 @@
   <div class="col-sm-6">
     <div class="card" style="background: white ">
       <div class="card-body">
-        <h6 class="card-text ">Information  personnelle </h6><hr>
-          {% for person in detail_p.all %}
+        <h5 class="card-text ">Information Personnelle </h5><hr>
+{#                  <p> Nom et Prenom : </p>#}
+{#                  <p>Code personnel : </p>#}
+{#                  <p>Telephone      : </p>#}
+{#                  <p>Category       : </p>#}
+{#                  <p>Status         : </p>#}
+{#                  <p>Genre          :</p>#}
 
-                  <h4 class="text-center" style="color: white"></h4>
-                  <p> Nom et Prenom : {{ person.nom }}  {{ person.prenom }} </p>
-                  <p>Telephone      : {{ person.contact_1 }}</p>
-                  <p>Category       : {{ person.category }}</p>
-                  <p>Status         : {{ person.status }}</p>
-                  <p>Genre          : {{ person.genre }}</p>
-                  <p>Code personnel : {{ person.code_person }}</p>
-           <p>
-              <a href="{% url 'list' person.id %}" class="btn btn-primary my-2">Back to list</a>
-          </p>
-
+          {% for person in list_person.all %}
+{#                  <h4 class="text-center" style="color: white"></h4>#}
+                  <p> Nom et Prénom     : {{ person.nom }} {{ person.prenom }} </p>
+                  <p> Code Identifiant  : {{ person.code_person }} </p>
+                  <p> Téléphone         : {{ person.contact_1 }} </p>
+                  <p> Category          : {{ person.category }} </p>
+                  <p> Status            : {{ person.status }} </p>
+                  <p> Genre             :{{ person.genre }} </p>
           {% endfor %}
+
+{#          <p>#}
+{#              <a href="{% url 'list' %}" class="btn btn-primary my-2">Back to list</a>#}
+{#          </p>#}
       </div>
-     <li>
-        <a href="{% url 'detail_person' %}" class="nav-link link-dark">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-          pdf
-        </a>
-      </li>
+     <div>
+{#        <a href="{% url 'detail_person' person_id %}" class="btn btn-primary my-2">Generated pdf</a>#}
+      </div>
 
     </div>
   </div>

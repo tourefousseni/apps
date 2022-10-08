@@ -40,11 +40,8 @@ urlpatterns = [
       path('change/password/', views.change_password, name='change_password'),
 
       path('person/', views.person, name='person'),
-
       path('person/list/', views.list, name='list'),
-      # path('person/list/<int:person_id>/', views.list, name='list'),
-      path('person/detail/<int:p_detail_id>/', views.detail_person, name='detail_person'),
-      # path('person/detail/<int:person_id>/', views.detail_person, name='detail_person'),
+      # path('person/list/detail_person/<int:person_id>/', views.detail_person, name='detail_person'),
 
       path('user/', views.user, name='user'),
 
@@ -79,7 +76,7 @@ urlpatterns = [
       path('person/list/report-person-pdf/', views.report_person_pdf, name="report_person_pdf"),
 
       # VIEWS PROFIL CUSTOMER
-      path('person/info_person/<int:id>/', views.info_person, name='info_person'),
+      # path('person/info_person/<int:id>/', views.info_person, name='info_person'),
 
 
 ]

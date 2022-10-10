@@ -206,13 +206,15 @@ def list(request):
     return render(request, 'kalaliso/person_list.html', {'list_person': list_person})
 
 
-# def detail_person(request, person_id):
-#
+def detail_person(request, person_id):
+
 #     d_person = get_object_or_404(Person, pk=person_id)
-#     context = {
-#         'list_person': d_person,
-#     }
-#     return render(request, 'kalaliso/d_person.html', context)
+    list_person = Person.objects.filter(pk=person_id)
+    context = {
+        'list_person': list_person,
+    }
+    # return render(request, 'kalaliso/person_list.html', context)
+    return render(request, 'kalaliso/d_person.html', context)
 
 
 

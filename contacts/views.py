@@ -208,14 +208,43 @@ def list(request):
 
 def detail_person(request, person_id):
 
-#     d_person = get_object_or_404(Person, pk=person_id)
     list_person = Person.objects.filter(pk=person_id)
     context = {
         'list_person': list_person,
     }
-    # return render(request, 'kalaliso/person_list.html', context)
+
     return render(request, 'kalaliso/d_person.html', context)
 
+def report_person_id_pdf(request, person_id):
+    list_person = Person.objects.filter(pk=person_id)
+    # persons = Person.objects.all().order_by('-id')
+    template_path = 'kalaliso/info_person.html'
+    context = {'list_person': list_person}
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="report_person_id.pdf"'
+    template = get_template(template_path)
+    html = template.render(context)
+    status = pisa.CreatePDF(html, dest=response)
+
+    if status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
+
+def report_order_pdf(request, order_id):
+    order = Order.objects.filter(pk=order_id)
+    # persons = Person.objects.all().order_by('-id')
+    template_path = 'kalaliso/report_order.html'
+    context = {'order': order}
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="report_order.pdf"'
+    template = get_template(template_path)
+    html = template.render(context)
+    status = pisa.CreatePDF(html, dest=response)
+
+    if status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
 
 
 

@@ -1,21 +1,22 @@
-{% extends 'base.html' %}
-{% block content %}
-
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 <body>
-<p>Information Profile</p>
+<h3 class="text-center">CARTE CLIENT</h3><hr/>
 <div>
-    {% for x in list_person %}
+    {% for person in list_person.all %}
                   <h4 class="text-center" style="color: red"></h4>
-                  <h4> Nom et Prenom : {{ x.nom }} | {{ person.prenom }} </h4>
-                  <p>Code personnel : {{ x.code_person }}</p>
-                  <p>Telephone      : {{ x.contact_1 }}</p>
-                  <p>Category       : {{ x.category }}</p>
-                  <p>Status         : {{ x.status }}</p>
-                  <p>Genre          : {{ x.genre }}</p>
+                  <h4>Prénom et Nom  :  {{ person.prenom }}  {{ person.nom }}  </h4>
+                  <p>Code personnel :   {{ person.code_person }}</p>
+                  <p>Téléphone      :   {{ person.contact_1 }}</p>
+                  <p>Catégorie       :  {{ person.category }}</p>
+                  <p>Status         :   {{ person.status }}</p>
+                  <p>Genre          :   {{ person.genre }}</p><br>
+        <hr/>
 
-           <p><a href="{% url 'info_person' id %}" class="btn btn-primary my-2">View profil</a></p>
+{#           <p><a href="{% url 'detail_person' person.id %}" class="btn btn-primary my-2">View profil</a></p>#}
 
     {% endfor %}
 </div>
-{% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

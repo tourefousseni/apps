@@ -74,6 +74,8 @@ urlpatterns = [
 
       # GENERATED XHTML TO PDF
       path('person/list/report-person-pdf/', views.report_person_pdf, name="report_person_pdf"),
+      path('person/list/report-person-id-pdf/<int:person_id>/', views.report_person_id_pdf, name="report_person_id_pdf"),
+      path('report_order/<int:order_id>/', views.report_order_pdf, name="report_order_pdf"),
 
       # VIEWS PROFIL CUSTOMER
       # path('person/info_person/<int:id>/', views.info_person, name='info_person'),

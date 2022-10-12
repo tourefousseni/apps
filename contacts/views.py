@@ -414,7 +414,7 @@ def mesure_custom(request, mesure_id,):
     #     template = get_template(mesure_custom,)
     # return template.render(context, request)
 def report_mesure_pdf(request):
-    mesures = Mesure.objects.all()
+    mesures = Mesure.objects.all().order_by('-id')
     template_path = 'kalaliso/xhtml2pdf/report_mesure.html'
     context = {'mesure_list': mesures}
     response = HttpResponse(content_type='application/pdf')

@@ -52,7 +52,7 @@ urlpatterns = [
       path('mesure/', views.mesure, name='mesure'),
       path('mesure/mesure_list/', views.mesure_list, name='mesure_list'),
       path('mesure/mesure_list/search_mesure/', views.search_mesure, name='search_mesure'),
-      # path('mesure_list/<int:mesure_id>/', views.mesure_list, name='mesure_list'),
+      path('mesure_custom/<int:mesure_id>/', views.mesure_custom, name='mesure_custom'),
 
       path('order/', views.order, name='order'),
       path('order/order_list', views.order_list, name='order_list'),
@@ -76,6 +76,7 @@ urlpatterns = [
       path('person/list/report-person-pdf/', views.report_person_pdf, name="report_person_pdf"),
       path('person/list/report-person-id-pdf/<int:person_id>/', views.report_person_id_pdf, name="report_person_id_pdf"),
       path('report_order/<int:order_id>/', views.report_order_pdf, name="report_order_pdf"),
+      path('report_mesure/', views.report_mesure_pdf, name="report_mesure_pdf"),
 
       # VIEWS PROFIL CUSTOMER
       # path('person/info_person/<int:id>/', views.info_person, name='info_person'),

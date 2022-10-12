@@ -286,6 +286,7 @@ class Village(models.Model):
         return '{}'.format(self.name)
 
 class Video(models.Model):
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=50, blank=True, null=True)
     video =models.FileField(upload_to="video/%y", validators=[file_size])
     # comment = models.CharField(max_length=250, blank=True, null=True)

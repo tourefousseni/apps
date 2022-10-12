@@ -24,7 +24,7 @@ from  django.db.models import *
 import datetime
 from django.forms import ModelForm
 from io import BytesIO
-from django.template.loader import get_template
+from django.template.loader import get_template, select_template
 from django.views import View
 from xhtml2pdf import pisa
 from django.core.paginator import Paginator
@@ -395,11 +395,37 @@ def mesure(request):
 
 
 def mesure_list(request):
-    qs = Mesure.objects.all().order_by('-id')
+    mesure_all = Mesure.objects.all().order_by('-id')
+    context = {
+        'mesure_list': mesure_all, }
+
+    return render(request, 'kalaliso/mesure_list.html', context )
+
+def mesure_custom(request, mesure_id,):
+    qs = Mesure.objects.get(pk=mesure_id)
     context = {
         'mesure_list': qs, }
 
-    return render(request, 'kalaliso/mesure_list.html', context )
+    # reverse(request, 'mesure_custom', context)
+    return render(request, 'kalaliso/mesure_custom.html', context)
+    # if isinstance(mesure_custom,):
+    #     template = select_template(mesure_custom,)
+    # else:
+    #     template = get_template(mesure_custom,)
+    # return template.render(context, request)
+def report_mesure_pdf(request):
+    mesures = Mesure.objects.all()
+    template_path = 'kalaliso/report_mesure.html'
+    context = {'mesure_list': mesures}
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="report_mesure.pdf"'
+    template = get_template(template_path)
+    html = template.render(context)
+    status = pisa.CreatePDF(html, dest=response)
+
+    if status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
 
 
 def payment(request,):

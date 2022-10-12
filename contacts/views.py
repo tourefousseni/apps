@@ -76,7 +76,7 @@ def search_mesure(request):
 
 def report_person_pdf(request):
     persons = Person.objects.all().order_by('-id')
-    template_path = 'kalaliso/report_persons.html'
+    template_path = 'kalaliso/xhtml2pdf/report_persons.html'
     context = {'list_person': persons}
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'filename="report_person.pdf"'
@@ -218,7 +218,7 @@ def detail_person(request, person_id):
 def report_person_id_pdf(request, person_id):
     list_person = Person.objects.filter(pk=person_id)
     # persons = Person.objects.all().order_by('-id')
-    template_path = 'kalaliso/info_person.html'
+    template_path = 'kalaliso/xhtml2pdf/info_person.html'
     context = {'list_person': list_person}
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'filename="report_person_id.pdf"'
@@ -234,7 +234,7 @@ def report_person_id_pdf(request, person_id):
 def report_order_pdf(request, order_id):
     order = Order.objects.filter(pk=order_id)
     # persons = Person.objects.all().order_by('-id')
-    template_path = 'kalaliso/report_order.html'
+    template_path = 'kalaliso/xhtml2pdf/report_order.html'
     context = {'order': order}
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'filename="report_order.pdf"'
@@ -415,7 +415,7 @@ def mesure_custom(request, mesure_id,):
     # return template.render(context, request)
 def report_mesure_pdf(request):
     mesures = Mesure.objects.all()
-    template_path = 'kalaliso/report_mesure.html'
+    template_path = 'kalaliso/xhtml2pdf/report_mesure.html'
     context = {'mesure_list': mesures}
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'filename="report_mesure.pdf"'

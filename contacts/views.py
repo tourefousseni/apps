@@ -189,7 +189,18 @@ def change_password(request):
 #     return render(request, 'kalaliso/homepage.html', {'img': img, 'form': form})
 
 def homepage(request,):
-    return render(request, 'kalaliso/homepage.html')
+    customer = Person.objects.count()
+    order_count = Order.objects.count()
+    product_count = Product.objects.count()
+
+    context = {
+        'customer': customer,
+        'order_count': order_count,
+        'product_count': product_count,
+    }
+
+    return render(request, 'kalaliso/homepage.html' , context)
+
 
 def person(request):
     if request.method == 'POST':
@@ -509,21 +520,6 @@ def profile(request):
 
 
 # PARTY STATISTIQUES FOR APP KALALISO
-
-def n_customers(request):
-    customer = Person.objects.count()
-    context = {'customer': customer, }
-    return render(request, 'kalaliso/homepage.html', context)
-
-def n_orders(request):
-    order_count = Order.objects.count()
-    context = {'order_count': order_count, }
-    return render(request, 'kalaliso/homepage.html', context)
-
-def n_products(request):
-    product_count = Product.objects.count()
-    context = {'product_count': product_count, }
-    return render(request, 'kalaliso/homepage.html', context)
 
 
 

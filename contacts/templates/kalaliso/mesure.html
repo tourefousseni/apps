@@ -17,7 +17,7 @@
 <div class="row col-lg-12">
 <div >
     <a href="{% url 'mesure_list'  %}" class="btn btn-primary btn col-md-4 ">View List Mesure</a>
-    <a href="{% url 'report_mesure'  %}" class="btn btn-primary btn col-md-4 ">Generated Mesure To PDF</a>
+{#    <a href="{% url 'report_mesure'  %}" class="btn btn-primary btn col-md-4 ">Generated Mesure To PDF</a>#}
 
     <div class="row col-lg-8 offset-0">
     <div class="mesureform">
@@ -78,19 +78,22 @@
 
 {#                <a href="{% url 'mesure_list' mesure.id %}"></a>#}
     </form>
-         <div  class="row offset-md-4">
-                <p>
-                    Corps Humains
-                </p>
-           <img src="/media/image/img1.jpeg" id="img" class="img-fluid" alt="Responsive image">
-    </div>
+
     </div>
  </div>
 </div>
 
 </div>
 
-
+ <div  class="row">
+             <div class="col-md-4" style="margin: 50px">
+                 <p>
+                    Corps Humains
+                     <img src="/media/image/img1.jpeg" id="img" class="img-fluid" alt="Responsive image">
+                </p>
+             </div>
+ </div>
+    
 <script>
     $(document).ready(() => {
         $('#Reset').click(function(event) {

@@ -45,9 +45,6 @@ urlpatterns = [
 
       path('user/', views.user, name='user'),
 
-      path('n_customers/', views.n_customers, name='customer'),
-      path('n_orders/', views.n_orders, name='order_count'),
-      path('n_products/', views.n_products, name='product_count'),
 
       path('mesure/', views.mesure, name='mesure'),
       path('mesure/mesure_list/', views.mesure_list, name='mesure_list'),

@@ -176,6 +176,7 @@ class Order_ItemsForm(forms.ModelForm):
         self.helper.layout = Layout(
             Row(
                 Column('category', ),
+                Column('product_id', ),
                 Column('quantity', ),
                 Column('submontant', ),
             ),

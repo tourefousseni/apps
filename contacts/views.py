@@ -226,6 +226,17 @@ def detail_person(request, person_id):
 
     return render(request, 'kalaliso/d_person.html', context)
 
+def delete_person(request, person_id):
+    list_person = Person.objects.get(pk=person_id)
+    lis_person = Person.delete()
+    context = {
+        'list_person': list_person,
+        'lis_person': lis_person,}
+    # return render(request, 'kalaliso/d_person.html', context)
+    return redirect('list', context)
+
+
+
 def report_person_id_pdf(request, person_id):
     list_person = Person.objects.filter(pk=person_id)
     # persons = Person.objects.all().order_by('-id')

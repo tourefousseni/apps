@@ -42,6 +42,8 @@ urlpatterns = [
       path('person/', views.person, name='person'),
       path('person/list/', views.list, name='list'),
       path('detail_person/<int:person_id>/', views.detail_person, name='detail_person'),
+      path('delete_person/<int:person_id>/', views.delete_person, name='delete_person'),
+
 
       path('user/', views.user, name='user'),
 

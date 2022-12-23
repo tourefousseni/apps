@@ -213,7 +213,7 @@ def person(request):
     return render(request, 'kalaliso/person.html', {'form': form,})
 
 def list(request):
-    list_person = Person.objects.all().order_by('-id')
+    list_person = Person.objects.all().order_by('id')
     return render(request, 'kalaliso/person_list.html', {'list_person': list_person})
 
 
@@ -224,17 +224,14 @@ def detail_person(request, person_id):
         'list_person': list_person,
     }
 
-    return render(request, 'kalaliso/d_person.html', context)
-
-def delete_person(request, person_id):
-    list_person = Person.objects.get(pk=person_id)
-    lis_person = Person.delete()
-    context = {
-        'list_person': list_person,
-        'lis_person': lis_person,}
+    return render(request, 'kalaliso/detail_person.html', context)
     # return render(request, 'kalaliso/d_person.html', context)
-    return redirect('list', context)
 
+def delete_person(request, id):
+    del_person = Person.objects.get(pk=id)
+    del_person.delete()
+    context = { 'delete': del_person, }
+    return render(request, 'kalaliso/person_list.html', context)
 
 
 def report_person_id_pdf(request, person_id):
@@ -285,7 +282,7 @@ def report_order_pdf(request, order_id):
 #     return render(request, 'kalaliso/person_list.html', context)
 
 def person_paginator(request):
-    persons     = Person.objects.all().order_by('-id')
+    persons     = Person.objects.all().order_by('id')
     paginator   = Paginator(persons, 5)
     page_number = request.GET.get('page')
     page_object = paginator.get_page(page_number)
@@ -420,23 +417,27 @@ def mesure_list(request):
     mesure_all = Mesure.objects.all().order_by('-id')
     context = {
         'mesure_list': mesure_all, }
-
     return render(request, 'kalaliso/mesure_list.html', context )
 
-def mesure_custom(request, mesure_id,):
-    qs = Mesure.objects.get(pk=mesure_id)
-    context = {
-        'mesure_list': qs, }
+# def mesure_custom(request, mesure_id,):
+#     qs = Mesure.objects.get(pk=mesure_id)
+#     context = {
+#         'mesure_list': qs, }
+#     return render(request, 'kalaliso/mesure_custom.html', context)
 
-    # reverse(request, 'mesure_custom', context)
-    return render(request, 'kalaliso/mesure_custom.html', context)
-    # if isinstance(mesure_custom,):
-    #     template = select_template(mesure_custom,)
-    # else:
-    #     template = get_template(mesure_custom,)
-    # return template.render(context, request)
+def mesure_detail(request, id):
+    mesure_detail = Mesure.objects.get(pk=id)
+    # list_person = Person.objects.get(pk=id)
+    context = {
+        'mesure_detail': mesure_detail,
+        # 'list_person': list_person,
+    }
+    return render(request, 'kalaliso/mesure_detail.html', context)
+
+
+
 def report_mesure_pdf(request):
-    mesures = Mesure.objects.all().order_by('-id')
+    mesures = Mesure.objects.all().order_by('id')
     template_path = 'kalaliso/xhtml2pdf/report_mesure.html'
     context = {'mesure_list': mesures}
     response = HttpResponse(content_type='application/pdf')

@@ -40,18 +40,22 @@ urlpatterns = [
       path('change/password/', views.change_password, name='change_password'),
 
       path('person/', views.person, name='person'),
-      path('person/list/', views.list, name='list'),
-      path('detail_person/<int:person_id>/', views.detail_person, name='detail_person'),
-      path('delete_person/<int:person_id>/', views.delete_person, name='delete_person'),
 
+      path('person/list/delete/<int:id>/', views.delete_person, name='delete_person'),
+
+      path('person/list/', views.list, name='list'),
+      path('person/list/detail_person/<int:person_id>/', views.detail_person, name='detail_person'),
+      # path('person/list/delete_person/<int:person_id>/', views.delete_person, name='delete_person'),
 
       path('user/', views.user, name='user'),
 
 
       path('mesure/', views.mesure, name='mesure'),
+
+      path('mesure/mesure_list/<int:id>/', views.mesure_detail, name='mesure_detail'),
       path('mesure/mesure_list/', views.mesure_list, name='mesure_list'),
       path('mesure/mesure_list/search_mesure/', views.search_mesure, name='search_mesure'),
-      path('mesure_custom/<int:mesure_id>/', views.mesure_custom, name='mesure_custom'),
+      # path('mesure_custom/<int:mesure_id>/', views.mesure_custom, name='mesure_custom'),
 
       path('order/', views.order, name='order'),
       path('order/order_list', views.order_list, name='order_list'),

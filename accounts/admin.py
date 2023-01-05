@@ -6,13 +6,7 @@ from django.db import models
 
 # Register your models here.
 
-from .models import  Person, Mesure, Product, Video
+from .models import  Person
 
 
 admin.site.register(Person)
-
-admin.site.register(Mesure)
-
-admin.site.register(Product)
-
-admin.site.register(Video)

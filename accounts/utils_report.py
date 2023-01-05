@@ -1,8 +1,8 @@
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A5
-from contacts.models import Contact
+from accounts.models import Contact
 from reportlab.platypus import Table
-from contacts.models import Contact
+from accounts.models import Contact
 from reportlab.lib.units import inch
 from django.http import FileResponse
 import io

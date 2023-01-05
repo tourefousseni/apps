@@ -13,9 +13,9 @@ from django_bootstrap_datetimepicker import *
 from django.forms import widgets
 import datetime
 
-from .models import  Person, Payment, \
-    Product, Mesure, Order, Order_Items, Commune, \
-    Region, Cercle, Village, Video
+from .models import  Payment, \
+    Product, Mesure, Order, Order_Items, \
+    Video
 
 
 # ==============================================
@@ -31,51 +31,6 @@ class UserForm(forms.ModelForm):
     class Meta:
         model=User
         fields='__all__'
-
-# class ImageForm(forms.ModelForm):
-#     class Meta:
-#         model = Image
-#         fields = ['title', 'slug','tags','type', 'category', 'genre', 'image', ]
-#         exclude = ['tags']
-#
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self.helper = FormHelper(self)
-#         self.helper.form_method = 'post'
-#         self.helper.layout = Layout(
-#             Row(
-#                 Column('image', ),
-#             ),
-#             Row(
-#                 Column('title', ),
-#                 Column('slug', ),
-#                 Column('tags', ), ),
-#             Row(
-#                 Column('type', ),
-#                 Column('category', ),
-#                 Column('genre', ),
-#             ),
-#
-#             FormActions(
-#                 Submit('save_product', 'Save'),
-#                 Submit('cancel', 'Cancel', css_class='btn btn-danger')
-#             ),
-#         )
-
-
-class PersonForm(forms.ModelForm):
-    class Meta:
-        model = Person
-        fields = '__all__'
-
-        exclude = ['domicile','email','image', 'contact_2','alias',
-                    'code_person','photo', 'profession',
-                    'responsable','date_naissance','nationalite','tutuelle',
-                    'telephonique_fix','nina','numero_reference','created_at']
-
-        def __init__(self, *args, **kwargs):
-            super().__init__(*args, **kwargs)
-            self.helper = FormHelper(self)
 
 
 class MesureForm(forms.ModelForm):
@@ -163,7 +118,6 @@ class OrderForm(forms.ModelForm):
                 )
             )
 
-
 class Order_ItemsForm(forms.ModelForm):
     class Meta:
         model = Order_Items
@@ -190,9 +144,6 @@ class Order_ItemsForm(forms.ModelForm):
                 Submit('cancel', 'Cancel', css_class='btn btn-danger')
             ),
         )
-
-
-
 
 class PaymentForm(forms.ModelForm):
     class Meta:
@@ -222,41 +173,7 @@ class PaymentForm(forms.ModelForm):
                  ),
         )
 
-class RegionForm(forms.ModelForm):
-    class Meta:
-        model = Region
-        fields = '__all__'
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper(self)
-
-class CercleForm(forms.ModelForm):
-    class Meta:
-        model = Cercle
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper(self)
-
-class CommuneForm(forms.ModelForm):
-    class Meta:
-        model = Commune
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper(self)
-
-class VillageForm(forms.ModelForm):
-    class Meta:
-        model = Village
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper(self)
 # ==============================================
 #                  FORM KALALISO
 #                        END
@@ -308,9 +225,6 @@ class SignUpForm(UserCreationForm):
             self.fields['password2'].widget.attrs['placeholder'] = 'Comfirm password'
             self.fields['password2'].label                       = ''
             self.fields['password2'].help_text                   = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
-
-
-
 
 # tva = forms.IntegerField(label="Tva", widget=forms.NumberInput(attrs={'class': 'form-control', 'Tva'}))
 # rendez_vous = forms.DateTimeField()

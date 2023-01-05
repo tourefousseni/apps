@@ -1,5 +1,5 @@
 #! /bin/bash
-#python manage.py dumpdata --format=json contacts > /Users/toure/PycharmProjects/douniyasoba/tmp/$(date +"%Y%m%d_%H:%M:%S")_data.json;
+#python manage.py dumpdata --format=json accounts > /Users/toure/PycharmProjects/douniyasoba/tmp/$(date +"%Y%m%d_%H:%M:%S")_data.json;
 python manage.py dumpdata --format=json contacts > /Users/foussenytoure/Documents/ProjectPycharm/douniyasoba/tmp/$(date +"%Y%m%d_%H:%M:%S")_data.json;
 psql -U postgresql;
 drop database kaladb;

@@ -14,13 +14,14 @@ SECRET_KEY = '$s7p551k75n+3l2iuf*qv92xo+c0i5)@4&_^4ev%q&p%*x75bl'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['143.198.60.181']
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
 INSTALLED_APPS = [
+    'maps',
+    'accounts',
+    'kalaliso',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -30,7 +31,6 @@ INSTALLED_APPS = [
     # Our the app
     'django.contrib.gis',
     'leaflet',
-    'contacts',
     # 'bootstrap module',
     'django_bootstrap_datetimepicker',
     'crispy_forms',
@@ -111,7 +111,6 @@ STATIC_URL       = '/static/'
 MEDIA_URL        = '/media/'
 MEDIA_ROOT       = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT      = os.path.join(BASE_DIR, 'static')
-
 
 FORM_RENDERER = 'django.forms.renderers.DjangoTemplates'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

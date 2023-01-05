@@ -111,22 +111,22 @@
                   </button>
 
                              <ul class="my-lg-0">
-                                <a class="nav-link" style="color: black" href="{% url 'homepage' %}">
+                                <a class="nav-link" style="color: black" href="{% url 'accounts:homepage' %}">
                                 Homepage
                                  </a>
                              </ul>
                              <ul class="my-lg-0">
-                                <a class="nav-link" style="color: black" href="{% url 'product' %}">
+                                <a class="nav-link" style="color: black" href="{% url 'accounts:product' %}">
                                   Products
                                   </a>
                               </ul>
                              <ul class="my-lg-0">
-                                <a  class="nav-link" style="color: black"  href="{% url 'show_video' %}">
+                                <a  class="nav-link" style="color: black"  href="{% url 'accounts:show_video' %}">
                                 Videos
                                 </a>
                              </ul>
                              <ul class="my-lg-0">
-                                <a class="nav-link" style="color: black"  href="{% url 'maps' %}">
+                                <a class="nav-link" style="color: black"  href="{% url 'accounts:maps' %}">
                                  Maps
                                  </a>
                              </ul>
@@ -138,25 +138,25 @@
                         {% if user.is_authenticated %}
 
                              <li class="nav-item">
-                                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                                <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'edit_profile' %}">Edit Profile</a>
+                                <a class="nav-link" href="{% url 'accounts:edit_profile' %}">Edit Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'change_password' %}">Change Password</a>
+                                <a class="nav-link" href="{% url 'accounts:change_password' %}">Change Password</a>
                             </li>
 
                         {% else %}
 
                               <li class="nav-item ">
-                                  <a class="nav-link" href="{% url 'login' %}">Login</a>
+                                  <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link" href="{% url 'register' %}">Register</a>
+                                <a class="nav-link" href="{% url 'accounts:register' %}">Register</a>
                               </li>
                               <li class="nav-item">
-                               <a class="nav-link" href="{% url 'user' %}">User</a>
+                               <a class="nav-link" href="{% url 'accounts:user' %}">User</a>
                               </li>
 {#                             <li class="nav-item">#}
 {#                               <a class="nav-link" href="{% url 'profile' %}">Profil</a>#}
@@ -170,7 +170,6 @@
 
        </div>
 </header>
-
 
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="bootstrap" viewBox="0 0 118 94">
@@ -240,33 +239,33 @@
 
     <ul class="nav nav-pills flex-column mb-auto">
       <li>
-        <a href="{% url 'person' %}" class="nav-link link-dark">
+        <a href="{% url 'accounts:person' %}" class="nav-link link-dark">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
           Person
         </a>
       </li>
 
       <li>
-        <a href="{% url 'mesure'  %}" class="nav-link link-dark">
+        <a href="{% url 'accounts:mesure'  %}" class="nav-link link-dark">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
           Mesure
         </a>
       </li>
 
        <li>
-        <a href="{% url 'order' %}" class="nav-link link-dark ">
+        <a href="{% url 'accounts:order' %}" class="nav-link link-dark ">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
           Order
         </a>
        </li>
        <li>
-        <a href="{% url 'order_items' %}" class="nav-link link-dark ">
+        <a href="{% url 'accounts:order_items' %}" class="nav-link link-dark ">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
           Items
         </a>
       </li>
        <li>
-          <a href="{% url 'payment' %}" class="nav-link link-dark">
+          <a href="{% url 'accounts:payment' %}" class="nav-link link-dark">
               <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
               Payment
             </a>

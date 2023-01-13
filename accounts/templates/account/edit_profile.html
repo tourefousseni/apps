@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2 class="text-center">Edit Profile</h2>
-            <form method="POST" action="{% url 'edit_profile' %}">
+            <form method="POST" action="{% url 'accounts:edit_profile' %}">
                 {% csrf_token %}
             {% if form.errors %}
                 <div class="alert alert-warning alert-dismissable" role="alert">

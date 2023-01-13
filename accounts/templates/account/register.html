@@ -5,7 +5,7 @@
 
   <h4 class="col-md-4 offset-md-3">Register</h4><br>
     <div class="col-md-4 offset-md-3">
-            <form method="POST" action="{% url 'register' %}" >
+            <form method="POST" action="{% url 'accounts:register' %}" >
              {% csrf_token %}
                 <div class="card" style="background: gray; border: solid 1px darkmagenta;
                 opacity: initial">

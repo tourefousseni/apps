@@ -13,7 +13,7 @@ from django_bootstrap_datetimepicker import *
 from django.forms import widgets
 import datetime
 
-from .models import  Person
+from .models import Person
 
 
 # ==============================================

@@ -19,7 +19,7 @@ from .forms import *
 # Create your views here.
 
 def maps(request, ):
-    return render(request, 'localisation/maps.html',)
+    return render(request, 'maps/maps.html',)
 
 
 def region(request):

@@ -14,7 +14,6 @@ import time
 time.sleep(5)
 
 from accounts.models import *
-from accounts.models import Person
 from .forms import *
 # from django.contrib.gis.db import models Person
 
@@ -31,78 +30,14 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 import xhtml2pdf.default
 from xhtml2pdf.util import getSize
+# from . import views
+
+def homepage(request):
+    return render(request, 'account/homepage.html')
 
 
 
-# SEARCH NAME OR CONTACT PERSON IN DATABASE
-def search_person(request):
-    search = request.GET.get('search')
-    list_person = Person.objects.filter(Q(nom__icontains=search) |
-                                        Q(code_person__icontains=search) |
-                                        Q(prenom__icontains=search) |
-                                        Q(contact_1__icontains=search) |
-                                        Q(genre__icontains=search) |
-                                        Q(status__icontains=search)
-                                        )
-    person_number = list_person.count()
-    message = f' results : {person_number }'
-    if person_number == 1:
-          message = f' results : {person_number }'
-
-    context = {
-        'list_person': list_person,
-        'message': message
-    }
-    return render(request, 'kalaliso/search_person.html', context)
-
-
-def search_mesure(request):
-    search = request.GET.get('search')
-    filter_mesure = Mesure.objects.filter(Q(coude__icontains=search))
-                                          # |
-                                          # Q(epaule__icontains=search))
-    # person_number = list_person.count()
-    # message = f' results : {person_number }'
-    # if person_number == 1:
-    #       message = f' results : {person_number }'
-
-    context = {
-        'filter_mesure': filter_mesure,
-        # 'message': message
-    }
-    return render(request, 'kalaliso/search_mesure.html', context)
-
-# BEGIN GENERATED PDF
-
-def report_person_pdf(request):
-    persons = Person.objects.all().order_by('-id')
-    template_path = 'kalaliso/xhtml2pdf/report_persons.html'
-    context = {'list_person': persons}
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'filename="report_person.pdf"'
-    template = get_template(template_path)
-    html = template.render(context)
-    pisa_status = pisa.CreatePDF(html, dest=response)
-
-    if pisa_status.err:
-        return HttpResponse('We had some errors <pre>' + html + '</pre>')
-    return response
-
-# END GENERATED PDF
-
-def show_video(request):
-    all_video=Video.objects.all()
-    if request.method == "POST":
-        form=Video_form(data=request.POST,files=request.FILES)
-        if form.is_valid():
-         form.save()
-        return HttpResponse("<h1> Uploaded successfully </h1>")
-    else:
-         form=Video_form()
-         return render(request,'kalaliso/add_videos.html',{"form":form,"all":all_video})
-
-
-def user_login(request):
+def login(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -118,13 +53,13 @@ def user_login(request):
         return render(request, 'account/login.html', {})
 
 
-def logout_user(request):
+def logout(request):
      logout(request)
      messages.success(request, ('You Have Been Logged out...'))
      return redirect('login')
 
 
-def register_user(request):
+def register(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -169,6 +104,64 @@ def change_password(request):
 
     return render(request, 'account/change_password.html', context)
 
+
+
+# SEARCH NAME OR CONTACT PERSON IN DATABASE
+# def search_person(request):
+#     search = request.GET.get('search')
+#     list_person = Person.objects.filter(Q(nom__icontains=search) |
+#                                         Q(code_person__icontains=search) |
+#                                         Q(prenom__icontains=search) |
+#                                         Q(contact_1__icontains=search) |
+#                                         Q(genre__icontains=search) |
+#                                         Q(status__icontains=search)
+#                                         )
+#     person_number = list_person.count()
+#     message = f' results : {person_number }'
+#     if person_number == 1:
+#           message = f' results : {person_number }'
+#
+#     context = {
+#         'list_person': list_person,
+#         'message': message
+#     }
+#     return render(request, 'kalaliso/search_person.html', context)
+
+
+
+
+# BEGIN GENERATED PDF
+
+# def report_person_pdf(request):
+#     persons = Person.objects.all().order_by('-id')
+#     template_path = 'kalaliso/xhtml2pdf/report_persons.html'
+#     context = {'list_person': persons}
+#     response = HttpResponse(content_type='application/pdf')
+#     response['Content-Disposition'] = 'filename="report_person.pdf"'
+#     template = get_template(template_path)
+#     html = template.render(context)
+#     pisa_status = pisa.CreatePDF(html, dest=response)
+#
+#     if pisa_status.err:
+#         return HttpResponse('We had some errors <pre>' + html + '</pre>')
+#     return response
+
+# END GENERATED PDF
+
+# def show_video(request):
+#     all_video=Video.objects.all()
+#     if request.method == "POST":
+#         form=Video_form(data=request.POST,files=request.FILES)
+#         if form.is_valid():
+#          form.save()
+#         return HttpResponse("<h1> Uploaded successfully </h1>")
+#     else:
+#          form=Video_form()
+#          return render(request, 'kalaliso/add_videos.html', {"form":form, "all":all_video})
+
+
+
+
 # ===========================
 #      VIEWS KALALISO
 #          START
@@ -188,306 +181,18 @@ def change_password(request):
 #     img = Image.objects.all()
 #     return render(request, 'kalaliso/homepage.html', {'img': img, 'form': form})
 
-def homepage(request,):
-    customer = Person.objects.count()
-    order_count = Order.objects.count()
-    product_count = Product.objects.count()
-
-    context = {
-        'customer': customer,
-        'order_count': order_count,
-        'product_count': product_count,
-    }
-    return render(request, 'kalaliso/homepage.html' , context)
-
-
-def person(request):
-    if request.method == 'POST':
-        form = PersonForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('list')
-    else:
-       form=PersonForm()
-    return render(request, 'kalaliso/person.html', {'form': form,})
-
-def list(request):
-    list_person = Person.objects.all().order_by('id')
-    return render(request, 'kalaliso/person_list.html', {'list_person': list_person})
-
-
-def detail_person(request, person_id):
-
-    list_person = Person.objects.filter(pk=person_id)
-    context = {
-        'list_person': list_person,
-    }
-
-    return render(request, 'kalaliso/detail_person.html', context)
-    # return render(request, 'kalaliso/d_person.html', context)
-
-def delete_person(request, id):
-    del_person = Person.objects.get(pk=id)
-    del_person.delete()
-    context = { 'delete': del_person, }
-    return render(request, 'kalaliso/person_list.html', context)
-
-
-def report_person_id_pdf(request, person_id):
-    list_person = Person.objects.filter(pk=person_id)
-    # persons = Person.objects.all().order_by('-id')
-    template_path = 'kalaliso/xhtml2pdf/info_person.html'
-    context = {'list_person': list_person}
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'filename="report_person_id.pdf"'
-    template = get_template(template_path)
-    html = template.render(context)
-    status = pisa.CreatePDF(html, dest=response)
-
-    if status.err:
-        return HttpResponse('We had some errors <pre>' + html + '</pre>')
-    return response
-
-
-def report_order_pdf(request, order_id):
-    order = Order.objects.filter(pk=order_id)
-    # persons = Person.objects.all().order_by('-id')
-    template_path = 'kalaliso/xhtml2pdf/report_order.html'
-    context = {'order': order}
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'filename="report_order.pdf"'
-    template = get_template(template_path)
-    html = template.render(context)
-    status = pisa.CreatePDF(html, dest=response)
-
-    if status.err:
-        return HttpResponse('We had some errors <pre>' + html + '</pre>')
-    return response
-
-
-
-# def list(request):
-#     list_person = Person.objects.all().order_by('-id')
-#     paginator   = Paginator(list_person, 10)
-#     page_number = request.GET.get('page')
-#     page_object = paginator.get_page(page_number)
-#     person_number = list_person.count()
+# def homepage(request,):
+#     customer = Person.objects.count()
+#     order_count = Order.objects.count()
+#     product_count = Product.objects.count()
 #
-#     message = f'{person_number } person :'
 #     context = {
-#         'list_person': page_object,
-#         'message': message,
+#         'customer': customer,
+#         'order_count': order_count,
+#         'product_count': product_count,
 #     }
-#     return render(request, 'kalaliso/person_list.html', context)
-
-def person_paginator(request):
-    persons     = Person.objects.all().order_by('id')
-    paginator   = Paginator(persons, 5)
-    page_number = request.GET.get('page')
-    page_object = paginator.get_page(page_number)
-    person_number = persons.count()
-    message = f'{ person_number } Nombre:'
-    if page_number==1:
-       message = f'{ page_number } Nombre :'
-    context = {
-        'persons': page_object,
-        'person_number': person_number,
-        'message': message,
-    }
-    return render(request, 'kalaliso/paginators/person_paginator.html', context)
-    # return render(request, 'kalaliso/person_list.html', context)
+#     return render(request, 'account/homepage.html', context)
 
 
-
-
-
-# def info_person(request, id):
-#     x = Person.objects.get(id=id)
-#     context = {
-#         'list_person': x
-#     }
-#     return render(request, 'kalaliso/info_person.html', context)
-
-
-def user(request):
-    user_list = User.objects
-    return render(request, 'kalaliso/user_list.html', {'user_list':user_list})
-
-# def detail_person(request, person_id):
-#     detail = get_object_or_404(Person, pk=person_id)
-#     return render(request, 'kalaliso/detail_person.html', {'detail': detail})
-
-# def product(request):
-#     if request.method == 'POST':
-#         form = ProductForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return HttpResponseRedirect(reverse('order'))
-#     else:
-#        form = ProductForm()
-#     return render(request, 'kalaliso/product.html', {'form': form})
-def product(request):
-    products = Product.objects
-    return render(request, 'kalaliso/product.html', {'products':products})
-
-def products_list(request):
-    p_l = Product.objects.all().order_by('-id')
-
-    context = {
-        'products_list': p_l,
-    }
-    return render(request, 'kalaliso/products_list.html', context)
-
-
-def product_detail(request, product_id):
-    product_detail = get_object_or_404(Product, pk=product_id)
-    return render(request, 'kalaliso/product_detail.html', {'product_detail': product_detail,})
-
-
-def product_sum(request):
-    product_sum = Product.objects
-    return render(request, 'kalaliso/product_count.html', {'product_sum': product_sum, } )
-
-
-def order(request):
-    if request.method == 'POST':
-        form = OrderForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return render('kalaliso/order.html')
-            # return HttpResponse('order')
-    else:
-        form=OrderForm()
-    return render(request, 'kalaliso/order.html', {'form': form})
-
-
-def order_list(request):
-    o_l = Order.objects.all()
-
-    context = {
-        'order_list': o_l
-    }
-    return render(request, 'kalaliso/order_list.html', context)
-
-def order_items(request, ):
-    if request.method == 'POST':
-        form=Order_ItemsForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('order'))
-            # return HttpResponseRedirect(reverse('order_items'))
-    else:
-        form = Order_ItemsForm()
-    return render(request, 'kalaliso/order.html', {'form': form})
-    # return render(request, 'kalaliso/order_items.html', {'form': form})
-
-def orderdetail_detail(request,):
-
-    qs = Order_Items.objects.all().order_by(Order)
-    context = {'orderdetail': qs, }
-    return render(request, 'kalaliso/orderdetail_detail.html', context)
-
-
-# def order_list(request, order_id):
-#     # qs = Order.objects.all().order_by(-id)
-#     qs = get_object_or_404(Order, pk=order_id)
-#     context = {'order_list': qs,}
-#     # return render(request, 'kalaliso/order_list.html', context)
-#     # return HttpResponse('order')
-#     return render(request, 'kalaliso/order_list.html', context)
-
-
-def mesure(request):
-    if request.method == 'POST':
-        form = MesureForm(request.POST)
-        if form.is_valid():
-             form.save()
-             # return HttpResponse('mesure_list')
-             return HttpResponseRedirect('mesure_list')
-    else:
-       form = MesureForm()
-    return render(request, 'kalaliso/mesure.html', {'form': form})
-
-# research for OVER STACK FLOW this Bug
-# response = wrapped_callback(request, *callback_args, **callback_kwargs)
-
-
-def mesure_list(request):
-    mesure_all = Mesure.objects.all().order_by('-id')
-    context = {
-        'mesure_list': mesure_all, }
-    return render(request, 'kalaliso/mesure_list.html', context )
-
-# def mesure_custom(request, mesure_id,):
-#     qs = Mesure.objects.get(pk=mesure_id)
-#     context = {
-#         'mesure_list': qs, }
-#     return render(request, 'kalaliso/mesure_custom.html', context)
-
-def mesure_detail(request, id):
-    mesure_detail = Mesure.objects.get(pk=id)
-    # list_person = Person.objects.get(pk=id)
-    context = {
-        'mesure_detail': mesure_detail,
-        # 'list_person': list_person,
-    }
-    return render(request, 'kalaliso/mesure_detail.html', context)
-
-
-
-def report_mesure_pdf(request):
-    mesures = Mesure.objects.all().order_by('id')
-    template_path = 'kalaliso/xhtml2pdf/report_mesure.html'
-    context = {'mesure_list': mesures}
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'filename="report_mesure.pdf"'
-    template = get_template(template_path)
-    html = template.render(context)
-    status = pisa.CreatePDF(html, dest=response)
-
-    if status.err:
-        return HttpResponse('We had some errors <pre>' + html + '</pre>')
-    return response
-
-
-def payment(request,):
-        if request.method == 'POST':
-          form = PaymentForm(request.POST)
-          if form.is_valid():
-              form.save()
-              return HttpResponseRedirect(reverse('Order'))
-        else:
-            form = PaymentForm()
-        return render(request, 'kalaliso/payment.html', {'form': form})
-
-def payment_list(request, payment_id):
-    qs = Payment.objects.all()
-
-    context = {'payment_list': qs, }
-
-    return render(request, 'kalaliso/payment_list.html', context)
-
-
-
-
-
-
-def profile(request):
-    #id,  *args,  **kwargs
-    # list_person  = Person.objects.get(id=id)
-    list_person  = Person.objects.all().order_by('-id')
-
-    context = {
-        'list_person': list_person,
-    }
-    return render(request, 'kalaliso/profile.html', context)
-
-# ===========================
-#      VIEWS KALALISO
-#          END
-# ===========================
-
-
-# PARTY STATISTIQUES FOR APP KALALISO
 
 

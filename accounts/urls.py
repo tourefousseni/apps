@@ -6,20 +6,19 @@ from reportlab.platypus import Table
 from accounts import views
 
 from django.conf import settings
-from django.conf.urls.static import static
 # from  reportlab.pdfgen views  genFooterTable, genBodyTable, genHeaderTable
 
 app_name = 'accounts'
 
 urlpatterns = [
 
-
-      path('homepage/', views.homepage, name='homepage'),
       path('login/', views.login, name='login'),
       path('logout/', views.logout, name='logout'),
       path('register/', views.register, name='register'),
+      path('dashboard/', views.dashboard, name='dashboard'),
       path('edit_profile/', views.edit_profile, name='edit_profile'),
       path('change_password/', views.change_password, name='change_password'),
+]
 
 
       # path('upload/', views.image_upload_view, name='upload'),
@@ -56,7 +55,7 @@ urlpatterns = [
       # path('person/info_person/<int:id>/', views.info_person, name='info_person'),
 
 
-]
+
 
 # =================================
 #         ULRS KALALISO

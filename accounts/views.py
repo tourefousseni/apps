@@ -32,10 +32,12 @@ import xhtml2pdf.default
 from xhtml2pdf.util import getSize
 # from . import views
 
-def homepage(request):
-    return render(request, 'account/homepage.html')
+def dashboard(request):
+    return render(request, 'accounts/dashboard.html')
 
 
+# def logout(request):
+#     return redirect('accounts:dashboard')
 
 def login(request):
     if request.method == 'POST':
@@ -45,18 +47,17 @@ def login(request):
         if user is not None:
             login(request, user)
             messages.success(request, ('You Have been Logged In !'))
-            return redirect('homepage')
+            return redirect('accounts:dashboard')
         else:
             messages.success(request, ('Error you can try again !'))
-            return redirect('login')
+            return redirect('accounts:login')
     else:
-        return render(request, 'account/login.html', {})
+        return render(request, 'accounts/login.html', {})
 
 
 def logout(request):
-     logout(request)
      messages.success(request, ('You Have Been Logged out...'))
-     return redirect('login')
+     return redirect('accounts:login')
 
 
 def register(request):
@@ -69,11 +70,11 @@ def register(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             messages.success(request,('You Have Registered now...'))
-            return redirect('homepage')
+            return redirect('accounts:dashboard')
     else:
         form = SignUpForm(request.POST)
     context = {'form': form}
-    return render(request, 'account/register.html', context)
+    return render(request, 'accounts/register.html', context)
 
 
 def edit_profile(request):
@@ -82,11 +83,11 @@ def edit_profile(request):
         if form.is_valid():
             form.save()
             messages.success(request, ('You Have Edited Your Profiel...'))
-            return redirect('homepage')
+            return redirect('accounts:dashboard')
     else:
         form = EditProfileForm(instance=request.user)
     context = {'form': form}
-    return render(request, 'account/edit_profile.html', context)
+    return render(request, 'accounts/edit_profile.html', context)
 
 
 def change_password(request):
@@ -96,13 +97,13 @@ def change_password(request):
             form.save()
             update_session_auth_hash(request, form.user)
             messages.success(request,('You Have Edited Your Password...'))
-            return redirect('account/homepage.html')
+            return redirect('accounts:dashboard')
     else:
         form = PasswordChangeForm(user=request.user)
 
     context = {'form': form}
 
-    return render(request, 'account/change_password.html', context)
+    return render(request, 'accounts/change_password.html', context)
 
 
 
@@ -191,7 +192,7 @@ def change_password(request):
 #         'order_count': order_count,
 #         'product_count': product_count,
 #     }
-#     return render(request, 'account/homepage.html', context)
+#     return render(request, 'accounts/homepage.html', context)
 
 
 

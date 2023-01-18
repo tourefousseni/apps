@@ -19,10 +19,11 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'pages',
-    'maps',
-    'accounts',
-    'kalaliso',
+    # Listings Apps
+    'pages.apps.PagesConfig',
+    'maps.apps.MapsConfig',
+    'accounts.apps.AccountsConfig',
+    'kalaliso.apps.KalalisoConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

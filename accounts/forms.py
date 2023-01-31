@@ -13,7 +13,7 @@ from django_bootstrap_datetimepicker import *
 from django.forms import widgets
 import datetime
 
-from .models import Person
+
 
 
 # ==============================================
@@ -21,24 +21,12 @@ from .models import Person
 #                        START
 # ==============================================
 
-class UserForm(forms.ModelForm):
-    class Meta:
-        model=User
-        fields='__all__'
+# class UserForm(forms.ModelForm):
+#     class Meta:
+#         model=User
+#         fields='__all__'
+#
 
-class PersonForm(forms.ModelForm):
-    class Meta:
-        model = Person
-        fields = '__all__'
-
-        exclude = ['domicile','email','image', 'contact_2','alias',
-                    'code_person','photo', 'profession',
-                    'responsable','date_naissance','nationalite','tutuelle',
-                    'telephonique_fix','nina','numero_reference','created_at']
-
-        def __init__(self, *args, **kwargs):
-            super().__init__(*args, **kwargs)
-            self.helper = FormHelper(self)
 
 
 # ==============================================

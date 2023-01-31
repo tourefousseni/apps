@@ -3,34 +3,16 @@ from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, FileResponse
 import io
-# from reportlab.pdfgen import canvas
-# from reportlab.lib.units import inch
-# from reportlab.lib.pagesizes import letter, A8
 
 import time
 time.sleep(5)
 
 from accounts.models import *
 from .forms import *
-# from django.contrib.gis.db import models Person
-
-from django.template import context
-from django.template import defaulttags
-from  django.db.models import *
-import datetime
-from django.forms import ModelForm
-from io import BytesIO
-from django.template.loader import get_template, select_template
-from django.views import View
-from xhtml2pdf import pisa
-from django.core.paginator import Paginator
-from django.db.models import Q
-import xhtml2pdf.default
-from xhtml2pdf.util import getSize
-# from . import views
 
 def dashboard(request):
     return render(request, 'accounts/dashboard.html')
@@ -39,20 +21,26 @@ def dashboard(request):
 # def logout(request):
 #     return redirect('accounts:dashboard')
 
+# def login(request):
+#     if request.method == 'POST':
+#         username = request.POST['username']
+#         password = request.POST['password']
+#         user = authenticate(request, username=username, password=password)
+#         if user is not None:
+#             login(request, user)
+#             messages.success(request, ('You Have been Logged In !'))
+#             return redirect('accounts:dashboard')
+#         else:
+#             messages.success(request, ('Error you can try again !'))
+#             return redirect('accounts:login')
+#     else:
+#         return render(request, 'accounts/login.html', {})
+
 def login(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            messages.success(request, ('You Have been Logged In !'))
-            return redirect('accounts:dashboard')
-        else:
-            messages.success(request, ('Error you can try again !'))
-            return redirect('accounts:login')
+        return redirect('accounts:dashboard')
     else:
-        return render(request, 'accounts/login.html', {})
+        return render(request, 'accounts/login.html')
 
 
 def logout(request):
@@ -60,22 +48,65 @@ def logout(request):
      return redirect('accounts:login')
 
 
-def register(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password1']
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            messages.success(request,('You Have Registered now...'))
-            return redirect('accounts:dashboard')
-    else:
-        form = SignUpForm(request.POST)
-    context = {'form': form}
-    return render(request, 'accounts/register.html', context)
+# def register(request):
+#     if request.method == 'POST':
+#         form = SignUpForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             username = form.cleaned_data['username']
+#             password = form.cleaned_data['password1']
+#             user = authenticate(username=username, password=password)
+#             login(request, user)
+#             messages.success(request,('You Have Registered now...'))
+#             return redirect('accounts:dashboard')
+#     else:
+#         form = SignUpForm(request.POST)
+#     context = {'form': form}
+#     return render(request, 'accounts/register.html', context)
 
+def register(request):
+    username = None
+    email = None
+    password = None
+    if request.method == 'POST':
+        # GET FORM VALUES
+      first_name = request.POST.get('first_name')
+      last_name = request.POST.get('last_name')
+      username = request.POST.get('username')
+      email = request.POST.get('email')
+      password = request.POST.get('password')
+      password2 = request.POST.get('password2')
+
+ # Check if passwords match
+
+      if password == password2:
+          # check username
+          # if User.objects.filter(username=username).exists():
+          #     messages.error(request, 'that username is take')
+          #     return redirect('accounts:register')
+          # else:
+              if User.objects.filter(email=email).exists():
+                  messages.error(request, 'this email is using')
+                  return redirect('accounts:register')
+              else:
+              # LOOKS GOOD
+               user = User.objects.create_user(first_name=first_name,
+                                               last_name=last_name,
+                                               username=username,
+                                               email=email,
+                                               password=password,
+                                               password2=password2)
+              # authenticate.login(request, user)
+              # messages.success(request, 'you are now logged in')
+              # return redirect('accounts:dashboard')
+              user.save()
+              messages.success(request, 'you are now registered and can log in')
+              return redirect('login')
+        # else:
+        #   messages.error(request,'Passwords do not match')
+        #   return redirect('accounts:register')
+    else:
+      return render(request, 'accounts/register.html')
 
 def edit_profile(request):
     if request.method == 'POST':

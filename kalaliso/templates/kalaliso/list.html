@@ -4,12 +4,12 @@
 {% block content %}
 
             <div class="col-md-4 ">
-                  <form action="{% url 'search_person'  %}" method="get">
+{#                  <form action="{% url 'search_person'  %}" method="get">#}
                       <input placeholder="Search ..." class="form-control form-control-dark" type="search" name="search">
                       <button class="btn btn-primary my-2" type="submit" >Search</button>
                   </form>
                    <div>
-                     <a href="{% url 'mesure'  %}" class="btn btn-secondary btn ">Add new mesure</a>
+                     <a href="{% url 'kalaliso:mesure'  %}" class="btn btn-secondary btn ">Add new mesure</a>
                    </div>
             </div>
 
@@ -44,10 +44,10 @@
             </tr>
       </thead>
       <tbody>
-                {% for mesure in mesure_list.all %}
+                {% for mesure in list.all %}
                            <tr>
                                 <td>{{ mesure.id }}</td>
-                                <td>{{ mesure.person_mesure.prenom }}</td>
+                                <td>{{ mesureprenom }}</td>
                                 <td>{{ mesure.person_mesure.nom }}</td>
                                 <td>{{ mesure.coude }}</td>
                                 <td>{{ mesure.epaule }}</td>

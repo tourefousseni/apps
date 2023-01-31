@@ -4,8 +4,8 @@
 
 
     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
+      {#.bd-placeholder-img {#}
+      {#  font-size: 1.125rem;#}
         text-anchor: middle;
         -webkit-user-select: none;
         -moz-user-select: none;
@@ -71,7 +71,25 @@
               <span data-feather="home" class="align-text-bottom"></span>
             Content
             </a>
-          </li>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link" href="{% url 'contacts:person' %}">
+                  <span data-feather="users" class="align-text-bottom"></span>
+                  Add +
+                </a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{% url 'contacts:list' %}">
+              <span data-feather="users" class="align-text-bottom"></span>
+              List Person
+            </a>
+            </li>
+           <li class="nav-item">
+            <a class="nav-link" href="{% url 'contacts:detail' id %}">
+              <span data-feather="users" class="align-text-bottom"></span>
+              Card person
+            </a>
+            </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
               <span data-feather="file" class="align-text-bottom"></span>
@@ -84,18 +102,20 @@
               Products
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="users" class="align-text-bottom"></span>
-              Customers
-            </a>
-          </li>
+
           <li class="nav-item">
             <a class="nav-link" href="#">
               <span data-feather="bar-chart-2" class="align-text-bottom"></span>
               Reports
             </a>
           </li>
+         <li class="nav-item">
+            <a class="nav-link" href="{% url 'kalaliso:mesure' %}">
+              <span data-feather="bar-chart-2" class="align-text-bottom"></span>
+              Mesure
+            </a>
+          </li>
+
           <li class="nav-item">
             <a class="nav-link" href="#">
               <span data-feather="layers" class="align-text-bottom"></span>
@@ -127,10 +147,5 @@
   </div>
 </div>
   </body>
-
-
-
-
-
 
 {% endblock %}

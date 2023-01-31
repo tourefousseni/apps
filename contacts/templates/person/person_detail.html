@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+        <div class="container">
+          {% for view_person in person_detail.all %}
+
+          {% endfor %}
+                 <div class="card" style="width: 18rem;">
+                          <div class="card-body">
+                               <a href="{% url 'contacts:detail' view_person.id %}" class="card-link">Detail Personnel:</a>
+                                        <p>Status       : {{ view_person.status }}</p>
+                                        <p>Nom          : {{ view_person.nom }}</p>
+                                        <p>Prenom       : {{ view_person.prenom }}</p>
+                                        <p>Telephone    : {{view_person.contact_1 }}</p>
+                                        <p>Code         : {{ view_person.code_person }}</p>
+
+                              <a href="{% url 'contacts:list' %}" class="card-link">Return to list</a>
+                            <a href="{% url 'contacts:report_card' view_person.id %}" class="card-link">Generated PDF</a>
+                          </div>
+                 </div>
+
+        </div>
+     </div>
+
+{% endblock %}

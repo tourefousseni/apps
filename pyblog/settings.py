@@ -1,4 +1,5 @@
 from pathlib import Path
+from django.contrib.messages import constants as messages
 # from django.contrib.gis.db.backends.XXX
 import os
 
@@ -21,6 +22,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     # Listings Apps
     'pages.apps.PagesConfig',
+    'contacts.apps.ContactsConfig',
     'maps.apps.MapsConfig',
     'accounts.apps.AccountsConfig',
     'kalaliso.apps.KalalisoConfig',
@@ -123,3 +125,9 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 #CONNECTOR TO GDAL
 GDAL_LIBRARY_PATH = "/Applications/Postgres.app/Contents/Versions/10/lib/libgdal.dylib"
 GEOS_LIBRARY_PATH = "/Applications/Postgres.app/Contents/Versions/10/lib/libgeos_c.dylib"
+
+# Messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+
+}

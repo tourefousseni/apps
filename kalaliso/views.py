@@ -6,9 +6,6 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, FileResponse
 import io
-# from reportlab.pdfgen import canvas
-# from reportlab.lib.units import inch
-# from reportlab.lib.pagesizes import letter, A8
 
 import time
 time.sleep(5)
@@ -32,18 +29,18 @@ from django.db.models import Q
 import xhtml2pdf.default
 from xhtml2pdf.util import getSize
 
-# Create your views here.
 
+def mesure(request):
+    if request.method == 'POST':
+        form = MesureForm(request.POST)
+        if form.is_valid():
+             form.save()
+             # return HttpResponse('mesure_list')
+             return HttpResponseRedirect('kalaliso:list')
+    else:
+       form = MesureForm()
+    return render(request, 'kalaliso/mesure.html', {'form': form})
 
-# def person(request):
-#     if request.method == 'POST':
-#         form = PersonForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return HttpResponseRedirect('list')
-#     else:
-#        form=PersonForm()
-#     return render(request, 'kalaliso/person.html', {'form': form, })
 
 def search_mesure(request):
     search = request.GET.get('search')
@@ -61,26 +58,26 @@ def search_mesure(request):
     }
     return render(request, 'kalaliso/search_mesure.html', context)
 
-def list(request):
-    list_person = Person.objects.all().order_by('id')
-    return render(request, 'kalaliso/person_list.html', {'list_person': list_person})
+# def list(request):
+#     list_person = Person.objects.all().order_by('id')
+#     return render(request, 'kalaliso/person_list.html', {'list_person': list_person})
 
 
-def detail_person(request, person_id):
-
-    list_person = Person.objects.filter(pk=person_id)
-    context = {
-        'list_person': list_person,
-    }
-
-    return render(request, 'kalaliso/detail_person.html', context)
-    # return render(request, 'kalaliso/d_person.html', context)
-
-def delete_person(request, id):
-    del_person = Person.objects.get(pk=id)
-    del_person.delete()
-    context = { 'delete': del_person, }
-    return render(request, 'kalaliso/person_list.html', context)
+# def detail_person(request, person_id):
+#
+#     list_person = Person.objects.filter(pk=person_id)
+#     context = {
+#         'list_person': list_person,
+#     }
+#
+#     return render(request, 'kalaliso/detail_person.html', context)
+#     # return render(request, 'kalaliso/d_person.html', context)
+#
+# def delete_person(request, id):
+#     del_person = Person.objects.get(pk=id)
+#     del_person.delete()
+#     context = { 'delete': del_person, }
+#     return render(request, 'kalaliso/person_list.html', context)
 
 
 def report_person_id_pdf(request, person_id):
@@ -242,27 +239,15 @@ def orderdetail_detail(request,):
 #     # return HttpResponse('order')
 #     return render(request, 'kalaliso/order_list.html', context)
 
-
-def mesure(request):
-    if request.method == 'POST':
-        form = MesureForm(request.POST)
-        if form.is_valid():
-             form.save()
-             # return HttpResponse('mesure_list')
-             return HttpResponseRedirect('mesure_list')
-    else:
-       form = MesureForm()
-    return render(request, 'kalaliso/mesure.html', {'form': form})
-
 # research for OVER STACK FLOW this Bug
 # response = wrapped_callback(request, *callback_args, **callback_kwargs)
 
 
-def mesure_list(request):
-    mesure_all = Mesure.objects.all().order_by('-id')
+def list(request):
+    list = Mesure.objects.all().order_by('-id')
     context = {
-        'mesure_list': mesure_all, }
-    return render(request, 'kalaliso/mesure_list.html', context)
+        'list': list, }
+    return render(request, 'kalaliso/list.html', context)
 
 # def mesure_custom(request, mesure_id,):
 #     qs = Mesure.objects.get(pk=mesure_id)
@@ -281,7 +266,7 @@ def mesure_detail(request, id):
 
 
 
-def report_mesure_pdf(request):
+def report_mesure(request):
     mesures = Mesure.objects.all().order_by('id')
     template_path = 'kalaliso/xhtml2pdf/report_mesure.html'
     context = {'mesure_list': mesures}

@@ -5,16 +5,16 @@
 
 <h5>LISTE DES CLIENTS</h5>
 
-{#    <div class="row">#}
-{#         <div class="col-md-4 ">#}
-{#                  <form action="{% url 'search_person'  %}" method="get">#}
-{#                      <input placeholder="Search ..." class="form-control form-control-dark" type="search" name="search">#}
-{#                      <button class="btn btn-primary my-2" type="submit">Search</button>#}
-{#                  </form>#}
-{#         </div>#}
-{#         <div class="col-md-4 ">#}
-{#                <a href="{% url 'person' %}" class="btn btn-info">Add new  person</a><br>#}
-{#         </div>#}
+    <div class="row">
+         <div class="col-md-4 ">
+                  <form action="{% url 'contacts:search'  %}" method="get">
+                      <input placeholder="Search ..." class="form-control form-control-dark" type="search" name="search">
+                      <button class="btn btn-primary my-2" type="submit">Search</button>
+                  </form>
+         </div>
+         <div class="col-md-4 ">
+                <a href="{% url 'contacts:person' %}" class="btn btn-info">Add new  person</a><br>
+         </div>
 {#        <div class="col-md-4">#}
 {#                   <a class="btn btn-info" href="{% url 'report_person_pdf'  %}">Create PDF</a>#}
 {#          </div>#}

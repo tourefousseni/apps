@@ -17,7 +17,6 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('report_card/<int:id>/', views.report_card, name="report_card"),
     path('delete/<int:id>/', views.delete, name="delete"),
-
 ]
 # =================================
 #         ULRS CONTACTS

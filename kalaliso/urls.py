@@ -10,8 +10,8 @@ app_name = 'kalaliso'
 
 urlpatterns = [
 
-    # path('product/', views.product, name='product'),
-    # path('product/products_list', views.products_list, name='products_list'),
+    path('product/', views.product, name='product'),
+    path('product/list', views.products_list, name='products_list'),
     # path('<int:product_id>/', views.product_detail, name='product_detail'),
     # path('product_sum/', views.product_sum, name='product_sum'),
      path('mesure/', views.mesure, name='mesure'),
@@ -28,7 +28,7 @@ urlpatterns = [
     #   path('orderdetail/detail/<int:order_items_id>/', views.orderdetail_detail, name='orderdetail_detail'),
     #   # path('order/order_list/<int:order_id>/', views.order_list, name='order_list'),
     #
-    #   path('show_video/', views.show_video, name='show_video'),
+      path('show_video/', views.show_video, name='show_video'),
     #
     #   path('payment/', views.payment, name='payment'),
     #   path('payment/list/<int:payment_id>/', views.payment_list, name='payment_list'),

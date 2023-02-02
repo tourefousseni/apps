@@ -40,36 +40,36 @@ class Mesure(models.Model):
     def __str__(self):
         return self.person.nom
 #
-# class Product(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     Name            = (
-#         ('Boubou', 'Boubou'),
-#         ('Grand Boubou', 'Grand Boubou'),
-#         ('Chemise Complet', 'Chemise Complet'),
-#         ('Chemise Manche Long', 'Chemise Manche Long'),
-#         ('Chemise Manche Court', 'Chemise Manche Court'),
-#         ('Pagne Jupe', 'Pagne Jupe'),
-#         ('Pagne Complet', 'Pagne Complet'),
-#         ('Pagne Maniere', 'Pagne Maniere'),
-#         ('Patanlon', 'Patanlon'),
-#         ('Tenu Scolaire', 'Tenu Scolaire'),
-#         ('Tenu Securite', 'Tenu Securite'),
-#         ('AUTRES', 'AUTRES'),)
-#     name              = models.CharField(max_length=50, choices=Name, default='Boubou',)
-#     photo             = models.ImageField(upload_to='photos/')
-#     code_product      = models.CharField(max_length=30,  verbose_name='ID')
-#     description       = models.CharField(max_length=200, blank=True, null=True)
-#     price             = models.DecimalField(decimal_places=2, max_digits=20, default=100.25, null=True, blank=True)
-#     create_at         = models.DateField(auto_now=True)
-#
-#     def __str__(self):
-#         return'{}'.format(self.name)
-#
-# def pre_save_product_id(instance, sender, *args, **kwargs):
-#     if not instance.code_product:
-#             instance.code_product = unique_product_id_generator(instance)
-#
-# pre_save.connect(pre_save_product_id, sender=Product)
+class Product(models.Model):
+    id = models.AutoField(primary_key=True)
+    Name            = (
+        ('Boubou', 'Boubou'),
+        ('Grand Boubou', 'Grand Boubou'),
+        ('Chemise Complet', 'Chemise Complet'),
+        ('Chemise Manche Long', 'Chemise Manche Long'),
+        ('Chemise Manche Court', 'Chemise Manche Court'),
+        ('Pagne Jupe', 'Pagne Jupe'),
+        ('Pagne Complet', 'Pagne Complet'),
+        ('Pagne Maniere', 'Pagne Maniere'),
+        ('Patanlon', 'Patanlon'),
+        ('Tenu Scolaire', 'Tenu Scolaire'),
+        ('Tenu Securite', 'Tenu Securite'),
+        ('AUTRES', 'AUTRES'),)
+    name              = models.CharField(max_length=50, choices=Name, default='Boubou',)
+    photo             = models.ImageField(upload_to='photos/')
+    code_product      = models.CharField(max_length=30,  verbose_name='ID')
+    description       = models.CharField(max_length=200, blank=True, null=True)
+    price             = models.DecimalField(decimal_places=2, max_digits=20, default=100.25, null=True, blank=True)
+    create_at         = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return'{}'.format(self.name)
+
+def pre_save_product_id(instance, sender, *args, **kwargs):
+    if not instance.code_product:
+            instance.code_product = unique_product_id_generator(instance)
+
+pre_save.connect(pre_save_product_id, sender=Product)
 #
 #
 # class Order(models.Model):
@@ -174,14 +174,14 @@ class Mesure(models.Model):
 #
 #
 #
-# class Video(models.Model):
-#     id    = models.AutoField(primary_key=True)
-#     title = models.CharField(max_length=50, blank=True, null=True)
-#     video = models.FileField(upload_to="video/%y", validators=[file_size])
-#     # comment = models.CharField(max_length=250, blank=True, null=True)
-#     # like   = models.IntegerField()
-#     # shared = models.IntegerField()
-#     # create_at = models.DateField(auto_now=True)
-#
-#     def __str__(self):
-#         return '{}'.format(self.title)
+class Video(models.Model):
+    id    = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=50, blank=True, null=True)
+    video = models.FileField(upload_to="video/%y", validators=[file_size])
+    comment = models.CharField(max_length=250, blank=True, null=True)
+    like   = models.IntegerField()
+    shared = models.IntegerField()
+    create_at = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return '{}'.format(self.title)

@@ -180,16 +180,7 @@ def change_password(request):
 
 # END GENERATED PDF
 
-# def show_video(request):
-#     all_video=Video.objects.all()
-#     if request.method == "POST":
-#         form=Video_form(data=request.POST,files=request.FILES)
-#         if form.is_valid():
-#          form.save()
-#         return HttpResponse("<h1> Uploaded successfully </h1>")
-#     else:
-#          form=Video_form()
-#          return render(request, 'kalaliso/add_videos.html', {"form":form, "all":all_video})
+
 
 
 

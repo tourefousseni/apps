@@ -7,7 +7,7 @@
 {% block content %}
 
      <div>
-             <h5 class="wy-text-left">LISTE DES PRODUCTS</h5><br/>
+             <h5 class="text-center">LISTE DES PRODUCTS</h5><br/>
         </div>
 
       <div class="table-responsive offset-1">
@@ -27,8 +27,9 @@
             </tr>
       </thead>
       <tbody>
-                    {% for product in products_list %}
-                        <a href="{% url 'products_list' %}"></a>
+                    {% for product in list %}
+
+                        <a href="{% url 'kalaliso:list' %}"></a>
                            <tr>
 {#                                 <td><input type="checkbox" class="checkthis" /></td>#}
                                  <td><img src="{{ product.photo.url }}" height="50"></td>

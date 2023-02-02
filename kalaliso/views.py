@@ -160,24 +160,25 @@ def user(request):
 #     detail = get_object_or_404(Person, pk=person_id)
 #     return render(request, 'kalaliso/detail_person.html', {'detail': detail})
 
-# def product(request):
-#     if request.method == 'POST':
-#         form = ProductForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return HttpResponseRedirect(reverse('order'))
-#     else:
-#        form = ProductForm()
-#     return render(request, 'kalaliso/product.html', {'form': form})
 def product(request):
-    products = Product.objects
-    return render(request, 'kalaliso/product.html', {'products':products})
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('order'))
+    else:
+       form = ProductForm()
+    return render(request, 'kalaliso/product.html', {'form': form})
+
+# def product(request):
+#     products = Product.objects
+#     return render(request, 'kalaliso/product.html', {'products':products})
 
 def products_list(request):
-    p_l = Product.objects.all().order_by('-id')
+    product = Product.objects.all().order_by('-id')
 
     context = {
-        'products_list': p_l,
+        'list': product,
     }
     return render(request, 'kalaliso/products_list.html', context)
 
@@ -307,6 +308,17 @@ def profile(request):
         'list_person': list_person,
     }
     return render(request, 'kalaliso/profile.html', context)
+
+def show_video(request):
+    all_video=Video.objects.all()
+    if request.method == "POST":
+        form=Video_form(data=request.POST,files=request.FILES)
+        if form.is_valid():
+         form.save()
+        return HttpResponse("<h1> Uploaded successfully </h1>")
+    else:
+         form=Video_form()
+         return render(request, 'kalaliso/add_videos.html', {"form":form, "all":all_video})
 
 # ===========================
 #      VIEWS KALALISO

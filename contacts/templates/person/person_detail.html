@@ -3,12 +3,12 @@
 
 
 {% block content %}
-        <div class="container">
+        <div class="container " ><br>
           {% for view_person in person_detail.all %}
 
           {% endfor %}
-                 <div class="card" style="width: 18rem;">
-                          <div class="card-body">
+                 <div class="card justify-content-lg-center" style="width: 18rem; background: lightblue ">
+                          <div class="card-body" >
                                <a href="{% url 'contacts:detail' view_person.id %}" class="card-link">Detail Personnel:</a>
                                         <p>Status       : {{ view_person.status }}</p>
                                         <p>Nom          : {{ view_person.nom }}</p>
@@ -22,6 +22,6 @@
                  </div>
 
         </div>
-     </div>
+
 
 {% endblock %}

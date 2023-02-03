@@ -16,7 +16,7 @@ from .validators import file_size
 
 
 # ==============================================
-#                  MODELE KALALISO
+#                  MODELE ACCOUNTS
 #                        START
 # ==============================================
 
@@ -86,7 +86,7 @@ from .validators import file_size
 
 
 # ==============================================
-#                  MODELE KALALISO
+#                  MODELE ACCOUNTS
 #                        END
 # ==============================================
 

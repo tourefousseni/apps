@@ -13,7 +13,7 @@ from django_bootstrap_datetimepicker import *
 from django.forms import widgets
 import datetime
 
-from .models import  Mesure, Product,  Video
+from .models import  Mesure, Product,  Video, Person
 # Payment, \
 #     Product, Order, Order_Items, \
 #
@@ -43,11 +43,7 @@ class Video_form(forms.ModelForm):
 #     class Meta:
 #         model=User
 #         fields='__all__'
-#
-#
 
-#
-#
 class ProductForm(forms.ModelForm):
     class Meta:
          model = Product

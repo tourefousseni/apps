@@ -47,8 +47,8 @@
                 {% for mesure in list.all %}
                            <tr>
                                 <td>{{ mesure.id }}</td>
-                                <td>{{ mesureprenom }}</td>
-                                <td>{{ mesure.person_mesure.nom }}</td>
+                                <td>{{ mesure.person.prenom }}</td>
+                                <td>{{ mesure.person.nom }}</td>
                                 <td>{{ mesure.coude }}</td>
                                 <td>{{ mesure.epaule }}</td>
                                 <td>{{ mesure.manche }}</td>

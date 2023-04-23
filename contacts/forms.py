@@ -1,6 +1,6 @@
 from crispy_forms.helper import FormHelper
 from django import forms
-from .models import Person
+from contacts.models import Person
 
 
 class PersonForm(forms.ModelForm):

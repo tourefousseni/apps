@@ -16,8 +16,7 @@ from django.forms import widgets
 from .validators import file_size
 from  contacts.models import Person
 
-#
-#
+
 class Mesure(models.Model):
     objects = None
     id                 = models.AutoField(primary_key=True)

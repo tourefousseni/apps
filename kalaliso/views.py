@@ -339,5 +339,3 @@ def show_video(request):
 #          END
 # ===========================
 
-
-# PARTY STATISTIQUES FOR APP KALALISO

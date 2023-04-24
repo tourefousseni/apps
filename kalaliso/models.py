@@ -15,12 +15,13 @@ from .utils import  unique_product_id_generator, \
 from django.forms import widgets
 from .validators import file_size
 from  contacts.models import Person
+from  maps.models import Region
 
 
 class Mesure(models.Model):
     objects = None
     id                 = models.AutoField(primary_key=True)
-    person             = models.OneToOneField('contacts.Person', on_delete=models.CASCADE, verbose_name='Mesure Client')
+    mesure_id          = models.OneToOneField('contacts.Person', on_delete=models.CASCADE, verbose_name='Mesure Client')
     coude              = models.FloatField(null=True, blank=True)
     epaule             = models.FloatField(null=True, blank=True)
     manche             = models.FloatField(null=True, blank=True)
@@ -34,10 +35,10 @@ class Mesure(models.Model):
     cuisse             = models.FloatField(null=True, blank=True)
     patte              = models.FloatField(null=True, blank=True)
     created_at         = models.DateField(auto_now=True)
-    update_at          = models.DateField(auto_now=True)
+    update_at          = models.DateField(auto_now=False)
 
     def __str__(self):
-        return self.person.nom
+        return self.mesure_id.nom
 #
 class Product(models.Model):
     id = models.AutoField(primary_key=True)
@@ -71,126 +72,126 @@ def pre_save_product_id(instance, sender, *args, **kwargs):
 pre_save.connect(pre_save_product_id, sender=Product)
 #
 #
-# class Order(models.Model):
-#     objects = None
-#     id          = models.AutoField(primary_key=True)
-#     # person_id   = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Customer',)
-#     code_order  = models.CharField(max_length=30, blank=True, verbose_name='Code order')
-#     reception   = models.BooleanField(default=True)
-#     order_items = models.ManyToManyField('Order_Items', verbose_name='add_items')
-#     rendez_vous = models.DateField(auto_now=False)
-#     # localization= models.ForeignKey('Region', on_delete=models.CASCADE, verbose_name='Localisation',)
-#     confirmed   = models.BooleanField(default=False)
-#     cancelled   = models.BooleanField(default=False)
-#     remise      = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-#     create_at   = models.DateField(auto_now=False)
-#
-#     def __str__(self):
-#         return str(self.code_order)
-#
-# def pre_save_order_id(instance, sender, *args, **kwargs):
-#     if not instance.code_order:
-#             instance.code_order = unique_order_id_generator(instance)
-#
-# pre_save.connect(pre_save_order_id, sender=Order)
-#
-# class Order_Items(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     CATEGORY    = (
-#         ('Homme', 'Homme'),
-#         ('Femme', 'Femme'),
-#         ('Fille', 'Fille'),
-#         ('Garçon', 'Garçon'),
-#         ('Autres', 'Autres'),)
-#
-#     category     = models.CharField(max_length=50, choices=CATEGORY, default='Homme', )
-#     product      = models.ForeignKey('Product', on_delete=models.CASCADE, verbose_name='Add Product', )
-#     quantity     = models.IntegerField(default=1, blank=True, null=True)
-#     submontant   = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-#
-#     def __str__(self):
-#         return self.category
-#
-#
-# class Payment(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     MODE_PAYMENT     = (
-#         ('Espece', 'Espece'),
-#         ('Orange Money', 'Orange Money'),
-#         ('Mobi Cash', 'Mobi Cash'),
-#         ('Sama Money', 'Sama Money'),
-#         ('Wave', 'Wave'),
-#         ('Virement', 'Virement'),
-#         ('Transaction', 'Transaction'), )
-#     mode_payment     =  models.CharField(max_length=50, choices=MODE_PAYMENT, default='Espece', )
-#     payment_Order    = models.ForeignKey('Order', on_delete=models.CASCADE, blank=True, null=True, verbose_name='Payment Facture', )
-#     code_payment     = models.CharField(max_length=30, blank=True, verbose_name='Code Payement')
-#     # person_id        = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Titulaire command', )
-#     amount           = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True, verbose_name='Montant Total')
-#     fees_commission  = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-#     delivered        = models.BooleanField(default=False)
-#     create_at        = models.DateField(auto_now=True)
-#
-#     def __str__(self):
-#         return str(self.code_payment)
-#
-# def pre_save_code_payment_id(instance, sender, *args, **kwargs):
-#     if not instance.code_payment:
-#         instance.code_payment = unique_payment_id_generator(instance)
-#
-# pre_save.connect(pre_save_code_payment_id, sender=Payment)
+class Order(models.Model):
+    objects = None
+    id             = models.AutoField(primary_key=True)
+    person_id      = models.ManyToManyField('contacts.Person')
+    code_order     = models.CharField(max_length=30, blank=True, verbose_name='Code order')
+    reception      = models.BooleanField(default=True)
+    order_items    = models.ManyToManyField('Order_Items', verbose_name='add_items')
+    rendez_vous    = models.DateField(auto_now=False)
+    localization   = models.ForeignKey('maps.Region', on_delete=models.CASCADE, verbose_name='Localisation',)
+    confirmed      = models.BooleanField(default=False)
+    cancelled      = models.BooleanField(default=False)
+    remise         = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
+    create_at      = models.DateField(auto_now=False)
+
+    def __str__(self):
+        return str(self.code_order)
+
+def pre_save_order_id(instance, sender, *args, **kwargs):
+    if not instance.code_order:
+            instance.code_order = unique_order_id_generator(instance)
+
+pre_save.connect(pre_save_order_id, sender=Order)
+
+class Order_Items(models.Model):
+    id = models.AutoField(primary_key=True)
+    CATEGORY    = (
+        ('Homme', 'Homme'),
+        ('Femme', 'Femme'),
+        ('Fille', 'Fille'),
+        ('Garçon', 'Garçon'),
+        ('Autres', 'Autres'),)
+
+    category         = models.CharField(max_length=50, choices=CATEGORY, default='Homme', )
+    product          = models.ForeignKey('Product', on_delete=models.CASCADE, verbose_name='Add Product', )
+    quantity         = models.IntegerField(default=1, blank=True, null=True)
+    submontant       = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
+
+    def __str__(self):
+        return self.category
 #
 #
-#
-# class Depense(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     PATTERN    = (
-#         ('Paiement Ouvrier', 'Paiement Ouvrier'),
-#         ('Achat Materiel', 'Achat Materiel'),
-#         ('Paiement Magasin', 'Paiement Magasin'),
-#         ('Bon', 'Bon'),
-#         ('Electricite', 'Electricite'),)
-#
-#     MODE_PAYMENT_DEPENSE     = (
-#         ('Espece', 'Espece'),
-#         ('Orange Money', 'Orange Money'),
-#         ('Mobi Cash', 'Mobi Cash'),
-#         ('Sama Money', 'Sama Money'),
-#         ('Wave', 'Wave'),
-#         ('Virement', 'Virement'),
-#         ('Transaction', 'Transaction'), )
-#
-#     mode_payment_depense     =  models.CharField(max_length=50, choices=MODE_PAYMENT_DEPENSE, default='Espece', )
-#     # person           = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Titulaire Depense', )
-#     amount           = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True, verbose_name='Montant depensé')
-#     pattern          = models.CharField(max_length=50, choices=PATTERN, default='Paiement Ouvrier',)
-#     description      = models.CharField(max_length=200, blank=True, verbose_name='Description du depense')
-#     status           = models.BooleanField(default=False)
-#     create_at        = models.DateField(auto_now=True)
-#
-#     def __str__(self):
-#         return self.pattern
+class Payment(models.Model):
+    id = models.AutoField(primary_key=True)
+    MODE_PAYMENT     = (
+        ('Espece', 'Espece'),
+        ('Orange Money', 'Orange Money'),
+        ('Mobi Cash', 'Mobi Cash'),
+        ('Sama Money', 'Sama Money'),
+        ('Wave', 'Wave'),
+        ('Virement', 'Virement'),
+        ('Transaction', 'Transaction'), )
+    mode_payment     =  models.CharField(max_length=50, choices=MODE_PAYMENT, default='Espece', )
+    payment_Order    = models.ForeignKey('Order', on_delete=models.CASCADE, blank=True, null=True, verbose_name='Payment Facture', )
+    code_payment     = models.CharField(max_length=30, blank=True, verbose_name='Code Payement')
+    # person_id        = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Titulaire command', )
+    amount           = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True, verbose_name='Montant Total')
+    fees_commission  = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
+    delivered        = models.BooleanField(default=False)
+    create_at        = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return str(self.code_payment)
+
+def pre_save_code_payment_id(instance, sender, *args, **kwargs):
+    if not instance.code_payment:
+        instance.code_payment = unique_payment_id_generator(instance)
+
+pre_save.connect(pre_save_code_payment_id, sender=Payment)
 #
 #
+#
+class Depense(models.Model):
+    id = models.AutoField(primary_key=True)
+    MOTIF    = (
+        ('Paiement Ouvrier', 'Paiement Ouvrier'),
+        ('Achat Materiels', 'Achat Materiels'),
+        ('Paiement Magasin', 'Paiement Magasin'),
+        ('Bon', 'Bon'),
+        ('Electricite', 'Electricite'),)
+
+    MODE_PAYMENT_DEPENSE     = (
+        ('Espece', 'Espece'),
+        ('Orange Money', 'Orange Money'),
+        ('Mobi Cash', 'Mobi Cash'),
+        ('Sama Money', 'Sama Money'),
+        ('Wave', 'Wave'),
+        ('Virement', 'Virement'),
+        ('Transaction', 'Transaction'), )
+
+    mode_payment_depense   =  models.CharField(max_length=50, choices=MODE_PAYMENT_DEPENSE, default='Espece', )
+    person_responsable     = models.ForeignKey('contacts.Person', on_delete=models.CASCADE, verbose_name='Titulaire Depense', )
+    amount                 = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True, verbose_name='Montant depensé')
+    motif                  = models.CharField(max_length=50, choices=MOTIF, default='Paiement Ouvrier',)
+    description            = models.CharField(max_length=200, blank=True, verbose_name='Description du depense')
+    status                 = models.BooleanField(default=False, verbose_name="valid")
+    cancelled              = models.DateField(auto_now=False)
+    create_at              = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return self.motif
+
 #
 class Video(models.Model):
-    id    = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=50, blank=True, null=True)
-    video = models.FileField(upload_to="video/%y", validators=[file_size])
-    comment = models.CharField(max_length=250, blank=True, null=True)
-    like   = models.IntegerField()
-    shared = models.IntegerField()
-    create_at = models.DateField(auto_now=True)
+    id         = models.AutoField(primary_key=True)
+    title      = models.CharField(max_length=50, blank=True, null=True)
+    video      = models.FileField(upload_to="video/%y", validators=[file_size])
+    comment    = models.CharField(max_length=250, blank=True, null=True)
+    like       = models.IntegerField()
+    shared     = models.IntegerField()
+    create_at  = models.DateField(auto_now=True)
 
     def __str__(self):
         return '{}'.format(self.title)
 
 
 class Album(models.Model):
-    id    = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=50, blank=True, null=True)
-    img = models.FileField(upload_to="photos/", validators=[file_size])
-    create_at = models.DateField(auto_now=True)
+    id         = models.AutoField(primary_key=True)
+    title      = models.CharField(max_length=50, blank=True, null=True)
+    img        = models.FileField(upload_to="photos/", validators=[file_size])
+    create_at  = models.DateField(auto_now=True)
 
     def __str__(self):
         return '{}'.format(self.title)
@@ -202,10 +203,10 @@ class Category(models.Model):
                 ('Meduim', 'Medium'),
                 ('Diamon', 'Diamon'),)
 
-    category  =  models.CharField(max_length=50, choices=category, default='Or')
-    id        = models.AutoField(primary_key=True)
-    album     = models.ForeignKey(Album, on_delete=models.CASCADE, verbose_name='Photos')
-    title     = models.CharField(max_length=50, blank=True, null=True)
+    category     =  models.CharField(max_length=50, choices=category, default='Or')
+    id           = models.AutoField(primary_key=True)
+    album        = models.ForeignKey(Album, on_delete=models.CASCADE, verbose_name='Photos')
+    title        = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):
         return '{}'.format(self.title)
@@ -214,7 +215,7 @@ class Annonce(models.Model):
 
     id          = models.AutoField(primary_key=True)
     title       = models.CharField(max_length=50, blank=False, null=True)
-    person      = models.ForeignKey(Person, on_delete=models.CASCADE)
+    person      = models.ForeignKey("contacts.Person", on_delete=models.CASCADE)
     video       = models.FileField(upload_to="video/%y", blank=True, validators=[file_size])
     description = models.CharField(max_length=500, blank=True)
     date_start  = models.DateField(auto_now=True)

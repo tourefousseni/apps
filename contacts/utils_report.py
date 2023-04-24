@@ -1,7 +1,7 @@
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A5
 from reportlab.platypus import Table
-from contacts.models import Contacts
+from contacts.models import Person
 from reportlab.lib.units import inch
 from django.http import FileResponse
 import io
@@ -16,7 +16,7 @@ textob = p.beginText()
 textob.setTextOrigin(inch, inch)
 textob.setFont('Helvetica', 14)
 
-contacts = Contact.objects.all()
+contacts = Person.objects.all()
 # Loop
 
 lines = []

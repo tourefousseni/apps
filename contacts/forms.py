@@ -2,7 +2,6 @@ from crispy_forms.helper import FormHelper
 from django import forms
 from contacts.models import Person
 
-
 class PersonForm(forms.ModelForm):
     class Meta:
         model = Person
@@ -11,7 +10,7 @@ class PersonForm(forms.ModelForm):
         exclude = ['domicile','email','image', 'contact_2','alias',
                     'code_person','photo', 'profession',
                     'responsable','date_naissance','nationalite','tutuelle',
-                    'telephonique_fix','nina','numero_reference','created_at']
+                    'telephonique_fix','nina','carte_biometrique','numero_reference','created_at']
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)

@@ -50,7 +50,7 @@ class Casier(models.Model):
         ('San Est II', 'San Est II'),
     )
 
-    name_casier          = models.CharField(max_length=20, choices=NAME_CASIER, )
+    name_casier          = models.CharField(max_length=50, choices=NAME_CASIER, )
     culture              = models.CharField(max_length=100)
     locate_parcel        = models.ForeignKey('Parcel', on_delete=models.CASCADE,)
 

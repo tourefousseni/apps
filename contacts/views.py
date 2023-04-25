@@ -34,8 +34,14 @@ def person(request):
 def list(request):
     return render (request, 'person/list_person.html')
 
-# def detail(request):
-#     return render (request, 'person/person_detail.html')
+
+def detail(request, id):
+    person_detail = Person.objects.get.all(id=id)
+    context = {
+        'view_person': person_detail,
+    }
+    return render (request, 'person/person_detail.html', context)
+
 
 def search(request):
     return render (request, 'person/search.html')

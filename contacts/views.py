@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
-# from django.http import HttpResponseRedirect, HttpResponse, FileResponse
+from django.http import HttpResponseRedirect, HttpResponse, FileResponse
 import io
 # from contacts.models import Contact
 import time
@@ -29,11 +29,22 @@ import xhtml2pdf.default
 from xhtml2pdf.util import getSize
 
 def person(request):
-    return render (request, 'person/person.html')
+    if request.method == 'POST':
+        form = PersonForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # return HttpResponse('mesure_list')
+            return redirect('contacts:list')
+    else:
+        form = PersonForm
+    return render (request, 'person/person.html', {'form': form})
 
 def list(request):
-    return render (request, 'person/list_person.html')
-
+    list = Person.objects.order_by('-id')
+    context = {
+        'list_person': list,
+    }
+    return render (request, 'person/list_person.html', context)
 
 def detail(request, id):
     person_detail = Person.objects.get.all(id=id)

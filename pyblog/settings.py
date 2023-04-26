@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     # Our the app
     'django.contrib.gis',
     'leaflet',
-    # 'bootstrap module',
+    # 'bootstrap module', #
     'django_bootstrap_datetimepicker',
     'crispy_forms',
     'crispy_bootstrap5',
@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'pyblog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'kaladb',
+        'NAME': 'plateform',
         'USER': 'myprojectuser',
         'PASSWORD':'password',
         'HOST': '127.0.0.1',

@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import pre_save
 from .utils import unique_person_id_generator
 
+
 class Person(models.Model):
     objects = None
     id = models.AutoField(primary_key=True)
@@ -68,6 +69,5 @@ class Person(models.Model):
 def pre_save_person_id(instance, sender, *args, **kwargs):
     if not instance.code_person:
         instance.code_person = unique_person_id_generator(instance)
-
 
 pre_save.connect(pre_save_person_id, sender=Person)

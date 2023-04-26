@@ -45,7 +45,7 @@
       </thead>
 
       <tbody>
-             {% for person in person_list.all %}
+             {% for person in list_person.all %}
                      <tr>
                                 <a href="{% url 'contacts:list'  %}"></a>
                                 <td>{{ person.code_person }}</td>

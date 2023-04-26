@@ -36,9 +36,23 @@ def dashboard(request):
 #     else:
 #         return render(request, 'accounts/login.html', {})
 
+# def login(request):
+#     if request.method == 'POST':
+#         return redirect('accounts:dashboard')
+#     else:
+#         return render(request, 'accounts/login.html')
+
+
 def login(request):
     if request.method == 'POST':
-        return redirect('accounts:dashboard')
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('accounts:dashboard')
+        else:
+            return redirect('accounts:login')
     else:
         return render(request, 'accounts/login.html')
 
@@ -101,7 +115,7 @@ def register(request):
               # return redirect('accounts:dashboard')
               user.save()
               messages.success(request, 'you are now registered and can log in')
-              return redirect('login')
+              return redirect('accounts:login')
         # else:
         #   messages.error(request,'Passwords do not match')
         #   return redirect('accounts:register')
@@ -160,8 +174,6 @@ def change_password(request):
 #     return render(request, 'kalaliso/search_person.html', context)
 
 
-
-
 # BEGIN GENERATED PDF
 
 # def report_person_pdf(request):
@@ -179,10 +191,6 @@ def change_password(request):
 #     return response
 
 # END GENERATED PDF
-
-
-
-
 
 
 # ===========================

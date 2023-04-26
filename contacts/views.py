@@ -47,7 +47,7 @@ def list(request):
     return render (request, 'person/list_person.html', context)
 
 def detail(request, id):
-    person_detail = Person.objects.get.all(id=id)
+    person_detail = Person.objects.get(id=id)
     context = {
         'view_person': person_detail,
     }

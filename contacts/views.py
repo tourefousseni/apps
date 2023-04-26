@@ -54,11 +54,45 @@ def detail(request, id):
     return render (request, 'person/person_detail.html', context)
 
 
+# def search(request):
+#     return render (request, 'person/search.html')
+
 def search(request):
-    return render (request, 'person/search.html')
+    search = request.GET.get('search')
+    search_contacts = Person.objects.filter(Q(prenom__icontains=search),
+                                            Q(nom__icontains=search),
+                                            Q(contact_1__icontains=search),
+                                            Q(status__icontains=search),
+                                            )
+    # person_number = list_person.count()
+    # message = f' results : {person_number }'
+    # if person_number == 1:
+    #       message = f' results : {person_number }'
+
+    context = {
+        'search_contacts': search_contacts,
+        # 'message': message
+    }
+    return render (request, 'person/search.html', context)
+
+
+
+
+
+
+
+
+
+
+
 
 def report_card(request):
     return render (request, 'person/person_detail.html')
 
-def delete(request):
-    return render (request, 'person/delete.html')
+def delete(request, id):
+    del_contact = Person.objects.delete(id=id)
+
+    context = {
+        'delete_contact': del_contact,
+    }
+    return render (request, 'person/delete.html', context)

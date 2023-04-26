@@ -57,33 +57,44 @@ def detail(request, id):
 # def search(request):
 #     return render (request, 'person/search.html')
 
-def search(request):
+# def search(request):
+#     search = request.GET.get('search')
+#     search_contacts = Person.objects.filter(Q(prenom__icontains=search),
+#                                             Q(nom__icontains=search),
+#                                             Q(contact_1__icontains=search),
+#                                             Q(status__icontains=search),
+#                                             )
+#     # person_number = list_person.count()
+#     # message = f' results : {person_number }'
+#     # if person_number == 1:
+#     #       message = f' results : {person_number }'
+#
+#     context = {
+#         'search_contacts': search_contacts,
+#         # 'message': message
+#     }
+#     return render (request, 'person/search.html', context)
+
+# SEARCH NAME OR CONTACT PERSON IN DATABASE
+def search_person(request):
     search = request.GET.get('search')
-    search_contacts = Person.objects.filter(Q(prenom__icontains=search),
-                                            Q(nom__icontains=search),
-                                            Q(contact_1__icontains=search),
-                                            Q(status__icontains=search),
-                                            )
-    # person_number = list_person.count()
-    # message = f' results : {person_number }'
-    # if person_number == 1:
-    #       message = f' results : {person_number }'
+    search_contacts = Person.objects.filter(Q(nom__icontains=search) |
+                                        Q(code_person__icontains=search) |
+                                        Q(prenom__icontains=search) |
+                                        Q(contact_1__icontains=search) |
+                                        Q(genre__icontains=search) |
+                                        Q(status__icontains=search)
+                                        )
+    person_number = search_contacts.count()
+    message = f' results : {person_number }'
+    if person_number == 1:
+          message = f' results : {person_number }'
 
     context = {
         'search_contacts': search_contacts,
-        # 'message': message
+        'message': message
     }
-    return render (request, 'person/search.html', context)
-
-
-
-
-
-
-
-
-
-
+    return render(request, 'person/search.html', context)
 
 
 def report_card(request):

@@ -6,7 +6,7 @@
 {% block content  %}
 
               <div class="col-md-4 ">
-                  <form action="{% url 'contacts:search'  %}" method="get">
+                  <form action="{% url 'contacts:search_person'  %}" method="get">
                       <input placeholder="Search ..." class="form-control form-control-dark" type="search" name="search">
                       <button class="btn btn-primary my-2" type="submit" >Search</button>
                   </form>

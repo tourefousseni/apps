@@ -46,6 +46,23 @@ def list(request):
     }
     return render (request, 'person/list_person.html', context)
 
+
+def person_paginator(request):
+    persons        = Person.objects.all().order_by('id')
+    paginator      = Paginator(persons, 5)
+    page_number    = request.GET.get('page')
+    page_object    = paginator.get_page(page_number)
+    person_number  = persons.count()
+    message        = f'{ person_number } Nombre:'
+    if page_number == 1:
+       message = f'{ page_number } Nombre :'
+    context = {
+        'persons': page_object,
+        'person_number': person_number,
+        'message': message,
+    }
+    return render(request, 'paginator/person_paginator.html', context)
+
 def detail(request, id):
     person_detail = Person.objects.get(id=id)
     context = {
@@ -53,38 +70,16 @@ def detail(request, id):
     }
     return render (request, 'person/person_detail.html', context)
 
-
-# def search(request):
-#     return render (request, 'person/search.html')
-
-# def search(request):
-#     search = request.GET.get('search')
-#     search_contacts = Person.objects.filter(Q(prenom__icontains=search),
-#                                             Q(nom__icontains=search),
-#                                             Q(contact_1__icontains=search),
-#                                             Q(status__icontains=search),
-#                                             )
-#     # person_number = list_person.count()
-#     # message = f' results : {person_number }'
-#     # if person_number == 1:
-#     #       message = f' results : {person_number }'
-#
-#     context = {
-#         'search_contacts': search_contacts,
-#         # 'message': message
-#     }
-#     return render (request, 'person/search.html', context)
-
 # SEARCH NAME OR CONTACT PERSON IN DATABASE
 def search_person(request):
     search = request.GET.get('search')
     search_contacts = Person.objects.filter(Q(nom__icontains=search) |
-                                        Q(code_person__icontains=search) |
-                                        Q(prenom__icontains=search) |
-                                        Q(contact_1__icontains=search) |
-                                        Q(genre__icontains=search) |
-                                        Q(status__icontains=search)
-                                        )
+                                            Q(code_person__icontains=search) |
+                                            Q(prenom__icontains=search) |
+                                            Q(contact_1__icontains=search) |
+                                            Q(genre__icontains=search) |
+                                            Q(status__icontains=search)
+                                            )
     person_number = search_contacts.count()
     message = f' results : {person_number }'
     if person_number == 1:
@@ -97,8 +92,20 @@ def search_person(request):
     return render(request, 'person/search.html', context)
 
 
-def report_card(request):
-    return render (request, 'person/person_detail.html')
+# OUTPUT CARD PERSON ON PDF
+def report_card(request, id):
+    person_detail = Person.objects.get(id=id)
+    template_path = 'pdf/report_card.html'
+    context = {'view_person': person_detail}
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="card_person.pdf"'
+    template = get_template(template_path)
+    html = template.render(context)
+    status = pisa.CreatePDF(html, dest=response)
+
+    if status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
 
 def delete(request, id):
     del_contact = Person.objects.delete(id=id)

@@ -1,41 +1,30 @@
 {% extends 'base.html' %}
 {% block title %} Liste des clients {% endblock %}
 
-{% block content %}<br><br>
-
-<h4 class="justify-content-center">LISTE DES CLIENTS</h4>
-
-
-    <div class="row">
-
-        <div class="row col-md-4">
-                <a href="{% url 'contacts:person' %}" class="btn btn-info">Add new  person</a><br>
-        </div>
-        <div class="col-md-4 offset-4">
-
-               <form action="{% url 'contacts:search_person'  %}" method="get">
-                          <input placeholder="Search ..." class="form-control form-control-dark" type="search" name="search">
-                          <button class="btn btn-primary my-2" type="submit">Search</button>
-                </form>
-         </div>
-    </div>
-
-{#        <div class="col-md-4">#}
-{#                   <a class="btn btn-info" href="{% url 'report_person_pdf'  %}">Create PDF</a>#}
-{#          </div>#}
-{#        <div class="col-md-4">#}
-{#                   <a class="btn btn-info" href="{% url 'report_person_id_pdf'  %}">Create PDF by Custom</a>#}
-{#          </div>#}
-{#     <div class="col-md-4">#}
-{#                   <a class="btn btn-info" href="{% url 'person_detail' id %}">Filter</a>#}
-{#          </div>#}
-{#    </div>#}
+{% block content %}
     <div class="table-responsive">
+    <table id="bootstrapdatable" class="table table-responsive-md table-bordered" width="20%>
 
-    <table id="bootstrapdatable" class="table table-responsive-md table-bordered" width="70%">
         <thead>
 
+        <h5>LISTE DES CLIENTS</h5>
+        <div class="row">
+         <div class="col-md-4 ">
+                  <form action="{% url 'search_person'  %}" method="get">
+                      <input placeholder="Search ..." class="form-control form-control-dark" type="search" name="search">
+                      <button class="btn btn-primary my-2" type="submit">Search</button>
+                  </form>
+         </div>
+         <div class="col-md-4 ">
+                <a href="{% url 'person' %}" class="btn btn-info">Add new  person</a><br>
+         </div>
+        <div class="col-md-4">
+                   <a class="btn btn-info" href="{% url 'report_person_pdf'  %}">Create PDF</a>
+          </div>
+        </div>
+
          <br/>
+
             <tr>
                   <th>Code</th>
                   <th>Prenom</th>
@@ -44,53 +33,51 @@
                   <th>Genre</th>
                   <th>Contact</th>
                   <th>View</th>
-                  <th>Pdf</th>
+                  <th>Update</th>
                   <th>Delete</th>
             </tr>
       </thead>
 
       <tbody>
-             {% for person in list_person.all %}
+             {% for person in persons  %}
                      <tr>
-                                <a href="{% url 'contacts:list'  %}"></a>
+                                <a href="{% url 'person_paginator'  %}"></a>
                                 <td>{{ person.code_person }}</td>
                                 <td>{{ person.prenom }}</td>
                                 <td>{{ person.nom }}</td>
                                 <td>{{ person.status }}</td>
                                 <td>{{ person.genre }}</td>
                                 <td>{{ person.contact_1 }}</td>
-
                                 <td> <p data-placement="top" data-toggle="tooltip"
-                                 title="View"><a href="{% url 'contacts:detail' person.id %}"
-                                 class="btn btn-info btn" data-title="View"
-                                 data-toggle="modal" data-target="View">
+                                 title="Detail"><a href="#"
+                                 class="btn btn-info btn" data-title="Detail"
+                                 data-toggle="modal" data-target="Detail">
                                  <span class="glyphicon glyphicon">
-                                 </span></a></p>
-                                </td>
+                                 </span></a></p></td>
 
                                 <td> <p data-placement="top" data-toggle="tooltip"
-                                 title="Print">
-                                    <a href="{% url 'contacts:report_card' person.id %}"
-                                 class="btn btn-secondary btn" data-title="Print"
-                                 data-toggle="modal" data-target="Print">
+                                 title="Edit"><a href="/edit/{{ detail_order.id }}"
+                                 class="btn btn-secondary btn" data-title="Edit"
+                                 data-toggle="modal" data-target="Edit">
                                  <span class="glyphicon glyphicon">
                                  </span></a></p></td>
 
                                  <td> <p data-placement="top" data-toggle="tooltip"
-                                 title="Delete"><a  href="{% url 'contacts:delete' person.id %}"
-                                 class="btn btn-danger btn" data-title="Delete"
+                                 title="Delete"><a href="/delete/{{ detail_order.id }}"
+                                 class="btn btn-danger btn" data-title="Deletete"
                                  data-toggle="modal" data-target="Delete">
                                  <span class="glyphicon glyphicon">
                                  </span></a></p>
                                  </td>
                      </tr>
+
             {% endfor %}
         </tbody>
     </table>
-    </div>
+
 </div>
 <nav>
-     <ul  class="pagination justify-content-center">
+          <ul  class="pagination justify-content-center">
               {% if persons.has_previous %}
                         <li class="page-item">
                               <a class="page-link" href="?page={{ persons.previous_page_number }}">
@@ -110,6 +97,6 @@
                           </a>
                         </li>
               {% endif %}
-     </ul>
+          </ul>
 </nav>
 {% endblock %}

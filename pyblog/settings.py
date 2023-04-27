@@ -79,12 +79,12 @@ WSGI_APPLICATION = 'pyblog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'plateform',
-        'USER': 'myprojectuser',
+        'ENGINE':  'django.contrib.gis.db.backends.postgis',
+        'NAME':    'plateform',
+        'USER':    'myprojectuser',
         'PASSWORD':'password',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'HOST':    '127.0.0.1',
+        'PORT':    '5432',
     }
 }
 
@@ -107,6 +107,8 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+#SETTING FILES FOR USER
+AUTH_USER_MODEL = "accounts.User"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/

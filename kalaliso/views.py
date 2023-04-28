@@ -47,20 +47,38 @@ def list(request):
         'list': list, }
     return render(request, 'kalaliso/list.html', context)
 
+def detail(request, id):
+    mesure_detail = Mesure.objects.get(pk=id)
+    list_person = Person.objects.get(pk=id)
+    context = {
+        'mesure_detail': mesure_detail,
+        'list_person': list_person,
+    }
+    return render(request, 'kalaliso/mesure_detail.html', context)
+
+def report_mesure(request):
+    mesures = Mesure.objects.all().order_by('id')
+    template_path = 'kalaliso/xhtml2pdf/report_mesure.html'
+    context = {'mesure_list': mesures}
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="report_mesure.pdf"'
+    template = get_template(template_path)
+    html = template.render(context)
+    status = pisa.CreatePDF(html, dest=response)
+
+    if status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
+
+
 # def mesure_custom(request, mesure_id,):
 #     qs = Mesure.objects.get(pk=mesure_id)
 #     context = {
 #         'mesure_list': qs, }
 #     return render(request, 'kalaliso/mesure_custom.html', context)
 
-def mesure_detail(request, id):
-    mesure_detail = Mesure.objects.get(pk=id)
-    # list_person = Person.objects.get(pk=id)
-    context = {
-        'mesure_detail': mesure_detail,
-        # 'list_person': list_person,
-    }
-    return render(request, 'kalaliso/mesure_detail.html', context)
+
 
 def album(request):
     album = Album.objects.all()
@@ -110,11 +128,7 @@ def search_mesure(request):
 #     return render(request, 'kalaliso/detail_person.html', context)
 #     # return render(request, 'kalaliso/d_person.html', context)
 #
-# def delete_person(request, id):
-#     del_person = Person.objects.get(pk=id)
-#     del_person.delete()
-#     context = { 'delete': del_person, }
-#     return render(request, 'kalaliso/person_list.html', context)
+
 
 
 def report_person_id_pdf(request, person_id):
@@ -207,9 +221,6 @@ def product(request):
        form = ProductForm()
     return render(request, 'kalaliso/product.html', {'form': form})
 
-# def product(request):
-#     products = Product.objects
-#     return render(request, 'kalaliso/product.html', {'products':products})
 
 def products_list(request):
     product = Product.objects.all().order_by('-id')
@@ -279,22 +290,6 @@ def orderdetail_detail(request,):
 
 # research for OVER STACK FLOW this Bug
 # response = wrapped_callback(request, *callback_args, **callback_kwargs)
-
-
-def report_mesure(request):
-    mesures = Mesure.objects.all().order_by('id')
-    template_path = 'kalaliso/xhtml2pdf/report_mesure.html'
-    context = {'mesure_list': mesures}
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'filename="report_mesure.pdf"'
-    template = get_template(template_path)
-    html = template.render(context)
-    status = pisa.CreatePDF(html, dest=response)
-
-    if status.err:
-        return HttpResponse('We had some errors <pre>' + html + '</pre>')
-    return response
-
 
 def payment(request,):
         if request.method == 'POST':

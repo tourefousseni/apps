@@ -1,20 +1,17 @@
+from leaflet.admin import LeafletGeoAdmin
 from django.contrib import admin
-from django.forms import Textarea
-# from django.db import models User
-from django.contrib.auth.models import User
-# from leaflet.admin import LeafletGeoAdmin
-# admin.site.register(User)
-from django.contrib import admin
-from django.contrib.auth.admin import User
 from .models import User
 
-admin.site.register(User)
-# admin.site.register(User)
-class UserAdmin(admin.ModelAdmin):
-  fields =        ("firstname",
-                  "lastname",
-                  "username",
-                  "joined_date", )
+class AccountsAdmin(admin.ModelAdmin):
+    list_display = ("first_name",
+                    "last_name",
+                    "username",
+                    'email',
+                    "is_staff",
+                    "is_active",
+                    'phone',
+                    "date_joined",)
+    exclude = ('code', 'img', )
 
-class UserAdmin(admin.ModelAdmin):
-      exclude = ('code','img')
+admin.site.register(User, AccountsAdmin)
+

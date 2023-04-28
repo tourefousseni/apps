@@ -28,15 +28,15 @@
 {#      <tbody>#}
 
  <div class="card">
-{#      {% for mesure in mesure_detail.all %}#}
+      {% for mesure in mesure_detail.all %}
                    <h2>Carnet de mesure</h2>
                         <div class="card-text">
                         </div>
                             <div class="card-body">
                                 <h6>mesure id:{{ id }}</h6>
-                                <h6>Prenom: {{ prenom }}</h6>
-                                <h6>Nom :{{ nom }}</h6>
-                                <h6>Coude :{{ coude }}</h6>
+                                <h6>Prenom: {{ contacts.prenom }}</h6>
+                                <h6>Nom :{{ contacts.nom }}</h6>
+                                <h6>Coude :{{ mesure.coude }}</h6>
                                 <h6>Epaule :{{ epaule }}</h6>
                                 <h6>Manche :{{ manche }}</h6>
                                 <h6>Tour Manche: {{ tour_manche }}</h6>
@@ -52,7 +52,7 @@
 
                              </div>
 
-{#            {% endfor %}#}
+            {% endfor %}
     </div>
 {% endblock %}
 {#                           <tr> #}

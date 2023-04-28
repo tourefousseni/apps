@@ -17,7 +17,7 @@ urlpatterns = [
     path('search_person/', views.search_person, name='search_person'),
     path('person_paginator/', views.person_paginator, name='person_paginator'),
     path('report_card/<int:id>/', views.report_card, name="report_card"),
-    path('delete/<int:id>/', views.delete, name="delete"),
+    path('delete/<int:id>/', views.delete_person, name="delete_person"),
 ]
 # =================================
 #         ULRS CONTACTS

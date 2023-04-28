@@ -40,11 +40,19 @@ def person(request):
     return render (request, 'person/person.html', {'form': form})
 
 def list(request):
-    list = Person.objects.order_by('-id')
+    list = Person.objects.all().order_by('-id')
     context = {
         'list_person': list,
     }
     return render (request, 'person/list_person.html', context)
+
+def delete_person(request, id):
+    del_contact = Person.objects.get(id=id).delete()
+    # del_contact.delete()
+    context = {
+        'delete': del_contact
+    }
+    return render(request, 'person/list_person.html', context)
 
 
 def person_paginator(request):
@@ -92,7 +100,7 @@ def search_person(request):
     return render(request, 'person/search.html', context)
 
 
-# OUTPUT CARD PERSON ON PDF
+# OUTPUT CARD ADDRESS PERSON ON PDF
 def report_card(request, id):
     person_detail = Person.objects.get(id=id)
     template_path = 'pdf/report_card.html'
@@ -107,10 +115,11 @@ def report_card(request, id):
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
 
-def delete(request, id):
-    del_contact = Person.objects.delete(id=id)
+# def delete(request, id):
+#     del_contact = Person.objects.delete(id=id)
+#
+#     context = {
+#         'delete_contact': del_contact,
+#     }
+#     return render (request, 'person/delete.html', context)
 
-    context = {
-        'delete_contact': del_contact,
-    }
-    return render (request, 'person/delete.html', context)

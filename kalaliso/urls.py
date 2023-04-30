@@ -11,6 +11,7 @@ urlpatterns = [
      path('report_mesure/', views.report_mesure, name='carnet_mesure'),
      path('detail/<int:id>/', views.detail, name='detail'),
      path('search/', views.search_mesure, name='search_mesure'),
+     path('paginator_list_mesure/', views.paginator_list_mesure, name='paginator_list_mesure'),
      path('update/<int:id>/', views.update, name='update_mesure'),
      path('product/', views.product, name='product'),
      path('product/list', views.products_list, name='products_list'),

@@ -193,21 +193,21 @@ def report_order_pdf(request, order_id):
 #     }
 #     return render(request, 'kalaliso/person_list.html', context)
 
-def person_paginator(request):
-    persons     = Person.objects.all().order_by('id')
-    paginator   = Paginator(persons, 5)
-    page_number = request.GET.get('page')
-    page_object = paginator.get_page(page_number)
-    person_number = persons.count()
-    message = f'{ person_number } Nombre:'
-    if page_number==1:
-       message = f'{ page_number } Nombre :'
+def paginator_list_mesure(request):
+    list_mesure     = Mesure.objects.all().order_by('id')
+    paginator       = Paginator(list_mesure, 5)
+    page_number     = request.GET.get('page')
+    page_object     = paginator.get_page(page_number)
+    person_number   = list_mesure.count()
+    message         = f'{ person_number } Nombre:'
+    if page_number  ==1:
+       message      = f'{ page_number } Nombre :'
     context = {
-        'persons': page_object,
+        'list_mesure': page_object,
         'person_number': person_number,
         'message': message,
     }
-    return render(request, 'kalaliso/paginators/person_paginator.html', context)
+    return render(request, 'kalaliso/paginators/list_mesure_paginator.html', context)
     # return render(request, 'kalaliso/person_list.html', context)
 
 # def info_person(request, id):

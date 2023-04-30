@@ -3,8 +3,12 @@
 {% load static %}
 
 {% block content %}
-       <h3 class="text-center" >Login your account here</h3>
-            <div class="col-md-6 offset-md-3">
+    <section class="vh-100" style="background-color: #eee;"><br><br><br><br>
+        <div class="card col-md-4 offset-md-4 " >
+    <div class="card-title">
+         <div class="card-body">
+             <p><h3 class="text-center">Bienvenue chez kalaliso</h3></p>
+             <p><h5 class="text-center" >Connectez-vous ici !</h5></p>
 {#            Alerts#}
 {#             {% include 'partials/_alerts.html' %}#}
                 <form action="{% url 'accounts:login' %}" method="POST">
@@ -16,28 +20,25 @@
 {#                        <input type="email" id="email" class="form-control" />#}
 {#                      </div>#}
                         <div class="form-outline mb-4">
-                                 <label class="form-label" for="form2username">Username</label>
-                                <input type="text" id="text" class="form-control" />
+                                <input type="text" id="text" class="form-control" placeholder="Pseudo"/>
                         </div>
 
                       <!-- Password input -->
                       <div class="form-outline mb-4">
-                         <label class="form-label" for="form2Example2">Password</label>
-                        <input type="password" id="password" class="form-control" />
+                        <input type="password" id="password" class="form-control" placeholder="Tapez votre mot de passe"/>
                       </div>
-
-                        <div class="col">
+                        <div class="col text-center">
                           <!-- Simple link -->
                           <a href="#!">Forgot password?</a>
+                           <button type="submit" value="login" class="btn btn-primary btn-lg" > Login</button>
+
                         </div>
-{#                      </div>#}
-
-                      <!-- Submit button -->
-                        <button type="submit" value="login" class="btn btn-primary btn-lg" > Login</button>
-
                     </card>
                 </form>
             </div>
-
+         </div>
+    </div>
+    </div>
+    </section>
  {% endblock %}
 

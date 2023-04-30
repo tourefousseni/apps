@@ -13,7 +13,6 @@ urlpatterns = [
 
     path('person/', views.person, name='person'),
     path('list/', views.list, name='list'),
-
     path('person/<int:id>/', views.detail, name='detail'),
     path('search_person/', views.search_person, name='search_person'),
     path('person_paginator/', views.person_paginator, name='person_paginator'),

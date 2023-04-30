@@ -11,13 +11,12 @@
 
     <table id="bootstrapdatable" class="table table-responsive-md table-bordered" width="80%">
         <thead>
-
         <div class="col-md-4 offset-md-8">
          <form action="{% url 'contacts:search_person'  %}" method="get">
                           <input placeholder="Search ..." class="form-control form-control-dark"
                                  type="search" name="search">
-                          <button class="btn btn-primary my-2" type="submit">Search</button>
-                             <a href="{% url 'contacts:person' %}" class="btn btn-info">Ajouter a Nouveau</a><br>
+                                 <button class="btn btn-primary my-2" type="submit">Search</button>
+                                 <a href="{% url 'contacts:person' %}" class="btn btn-info">Ajouter a Nouveau</a><br>
 
          </form>
     </div>

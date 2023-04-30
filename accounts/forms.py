@@ -19,8 +19,6 @@ import datetime
 #                        START
 # ==============================================
 
-
-
 class EditProfileForm(UserChangeForm):
         password = forms.CharField(label="", widget=forms.TextInput(attrs={'type': 'hidden'}))
 

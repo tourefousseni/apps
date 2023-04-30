@@ -42,7 +42,6 @@ def dashboard(request):
 #     else:
 #         return render(request, 'accounts/login.html')
 
-
 def login(request):
     if request.method == 'POST':
         username = request.POST['username']

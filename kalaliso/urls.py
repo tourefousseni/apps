@@ -1,19 +1,17 @@
 from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls import url
-# from  . import views  program, genFooterTable, genBodyTable, genHeaderTable
-from reportlab.platypus import Table
 from kalaliso import views
-# from  reportlab.pdfgen views  genFooterTable, genBodyTable, genHeaderTable
-
 app_name = 'kalaliso'
 
 urlpatterns = [
 
      path('mesure/', views.mesure, name='mesure'),
      path('list/', views.list, name='list'),
-     # path('report_mesure/', views.report_mesure, name='report_mesure'),
-     path('mesure/list/<int:id>/', views.detail, name='detail'),
+     path('report_mesure/', views.report_mesure, name='carnet_mesure'),
+     path('detail/<int:id>/', views.detail, name='detail'),
+     path('search/', views.search_mesure, name='search_mesure'),
+     path('update/<int:id>/', views.update, name='update_mesure'),
      path('product/', views.product, name='product'),
      path('product/list', views.products_list, name='products_list'),
      path('show_video/', views.show_video, name='show_video'),

@@ -11,9 +11,9 @@ import time
 time.sleep(5)
 from accounts.models import *
 from kalaliso.models import *
+from contacts.models import *
 from .forms import *
-# from django.contrib.gis.db import models Person
-
+from django.contrib.gis.db import  *
 from django.template import context
 from django.template import defaulttags
 from  django.db.models import *
@@ -34,25 +34,32 @@ def person(request):
         if form.is_valid():
             form.save()
             # return HttpResponse('mesure_list')
-            return redirect('contacts:list')
+            # return render(request, 'person/person.html')
+            return redirect('contacts:person')
     else:
         form = PersonForm
     return render (request, 'person/person.html', {'form': form})
 
-def list(request):
-    list = Person.objects.all().order_by('-id')
-    context = {
-        'list_person': list,
-    }
-    return render (request, 'person/list_person.html', context)
+def list(request,):
+    obj = Person.objects.all().order_by('-id')
+    context = {'obj': obj,}
+    return render(request, 'person/list_person.html', context)
 
-def delete_person(request, id):
+
+def delete(request, id):
     del_contact = Person.objects.get(id=id).delete()
     # del_contact.delete()
     context = {
         'delete': del_contact
     }
     return render(request, 'person/list_person.html', context)
+
+def detail(request, id):
+    person_detail = Person.objects.get(id=id)
+    context = {
+        'view_person': person_detail,
+    }
+    return render (request, 'person/person_detail.html', context)
 
 
 def person_paginator(request):
@@ -70,13 +77,6 @@ def person_paginator(request):
         'message': message,
     }
     return render(request, 'paginator/person_paginator.html', context)
-
-def detail(request, id):
-    person_detail = Person.objects.get(id=id)
-    context = {
-        'view_person': person_detail,
-    }
-    return render (request, 'person/person_detail.html', context)
 
 # SEARCH NAME OR CONTACT PERSON IN DATABASE
 def search_person(request):

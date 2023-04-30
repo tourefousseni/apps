@@ -1,20 +1,18 @@
+import io
+import time
+time.sleep(5)
 from django.urls import reverse_lazy
 from django.urls import reverse
+from .forms import *
+from accounts.models import *
+from kalaliso.models import *
+from contacts.models import *
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, FileResponse
-import io
-
-import time
-time.sleep(5)
-
-from accounts.models import *
-from kalaliso.models import *
-from .forms import *
 # from django.contrib.gis.db import models Person
-
 from django.template import context
 from django.template import defaulttags
 from  django.db.models import *
@@ -29,22 +27,25 @@ from django.db.models import Q
 import xhtml2pdf.default
 from xhtml2pdf.util import getSize
 
-
 def mesure(request):
     if request.method == 'POST':
         form = MesureForm(request.POST)
         if form.is_valid():
              form.save()
              # return HttpResponse('mesure_list')
-             return render('kalaliso:list')
+             # return redirect('/')
+             return redirect('kalaliso:list')
     else:
        form = MesureForm()
     return render(request, 'kalaliso/mesure.html', {'form': form})
 
 def list(request):
-    list = Mesure.objects.all().order_by('-id')
+    list_mesure = Mesure.objects.all().order_by('-id')
+    obj = Person.objects.all()
     context = {
-        'list': list, }
+        'list_mesure': list_mesure,
+        'obj': obj,
+    }
     return render(request, 'kalaliso/list.html', context)
 
 def detail(request, id):
@@ -55,6 +56,24 @@ def detail(request, id):
         'list_person': list_person,
     }
     return render(request, 'kalaliso/mesure_detail.html', context)
+
+def update(request, id):
+    update_mesure = Mesure.objects.get(pk=id)
+    obj = Person.objects.get(pk=id)
+    context = {
+        'update_mesure': update_mesure,
+        'obj': obj,
+    }
+    return render(request, 'kalaliso/list.html', context)
+
+# def report_mesure(request):
+#     mesure_detail = Mesure.objects.get(pk=id)
+#     list_person = Person.objects.get(pk=id)
+#     context = {
+#         'mesure_detail': mesure_detail,
+#         'list_person': list_person,
+#     }
+#     return render(request, 'kalaliso/mesure_detail.html', context)
 
 def report_mesure(request):
     mesures = Mesure.objects.all().order_by('id')
@@ -69,32 +88,6 @@ def report_mesure(request):
     if status.err:
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
-
-
-
-# def mesure_custom(request, mesure_id,):
-#     qs = Mesure.objects.get(pk=mesure_id)
-#     context = {
-#         'mesure_list': qs, }
-#     return render(request, 'kalaliso/mesure_custom.html', context)
-
-
-
-def album(request):
-    album = Album.objects.all()
-
-    context = {
-        'img': album,
-    }
-    return render(request, 'kalaliso/album.html', context)
-
-def annonce(request):
-    annonce = Annonce.objects.all()
-
-    context = {
-        'ann': annonce,
-    }
-    return render(request, 'kalaliso/annonce.html', context)
 
 
 def search_mesure(request):
@@ -113,6 +106,30 @@ def search_mesure(request):
     }
     return render(request, 'kalaliso/search_mesure.html', context)
 
+# def mesure_custom(request, mesure_id,):
+#     qs = Mesure.objects.get(pk=mesure_id)
+#     context = {
+#         'mesure_list': qs, }
+#     return render(request, 'kalaliso/mesure_custom.html', context)
+
+def album(request):
+    album = Album.objects.all()
+
+    context = {
+        'img': album,
+    }
+    return render(request, 'kalaliso/album.html', context)
+
+def annonce(request):
+    annonce = Annonce.objects.all()
+
+    context = {
+        'ann': annonce,
+    }
+    return render(request, 'kalaliso/annonce.html', context)
+
+
+
 # def list(request):
 #     list_person = Person.objects.all().order_by('id')
 #     return render(request, 'kalaliso/person_list.html', {'list_person': list_person})
@@ -128,8 +145,6 @@ def search_mesure(request):
 #     return render(request, 'kalaliso/detail_person.html', context)
 #     # return render(request, 'kalaliso/d_person.html', context)
 #
-
-
 
 def report_person_id_pdf(request, person_id):
     list_person = Person.objects.filter(pk=person_id)

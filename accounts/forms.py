@@ -14,25 +14,11 @@ from django.forms import widgets
 import datetime
 
 
-
-
 # ==============================================
-#                  FORM KALALISO
+#                  FORM ACCOUNTS
 #                        START
 # ==============================================
 
-# class UserForm(forms.ModelForm):
-#     class Meta:
-#         model=User
-#         fields='__all__'
-#
-
-
-
-# ==============================================
-#                  FORM KALALISO
-#                        END
-# ==============================================
 
 
 class EditProfileForm(UserChangeForm):
@@ -81,8 +67,7 @@ class SignUpForm(UserCreationForm):
             self.fields['password2'].label                       = ''
             self.fields['password2'].help_text                   = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
 
-
-
-
-# tva = forms.IntegerField(label="Tva", widget=forms.NumberInput(attrs={'class': 'form-control', 'Tva'}))
-# rendez_vous = forms.DateTimeField()
+# ==============================================
+#                  FORM ACCOUNTS
+#                        END
+# ==============================================

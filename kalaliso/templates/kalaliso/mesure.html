@@ -13,23 +13,23 @@
     }
 </style>
 
-{% block content %}
-<div class="row col-lg-12"><br>
-<div ><br>
-    <a href="{% url 'kalaliso:list'  %}" class="btn btn-primary btn col-md-4 ">View List Mesure</a>
-
-    <a href="{% url 'report_mesure'  %}" class="btn btn-primary btn col-md-4 ">Generated Mesure To PDF</a>
-<div class="row col-md-8 ">
-   <div class="mesureform">
-        <h5 class="text-left offset-0"> ADD NEW MESURE </h5><hr>
-     <form action="{% url 'kalaliso:mesure' %}" method="post">
+{% block content %}<br><br><br><br>
+<div class="card col-md-8 offset-3">
+    <div class="card-title"><h2 class="text-center"> Ajouter nouveau mesure </h2>
+        <div class="card-body">
+            <div class="row col-lg-12">
+           <div class="Mesureform"><br>
+            <form action="{% url 'kalaliso:mesure' %}" method="post">
             {% csrf_token %}
             <div class="row ">
               <div class="col-md-10 offset-1 ">
                <div class="row ">
+                      <td>{{ form.person_mesure.nom|as_crispy_field }}</td>
+
                         <div class="form-group col-sm-12 mb-0">
-                            {{ form.mesure_id.person|as_crispy_field }}
+                            {{ form.person_mesure.prenom |as_crispy_field }}
                         </div>
+
                         <div class="form-group col-sm-3  mb-0">
                             {{ form.coude|as_crispy_field }}
                         </div>
@@ -37,7 +37,10 @@
                             {{ form.epaule|as_crispy_field }}
                         </div>
                         <div class="form-group col-sm-3  mb-0">
-                            {{ form.manche|as_crispy_field }}
+                            {{ form.manche_courte|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-sm-3  mb-0">
+                            {{ form.manche_longue|as_crispy_field }}
                         </div>
                         <div class="form-group col-sm-3  mb-0">
                             {{ form.tour_manche|as_crispy_field }}
@@ -66,35 +69,18 @@
                          <div class=" form-group col-sm-3  mb-0">
                            {{ form.patte|as_crispy_field }}
                         </div>
-                        <div class="form-group col-sm-3 mb-0">
-                            {{ form.created_at|as_crispy_field }}
-                        </div>
-                        <div class="form-group col-sm-3 mb-0">
-                            {{ form.update_at|as_crispy_field }}
-                        </div>
+
                     </div>
               </div>
-            {#  <div class="row">#}
-                        <div >
-                                 <input type="submit" value="Submit" class="btn btn-primary col-md-4">
-                                 <input type="reset" value="Reset" class="btn btn-danger col-md-4">
+                        <div class="row text-center offset-1">
 
+                                 <input type="submit" value="Submit" class="btn btn-primary col-md-2 m-2">
+                                 <input type="reset" value="Reset" class="btn btn-danger col-md-2 m-2">
+                                <a href="{% url 'kalaliso:list'  %}" class="btn btn-info col-md-2 m-2">Repertoire</a>
                        </div>
-            {#   </div >#}
 
-            {#  <div  class="row col-md-4 d-inline-block">#}
-                         <div  class="col-md-4 offset-1" style="margin: 50px">
-                             <p>
-                                Corps Humains
-                                 <img src="/media/image/img1.jpeg" id="img" class="img-fluid" alt="Responsive image">
-                            </p>
-                         </div>
-            {# </div>#}
             </div>
 
-
-
-{#                <a href="{% url 'mesure_list' mesure.id %}"></a>#}
       </form>
 
     </div>
@@ -102,13 +88,6 @@
 </div>
 
 </div>
+</div>
 
-    <script>
-        $(document).ready(() => {
-            $('#Reset').click(function(event) {
-                event.preventDefault();
-                $('#mesureform').clearForm();
-            });
-        });
-    </script>
 {% endblock %}

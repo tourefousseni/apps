@@ -15,16 +15,18 @@ from .utils import  unique_product_id_generator, \
 from django.forms import widgets
 from .validators import file_size
 from  contacts.models import Person
+# from  kalaliso.models import Mesure
 from  maps.models import Region
 
 
 class Mesure(models.Model):
     objects = None
     id                 = models.AutoField(primary_key=True)
-    mesure_id          = models.OneToOneField('contacts.Person', on_delete=models.CASCADE, verbose_name='Mesure Client')
+    person             = models.OneToOneField('contacts.Person',on_delete=models.CASCADE,verbose_name='Mesure Client')
     coude              = models.FloatField(null=True, blank=True)
     epaule             = models.FloatField(null=True, blank=True)
-    manche             = models.FloatField(null=True, blank=True)
+    manche_courte      = models.FloatField(null=True, blank=True)
+    manche_longue      = models.FloatField(null=True, blank=True)
     tour_manche        = models.FloatField(null=True, blank=True)
     taille             = models.FloatField(null=True, blank=True)
     poitrine           = models.FloatField(null=True, blank=True)
@@ -35,10 +37,10 @@ class Mesure(models.Model):
     cuisse             = models.FloatField(null=True, blank=True)
     patte              = models.FloatField(null=True, blank=True)
     created_at         = models.DateField(auto_now=True)
-    update_at          = models.DateField(auto_now=False)
+    update_at          = models.DateField(auto_now=True)
 
     def __str__(self):
-        return self.mesure_id.nom
+        return self.person.nom
 #
 class Product(models.Model):
     id = models.AutoField(primary_key=True)

@@ -3,12 +3,12 @@
 
 {% block content %}
      <div class="col-md-4 ">
-                  <form action="{% url 'search_mesure'  %}" method="get">
+                  <form action="{% url 'kalaliso:search_mesure'  %}" method="get">
                       <input placeholder="Search ..." class="form-control form-control-dark" type="search" name="search">
                       <button class="btn btn-primary my-2" type="submit" >Search</button>
                   </form>
                    <div>
-                     <a href="{% url 'mesure_list'  %}" class="btn btn-secondary btn ">Return in list</a>
+                     <a href="{% url 'kalaliso:list'  %}" class="btn btn-secondary btn ">Return in list</a>
                    </div>
             </div>
         <div class="text-center">

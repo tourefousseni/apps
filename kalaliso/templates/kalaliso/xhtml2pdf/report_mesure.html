@@ -32,14 +32,16 @@
         </div>
 
     <div class="table-responsive">
-    <table id="bootstrapdatable" class="table table-striped table-bordered" width="100%">
+    <table id="bootstrapdatable" class="table table-striped table-bordered" width="120%">
         <thead><br/>
             <tr>
-{#                  <th>Prenom</th>#}
-{#                  <th>Nom</th>#}
+                  <th>ID</th>
+                  <th>Prenom</th>
+                  <th>Nom</th>
                   <th>Coude</th>
                   <th>Epaule</th>
-                  <th>Manche</th>
+                  <th>Manche Courte</th>
+                  <th>Manche Longue</th>
                   <th>Tour Manche</th>
                   <th>Taille</th>
                   <th>Pointrine</th>
@@ -50,18 +52,20 @@
                   <th>Cuisse</th>
                   <th>Patte</th>
                   <th>Create_at</th>
+                  <th>Update_at</th>
             </tr>
       </thead>
       <tbody>
                 {% for mesure in mesure_list %}
                            <tr>
 
-{#                                <td>{{ mesure.id }}</td>#}
-{#                               <td>{{ mesure.person_mesure.prenom }}</td>#}
-{#                               <td>{{ mesure.person_mesure.nom }}</td>#}
+                                <td>{{ mesure.id }}</td>
+                                <td>{{ mesure.person_mesure.prenom }}</td>
+                                <td>{{ mesure.person_mesure.nom }}</td>
                                 <td>{{ mesure.coude }}</td>
                                 <td>{{ mesure.epaule }}</td>
-                                <td>{{ mesure.manche }}</td>
+                                <td>{{ mesure.manche_courte }}</td>
+                                <td>{{ mesure.manche_longue }}</td>
                                 <td>{{ mesure.tour_manche }}</td>
                                 <td>{{ mesure.taille }}</td>
                                 <td>{{ mesure.poitrine }}</td>
@@ -72,6 +76,7 @@
                                 <td>{{ mesure.cuisse }}</td>
                                 <td>{{ mesure.patte }}</td>
                                 <td>{{ mesure.created_at }}</td>
+                                <td>{{ mesure.update_at }}</td>
                            </tr>
                     {% empty %}
                 {% endfor %}

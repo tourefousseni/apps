@@ -1,44 +1,26 @@
 {% extends 'base.html' %}
 {% block title %} Liste des clients {% endblock %}
 
-{% block content %}<br><br>
-
-
-    <div class="row">
-
-        <div class="col-md-4">
-                <a href="{% url 'contacts:person' %}" class="btn btn-info">Add new  person</a><br>
-        </div>
-{#        <div class="col-md-4 offset-4">#}
+{% block content %}<br><br><br><br>
+   <div class="card col-md-8 offset-3">
+   <div class="card-title">
+       <h4 class="justify-content-center">LISTE DES CLIENTS</h4>
     </div>
+   <div class="card-body">
+       <div class="table-responsive">
 
-    <div class="col-md-2 offset-md-9">
+    <table id="bootstrapdatable" class="table table-responsive-md table-bordered" width="80%">
+        <thead>
+
+        <div class="col-md-4 offset-md-8">
          <form action="{% url 'contacts:search_person'  %}" method="get">
                           <input placeholder="Search ..." class="form-control form-control-dark"
                                  type="search" name="search">
                           <button class="btn btn-primary my-2" type="submit">Search</button>
+                             <a href="{% url 'contacts:person' %}" class="btn btn-info">Ajouter a Nouveau</a><br>
+
          </form>
     </div>
-
-{#    </div>#}
-
-{#        <div class="col-md-4">#}
-{#                   <a class="btn btn-info" href="{% url 'report_person_pdf'  %}">Create PDF</a>#}
-{#          </div>#}
-{#        <div class="col-md-4">#}
-{#                   <a class="btn btn-info" href="{% url 'report_person_id_pdf'  %}">Create PDF by Custom</a>#}
-{#          </div>#}
-{#     <div class="col-md-4">#}
-{#                   <a class="btn btn-info" href="{% url 'person_detail' id %}">Filter</a>#}
-{#          </div>#}
-{#    </div>#}
-    <div class="table-responsive">
-
-    <table id="bootstrapdatable" class="table table-responsive-md table-bordered" width="40%">
-        <thead>
-         <div class="text-center">
-             <h4 class="justify-content-center">LISTE DES CLIENTS</h4>
-         </div>
          <br/>
             <tr>
                   <th>Code</th>
@@ -54,7 +36,7 @@
       </thead>
 
       <tbody>
-             {% for person in list_person.all %}
+             {% for person in obj %}
                      <tr>
                                 <a href="{% url 'contacts:list'  %}"></a>
                                 <td>{{ person.code_person }}</td>
@@ -64,7 +46,8 @@
                                 <td>{{ person.genre }}</td>
                                 <td>{{ person.contact_1 }}</td>
 
-                                <td><p class="text-center">
+                                <td>
+                                    <p class="text-center">
                                     <a href="{% url 'contacts:detail' person.id %}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                              fill="green" class="bi bi-view-list" viewBox="0 0 16 16">
@@ -88,7 +71,7 @@
 
                                 <td>
                                     <p class="text-center">
-                                    <a  href="{% url 'contacts:delete_person' person.id %}">
+                                    <a  href="{% url 'contacts:delete' person.id %}">
                                          <svg xmlns="http://www.w3.org/2000/svg"
                                            width="18" height="18" fill="red"
                                            class="bi bi-trash" viewBox="0 0 16 16">
@@ -105,6 +88,7 @@
         </tbody>
     </table>
     </div>
+   </div>
 </div>
 <nav>
      <ul  class="pagination justify-content-center">
@@ -129,4 +113,5 @@
               {% endif %}
      </ul>
 </nav>
+
 {% endblock %}

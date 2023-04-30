@@ -5,9 +5,12 @@ from contacts.models import Person
 class PersonForm(forms.ModelForm):
     class Meta:
         model = Person
-        fields = '__all__'
+        fields = ['nom', 'prenom',
+                  'contact_1', 'status','genre',
+                  'type_tailleur','category',
+                  ]
 
-        exclude = ['domicile','email','image', 'contact_2','alias',
+        exclude = ['domicile','image', 'email','alias','contact_2',
                     'code_person','photo', 'profession',
                     'responsable','date_naissance','nationalite','tutuelle',
                     'telephonique_fix','nina',

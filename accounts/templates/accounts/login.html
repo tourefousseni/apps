@@ -3,26 +3,20 @@
 {% load static %}
 
 {% block content %}
-    <section class="vh-100" style="background-color: #eee;"><br><br><br><br>
-        <div class="card col-md-4 offset-md-4 " >
-    <div class="card-title">
-         <div class="card-body">
+<section class="vh-100" style="background-color: #eee;"><br><br><br><br>
+      <div class="card col-md-4 offset-md-4 " >
+        <div class="card-title">
+          <div class="card-body">
              <p><h3 class="text-center">Bienvenue chez kalaliso</h3></p>
-             <p><h5 class="text-center" >Connectez-vous ici !</h5></p>
+                <p><h5 class="text-center" >Connectez-vous ici !</h5></p>
 {#            Alerts#}
 {#             {% include 'partials/_alerts.html' %}#}
                 <form action="{% url 'accounts:login' %}" method="POST">
                 {% csrf_token %}
-                      <!-- Email input -->
                     <card class="border-bottom form-control-color">
-{#                      <div class="form-outline mb-4">#}
-{#                         <label class="form-label" for="form2Example1">Email address</label>#}
-{#                        <input type="email" id="email" class="form-control" />#}
-{#                      </div>#}
                         <div class="form-outline mb-4">
                                 <input type="text" id="text" class="form-control" placeholder="Pseudo"/>
                         </div>
-
                       <!-- Password input -->
                       <div class="form-outline mb-4">
                         <input type="password" id="password" class="form-control" placeholder="Tapez votre mot de passe"/>
@@ -31,14 +25,14 @@
                           <!-- Simple link -->
                           <a href="#!">Forgot password?</a>
                            <button type="submit" value="login" class="btn btn-primary btn-lg" > Login</button>
-
+                            <a href="{% url 'accounts:register' %}" class="btn btn-info">Creer un nouveau compte</a>
                         </div>
                     </card>
                 </form>
             </div>
          </div>
+       </div>
     </div>
-    </div>
-    </section>
+</section>
  {% endblock %}
 

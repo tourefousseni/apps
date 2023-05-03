@@ -3,12 +3,10 @@ from django.contrib.gis.db import models
 import random
 from random import randint
 # from django.db.models.AutoField import *
-from django.contrib.auth.models import User
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, User
 from django.db.models.signals import pre_save
 from .utils import unique_code_id_generator
 
-from .validators import file_size
 
 
 # ==============================================
@@ -16,7 +14,7 @@ from .validators import file_size
 #                        START
 # ==============================================
 class User(AbstractUser):
-    id = models.AutoField(primary_key=True)
+    # id = models.AutoField(primary_key=True)
     # user = models.OneToOneField('User', on_delete=models.CASCADE, related_name='userone')
     phone = models.CharField(max_length=20, blank=True, null=True)
     img = models.ImageField(upload_to='img/', blank=True, null=True)

@@ -13,45 +13,56 @@
 
 
 </head>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">KALALISO APP</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 m-2">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="#">Albums</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="#">Videos</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="#">Annonce</a>
+        </li>
+           <li class="nav-item">
+          <a class="nav-link" href="#">Publicte</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+            Aide
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
+{#        <li class="nav-item">#}
+{#          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>#}
+{#        </li>#}
       </ul>
       <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group me-2">
-                    <a class="btn btn-sm btn-outline-secondary " href="{% url 'accounts:register' %}">Register</a>
-                    <a class="btn btn-sm btn-outline-secondary" href="{% url 'accounts:login' %}">Sign in</a>
+                    <a class="btn btn-sm btn-outline-secondary " href="{% url 'accounts:register' %}"><i class="fas fa-user-plus"></i>Register</a>
+                    <a class="btn btn-sm btn-outline-secondary" href="{% url 'accounts:login' %}"><i class="fas fa-sign-in-alt"></i>Sign in</a>
           </div>
         </div>
     </div>
   </div>
 </nav>
- <sidebar>
+
+
+    <sidebar>
 
           <div class="container-fluid">
     <div class="row flex-nowrap">
@@ -68,25 +79,25 @@
                     </li>
                     <li>
                         <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Ajouter une personne</span> </a>
+                            <i class="fs-4 bi-speedometer2" style="color: white"></i> <span class="ms-1 d-none d-sm-inline">>> Personne</span> </a>
                         <ul class="collapse show nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="{% url 'contacts:person' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Ajouter un client</span> </a>
+                                <a href="{% url 'contacts:person' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Ajouter un client</span> </a>
                             </li>
                             <li>
-                                <a href="{% url 'contacts:list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Liste des clients</span> </a>
+                                <a href="{% url 'contacts:list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Liste des clients</span> </a>
                             </li>
                         </ul>
 
                     <li>
                         <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Ajouter une mesure</span> </a>
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">>> Mesure</span> </a>
                         <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="{% url 'kalaliso:mesure' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Ajouter mesure</span> </a>
+                                <a href="{% url 'kalaliso:mesure' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Ajouter mesure</span> </a>
                             </li>
                             <li>
-                                <a href="{% url 'kalaliso:list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Tableau des mesures</span></a>
+                                <a href="{% url 'kalaliso:list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Liste des mesures</span></a>
                             </li>
                         </ul>
 
@@ -109,10 +120,10 @@
                     </li>
                     <li>
                         <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>
+                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products </span> </a>
                             <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 1</a>
+                                <a href="{% url 'kalaliso:products_list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Product List</span> 1</a>
                             </li>
                             <li>
                                 <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 2</a>
@@ -146,20 +157,24 @@
                 </div>
             </div>
         </div>
-        <div class="col py-3">
-            Bienvenu chez kalaliso !
-        </div>
-    </div>
+{#        <div class="col py-3">#}
+{#            Bienvenu chez kalaliso !#}
+{#        </div>#}
+{#    </div>#}
+</div>
 </div>
 
 </sidebar>
+<div class="card col-lg-10 offset-sm-2"
+     style=" margin-top: -700px;
+     background-color: #4ac1f7" >
+    {% block content %}
 
-        {% block content %}
+     {% endblock %}
+</div>
 
 
-        {% endblock %}
-
-<footer class="footer">
+    <footer class="footer">
     <div class="container">
       <div class="row">
         <div class="footer-col">
@@ -204,6 +219,8 @@
   <div class="copyright-footer">
     <p>&copy; <a href="#">Kalaliso.com</a> 2023, All Right Reserved.</p>
   </div>
+
+
 
 </body>
               <script src="{% static 'js/bootstrap.min.js' %}"></script>

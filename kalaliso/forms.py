@@ -56,7 +56,7 @@ class ProductForm(forms.ModelForm):
     class Meta:
          model = Product
          template_name = 'kalaliso/product.html'
-         fields = ['name', 'code_product','description', 'price', 'create_at']
+         fields = ['name', 'description', 'price']
          exclude = ['create_at']
 
     def __init__(self, *args, **kwargs):

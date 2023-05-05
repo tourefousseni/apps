@@ -58,11 +58,20 @@ class Product(models.Model):
         ('Tenu Securite', 'Tenu Securite'),
         ('AUTRES', 'AUTRES'),)
     name              = models.CharField(max_length=50, choices=Name, default='Boubou',)
-    photo             = models.ImageField(upload_to='photos/')
-    code_product      = models.CharField(max_length=30,  verbose_name='ID')
-    description       = models.CharField(max_length=200, blank=True, null=True)
-    price             = models.DecimalField(decimal_places=2, max_digits=20, default=100.25, null=True, blank=True)
-    create_at         = models.DateField(auto_now=True)
+    # TAILLE            = (
+    #     ('S', 'S'),
+    #     ('M', 'M'),
+    #     ('L', 'L'),
+    #     ('X', 'X'),
+    #     ('XXL', 'XXL'),
+    #     ('XXXL', 'XXXL'),
+    #     ('AUTRES', 'AUTRES'),)
+    # taille              = models.CharField(max_length=50, choices=TAILLE)
+    photo               = models.ImageField(upload_to='photos/')
+    code_product        = models.CharField(max_length=30,  verbose_name='ID')
+    description         = models.CharField(max_length=200, blank=True, null=True)
+    price               = models.DecimalField(decimal_places=2, max_digits=20, default=100.25, null=True, blank=True)
+    create_at           = models.DateField(auto_now=True)
 
     def __str__(self):
         return'{}'.format(self.name)
@@ -73,7 +82,7 @@ def pre_save_product_id(instance, sender, *args, **kwargs):
 
 pre_save.connect(pre_save_product_id, sender=Product)
 #
-#
+
 class Order(models.Model):
     objects = None
     id             = models.AutoField(primary_key=True)

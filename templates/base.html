@@ -25,10 +25,10 @@
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Albums</a>
+          <a class="nav-link" href="{% url 'kalaliso:products_list' %}">Albums</a>
         </li>
           <li class="nav-item">
-          <a class="nav-link" href="#">Videos</a>
+          <a class="nav-link" href="{% url 'kalaliso:show_video' %}">Videos</a>
         </li>
           <li class="nav-item">
           <a class="nav-link" href="#">Annonce</a>
@@ -79,7 +79,7 @@
                     </li>
                     <li>
                         <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-speedometer2" style="color: white"></i> <span class="ms-1 d-none d-sm-inline">>> Personne</span> </a>
+                            <i class="fs-4 bi-speedometer2" style="color: white"></i> <span class="ms-1 d-none d-sm-inline"> Personne</span> >> </a>
                         <ul class="collapse show nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                             <li class="w-100">
                                 <a href="{% url 'contacts:person' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Ajouter un client</span> </a>
@@ -91,7 +91,7 @@
 
                     <li>
                         <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">>> Mesure</span> </a>
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline"> Mesure</span> >> </a>
                         <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                             <li class="w-100">
                                 <a href="{% url 'kalaliso:mesure' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Ajouter mesure</span> </a>
@@ -120,19 +120,19 @@
                     </li>
                     <li>
                         <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products </span> </a>
+                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Albums </span>>> </a>
                             <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="{% url 'kalaliso:products_list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Product List</span> 1</a>
+                                <a href="{% url 'kalaliso:products_list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-info">Bronze</h6></span> </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 2</a>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-success">Or</h6></span> </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 3</a>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-warning">Diamant</h6></span> </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 4</a>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-danger">Will</h6></span></a>
                             </li>
                         </ul>
                     </li>

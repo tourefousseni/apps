@@ -37,6 +37,7 @@ def mesure(request):
              return redirect('kalaliso:list')
     else:
        form = MesureForm()
+       # form = PersonForm()
     return render(request, 'kalaliso/mesure.html', {'form': form})
 
 def list(request):

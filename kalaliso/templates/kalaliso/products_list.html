@@ -12,7 +12,7 @@
 <a href="{% url 'kalaliso:list' %}"></a>
 {% for product in list %}
     {% if forloop.first %}<div class="row ">{% endif %}
-    <div class="col-lg-4 col-md-4 col-12" >
+    <div class=" col-md-4 " >
       <div class="text-start">
          <img src="{{product.photo.url}}"  height="50%" width="100%" class="img-thumbnail" alt="...">
           <ul>

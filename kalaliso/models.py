@@ -234,3 +234,6 @@ class Annonce(models.Model):
 
     def __str__(self):
         return '{}'.format(self.title)
+
+class order_paypal(models.Model):
+    pass

@@ -1,5 +1,6 @@
 import io
 import time
+import uuid
 time.sleep(5)
 from django.urls import reverse_lazy
 from django.urls import reverse
@@ -16,6 +17,7 @@ from django.http import HttpResponseRedirect, HttpResponse, FileResponse
 from django.template import context
 from django.template import defaulttags
 from  django.db.models import *
+from django.conf import settings
 import datetime
 from django.forms import ModelForm
 from io import BytesIO
@@ -26,6 +28,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 import xhtml2pdf.default
 from xhtml2pdf.util import getSize
+from paypal.standard.forms import PayPalPaymentsForm
 
 def mesure(request):
     if request.method == 'POST':
@@ -344,6 +347,31 @@ def show_video(request):
     else:
          form=Video_form()
          return render(request, 'kalaliso/add_videos.html', {"form":form, "all":all_video})
+
+def home(request):
+    host = request.get_host()
+    paypal_dict = {
+        'business': settings.PAYPAL_RECEIVER_EMAIL,
+        'amount': '20.00',
+        'item_name': 'Product 1',
+        'invoice': str(uuid.uuid4()),
+        'currency_code': 'USD',
+        'notify_url': f'http://{host}{reverse("paypal-ipn")}',
+        'return_url': f'http://{host}{reverse("kalaliso:paypal_return")}',
+        'cancel_return': f'http://{host}{reverse("kalaliso:paypal_cancel")}',
+
+    }
+    form = PayPalPaymentsForm(initial=paypal_dict)
+    context={'form':form}
+    return render(request, 'kalaliso/home.html', context)
+
+def  paypal_return(request):
+    messages.error(request, 'you order has canceled !')
+    return redirect(request, 'home')
+
+def  paypal_cancel(request):
+    messages.error(request, 'you order has canceled !')
+    return redirect(request, 'home')
 
 # ===========================
 #      VIEWS KALALISO

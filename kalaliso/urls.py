@@ -17,7 +17,9 @@ urlpatterns = [
      path('product/list', views.products_list, name='products_list'),
      path('show_video/', views.show_video, name='show_video'),
      path('albums/', views.album, name='album'),
-     path('annonces/', views.annonce, name='annonce'),
+     path('paypal-return/', views.paypal_return, name='paypal_return'),
+     path('paypal-cancel/', views.paypal_cancel, name='paypal_cancel'),
+     path('home/', views.home, name='home'),
 
 
     #   path('<int:product_id>/', views.product_detail, name='product_detail'),

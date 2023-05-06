@@ -21,6 +21,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     # Listings Apps
+    'paypal.standard.ipn',
     'pages.apps.PagesConfig',
     'contacts.apps.ContactsConfig',
     'maps.apps.MapsConfig',
@@ -134,3 +135,7 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 
 }
+
+PAYPAL_RECEIVER_EMAIL = 'youremail@mail.com'
+
+PAYPAL_TEST = True

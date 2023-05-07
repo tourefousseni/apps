@@ -27,19 +27,19 @@ def homepage(request):
 def register(request):
     username = None
     email    = None
-    password = None
+    password1 = None
     if request.method == 'POST':
         # GET FORM VALUES
-      first_name = request.POST.get('first_name')
-      last_name  = request.POST.get('last_name')
-      username   = request.POST.get('username')
-      email      = request.POST.get('email')
-      password   = request.POST.get('password')
-      password2  = request.POST.get('password2')
+      first_name  = request.POST.get('first_name')
+      last_name   = request.POST.get('last_name')
+      username    = request.POST.get('username')
+      email       = request.POST.get('email')
+      password1   = request.POST.get('password1')
+      password2   = request.POST.get('password2')
 
  # Check if passwords match
 
-      if password == password2:
+      if password1 == password2:
           # check username
           # if User.objects.filter(username=username).exists():
           #     messages.error(request, 'that username is take')
@@ -54,21 +54,21 @@ def register(request):
                                                last_name=last_name,
                                                username=username,
                                                email=email,
-                                               password=password,
+                                               password1=password1,
                                                password2=password2)
               # authenticate.login(request, user)
               # messages.success(request, 'you are now logged in')
               # return redirect('accounts:dashboard')
               user.save()
               messages.success(request, 'you are now registered and can log in')
-              return redirect('accounts:login')
+              return redirect('accounts:connect')
         # else:
         #   messages.error(request,'Passwords do not match')
         #   return redirect('accounts:register')
     else:
       return render(request, 'accounts/register.html')
 
-def login(request):
+def connect(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -77,12 +77,12 @@ def login(request):
             login(request, user)
             return redirect('accounts:dashboard')
         else:
-            return redirect('accounts:login')
+            return redirect('accounts:connect')
     else:
         return render(request, 'accounts/login.html')
 
 # @login_required
-def logout(request):
+def disconnect(request):
      messages.success(request, ('You Have Been Logged out...'))
      return redirect('accounts:login')
 

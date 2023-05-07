@@ -22,7 +22,7 @@
                 <p><h5 class="text-center" >Connectez-vous ici !</h5></p>
 {#            Alerts#}
 {#             {% include 'partials/_alerts.html' %}#}
-                <form action="{% url 'accounts:login' %}" method="POST">
+                <form action="{% url 'accounts:connect' %}" method="POST">
                 {% csrf_token %}
                     <card class="border-bottom form-control-color">
                         <div class="form-outline mb-4">

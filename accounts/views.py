@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserForm
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .models import User
+# from .models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, FileResponse
 import io
@@ -19,6 +19,10 @@ from .forms import *
 
 def dashboard(request):
     return render(request, 'accounts/dashboard.html')
+
+def homepage(request):
+    return render(request, 'accounts/homepage.html')
+
 
 def register(request):
     username = None
@@ -77,52 +81,10 @@ def login(request):
     else:
         return render(request, 'accounts/login.html')
 
-@login_required
+# @login_required
 def logout(request):
      messages.success(request, ('You Have Been Logged out...'))
      return redirect('accounts:login')
-
-# def login(request):
-#     if request.method == 'POST':
-#         username = request.POST['username']
-#         password = request.POST['password']
-#         user = authenticate(request, username=username, password=password)
-#         if user is not None:
-#             login(request, user)
-#             messages.success(request, ('You Have been Logged In !'))
-#             return redirect('accounts:dashboard')
-#         else:
-#             messages.success(request, ('Error you can try again !'))
-#             return redirect('accounts:login')
-#     else:
-#         return render(request, 'accounts/login.html', {})
-
-# def login(request):
-#     if request.method == 'POST':
-#         return redirect('accounts:dashboard')
-#     else:
-#         return render(request, 'accounts/login.html')
-
-
-
-
-# def register(request):
-#     if request.method == 'POST':
-#         form = SignUpForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             username = form.cleaned_data['username']
-#             password = form.cleaned_data['password1']
-#             user = authenticate(username=username, password=password)
-#             login(request, user)
-#             messages.success(request,('You Have Registered now...'))
-#             return redirect('accounts:dashboard')
-#     else:
-#         form = SignUpForm(request.POST)
-#     context = {'form': form}
-#     return render(request, 'accounts/register.html', context)
-
-
 
 def edit_profile(request):
     if request.method == 'POST':

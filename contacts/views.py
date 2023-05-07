@@ -35,7 +35,7 @@ def person(request):
             form.save()
             # return HttpResponse('mesure_list')
             # return render(request, 'person/person.html')
-            return redirect('contacts:person')
+            return redirect('contacts:list')
     else:
         form = PersonForm
     return render (request, 'person/person.html', {'form': form})
@@ -45,38 +45,6 @@ def list(request,):
     context = {'obj': obj,}
     return render(request, 'person/list_person.html', context)
 
-
-def delete(request, id):
-    del_contact = Person.objects.get(id=id).delete()
-    # del_contact.delete()
-    context = {
-        'delete': del_contact
-    }
-    return render(request, 'person/list_person.html', context)
-
-def detail(request, id):
-    person_detail = Person.objects.get(id=id)
-    context = {
-        'view_person': person_detail,
-    }
-    return render (request, 'person/person_detail.html', context)
-
-
-def person_paginator(request):
-    persons        = Person.objects.all().order_by('id')
-    paginator      = Paginator(persons, 5)
-    page_number    = request.GET.get('page')
-    page_object    = paginator.get_page(page_number)
-    person_number  = persons.count()
-    message        = f'{ person_number } Nombre:'
-    if page_number == 1:
-       message = f'{ page_number } Nombre :'
-    context = {
-        'persons': page_object,
-        'person_number': person_number,
-        'message': message,
-    }
-    return render(request, 'paginator/person_paginator.html', context)
 
 # SEARCH NAME OR CONTACT PERSON IN DATABASE
 def search_person(request):
@@ -98,6 +66,39 @@ def search_person(request):
         'message': message
     }
     return render(request, 'person/search.html', context)
+
+#PAGINATOR ON PERSON LIST
+
+def person_paginator(request):
+    obj            = Person.objects.all().order_by('id')
+    paginator      = Paginator(obj, 3)
+    page_number    = request.GET.get('page')
+    page_object    = paginator.get_page(page_number)
+    person_number  = obj.count()
+    message        = f'{ person_number } Nombre:'
+    if page_number == 1:
+       message = f'{ page_number } Nombre :'
+    context = {
+        'obj': page_object,
+        'person_number': person_number,
+        'message': message,
+    }
+    return render(request, 'paginator/person_paginator.html', context)
+
+def delete(request, id):
+    del_contact = Person.objects.get(id=id).delete()
+    # del_contact.delete()
+    context = {
+        'delete': del_contact
+    }
+    return render(request, 'person/list_person.html', context)
+
+def detail(request, id):
+    person_detail = Person.objects.get(id=id)
+    context = {
+        'view_person': person_detail,
+    }
+    return render (request, 'person/person_detail.html', context)
 
 
 # OUTPUT CARD ADDRESS PERSON ON PDF

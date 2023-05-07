@@ -4,6 +4,12 @@
 {% load static %}
 
 {% block content %}
+    <div class="col-md-3 ">
+                  <form action="#" method="get">
+                      <input placeholder="Search ..." class="form-control form-control-dark" type="search" name="search">
+                      <button class="btn btn-primary my-2" type="submit">Search</button>
+                  </form>
+         </div>
         <div class="card"><br>
 {#            <div class="mt-5 col-md-4">#}
 {#                    <form action="" method="post" enctype="multipart/form-data">#}
@@ -13,6 +19,7 @@
 {#                    </form>#}
 {#            </div>#}
             <hr>
+
     <div class="row">
                     {% for x in all %}
                         <div class="col-md-4">

@@ -1,23 +1,26 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
-
-
 {% block content %}
  <div>
       <h3 class="text-center">CATALOGUE DES MODELES</h3><hr>
  </div>
 
 <a href="{% url 'kalaliso:list' %}"></a>
+    <div class="col-md-4 ">
+           <form >
+                      <input placeholder="Search ..." class="form-control form-control-dark" type="search" name="search">
+                      <button class="btn btn-success my-2" type="submit">Search</button>
+           </form>
+         </div>
 {% for product in list %}
     {% if forloop.first %}<div class="row ">{% endif %}
-    <div class=" col-md-4 " >
+    <div class=" col-sm-4 " >
       <div class="text-start">
          <img src="{{product.photo.url}}"  height="50%" width="100%" class="img-thumbnail" alt="...">
           <ul>
               <li><p>Model:{{ product.name }} | Price: {{ product.price }}<span>FCFA</span></p></li>
-              <li><P>Code:{{ product.code_product }} | Date de creation: {{ product.create_at }}</P></li>
+              <li><P>Code:{{  product.code_product }} | Date de creation: {{ product.create_at }}</P></li>
               <li><p>Detail : {{ product.description }}</P></li>
               <li><p>Publie par : kalaliso</P></li>
           </ul>
@@ -31,5 +34,22 @@
 {% if forloop.last %}</div>{% endif %}
 
 {% endfor %}
+{#    <div class="offset-md-4">#}
+{#    <nav aria-label="...">#}
+{#      <ul class="pagination">#}
+{#        <li class="page-item disabled">#}
+{#          <a class="page-link" href="#" tabindex="-1">Previous</a>#}
+{#        </li>#}
+{#        <li class="page-item"><a class="page-link" href="#">1</a></li>#}
+{#        <li class="page-item active">#}
+{#          <a class="page-link" href="#">2 <span class="sr-only">  </span></a>#}
+{#        </li>#}
+{#        <li class="page-item"><a class="page-link" href="#">3</a></li>#}
+{#        <li class="page-item">#}
+{#          <a class="page-link" href="#">Next</a>#}
+{#        </li>#}
+{#      </ul>#}
+{#    </nav>#}
+{#</div>#}
 {% endblock content %}
 

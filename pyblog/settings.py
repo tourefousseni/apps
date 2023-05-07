@@ -135,7 +135,5 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 
 }
-
 PAYPAL_RECEIVER_EMAIL = 'youremail@mail.com'
-
 PAYPAL_TEST = True

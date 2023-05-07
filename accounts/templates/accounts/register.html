@@ -1,9 +1,17 @@
-{% extends 'base.html' %}
+{#{% extends 'base.html' %}#}
 {% load crispy_forms_filters %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% block content %}
+{#{% block content %}#}
+<head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="description" content="">
+            <title>REGISTER</title>
+             <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+             <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
+</head>
   <section class="vh-100" style="background-color: #eee;"><br>
       <div class="card col-md-4 offset-md-4">
           <p><h4 class="text-center">Creer votre compte</h4></p>
@@ -59,4 +67,4 @@
       </div>
  </section>
 
-{% endblock %}
+{#{% endblock %}#}

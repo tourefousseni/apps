@@ -6,12 +6,7 @@
    <div class="card-title">
        <h4 class="justify-content-center">LISTE DES CLIENTS</h4>
     </div>
-   <div class="card-body">
-       <div class="table-responsive">
-
-    <table id="bootstrapdatable" class="table table-responsive-md table-bordered" width="80%">
-        <thead>
-        <div class="col-md-4 offset-md-8">
+   <div class="col-md-4 offset-md-7">
          <form action="{% url 'contacts:search_person'  %}" method="get">
                           <input placeholder="Search ..." class="form-control form-control-dark"
                                  type="search" name="search">
@@ -20,6 +15,12 @@
 
          </form>
     </div>
+   <div class="card-body">
+       <div class="table-responsive">
+
+    <table id="bootstrapdatable" class="table table-responsive-md table-bordered" width="80%">
+        <thead>
+
          <br/>
             <tr>
                   <th>Code</th>
@@ -90,27 +91,27 @@
    </div>
 </div>
 <nav>
-     <ul  class="pagination justify-content-center">
-              {% if persons.has_previous %}
+    <ul  class="pagination justify-content-center">
+              {% if obj.has_previous %}
                         <li class="page-item">
-                              <a class="page-link" href="?page={{ persons.previous_page_number }}">
+                              <a class="page-link" href="?page={{ obj.previous_page_number }}">
                                     <span aria-hidden="true">&laquo;</span>
                               </a>
                         </li>
               {% endif %}
 
               <li class="page-item">
-                  <p class="page-link text-muted">Page {{ persons.number }} / {{ persons.paginator.num_pages }} </p>
+                  <p class="page-link text-muted">Page {{ obj.number }} of {{ obj.paginator.num_pages }} </p>
               </li>
 
-              {% if persons.has_next %}
+              {% if obj.has_next %}
                   <li class="page-item">
-                          <a class="page-link" href="?page={{ persons.next_page_number }}" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
+                          <a class="page-link" href="?page={{ obj.next_page_number }}" aria-label="Next">
+                              <span aria-hidden="true">&raquo;</span>
                           </a>
-                        </li>
+                  </li>
               {% endif %}
-     </ul>
+    </ul>
 </nav>
 
 {% endblock %}

@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth.models import User
+    # get_user_model
 from django import forms
 from django.forms import widgets
 import datetime
@@ -16,6 +17,7 @@ class UserForm(UserCreationForm):
 
     class Meta:
             model = User
+                # get_user_model()
             fields = [
                 'first_name',
                 'last_name',

@@ -50,12 +50,14 @@
 {#          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>#}
 {#        </li>#}
       </ul>
-      <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group me-2">
-                    <a class="btn btn-sm btn-outline-secondary " href="{% url 'accounts:register' %}"><i class="fas fa-user-plus"></i>Register</a>
-                    <a class="btn btn-sm btn-outline-secondary" href="{% url 'accounts:login' %}"><i class="fas fa-sign-in-alt"></i>Sign in</a>
+         <nav>
+            <div class="btn-toolbar mb-2 mb-md-0">
+             <div class="btn-group me-2">
+                    <a class="btn btn-sm btn-outline-secondary " href="{% url 'accounts:logout' %}"><i class="fas fa-user-plus"></i>Logout</a>
           </div>
         </div>
+    </nav>
+
     </div>
   </div>
 </nav>
@@ -73,8 +75,8 @@
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
                         <a href="#" class="nav-link align-middle px-0">
-                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
-                        </a>
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline" style="color: white">Rubrique</span>
+                        </a><hr>
                     </li>
                     <li>
                         <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
@@ -216,9 +218,10 @@
 {#      </div>#}
 {#    </div>#}
 {#  </footer>#}
-  <div class="copyright-footer" style="position: fixed; bottom: 0px; width: 100%; text-align: center;">
-    <p>&copy; <a href="#">Kalaliso.com</a> 2023, All Right Reserved.</p>
-  </div>
+
+{#  <div class="copyright-footer" style="position: fixed; bottom: 0px; width: 100%; text-align: center;">#}
+{#    <p>&copy; <a href="#">Kalaliso.com</a> 2023, All Right Reserved.</p>#}
+{#  </div>#}
 
 
 

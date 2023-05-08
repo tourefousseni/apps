@@ -27,7 +27,6 @@ class UserForm(UserCreationForm):
                 'password',
                 'password2']
 
-
     def __init__(self, *args, **kwargs):
             super(UserForm, self).__init__(*args, **kwargs)
 

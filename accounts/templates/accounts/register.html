@@ -13,13 +13,16 @@
 
 </head>
   <section class="vh-100" style="background-color: #eee;"><br><br><br><br>
+      {% for message in messages  %}
+          <h5 style="color: red">{{ message }}</h5>
+      {% endfor %}
       <div class="card col-md-4 offset-md-4">
           <p><h4 class="text-center">Creer votre compte</h4></p>
           <div class="card-title">
               <div class="card-body">
 {#                   {% include 'partials/_alerts.html' %}#}
-                      <form action="{% url 'accounts:register' %}" method="POST">
-                                            {% csrf_token %}
+                      <form method="post" action="{% url 'accounts:register' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
 
                                            <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">
@@ -36,7 +39,7 @@
 
                                            <div class="d-flex flex-row align-items-center mb-4">
                                             <div class="form-outline flex-fill mb-0">
-                                              <input type="text" value="{{ username }}" id="username" class="form-control" placeholder="Pseudo" />
+                                              <input type="text" value="{{ username }}" id="username" class="form-control" placeholder="Username" />
                                             </div>
                                           </div>
 

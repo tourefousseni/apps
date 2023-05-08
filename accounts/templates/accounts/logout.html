@@ -3,6 +3,9 @@
 {% block content %}
 
     <h2>You are logout here !</h2>
+     {% for message in messages  %}
+          <h5 style="color: red">{{ message }}</h5>
+      {% endfor %}
         <p>Click <a href="{% url 'accounts:disconnect' %}">here</a> to logout here.</p>
 
 {% endblock %}

@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from django.contrib.auth  import get_user_model
     # get_user_model
 from django import forms
 from django.forms import widgets
@@ -10,20 +11,20 @@ import datetime
 #                  FORM ACCOUNTS
 #                        START
 # ==============================================
+User = get_user_model()
 class UserForm(UserCreationForm):
     # email      = forms.EmailField(label='', widget=forms.EmailInput(attrs={'class': 'form-control','placeholder':'Enter Email Here' }))
     # last_name  = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Last Name' }))
     # first_name = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'First Name' }))
 
     class Meta:
-            model = User
-                # get_user_model()
+            model = get_user_model()
             fields = [
                 'first_name',
                 'last_name',
                 'username',
                 'email',
-                'password1',
+                'password',
                 'password2']
 
 
@@ -50,7 +51,7 @@ class EditProfileForm(UserChangeForm):
         password = forms.CharField(label="", widget=forms.TextInput(attrs={'type': 'hidden'}))
 
         class Meta:
-            model = User
+            model = get_user_model()
             fields = ('username',
                       'first_name',
                       'last_name',
@@ -62,7 +63,7 @@ class  PasswordRsestForm(PasswordChangeForm):
     password = forms.CharField(label="", widget=forms.TextInput(attrs={'type': 'hidden'}))
 
     class Meta:
-        model = User
+        model = get_user_model()
         fields = ('__all__')
 
 

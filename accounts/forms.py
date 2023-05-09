@@ -1,7 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.contrib.auth  import get_user_model
-    # get_user_model
 from django import forms
 from django.forms import widgets
 import datetime
@@ -11,7 +10,16 @@ import datetime
 #                  FORM ACCOUNTS
 #                        START
 # ==============================================
-User = get_user_model()
+# class CustomUserChangeForm(UserChangeForm):
+#     class Meta:
+#         model = get_user_model
+#         fields = ('username', 'email')
+
+# class UserForm(UserCreationForm):
+#     class Meta:
+#         model = get_user_model
+#         fields = ('username', 'email')
+
 class UserForm(UserCreationForm):
     # email      = forms.EmailField(label='', widget=forms.EmailInput(attrs={'class': 'form-control','placeholder':'Enter Email Here' }))
     # last_name  = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Last Name' }))

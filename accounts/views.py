@@ -92,7 +92,7 @@ def connect(request):
 
     return render(request, 'accounts/login.html')
 
-@login_required
+# @login_required
 def disconnect(request):
      messages.success(request, 'You Have Been Logged out...')
      return redirect('accounts:homepage')

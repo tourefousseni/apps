@@ -3,7 +3,7 @@ from django.contrib.gis.db import models
 import random
 from random import randint
 # from django.db.models.AutoField import *
-from django.contrib.auth.models import AbstractUser, User
+from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import pre_save
 from .utils import unique_code_id_generator
 
@@ -28,6 +28,7 @@ def pre_save_code_id(instance, sender, *args, **kwargs):
             instance.code = unique_code_id_generator(instance)
 
 pre_save.connect(pre_save_code_id, sender=User)
+
 # ==============================================
 #                  MODELE ACCOUNTS
 #                        END

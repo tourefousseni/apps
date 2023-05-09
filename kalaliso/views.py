@@ -70,6 +70,26 @@ def update(request, id):
     }
     return render(request, 'kalaliso/list.html', context)
 
+def search_products_list(request):
+    search = request.GET.get('search')
+    search_products = Product.objects.filter(
+                                            Q(code_product__contains=search) |
+                                            Q(price__icontains=search) |
+                                            Q(name__icontains=search) |
+                                            Q(description__icontains=search) |
+                                            Q(create_at__icontains=search)
+                                            )
+    search_products_list = search_products.count()
+    message = f' results : {search_products }'
+    if search_products == 1:
+          message = f' results : {search_products }'
+
+    context = {
+        'search_products_list': search_products_list,
+        'message': message
+    }
+    return render(request, 'kalaliso/search_products_list.html', context)
+
 # def report_mesure(request):
 #     mesure_detail = Mesure.objects.get(pk=id)
 #     list_person = Person.objects.get(pk=id)

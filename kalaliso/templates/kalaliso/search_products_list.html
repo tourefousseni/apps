@@ -84,12 +84,13 @@
 
 <a href="{% url 'kalaliso:list' %}"></a>
     <div class="col-md-4 ">
-           <form >
+    <h5 class="text-center">{{ message }}</h5>
+           <form action="{% url 'kalaliso:search_products_list'  %}" method="get">
                       <input placeholder="Search ..." class="form-control form-control-dark" type="search" name="search">
                       <button class="btn btn-success my-2" type="submit">Search</button>
            </form>
          </div>
-{% for product in list %}
+{% for product in search_products %}
     {% if forloop.first %}<div class="row col-md-8 offset-2 ">{% endif %}
     <div class="col-md-4 offset-0">
       <div >

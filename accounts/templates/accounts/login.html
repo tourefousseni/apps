@@ -16,14 +16,15 @@
 
 
 <section class="vh-100" style="background-color: #eee;"><br><br><br><br>
- {% for message in messages  %}
-          <h5 class="text-lg-end" style="color: red">{{ message }}</h5>
-      {% endfor %}
+
       <div class="card col-md-4 offset-md-4 " >
         <div class="card-title">
           <div class="card-body">
              <p><h3 class="text-center">Bienvenue chez kalaliso</h3></p>
-                <p><h5 class="text-center" >Connectez-vous ici !</h5></p>
+                <p><h5 class="text-center" >Connectez-vous ici !</h5><hr></p>
+              {% for message in messages  %}
+                 <h5 class="text-center" style="color: red">{{ message }}</h5>
+              {% endfor %}
 {#            Alerts#}
 {#             {% include 'partials/_alerts.html' %}#}
                 <form method="post" action="{% url 'accounts:connect' %}" enctype="multipart/form-data">

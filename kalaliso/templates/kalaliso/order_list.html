@@ -31,8 +31,8 @@
       </thead>
 
       <tbody>
-                    {% for order in order_list %}
-                        <a href="{% url 'order_list'  %}"></a>
+                    {% for order in order_list.all %}
+                        <a href="{% url 'kalaliso:order_list' %}"></a>
                            <tr>
                                 <td><input type="checkbox" class="checkthis" /></td>
                                 <td>{{ order.id }}</td>

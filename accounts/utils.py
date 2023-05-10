@@ -1,7 +1,7 @@
 import random
 
 import string
-# from django.db.models import
+from .models import  AbstractUser
 
 
 

@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
-from django.contrib.auth.models import AbstractUser
+# from django.contrib.auth.models import AbstractUser, User
 from django.contrib.auth  import get_user_model
 from django import forms
 from django.forms import widgets
@@ -15,18 +15,19 @@ import datetime
 #         model = get_user_model
 #         fields = ('username', 'email')
 
+
 # class UserForm(UserCreationForm):
 #     class Meta:
 #         model = get_user_model
 #         fields = ('username', 'email')
 
-class UserForm(UserCreationForm):
-    # email      = forms.EmailField(label='', widget=forms.EmailInput(attrs={'class': 'form-control','placeholder':'Enter Email Here' }))
-    # last_name  = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Last Name' }))
-    # first_name = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'First Name' }))
+class RegisterForm(UserCreationForm):
+    email      = forms.EmailField(label='email', widget=forms.EmailInput(attrs={'class': 'form-control','placeholder':'Enter Email Here' }))
+    last_name  = forms.CharField(label='last_name', widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Last Name' }))
+    first_name = forms.CharField(label='first_name', widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'First Name' }))
 
     class Meta:
-            model = get_user_model()
+            model =get_user_model()
             fields = [
                 'first_name',
                 'last_name',
@@ -35,8 +36,9 @@ class UserForm(UserCreationForm):
                 'password',
                 'password2']
 
-    def __init__(self, *args, **kwargs):
-            super(UserForm, self).__init__(*args, **kwargs)
+class LoginForm(forms.Form):
+    username =forms.CharField(max_length=65)
+    password= forms.CharField(max_length=65, widget=forms.PasswordInput)
 
             # self.fields['username'].widget.attrs['class']        = 'form-control'
             # self.fields['username'].widget.attrs['placeholder']  = 'Pseudo'

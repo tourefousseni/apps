@@ -29,6 +29,7 @@ from django.db.models import Q
 import xhtml2pdf.default
 from xhtml2pdf.util import getSize
 from paypal.standard.forms import PayPalPaymentsForm
+# from .forms import PaymentForm, OrderForm, Order_ItemsForm
 
 def mesure(request):
     if request.method == 'POST':
@@ -43,7 +44,7 @@ def mesure(request):
        # form = PersonForm()
     return render(request, 'kalaliso/mesure.html', {'form': form})
 
-def list(request):
+def list(request, *args, **kwargs):
     list_mesure = Mesure.objects.all().order_by('-id')
     obj = Person.objects.all()
     context = {
@@ -285,7 +286,7 @@ def order(request):
         form = OrderForm(request.POST)
         if form.is_valid():
             form.save()
-            return render('kalaliso/order.html')
+            return redirect('kalaliso:order_list')
             # return HttpResponse('order')
     else:
         form=OrderForm()
@@ -305,12 +306,12 @@ def order_items(request, ):
         form=Order_ItemsForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('order'))
+            return redirect('kalaliso:order_list')
             # return HttpResponseRedirect(reverse('order_items'))
     else:
         form = Order_ItemsForm()
-    return render(request, 'kalaliso/order.html', {'form': form})
-    # return render(request, 'kalaliso/order_items.html', {'form': form})
+    # return render(request, 'kalaliso/order.html', {'form': form})
+    return render(request, 'kalaliso/order_items.html', {'form': form})
 
 def orderdetail_detail(request,):
 
@@ -335,7 +336,7 @@ def payment(request,):
           form = PaymentForm(request.POST)
           if form.is_valid():
               form.save()
-              return HttpResponseRedirect(reverse('Order'))
+              return redirect('accounts:homepage')
         else:
             form = PaymentForm()
         return render(request, 'kalaliso/payment.html', {'form': form})

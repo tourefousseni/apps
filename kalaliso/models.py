@@ -58,15 +58,15 @@ class Product(models.Model):
         ('Tenu Securite', 'Tenu Securite'),
         ('AUTRES', 'AUTRES'),)
     name              = models.CharField(max_length=50, choices=Name, default='Boubou',)
-    # TAILLE            = (
-    #     ('S', 'S'),
-    #     ('M', 'M'),
-    #     ('L', 'L'),
-    #     ('X', 'X'),
-    #     ('XXL', 'XXL'),
-    #     ('XXXL', 'XXXL'),
-    #     ('AUTRES', 'AUTRES'),)
-    # taille              = models.CharField(max_length=50, choices=TAILLE)
+    TAILLE            = (
+        ('S', 'S'),
+        ('M', 'M'),
+        ('L', 'L'),
+        ('X', 'X'),
+        ('XXL', 'XXL'),
+        ('XXXL', 'XXXL'),
+        ('AUTRES', 'AUTRES'),)
+    taille              = models.CharField(max_length=50, choices=TAILLE)
     photo               = models.ImageField(upload_to='photos/')
     code_product        = models.CharField(max_length=30,  verbose_name='ID')
     description         = models.CharField(max_length=200, blank=True, null=True)
@@ -86,10 +86,9 @@ pre_save.connect(pre_save_product_id, sender=Product)
 class Order(models.Model):
     objects = None
     id             = models.AutoField(primary_key=True)
-    person_id      = models.ManyToManyField('contacts.Person')
+    person_id      = models.ForeignKey('contacts.Person', on_delete=models.CASCADE, verbose_name='Acheteur')
     code_order     = models.CharField(max_length=30, blank=True, verbose_name='Code order')
     reception      = models.BooleanField(default=True)
-    order_items    = models.ManyToManyField('Order_Items', verbose_name='add_items')
     rendez_vous    = models.DateField(auto_now=False)
     localization   = models.ForeignKey('maps.Region', on_delete=models.CASCADE, verbose_name='Localisation',)
     confirmed      = models.BooleanField(default=False)
@@ -98,7 +97,7 @@ class Order(models.Model):
     create_at      = models.DateField(auto_now=False)
 
     def __str__(self):
-        return str(self.code_order)
+        return str(self.id)
 
 def pre_save_order_id(instance, sender, *args, **kwargs):
     if not instance.code_order:
@@ -116,12 +115,14 @@ class Order_Items(models.Model):
         ('Autres', 'Autres'),)
 
     category         = models.CharField(max_length=50, choices=CATEGORY, default='Homme', )
-    product          = models.ForeignKey('Product', on_delete=models.CASCADE, verbose_name='Add Product', )
+    items            = models.ManyToManyField('kalaliso.Order', verbose_name='items')
+    product          = models.ForeignKey('kalaliso.Product', on_delete=models.CASCADE, verbose_name='Add Product', )
     quantity         = models.IntegerField(default=1, blank=True, null=True)
     submontant       = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
+    price            = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
 
     def __str__(self):
-        return self.category
+        return self.price
 #
 #
 class Payment(models.Model):
@@ -135,13 +136,13 @@ class Payment(models.Model):
         ('Virement', 'Virement'),
         ('Transaction', 'Transaction'), )
     mode_payment     =  models.CharField(max_length=50, choices=MODE_PAYMENT, default='Espece', )
-    payment_Order    = models.ForeignKey('Order', on_delete=models.CASCADE, blank=True, null=True, verbose_name='Payment Facture', )
+    payment_Order    = models.ForeignKey('kalaliso.Order', on_delete=models.CASCADE, blank=True, null=True, verbose_name='Payment Facture', )
     code_payment     = models.CharField(max_length=30, blank=True, verbose_name='Code Payement')
-    # person_id        = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name='Titulaire command', )
+    person_id        = models.ForeignKey('contacts.Person', on_delete=models.CASCADE, verbose_name='Titulaire command', )
     amount           = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True, verbose_name='Montant Total')
     fees_commission  = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
     delivered        = models.BooleanField(default=False)
-    create_at        = models.DateField(auto_now=True)
+    create_at        = models.DateField(auto_now=False)
 
     def __str__(self):
         return str(self.code_payment)

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls import url
-from kalaliso import views
+from .import views
 app_name = 'kalaliso'
 
 urlpatterns = [
@@ -15,6 +15,10 @@ urlpatterns = [
      path('paginator_list_mesure/', views.paginator_list_mesure, name='paginator_list_mesure'),
      path('update/<int:id>/', views.update, name='update_mesure'),
      path('product/', views.product, name='product'),
+     path('order/', views.order, name='order'),
+     path('order_list/', views.order_list, name='order_list'),
+     path('order_items/', views.order_items, name='order_items'),
+     path('payment/', views.payment, name='payment'),
      path('product/list', views.products_list, name='products_list'),
      path('show_video/', views.show_video, name='show_video'),
      path('albums/', views.album, name='album'),

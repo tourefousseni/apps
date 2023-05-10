@@ -13,7 +13,8 @@ from django_bootstrap_datetimepicker import *
 from django.forms import widgets
 import datetime
 
-from .models import  Mesure, Product,  Video,Payment, Product, Order, Order_Items, Annonce
+from .models import  Mesure, Product,\
+    Depense,Video,Payment, Product, Order, Order_Items, Annonce
 #     \
 #
 
@@ -195,10 +196,17 @@ class AnnonceForm(forms.ModelForm):
         template_name = 'kalaliso/annonce.html'
         fields = ('__all__')
 
-        # exclude = [ ]
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+class DepenseForm(forms.ModelForm):
+    class Meta:
+        model = Depense
+        template_name = 'kalaliso/depense.html'
+        fields = ('__all__')
+
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
         # self.helper = FormHelper(self)
         # self.helper.form_method = 'post'
         # self.helper.layout = Layout(

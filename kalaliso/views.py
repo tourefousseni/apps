@@ -412,6 +412,16 @@ def paypal_cancel(request):
     return redirect(request, 'home')
 
 
+def depense(request, ):
+    if request.method == 'POST':
+        form = DepenseForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('kalaliso:annonce')
+    else:
+        form = DepenseForm()
+    return render(request, 'kalaliso/depense.html', {'form': form})
+
 def annonce(request, ):
     if request.method == 'POST':
         form = AnnonceForm(request.POST)

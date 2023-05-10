@@ -7,12 +7,15 @@
     <title>Depnse</title>
 </head>
 {% block content %}<br>
-<div class="col-md-8 offset-2">
-<div class="DepenseForm">
-    <form action="{% url 'kalaliso:depense' %}" method="post">
-      {% csrf_token %}
-        {{  form | crispy }}
-    </form>
-</div>
-</div>
+<section>
+    <h4>Tableau des depenses</h4>
+    <div class="col-md-8 offset-2">
+       <div class="DepenseForm">
+            <form action="{% url 'kalaliso:depense' %}" method="post">
+              {% csrf_token %}
+                {{  form | crispy }}
+            </form>
+       </div>
+    </div>
+</section>
 {% endblock %}<br>

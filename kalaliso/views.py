@@ -1,7 +1,6 @@
 import io
 import time
 import uuid
-
 time.sleep(5)
 from django.urls import reverse_lazy
 from django.urls import reverse
@@ -14,7 +13,6 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, FileResponse
-# from django.contrib.gis.db import models Person
 from django.template import context
 from django.template import defaulttags
 from django.db.models import *

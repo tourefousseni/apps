@@ -183,12 +183,11 @@ class Depense(models.Model):
     description            = models.CharField(max_length=200, blank=True, verbose_name='Description du depense')
     status                 = models.BooleanField(default=False, verbose_name="valid")
     cancelled              = models.DateField(auto_now=False)
-    create_at              = models.DateField(auto_now=True)
+    create_at              = models.DateField(auto_now=False)
 
     def __str__(self):
         return self.motif
 
-#
 class Video(models.Model):
     id         = models.AutoField(primary_key=True)
     title      = models.CharField(max_length=50, blank=True, null=True)

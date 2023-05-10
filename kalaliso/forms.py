@@ -13,7 +13,7 @@ from django_bootstrap_datetimepicker import *
 from django.forms import widgets
 import datetime
 
-from .models import  Mesure, Product,  Video,Payment, Product, Order, Order_Items
+from .models import  Mesure, Product,  Video,Payment, Product, Order, Order_Items, Annonce
 #     \
 #
 
@@ -165,7 +165,10 @@ class PaymentForm(forms.ModelForm):
                   'payment_Order',
                   'amount',
                   'fees_commission',
+                  'taxe',
+                  'frais_shipp',
                   'delivered',
+                  'confirmed',
                   'create_at',]
 
         # exclude = [ ]
@@ -186,7 +189,30 @@ class PaymentForm(forms.ModelForm):
                 Column('delivered'),
                  ),
         )
+class AnnonceForm(forms.ModelForm):
+    class Meta:
+        model = Annonce
+        template_name = 'kalaliso/annonce.html'
+        fields = ('__all__')
 
+        # exclude = [ ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # self.helper = FormHelper(self)
+        # self.helper.form_method = 'post'
+        # self.helper.layout = Layout(
+        #     Row(
+        #         Column('mode_payment'),
+        #         Column('amount'),
+        #         Column('fees_commission'),
+        #         ),
+        #     Row(
+        #         Column('code_payment'),
+        #         Column('create_at'),
+        #         Column('delivered'),
+        #          ),
+        # )
 
 # ==============================================
 #                  FORM KALALISO

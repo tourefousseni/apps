@@ -1,6 +1,7 @@
 import io
 import time
 import uuid
+
 time.sleep(5)
 from django.urls import reverse_lazy
 from django.urls import reverse
@@ -16,7 +17,7 @@ from django.http import HttpResponseRedirect, HttpResponse, FileResponse
 # from django.contrib.gis.db import models Person
 from django.template import context
 from django.template import defaulttags
-from  django.db.models import *
+from django.db.models import *
 from django.conf import settings
 import datetime
 from django.forms import ModelForm
@@ -29,20 +30,23 @@ from django.db.models import Q
 import xhtml2pdf.default
 from xhtml2pdf.util import getSize
 from paypal.standard.forms import PayPalPaymentsForm
+
+
 # from .forms import PaymentForm, OrderForm, Order_ItemsForm
 
 def mesure(request):
     if request.method == 'POST':
         form = MesureForm(request.POST)
         if form.is_valid():
-             form.save()
-             # return HttpResponse('mesure_list')
-             # return redirect('/')
-             return redirect('kalaliso:list')
+            form.save()
+            # return HttpResponse('mesure_list')
+            # return redirect('/')
+            return redirect('kalaliso:list')
     else:
-       form = MesureForm()
-       # form = PersonForm()
+        form = MesureForm()
+        # form = PersonForm()
     return render(request, 'kalaliso/mesure.html', {'form': form})
+
 
 def list(request, *args, **kwargs):
     list_mesure = Mesure.objects.all().order_by('-id')
@@ -53,6 +57,7 @@ def list(request, *args, **kwargs):
     }
     return render(request, 'kalaliso/list.html', context)
 
+
 def detail(request, id):
     mesure_detail = Mesure.objects.get(pk=id)
     list_person = Person.objects.get(pk=id)
@@ -61,6 +66,7 @@ def detail(request, id):
         'list_person': list_person,
     }
     return render(request, 'kalaliso/mesure_detail.html', context)
+
 
 def update(request, id):
     update_mesure = Mesure.objects.get(pk=id)
@@ -71,25 +77,27 @@ def update(request, id):
     }
     return render(request, 'kalaliso/list.html', context)
 
+
 def search_products_list(request):
     search = request.GET.get('search')
     search_products = Product.objects.filter(
-                                            Q(code_product__contains=search) |
-                                            Q(price__icontains=search) |
-                                            Q(name__icontains=search) |
-                                            Q(description__icontains=search) |
-                                            Q(create_at__icontains=search)
-                                            )
+        Q(code_product__contains=search) |
+        Q(price__icontains=search) |
+        Q(name__icontains=search) |
+        Q(description__icontains=search) |
+        Q(create_at__icontains=search)
+    )
     search_products_list = search_products.count()
-    message = f' results : {search_products }'
+    message = f' results : {search_products}'
     if search_products == 1:
-          message = f' results : {search_products }'
+        message = f' results : {search_products}'
 
     context = {
         'search_products_list': search_products_list,
         'message': message
     }
     return render(request, 'kalaliso/search_products_list.html', context)
+
 
 # def report_mesure(request):
 #     mesure_detail = Mesure.objects.get(pk=id)
@@ -118,8 +126,8 @@ def report_mesure(request):
 def search_mesure(request):
     search = request.GET.get('search')
     filter_mesure = Mesure.objects.filter(Q(coude__icontains=search))
-                                          # |
-                                          # Q(epaule__icontains=search))
+    # |
+    # Q(epaule__icontains=search))
     # person_number = list_person.count()
     # message = f' results : {person_number }'
     # if person_number == 1:
@@ -130,6 +138,7 @@ def search_mesure(request):
         # 'message': message
     }
     return render(request, 'kalaliso/search_mesure.html', context)
+
 
 # def mesure_custom(request, mesure_id,):
 #     qs = Mesure.objects.get(pk=mesure_id)
@@ -145,6 +154,7 @@ def album(request):
     }
     return render(request, 'kalaliso/album.html', context)
 
+
 def annonce(request):
     annonce = Annonce.objects.all()
 
@@ -152,7 +162,6 @@ def annonce(request):
         'ann': annonce,
     }
     return render(request, 'kalaliso/annonce.html', context)
-
 
 
 # def list(request):
@@ -203,7 +212,6 @@ def report_order_pdf(request, order_id):
     return response
 
 
-
 # def list(request):
 #     list_person = Person.objects.all().order_by('-id')
 #     paginator   = Paginator(list_person, 10)
@@ -219,14 +227,14 @@ def report_order_pdf(request, order_id):
 #     return render(request, 'kalaliso/person_list.html', context)
 
 def paginator_list_mesure(request):
-    list_mesure     = Mesure.objects.all().order_by('id')
-    paginator       = Paginator(list_mesure, 5)
-    page_number     = request.GET.get('page')
-    page_object     = paginator.get_page(page_number)
-    person_number   = list_mesure.count()
-    message         = f'{ person_number } Nombre:'
-    if page_number  ==1:
-       message      = f'{ page_number } Nombre :'
+    list_mesure = Mesure.objects.all().order_by('id')
+    paginator = Paginator(list_mesure, 5)
+    page_number = request.GET.get('page')
+    page_object = paginator.get_page(page_number)
+    person_number = list_mesure.count()
+    message = f'{person_number} Nombre:'
+    if page_number == 1:
+        message = f'{page_number} Nombre :'
     context = {
         'list_mesure': page_object,
         'person_number': person_number,
@@ -234,6 +242,7 @@ def paginator_list_mesure(request):
     }
     return render(request, 'kalaliso/paginators/list_mesure_paginator.html', context)
     # return render(request, 'kalaliso/person_list.html', context)
+
 
 # def info_person(request, id):
 #     x = Person.objects.get(id=id)
@@ -245,7 +254,8 @@ def paginator_list_mesure(request):
 
 def user(request):
     user_list = User.objects
-    return render(request, 'kalaliso/user_list.html', {'user_list':user_list})
+    return render(request, 'kalaliso/user_list.html', {'user_list': user_list})
+
 
 # def detail_person(request, person_id):
 #     detail = get_object_or_404(Person, pk=person_id)
@@ -258,7 +268,7 @@ def product(request):
             form.save()
             return HttpResponseRedirect(reverse('order'))
     else:
-       form = ProductForm()
+        form = ProductForm()
     return render(request, 'kalaliso/product.html', {'form': form})
 
 
@@ -289,7 +299,7 @@ def order(request):
             return redirect('kalaliso:order_list')
             # return HttpResponse('order')
     else:
-        form=OrderForm()
+        form = OrderForm()
     return render(request, 'kalaliso/order.html', {'form': form})
 
 
@@ -301,9 +311,10 @@ def order_list(request):
     }
     return render(request, 'kalaliso/order_list.html', context)
 
+
 def order_items(request, ):
     if request.method == 'POST':
-        form=Order_ItemsForm(request.POST)
+        form = Order_ItemsForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('kalaliso:order_list')
@@ -313,8 +324,8 @@ def order_items(request, ):
     # return render(request, 'kalaliso/order.html', {'form': form})
     return render(request, 'kalaliso/order_items.html', {'form': form})
 
-def orderdetail_detail(request,):
 
+def orderdetail_detail(request, ):
     qs = Order_Items.objects.all().order_by(Order)
     context = {'orderdetail': qs, }
     return render(request, 'kalaliso/orderdetail_detail.html', context)
@@ -331,15 +342,16 @@ def orderdetail_detail(request,):
 # research for OVER STACK FLOW this Bug
 # response = wrapped_callback(request, *callback_args, **callback_kwargs)
 
-def payment(request,):
-        if request.method == 'POST':
-          form = PaymentForm(request.POST)
-          if form.is_valid():
-              form.save()
-              return redirect('accounts:homepage')
-        else:
-            form = PaymentForm()
-        return render(request, 'kalaliso/payment.html', {'form': form})
+def payment(request, ):
+    if request.method == 'POST':
+        form = PaymentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:homepage')
+    else:
+        form = PaymentForm()
+    return render(request, 'kalaliso/payment.html', {'form': form})
+
 
 def payment_list(request, payment_id):
     qs = Payment.objects.all()
@@ -348,26 +360,29 @@ def payment_list(request, payment_id):
 
     return render(request, 'kalaliso/payment_list.html', context)
 
+
 def profile(request):
-    #id,  *args,  **kwargs
+    # id,  *args,  **kwargs
     # list_person  = Person.objects.get(id=id)
-    list_person  = Person.objects.all().order_by('-id')
+    list_person = Person.objects.all().order_by('-id')
 
     context = {
         'list_person': list_person,
     }
     return render(request, 'kalaliso/profile.html', context)
 
+
 def show_video(request):
-    all_video=Video.objects.all()
+    all_video = Video.objects.all()
     if request.method == "POST":
-        form=Video_form(data=request.POST,files=request.FILES)
+        form = Video_form(data=request.POST, files=request.FILES)
         if form.is_valid():
-         form.save()
+            form.save()
         return HttpResponse("<h1> Uploaded successfully </h1>")
     else:
-         form=Video_form()
-         return render(request, 'kalaliso/add_videos.html', {"form":form, "all":all_video})
+        form = Video_form()
+        return render(request, 'kalaliso/add_videos.html', {"form": form, "all": all_video})
+
 
 def home(request):
     host = request.get_host()
@@ -383,19 +398,31 @@ def home(request):
 
     }
     form = PayPalPaymentsForm(initial=paypal_dict)
-    context={'form':form}
+    context = {'form': form}
     return render(request, 'kalaliso/home.html', context)
 
-def  paypal_return(request):
+
+def paypal_return(request):
     messages.error(request, 'you order has canceled !')
     return redirect(request, 'home')
 
-def  paypal_cancel(request):
+
+def paypal_cancel(request):
     messages.error(request, 'you order has canceled !')
     return redirect(request, 'home')
+
+
+def annonce(request, ):
+    if request.method == 'POST':
+        form = AnnonceForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('kalaliso:annonce')
+    else:
+        form = AnnonceForm()
+    return render(request, 'kalaliso/annonce.html', {'form': form})
 
 # ===========================
 #      VIEWS KALALISO
 #          END
 # ===========================
-

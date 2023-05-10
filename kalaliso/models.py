@@ -141,7 +141,10 @@ class Payment(models.Model):
     person_id        = models.ForeignKey('contacts.Person', on_delete=models.CASCADE, verbose_name='Titulaire command', )
     amount           = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True, verbose_name='Montant Total')
     fees_commission  = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
+    taxe             = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
+    frais_shipp      = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
     delivered        = models.BooleanField(default=False)
+    confirmed        = models.BooleanField(default=True)
     create_at        = models.DateField(auto_now=False)
 
     def __str__(self):
@@ -228,7 +231,7 @@ class Annonce(models.Model):
     id          = models.AutoField(primary_key=True)
     title       = models.CharField(max_length=50, blank=False, null=True)
     person      = models.ForeignKey("contacts.Person", on_delete=models.CASCADE)
-    video       = models.FileField(upload_to="video/%y", blank=True, validators=[file_size])
+    video       = models.FileField(upload_to="video/%y", blank=True, null=True, validators=[file_size])
     description = models.CharField(max_length=500, blank=True)
     date_start  = models.DateField(auto_now=True)
     date_end    = models.DateField(auto_now=True)

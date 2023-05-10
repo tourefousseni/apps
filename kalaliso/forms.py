@@ -190,7 +190,7 @@ class PaymentForm(forms.ModelForm):
                 Column('delivered'),
                  ),
         )
-class AnnonceForm(forms.ModelForm):
+class AnonceForm(forms.ModelForm):
     class Meta:
         model = Annonce
         template_name = 'kalaliso/annonce.html'

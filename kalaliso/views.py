@@ -153,13 +153,13 @@ def album(request):
     return render(request, 'kalaliso/album.html', context)
 
 
-def annonce(request):
-    annonce = Annonce.objects.all()
-
-    context = {
-        'ann': annonce,
-    }
-    return render(request, 'kalaliso/annonce.html', context)
+# def annonce(request):
+#     annonce = Annonce.objects.all()
+#
+#     context = {
+#         'ann': annonce,
+#     }
+#     return render(request, 'kalaliso/annonce.html', context)
 
 
 # def list(request):
@@ -420,14 +420,14 @@ def depense(request, ):
         form = DepenseForm()
     return render(request, 'kalaliso/depense.html', {'form': form})
 
-def annonce(request, ):
+def anonce(request,):
     if request.method == 'POST':
-        form = AnnonceForm(request.POST)
+        form = AnonceForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('kalaliso:annonce')
     else:
-        form = AnnonceForm()
+        form = AnonceForm()
     return render(request, 'kalaliso/annonce.html', {'form': form})
 
 # ===========================

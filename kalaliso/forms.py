@@ -28,7 +28,9 @@ class MesureForm(forms.ModelForm):
     class Meta:
         model = Mesure
         template_name = 'kalaliso/mesure.html'
-        fields = ['coude', 'epaule',
+        fields = [
+                  'person',
+                  'coude', 'epaule',
                   'manche_courte', 'manche_longue',
                   'tour_manche','taille',
                   'poitrine','longueur_boubou',
@@ -86,7 +88,7 @@ class OrderForm(forms.ModelForm):
         template_name = 'kalaliso/order.html'
         fields = ['person_id',
                   'reception',
-                  'localization',
+                  # 'localization',
                   'confirmed',
                   'cancelled',
                   'rendez_vous',

@@ -58,7 +58,7 @@ class Product(models.Model):
         ('Tenu Securite', 'Tenu Securite'),
         ('AUTRES', 'AUTRES'),)
     name              = models.CharField(max_length=50, choices=Name, default='Boubou',)
-    TAILLE            = (
+    SIZE            = (
         ('S', 'S'),
         ('M', 'M'),
         ('L', 'L'),
@@ -66,7 +66,7 @@ class Product(models.Model):
         ('XXL', 'XXL'),
         ('XXXL', 'XXXL'),
         ('AUTRES', 'AUTRES'),)
-    taille              = models.CharField(max_length=50, choices=TAILLE)
+    size                = models.CharField(max_length=50, choices=SIZE, default='S',)
     photo               = models.ImageField(upload_to='photos/')
     code_product        = models.CharField(max_length=30,  verbose_name='ID')
     description         = models.CharField(max_length=200, blank=True, null=True)
@@ -90,7 +90,7 @@ class Order(models.Model):
     code_order     = models.CharField(max_length=30, blank=True, verbose_name='Code order')
     reception      = models.BooleanField(default=True)
     rendez_vous    = models.DateField(auto_now=False)
-    localization   = models.ForeignKey('maps.Region', on_delete=models.CASCADE, verbose_name='Localisation',)
+    # localization   = models.ForeignKey('maps.Region', on_delete=models.CASCADE, verbose_name='Localisation',)
     confirmed      = models.BooleanField(default=False)
     cancelled      = models.BooleanField(default=False)
     remise         = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)

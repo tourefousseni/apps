@@ -11,6 +11,13 @@ from .utils import unique_code_id_generator
 #                  MODELE ACCOUNTS
 #                        START
 # ==============================================
+# class MyUsermanager(UserManager):
+#     def create_user(self, username, email=None, password=None, **extra_fields):
+#
+#
+#     def create_superuser(self, username, email=None, password=None, **extra_fields):
+
+
 class User(AbstractUser):
     objects = UserManager()
     # id = models.AutoField(primary_key=True)

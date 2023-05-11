@@ -1,7 +1,7 @@
 import random
 
 import string
-from .models import  AbstractUser
+from .models import  AbstractBaseUser
 
 
 

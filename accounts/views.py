@@ -31,7 +31,7 @@ def register(request):
                 messages.success(request, 'votre compte a ete bien cree !')
                 return redirect('accounts:connect')
             else:
-                messages.error(request, "le compte n'est pas correctement, il faut ressayer encore ....")
+                messages.error(request, "ce compte n'est pas correctement, il faut ressayer encore ....")
         return render(request, 'accounts/register.html', {'form': form})
 
         # GET FORM VALUES

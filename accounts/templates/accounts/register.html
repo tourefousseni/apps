@@ -19,7 +19,8 @@
           {% for message in messages  %}
           <h5 class="text-center" style="color: red">{{ message }}</h5>
       {% endfor %}
-          <div class="card-title">
+          <div class="RegisterForm">
+                        <div class="card-title">
               <div class="card-body">
 {#                   {% include 'partials/_alerts.html' %}#}
                       <form method="post" action="{% url 'accounts:register' %}" enctype="multipart/form-data">
@@ -67,6 +68,8 @@
                                           </div>
                       </form>
               </div>
+          </div>
+
           </div>
       </div>
  </section>

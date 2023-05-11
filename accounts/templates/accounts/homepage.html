@@ -87,7 +87,7 @@
       <div class="card-body">
         <h6 class="card-text text-center">CLIENTS</h6><hr>
          <p  class="text-center" href="#"> </p>
-          <p></p>
+          <p>client=Person.objects.count(status='Client')</p>
 {#         <p  class="text-center" href="#">{{ customer }} </p>#}
           <h4 class="text-center" style="color: white">
           </h4>
@@ -99,7 +99,7 @@
       <div class="card-body">
         <h6 class="card-text text-center">COMMANDER</h6><hr>
          <p  class="text-center" href="#"> </p>
-          <p></p>
+          <p>com=Order.objects.count()</p>
           <h4 class="text-center " style="color: white">
           </h4>
       </div>
@@ -110,6 +110,7 @@
           <div class="card-body">
             <h6 class="card-text text-center">MODELES</h6><hr>
               <p  class="text-center" href="#"> </p>
+              <p>mod=Product.objects.count()</p>
               <h4 class="text-center " style="color: white"> </h4>
           </div>
         </div>
@@ -133,6 +134,7 @@
       <div class="card-body">
         <h6 class="card-text text-center">VENTE</h6><hr>
          <p  class="text-center" href="#"> </p>
+          <p>vent=Payment.objects.count(status='TRUE')</p>
           <h4 class="text-center " style="color: white">
           </h4>
       </div>
@@ -143,6 +145,7 @@
           <div class="card-body">
             <h6 class="card-text text-center">ABONNEES</h6><hr>
               <p  class="text-center" href="#"> </p>
+              <p>abon=User.objects.count()</p>
               <h4 class="text-center " style="color: white "> </h4>
           </div>
         </div>

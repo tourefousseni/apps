@@ -17,16 +17,16 @@ class ParcelAdmin(admin.ModelAdmin):
 
 @admin.register(Region)
 class RegionAdmin(admin.ModelAdmin):
-   list_display = [ 'reg', 'region', 'pays' ]
+   list_display = [ 'id', 'reg', 'region', 'pays' ]
 
 @admin.register(Cercle)
 class CercleAdmin(admin.ModelAdmin):
-   list_display = [ 'id_cer', 'reg', 'name' ]
+   list_display = [ 'id', 'cer', 'cercle' ]
 
 @admin.register(Commune)
 class CommuneAdmin(admin.ModelAdmin):
-   list_display = ['id_com', 'cer','name']
+   list_display = ['id', 'com','commune']
 
 @admin.register(Village)
 class VillageAdmin(admin.ModelAdmin):
-   list_display = [ 'id_vil', 'com','name']
+   list_display = [ 'id', 'vil','village']

@@ -110,6 +110,8 @@ USE_TZ = True
 
 #SETTING FILES FOR USER
 AUTH_USER_MODEL = "accounts.User"
+#AUTOMATIC TO CREATE ID
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/

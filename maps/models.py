@@ -59,41 +59,44 @@ class Casier(models.Model):
 
 
 class Village(models.Model):
-    parcel       = models.ForeignKey('Parcel', on_delete=models.CASCADE,)
-    id_vil       = models.IntegerField(blank=True, primary_key=True )
-    com          = models.ForeignKey('Commune', on_delete=models.CASCADE, verbose_name='Commune',)
-    name         = models.CharField(max_length=50, blank=True)
+    # parcel          = models.ForeignKey('Parcel', on_delete=models.CASCADE,)
+    id          = models.AutoField(primary_key=True )
+    # com             = models.ForeignKey('Commune', on_delete=models.CASCADE, verbose_name='Commune',)
+    vil         = models.CharField(max_length=50, blank=True, verbose_name='quartier/village')
+    village         = models.CharField(max_length=50, blank=True, verbose_name='quartier/village')
     # point        = models.PointField(geography=True, blank=True, null=True)
 
     def __str__(self):
-        return '{}'.format(self.name)
+        return '{}'.format(self.village)
 
 
 class Commune(models.Model):
-    id_com    = models.IntegerField( blank=True, primary_key=True)
-    cer       = models.ForeignKey('Cercle', on_delete=models.CASCADE, verbose_name='Cercle',)
-    name      = models.CharField(max_length=50, blank=True)
+    id           = models.AutoField(primary_key=True)
+    # cer          = models.ForeignKey('Cercle', on_delete=models.CASCADE, verbose_name='Cercle',)
+    com           = models.CharField(max_length=50, blank=True)
+    commune      = models.CharField(max_length=50, blank=True)
     # point     = models.PointField(geography=True,blank=True, null=True)
 
     def __str__(self):
-        return '{}'.format(self.name)
+        return '{}'.format(self.commune)
 
 
 class Cercle(models.Model):
-    id_cer    = models.IntegerField(blank=True,primary_key=True)
-    reg       = models.ForeignKey('Region', on_delete=models.CASCADE,  verbose_name='Region',)
-    name      = models.CharField(max_length=50, blank=True)
+    id          = models.AutoField(primary_key=True)
+    # reg         = models.ForeignKey('Region', on_delete=models.CASCADE,  verbose_name='Region',)
+    cer         = models.CharField(max_length=50, blank=True)
+    cercle      = models.CharField(max_length=50, blank=True)
     # point     = models.PointField(geography=True, blank=True, null=True)
 
     def __str__(self):
-        return '{}'.format(self.name)
+        return '{}'.format(self.cercle)
 
 
 class Region(models.Model):
     id          = models.AutoField(primary_key=True)
-    reg         = models.IntegerField()
+    reg         = models.PositiveIntegerField()
     region      = models.CharField(max_length=100,)
-    pays        = models.IntegerField()
+    pays        = models.PositiveIntegerField()
     # point     = models.PointField(geography=True, blank=True, null=True)
 
     def __str__(self):

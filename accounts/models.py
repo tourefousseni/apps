@@ -23,51 +23,43 @@ class My_manager(BaseUserManager):
             raise ValueError("Users must have an email address")
         if not password:
             raise ValueError("Users must have a password")
-        user = self.model(
+        user_obj = self.model(
             email=self.normalize_email(email)
         )
-        user.first_name = first_name
-        user.last_name = last_name
-        user.username = username
-        user.phone = phone
-        user.set_password(password)
-        user.staff = is_staff
-        user.admin = is_admin
-        user.active = is_active
-        user.save(using=self._db)
+        user_obj.first_name = first_name
+        user_obj.last_name = last_name
+        user_obj.username = username
+        user_obj.phone = phone
+        user_obj.set_password(password)
+        user_obj.staff = is_staff
+        user_obj.admin = is_admin
+        user_obj.active = is_active
 
-        return user
+        user_obj.save(using=self._db)
 
-        # user  = self.create_user(
-        #     email,
-        #     first_name,
-        #     phone,
-        #     last_name,
-        #     username,
-        #     password=password,
-        #     is_staff=True,
-        # )
-        # return user
+        return user_obj
 
-    def create_superuser(self, username, first_name, last_name,email, phone,
-                           password=None, **extra_fields):
+    def create_superuser(self, username, first_name, last_name,
+                         is_active=True, is_staff=False, is_admin=False,
+                         password=None, **extra_fields):
+        user_obj = self.create_user()
+        # user_obj.email=email
+        user_obj.username=username
+        user_obj.first_name=first_name
+        user_obj.last_name=last_name
+        # user_obj.phone=phone
+        user_obj.set_password(password)
+        user_obj.is_staff=True
+        user_obj.is_admin=True
+        user_obj.is_active=is_active
+
+        user_obj.save(using=self._db)
+
+        return user_obj
+
+    def create_agent(self, username, phone,
+                      password=None, **extra_fields):
         user = self.create_user(
-            phone,
-            first_name,
-            last_name,
-            phone,
-            password=password,
-            is_staff=True,
-            is_admin=True,
-        )
-        return user
-
-    def create_agent(self, username, phone, email,
-                     first_name, last_name, password=None, **extra_fields):
-        user = self.create_user(
-            email,
-            first_name,
-            last_name,
             phone,
             username,
             password=password,

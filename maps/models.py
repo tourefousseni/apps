@@ -62,8 +62,11 @@ class Village(models.Model):
     # parcel          = models.ForeignKey('Parcel', on_delete=models.CASCADE,)
     id          = models.AutoField(primary_key=True )
     # com             = models.ForeignKey('Commune', on_delete=models.CASCADE, verbose_name='Commune',)
-    vil         = models.CharField(max_length=50, blank=True, verbose_name='quartier/village')
-    village         = models.CharField(max_length=50, blank=True, verbose_name='quartier/village')
+    id_vil      = models.PositiveIntegerField()
+    village     = models.CharField(max_length=50, blank=True, verbose_name='quartier/village')
+    long        = models.FloatField( )
+    alt         = models.CharField(max_length=50, blank=True, )
+    lat         = models.FloatField()
     # point        = models.PointField(geography=True, blank=True, null=True)
 
     def __str__(self):
@@ -73,7 +76,7 @@ class Village(models.Model):
 class Commune(models.Model):
     id           = models.AutoField(primary_key=True)
     # cer          = models.ForeignKey('Cercle', on_delete=models.CASCADE, verbose_name='Cercle',)
-    com           = models.CharField(max_length=50, blank=True)
+    id_com           = models.PositiveIntegerField()
     commune      = models.CharField(max_length=50, blank=True)
     # point     = models.PointField(geography=True,blank=True, null=True)
 
@@ -83,8 +86,8 @@ class Commune(models.Model):
 
 class Cercle(models.Model):
     id          = models.AutoField(primary_key=True)
-    # reg         = models.ForeignKey('Region', on_delete=models.CASCADE,  verbose_name='Region',)
-    cer         = models.CharField(max_length=50, blank=True)
+    # reg       = models.ForeignKey('Region', on_delete=models.CASCADE,  verbose_name='Region',)
+    id_cer      = models.PositiveIntegerField()
     cercle      = models.CharField(max_length=50, blank=True)
     # point     = models.PointField(geography=True, blank=True, null=True)
 
@@ -94,9 +97,8 @@ class Cercle(models.Model):
 
 class Region(models.Model):
     id          = models.AutoField(primary_key=True)
-    reg         = models.PositiveIntegerField()
+    id_reg      = models.PositiveIntegerField()
     region      = models.CharField(max_length=100,)
-    pays        = models.PositiveIntegerField()
     # point     = models.PointField(geography=True, blank=True, null=True)
 
     def __str__(self):

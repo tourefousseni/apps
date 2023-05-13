@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse, FileResponse
 from django.template import context
@@ -18,7 +18,7 @@ from . import forms
 from .forms import *
 # Create your views here.
 
-def maps(request, ):
+def maps(request):
     return render(request, 'maps/maps.html',)
 
 
@@ -27,7 +27,7 @@ def region(request):
         form = RegionForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('cercle')
+            return redirect('maps:cercle')
     else:
             form = RegionForm()
     return render(request, 'localisation/region.html', {'form': form})
@@ -37,7 +37,7 @@ def cercle(request):
         form = CercleForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('commune')
+            return redirect('maps:commune')
     else:
         form = CercleForm()
     return render(request, 'localisation/cercle.html', {'form': form})
@@ -47,7 +47,7 @@ def commune(request):
         form = CommuneForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('village')
+            return redirect('maps:village')
     else:
         form = CommuneForm()
     return render(request, 'localisation/commune.html', {'form': form})
@@ -57,7 +57,7 @@ def village(request):
         form = VillageForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('village'))
+            return redirect('maps:village')
     else:
         form = VillageForm()
     return render(request, 'localisation/village.html', {'form': form})

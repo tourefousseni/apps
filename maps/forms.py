@@ -47,6 +47,8 @@ class VillageForm(forms.ModelForm):
         model = Village
         fields = '__all__'
 
+        exclude=['alt', 'long', 'lat']
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)

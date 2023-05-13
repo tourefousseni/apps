@@ -8,7 +8,7 @@
  <div class="row">
     <div class="regionform">
         <h5 class="text-left offset-1"> Region</h5><hr>
-        <form action="{% url 'region' %}" method="post">
+        <form action="{% url 'maps:region' %}" method="post">
            {% csrf_token %}
                 <div class="row offset-1">
                     {{ form | crispy }}

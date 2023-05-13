@@ -29,6 +29,8 @@ class CercleForm(forms.ModelForm):
         model = Cercle
         fields = '__all__'
 
+        exclude = ['id_cer', 'cercle']
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)

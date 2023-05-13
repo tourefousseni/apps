@@ -61,7 +61,7 @@ class Casier(models.Model):
 class Village(models.Model):
     # parcel          = models.ForeignKey('Parcel', on_delete=models.CASCADE,)
     id          = models.AutoField(primary_key=True )
-    # com             = models.ForeignKey('Commune', on_delete=models.CASCADE, verbose_name='Commune',)
+    com         = models.ForeignKey('Commune', on_delete=models.CASCADE, verbose_name='Communes',)
     id_vil      = models.PositiveIntegerField()
     village     = models.CharField(max_length=50, blank=True, verbose_name='quartier/village')
     long        = models.FloatField( )
@@ -75,8 +75,8 @@ class Village(models.Model):
 
 class Commune(models.Model):
     id           = models.AutoField(primary_key=True)
-    # cer          = models.ForeignKey('Cercle', on_delete=models.CASCADE, verbose_name='Cercle',)
-    id_com           = models.PositiveIntegerField()
+    cer          = models.ForeignKey('Cercle', on_delete=models.CASCADE, verbose_name='Cercles',)
+    id_com       = models.PositiveIntegerField()
     commune      = models.CharField(max_length=50, blank=True)
     # point     = models.PointField(geography=True,blank=True, null=True)
 
@@ -86,7 +86,7 @@ class Commune(models.Model):
 
 class Cercle(models.Model):
     id          = models.AutoField(primary_key=True)
-    # reg       = models.ForeignKey('Region', on_delete=models.CASCADE,  verbose_name='Region',)
+    reg         = models.ForeignKey('Region', on_delete=models.CASCADE,  verbose_name='Regions',)
     id_cer      = models.PositiveIntegerField()
     cercle      = models.CharField(max_length=50, blank=True)
     # point     = models.PointField(geography=True, blank=True, null=True)

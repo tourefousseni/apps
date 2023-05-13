@@ -1,11 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
-
 from .models import   Region, Cercle, Casier, Commune, Village, Parcel
-
-
-
 
 @admin.register(Casier)
 class CasierAdmin(admin.ModelAdmin):

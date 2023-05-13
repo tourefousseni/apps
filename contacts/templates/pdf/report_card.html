@@ -12,9 +12,9 @@
                                         <p>Nom          : {{ view_person.nom }}</p>
                                         <p>Prenom       : {{ view_person.prenom }}</p>
                                         <p>Telephone    : {{view_person.contact_1 }}</p>
-                                        <p>Code         : {{ view_person.code_person }}</p>
-                            <a href="{% url 'contacts:list' %}" class="card-link">Return to list</a>
-                            <a href="{% url 'contacts:report_card' view_person.id %}" class="card-link">Generated PDF</a>
+                                        <p>Identifiant  : {{ view_person.code_person }}</p>
+{#                            <a href="{% url 'contacts:list' %}" class="card-link">Return to list</a>#}
+{#                            <a href="{% url 'contacts:report_card' view_person.id %}" class="card-link">Generated PDF</a>#}
                           </div>
                  </div>
 

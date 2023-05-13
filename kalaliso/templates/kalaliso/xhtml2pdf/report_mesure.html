@@ -52,7 +52,7 @@
                   <th>Cuisse</th>
                   <th>Patte</th>
                   <th>Create_at</th>
-                  <th>Update_at</th>
+{#                  <th>Update_at</th>#}
             </tr>
       </thead>
       <tbody>
@@ -60,8 +60,8 @@
                            <tr>
 
                                 <td>{{ mesure.id }}</td>
-                                <td>{{ mesure.person_mesure.prenom }}</td>
-                                <td>{{ mesure.person_mesure.nom }}</td>
+                                <td>{{ mesure.person.prenom }}</td>
+                                <td>{{ mesure.person.nom }}</td>
                                 <td>{{ mesure.coude }}</td>
                                 <td>{{ mesure.epaule }}</td>
                                 <td>{{ mesure.manche_courte }}</td>
@@ -76,7 +76,7 @@
                                 <td>{{ mesure.cuisse }}</td>
                                 <td>{{ mesure.patte }}</td>
                                 <td>{{ mesure.created_at }}</td>
-                                <td>{{ mesure.update_at }}</td>
+{#                                <td>{{ mesure.update_at }}</td>#}
                            </tr>
                     {% empty %}
                 {% endfor %}

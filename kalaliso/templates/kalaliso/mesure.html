@@ -18,6 +18,9 @@
     <div class="card-title"><h2 class="text-center"> Ajouter nouveau mesure </h2>
         <div class="card-body">
             <div class="row col-lg-12">
+                {% for message in messages  %}
+                 <h5 class="text-center" id="message" style="color: red">{{ message }}</h5>
+              {% endfor %}
            <div class="Mesureform"><br>
             <form action="{% url 'kalaliso:mesure' %}" method="post">
             {% csrf_token %}

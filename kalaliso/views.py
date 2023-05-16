@@ -37,18 +37,19 @@ def mesure(request):
         form = MesureForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success('votre registrement est fait avec succes !')
             # return HttpResponse('mesure_list')
             # return redirect('/')
             return redirect('kalaliso:list')
     else:
         form = MesureForm()
         # form = PersonForm()
-    return render(request, 'kalaliso/mesure.html', {'form': form})
+    return render(request, 'kalaliso/mesure.html', {'form': form, 'messages':messages})
 
 
 def list(request, *args, **kwargs):
     list_mesure  = Mesure.objects.all().order_by('-id')
-    paginator    = Paginator(list_mesure, 3)
+    paginator    = Paginator(list_mesure, 10)
     page_number  = request.GET.get('page')
     page_obj     = paginator.get_page(page_number)
     person_number= list_mesure.count()

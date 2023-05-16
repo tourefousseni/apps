@@ -43,7 +43,7 @@ def person(request):
 def list(request,):
     object        = Person.objects.all().order_by('-id')
     obj           = Person.objects.all()
-    paginator     = Paginator(object, 4)
+    paginator     = Paginator(object, 10)
     page_number   = request.GET.get('page')
     page_object   = paginator.get_page(page_number)
     person_number = object.count()

@@ -48,7 +48,7 @@ def mesure(request):
 
 def list(request, *args, **kwargs):
     list_mesure  = Mesure.objects.all().order_by('-id')
-    paginator    = Paginator(list_mesure, 1)
+    paginator    = Paginator(list_mesure, 3)
     page_number  = request.GET.get('page')
     page_obj     = paginator.get_page(page_number)
     person_number= list_mesure.count()
@@ -132,17 +132,18 @@ def report_mesure(request):
 
 def search_mesure(request):
     search = request.GET.get('search')
-    filter_mesure = Mesure.objects.filter(Q(coude__icontains=search))
-    # |
-    # Q(epaule__icontains=search))
-    # person_number = list_person.count()
-    # message = f' results : {person_number }'
-    # if person_number == 1:
-    #       message = f' results : {person_number }'
+    filter_mesure = Mesure.objects.filter(Q(coude__icontains=search)|
+                                          Q(epaule__icontains=search)|
+                                          Q(poitrine__icontains=search)
+    )
+    person_number = filter_mesure.count()
+    message = f' results : {filter_mesure }'
+    if person_number == 1:
+          message = f' results : {filter_mesure }'
 
     context = {
         'filter_mesure': filter_mesure,
-        # 'message': message
+        'message': message
     }
     return render(request, 'kalaliso/search_mesure.html', context)
 
@@ -233,22 +234,22 @@ def report_order_pdf(request, order_id):
 #     }
 #     return render(request, 'kalaliso/person_list.html', context)
 
-def paginator_list_mesure(request):
-    list_mesure = Mesure.objects.all().order_by('id')
-    paginator = Paginator(list_mesure, 5)
-    page_number = request.GET.get('page')
-    page_object = paginator.get_page(page_number)
-    person_number = list_mesure.count()
-    message = f'{person_number} Nombre:'
-    if page_number == 1:
-        message = f'{page_number} Nombre :'
-    context = {
-        'list_mesure': page_object,
-        'person_number': person_number,
-        'message': message,
-    }
-    return render(request, 'kalaliso/paginators/list_mesure_paginator.html', context)
-    # return render(request, 'kalaliso/person_list.html', context)
+# def paginator_list_mesure(request):
+#     list_mesure = Mesure.objects.all().order_by('id')
+#     paginator = Paginator(list_mesure, 5)
+#     page_number = request.GET.get('page')
+#     page_object = paginator.get_page(page_number)
+#     person_number = list_mesure.count()
+#     message = f'{person_number} Nombre:'
+#     if page_number == 1:
+#         message = f'{page_number} Nombre :'
+#     context = {
+#         'list_mesure': page_object,
+#         'person_number': person_number,
+#         'message': message,
+#     }
+#     return render(request, 'kalaliso/paginators/list_mesure_paginator.html', context)
+#     # return render(request, 'kalaliso/person_list.html', context)
 
 
 # def info_person(request, id):

@@ -8,4 +8,4 @@ ALTER ROLE myprojectuser SET client_encoding TO 'utf8';
 ALTER ROLE myprojectuser SET timezone TO 'UTC';
 GRANT ALL PRIVILEGES ON DATABASE plateform TO myprojectuser;
 \c plateform;
-Create extension postgis;
+create extension postgis;

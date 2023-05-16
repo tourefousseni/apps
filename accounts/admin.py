@@ -12,9 +12,10 @@ class AccountsAdmin(admin.ModelAdmin):
                     'phone',
                     "is_staff",
                     "is_active",
-                    'phone',
+                    "is_admin",
+
                     "date_joined",)
-    exclude = ('code', 'img', )
+    exclude = ('code', 'img', 'phone_fix', 'date_birth' )
     # list_filter = ("is_staff")
     search_fields = ("last_name__startswith",)
 admin.site.site_header = 'Admininstration kalaliso'

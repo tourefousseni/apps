@@ -23,7 +23,7 @@
              <p><h3 class="text-center">Bienvenue chez kalaliso</h3></p>
                 <p><h5 class="text-center" >Connectez-vous ici !</h5><hr></p>
               {% for message in messages  %}
-                 <h5 class="text-center" style="color: red">{{ message }}</h5>
+                 <h5 class="text-center" id="message" style="color: red">{{ message }}</h5>
               {% endfor %}
 {#            Alerts#}
 {#             {% include 'partials/_alerts.html' %}#}
@@ -49,6 +49,7 @@
          </div>
        </div>
     </div>
+               <script src="{% static 'js/main.js' %}"></script>
 </section>
 {#{% endblock %}#}
 

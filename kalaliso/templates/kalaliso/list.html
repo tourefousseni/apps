@@ -129,7 +129,7 @@
               {% endif %}
 
               <li class="page-item">
-                  <p class="page-link text-muted">Page {{ list_mesure.number }} / {{ list_mesure.paginator.num_pages }} </p>
+                  <p class="page-link text-muted">Page {{ list_mesure.number }} of  {{ list_mesure.paginator.num_pages }} </p>
               </li>
 
               {% if list_mesure.has_next %}
@@ -143,6 +143,7 @@
 </nav>
 
     </div>
+</div>
 </div>
 </div>
 

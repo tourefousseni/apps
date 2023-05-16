@@ -41,8 +41,22 @@ def person(request):
     return render (request, 'person/person.html', {'form': form})
 
 def list(request,):
-    obj = Person.objects.all().order_by('-id')
-    context = {'obj': obj,}
+    object        = Person.objects.all().order_by('-id')
+    obj           = Person.objects.all()
+    paginator     = Paginator(object, 4)
+    page_number   = request.GET.get('page')
+    page_object   = paginator.get_page(page_number)
+    person_number = object.count()
+    message       = f'{person_number} Nombre:'
+    if page_number == 1:
+        message   = f'{page_number} Nombre :'
+
+    context       = {
+        'object': object,
+        'obj': page_object,
+        'person_number': person_number,
+        'message': message,
+    }
     return render(request, 'person/list_person.html', context)
 
 
@@ -69,21 +83,21 @@ def search_person(request):
 
 #PAGINATOR ON PERSON LIST
 
-def person_paginator(request):
-    obj            = Person.objects.all().order_by('id')
-    paginator      = Paginator(obj, 3)
-    page_number    = request.GET.get('page')
-    page_object    = paginator.get_page(page_number)
-    person_number  = obj.count()
-    message        = f'{ person_number } Nombre:'
-    if page_number == 1:
-       message = f'{ page_number } Nombre :'
-    context = {
-        'obj': page_object,
-        'person_number': person_number,
-        'message': message,
-    }
-    return render(request, 'paginator/person_paginator.html', context)
+# def person_paginator(request):
+#     obj            = Person.objects.all().order_by('id')
+#     paginator      = Paginator(obj, 2)
+#     page_number    = request.GET.get('page')
+#     page_object    = paginator.get_page(page_number)
+#     person_number  = obj.count()
+#     message        = f'{ person_number } Nombre:'
+#     if page_number == 1:
+#        message = f'{ page_number } Nombre :'
+#     context = {
+#         'obj': page_object,
+#         'person_number': person_number,
+#         'message': message,
+#     }
+#     return render(request, 'person/list_person.html', context)
 
 def delete(request, id):
     del_contact = Person.objects.get(id=id).delete()

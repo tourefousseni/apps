@@ -47,11 +47,20 @@ def mesure(request):
 
 
 def list(request, *args, **kwargs):
-    list_mesure = Mesure.objects.all().order_by('-id')
-    obj = Person.objects.all()
+    list_mesure  = Mesure.objects.all().order_by('-id')
+    paginator    = Paginator(list_mesure, 1)
+    page_number  = request.GET.get('page')
+    page_obj     = paginator.get_page(page_number)
+    person_number= list_mesure.count()
+
+    message = f'{person_number} Nombre:'
+    if page_number == 1:
+            message   = f'{page_number} Nombre :'
+
     context = {
-        'list_mesure': list_mesure,
-        'obj': obj,
+        'list_mesure': page_obj,
+        'person_number': person_number,
+        'message': message,
     }
     return render(request, 'kalaliso/list.html', context)
 

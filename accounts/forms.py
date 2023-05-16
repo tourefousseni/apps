@@ -22,6 +22,9 @@ import datetime
 #         fields = ('username', 'email')
 
 class RegisterForm(UserCreationForm):
+    date_birth = forms.DateField(label="Date Birth", widget=forms.DateInput(attrs={
+        'class': 'form-control',
+        'type': 'date'}))
     email      = forms.EmailField(label='email', widget=forms.EmailInput(attrs={'class': 'form-control','placeholder':'Enter Email Here' }))
     last_name  = forms.CharField(label='last_name', widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Last Name' }))
     first_name = forms.CharField(label='first_name', widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'First Name' }))
@@ -33,8 +36,11 @@ class RegisterForm(UserCreationForm):
                 'last_name',
                 'username',
                 'email',
+                'date_birth',
                 'password',
                 'password2']
+
+
 
 class LoginForm(forms.Form):
     username =forms.CharField(max_length=65)

@@ -86,7 +86,7 @@ class User(AbstractBaseUser):
     first_name   = models.CharField(max_length=200, blank=True, null=True)
     last_name    = models.CharField(max_length=200, blank=True, null=True)
     email        = models.EmailField('email address', unique=True)
-    date_birth   = models.DateField(auto_now=True)
+    date_birth   = models.DateField()
     date_joined  = models.DateTimeField(auto_now_add=True)
 
     active = models.BooleanField(default=True)

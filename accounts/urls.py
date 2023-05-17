@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls import url
-from accounts import views
+from .views import *
+# from accounts import views
 from django.conf import settings
 
 app_name = 'accounts'

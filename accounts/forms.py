@@ -1,10 +1,14 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
-from django.contrib.auth.models import AbstractUser, User
+from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth import get_user_model
 from django import forms
 from django.forms import widgets
 import datetime
+from accounts.models import User
+from .views import *
 
+# User = get_user_model()
 
 # ==============================================
 #                  FORM ACCOUNTS
@@ -20,31 +24,34 @@ import datetime
 #     class Meta:
 #         model = get_user_model
 #         fields = ('username', 'email')
+# from accounts.views import UserRegisterForm
 
-class RegisterForm(UserCreationForm):
+
+class UserRegistrationForm(UserCreationForm):
     # date_birth = forms.DateField(label="Date Birth", widget=forms.DateInput(attrs={
     #     'class': 'form-control',
     #     'type': 'date'}))
-    email      = forms.EmailField(label='email', widget=forms.EmailInput(attrs={'class': 'form-control','placeholder':'Enter Email Here' }))
-    last_name  = forms.CharField(label='last_name', widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Last Name' }))
-    first_name = forms.CharField(label='first_name', widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'First Name' }))
+    # email      = forms.EmailField(label='email', widget=forms.EmailInput(attrs={'class': 'form-control','placeholder':'Enter Email Here' }))
+    # last_name  = forms.CharField(label='last_name', widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Last Name' }))
+    # first_name = forms.CharField(label='first_name', widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'First Name' }))
 
     class Meta:
-            model =get_user_model()
+            model = get_user_model()
             fields = [
+                'email',
                 'first_name',
                 'last_name',
                 'username',
-                'email',
+                'phone',
                 # 'date_birth',
                 'password',
                 'password2']
 
 
 
-class LoginForm(forms.Form):
-    username =forms.CharField(max_length=65)
-    password= forms.CharField(max_length=65, widget=forms.PasswordInput)
+# class LoginForm(forms.Form):
+#     username =forms.CharField(max_length=65)
+#     password= forms.CharField(max_length=65, widget=forms.PasswordInput)
 
             # self.fields['username'].widget.attrs['class']        = 'form-control'
             # self.fields['username'].widget.attrs['placeholder']  = 'Pseudo'
@@ -62,24 +69,25 @@ class LoginForm(forms.Form):
             # self.fields['password2'].help_text                   = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
 
 
-class EditProfileForm(UserChangeForm):
-        password = forms.CharField(label="", widget=forms.TextInput(attrs={'type': 'hidden'}))
-
-        class Meta:
-            model = get_user_model()
-            fields = ('username',
-                      'first_name',
-                      'last_name',
-                      'email',
-                      'password')
-
-
-class  PasswordRsestForm(PasswordChangeForm):
-    password = forms.CharField(label="", widget=forms.TextInput(attrs={'type': 'hidden'}))
-
-    class Meta:
-        model = get_user_model()
-        fields = ('__all__')
+# class EditProfileForm(UserChangeForm):
+#         password = forms.CharField(label="", widget=forms.TextInput(attrs={'type': 'hidden'}))
+#
+#         class Meta:
+#             model = User
+#             fields = ('username',
+#                       'first_name',
+#                       'last_name',
+#                       'email',
+#                       'phone',
+#                       'password')
+#
+#
+# class  PasswordRsestForm(PasswordChangeForm):
+#     password = forms.CharField(label="", widget=forms.TextInput(attrs={'type': 'hidden'}))
+#
+#     class Meta:
+#         model = User
+#         fields = ('__all__')
 
 
 # ==============================================

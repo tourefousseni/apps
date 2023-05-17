@@ -1,7 +1,5 @@
 from django.contrib.gis.db import models
-# from django.contrib.auth.models import BaseUserManager
 from django.contrib.auth.base_user import AbstractBaseUser,  BaseUserManager
-# from django.contrib.auth.models import AbstractUser, UserManager
 from django.db.models.signals import pre_save
 from .utils import unique_code_id_generator
 from pyblog import settings
@@ -11,13 +9,14 @@ from pyblog import settings
 #                        START
 # ==============================================
 class My_manager(BaseUserManager):
-    def create_user(self, email, first_name, last_name, phone, password=None, ):
+    def create_user(self, email, first_name,  last_name,username, phone, password=None, ):
         if not email:
             raise ValueError("vous devez entrez une adresse email ici")
         user = self.model( first_name=first_name, last_name=last_name, phone=phone,
                            password=password,email=self.normalize_email(email))
         user.first_name = first_name
         user.last_name = last_name
+        user.username = username
         user.phone = phone
         user.set_password(password)
         user.staff = True
@@ -26,8 +25,8 @@ class My_manager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, first_name, last_name, phone, password=None, ):
-        user = self.create_user(email, first_name,last_name, phone, password,)
+    def create_superuser(self, email, first_name, last_name,username, phone, password=None, ):
+        user = self.create_user(email, first_name,last_name,username, phone, password,)
         user.set_password(password)
         user.staff=   True
         user.admin=   False
@@ -46,13 +45,13 @@ class User(AbstractBaseUser):
     )
     genre = models.CharField(max_length=20, choices=GENRE, default='')
     # user = models.OneToOneField('User', on_delete=models.CASCADE, related_name='userone')
-    phone        = models.CharField(max_length=20, blank=True, null=True)
+    phone        = models.CharField(max_length=20, blank=False,)
     phone_fix    = models.CharField(max_length=20, blank=True, null=True)
     img          = models.ImageField(upload_to='img/', blank=True, null=True)
     code         = models.CharField(max_length=2000)
-    username     = models.CharField(max_length=200, blank=True, null=True)
+    username     = models.CharField(max_length=200, blank=False, )
     first_name   = models.CharField(max_length=200, blank=False)
-    last_name    = models.CharField(max_length=200, blank=True, null=True)
+    last_name    = models.CharField(max_length=200, blank=False, null=True)
     email        = models.EmailField('email address', unique=True,blank=False)
     # date_birth   = models.DateField( blank=True, null=True)
     date_joined  = models.DateTimeField(auto_now_add=True)
@@ -62,7 +61,7 @@ class User(AbstractBaseUser):
     admin = models.BooleanField(default=False)  # a superuser
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'phone' ]
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'username', 'phone', ]
 
     def get_full_name(self):
         # The user is identified by their email address

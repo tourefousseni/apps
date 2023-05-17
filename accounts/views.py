@@ -3,17 +3,18 @@ from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, UserChangeForm
 from django.contrib.auth import authenticate,  login, get_user_model, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-from .forms import RegisterForm, LoginForm
+# from .forms import UserRegistrationForm, LoginForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, FileResponse
+from accounts.forms import UserRegistrationForm
 import io
 from .import views
 import time
 time.sleep(5)
 
-from accounts.models import *
+from accounts.models import User
 from .forms import *
 
 def dashboard(request):
@@ -22,17 +23,44 @@ def dashboard(request):
 def homepage(request):
     return render(request, 'accounts/homepage.html')
 
+# class UserRegistrationForm(UserCreationForm):
+#     class Meta:
+#         model = User
+#         # fields = (UserCreationForm.Meta.fields)
+#         fields = ('email', 'first_name', 'last_name', 'username', 'phone', 'password')
+
 def register(request):
-    form = RegisterForm()
     if request.method == 'POST':
-        form = RegisterForm()
-    if form.is_valid():
-        form.save()
-        messages.success(request, 'votre compte a ete bien cree !')
-        return redirect('accounts:homepage')
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:connect')
     else:
-        messages.error(request, "ce compte n'est pas correctement, il faut ressayer encore ....")
-    return render(request, 'accounts/register.html', {'form': form})
+        form = UserRegistrationForm()
+    #    if form.is_valid():
+    #         form.save()
+    #     # messages.success(request, 'votre compte a ete bien cree !')
+    #         return HttpResponse("bienvenu chez kalaliso !")
+    #     else:
+    #       context["errors"] = form.errors
+    # form = UserRegisterForm()
+    # context["form"]=form
+    return render(request, 'accounts/register.html', {'form':form})
+
+
+# def register(request):
+#     context ={}
+#     if request.method == 'POST':
+#         form = UserRegisterForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#         # messages.success(request, 'votre compte a ete bien cree !')
+#             return HttpResponse("bienvenu chez kalaliso !")
+#         else:
+#           context["errors"] = form.errors
+#     form = UserRegisterForm()
+#     context["form"]=form
+#     return render(request, 'accounts/register.html', context=context)
 
         # GET FORM VALUES
       # first_name  = request.POST.get('first_name')

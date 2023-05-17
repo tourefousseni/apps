@@ -23,6 +23,7 @@
 
          <br/>
             <tr>
+                  <th>ID</th>
                   <th>Code</th>
                   <th>Prenom</th>
                   <th>Nom</th>
@@ -39,6 +40,7 @@
              {% for person in obj %}
                      <tr>
                                 <a href="{% url 'contacts:list'  %}"></a>
+                                <td>{{ person.id }}</td>
                                 <td>{{ person.code_person }}</td>
                                 <td>{{ person.prenom }}</td>
                                 <td>{{ person.nom }}</td>

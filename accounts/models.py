@@ -3,6 +3,7 @@ from django.contrib.auth.base_user import AbstractBaseUser,  BaseUserManager
 from django.db.models.signals import pre_save
 from .utils import unique_code_id_generator
 from pyblog import settings
+# from phonenumber_field.modelfields import PhoneNumberField
 
 # ==============================================
 #                  MODELE ACCOUNTS
@@ -47,6 +48,7 @@ class User(AbstractBaseUser):
     # user = models.OneToOneField('User', on_delete=models.CASCADE, related_name='userone')
     phone        = models.CharField(max_length=20, blank=False,)
     phone_fix    = models.CharField(max_length=20, blank=True, null=True)
+    # phone_number = models.PhoneNumberField()
     img          = models.ImageField(upload_to='img/', blank=True, null=True)
     code         = models.CharField(max_length=2000)
     username     = models.CharField(max_length=200, blank=False, )

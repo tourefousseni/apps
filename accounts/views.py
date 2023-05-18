@@ -46,14 +46,6 @@ def register(request, ):
             return redirect('accounts:connect')
     else:
         form = UserRegistrationForm()
-    #    if form.is_valid():
-    #         form.save()
-    #     # messages.success(request, 'votre compte a ete bien cree !')
-    #         return HttpResponse("bienvenu chez kalaliso !")
-    #     else:
-    #       context["errors"] = form.errors
-    # form = UserRegisterForm()
-    # context["form"]=form
     return render(request, 'accounts/register.html', {'form':form})
 
 def connect(request, ):

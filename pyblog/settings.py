@@ -36,6 +36,9 @@ INSTALLED_APPS = [
     # Our the app
     'django.contrib.gis',
     'leaflet',
+    'fabric',
+    # 'phonenumber_field',
+
     # 'bootstrap module', #
     'django_bootstrap_datetimepicker',
     'crispy_forms',

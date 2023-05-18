@@ -12,7 +12,7 @@
         <div class="card-title"><h4 class="justify-content-left">INSCRIPTION</h4></div>
         <div class="row col-md-8 text-center">
           <div class="Personform">
-            <form action="{% url 'contacts:update' id  %}" method="post">
+            <form action="{% url 'contacts:person' %}" method="post">
                  {% csrf_token %}
                        <div class="row offset-0">
 
@@ -47,7 +47,6 @@
                                          <input type="submit" value="Submit" class="btn btn-primary col-md-3">
                                          <input type="reset" value="Reset" class="btn btn-danger col-md-3">
                                          <a href="{% url 'contacts:list'  %}" class="btn btn-info col-md-3">Repertoire</a>
-                                         <a href="{% url 'contacts:update' id %}" class="btn btn-info col-md-3">Mise a jour</a>
                                 </div>
 
                         </div>

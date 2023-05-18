@@ -114,6 +114,12 @@ def detail(request, id):
     }
     return render (request, 'person/person_detail.html', context)
 
+def update(request, id):
+    update_person = Person.objects.update(id=id)
+    context = {
+        'update_person': update_person,
+    }
+    return render(request, 'person/person.html', context)
 
 # OUTPUT CARD ADDRESS PERSON ON PDF
 def report_card(request, id):

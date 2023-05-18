@@ -1,5 +1,6 @@
 {#{% extends 'base.html' %}#}
-{##}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
 {% load static %}
 
 <head>
@@ -12,9 +13,7 @@
 
 </head>
 
-{#{% block content %}#}
-
-
+{% block content %}
 <section class="vh-100" style="background-color: #eee;"><br><br><br><br>
 
       <div class="card col-md-4 offset-md-4 " >
@@ -27,9 +26,12 @@
               {% endfor %}
 {#            Alerts#}
 {#             {% include 'partials/_alerts.html' %}#}
-                <form method="post" action="{% url 'accounts:connect' %}" enctype="multipart/form-data">
+                <form method="POST" action="{% url 'accounts:connect' %}" enctype="multipart/form-data">
                 {% csrf_token %}
                     <card class="border-bottom form-control-color">
+                        <div class="form-outline mb-4">
+                                <input type="email" id="email" class="form-control" placeholder="Email"/>
+                        </div>
                         <div class="form-outline mb-4">
                                 <input type="text" id="text" class="form-control" placeholder="Username"/>
                         </div>
@@ -45,11 +47,20 @@
                         </div>
                     </card>
                 </form>
+{#          <form  method="POST" action="{% url 'accounts:connect' %}" enctype="multipart/form-data">#}
+{#                          {% csrf_token %}#}
+{#                          {{ form|crispy }}#}
+{##}
+{#                             <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">#}
+{#                                <button type="submit" value="login" class="btn btn-primary btn-lg" > LOGIN</button>#}
+{#                             </div>#}
+{#          </form>#}
+
             </div>
          </div>
        </div>
     </div>
                <script src="{% static 'js/main.js' %}"></script>
 </section>
-{#{% endblock %}#}
+{% endblock %}
 

@@ -8,7 +8,7 @@ import datetime
 from accounts.models import User
 from .views import *
 
-# User = get_user_model()
+# UserModel = get_user_model()
 
 # ==============================================
 #                  FORM ACCOUNTS
@@ -44,14 +44,23 @@ class UserRegistrationForm(UserCreationForm):
                 'username',
                 'phone',
                 # 'date_birth',
-                'password',
+                'password1',
                 'password2']
 
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=200)
+    phone    = forms.CharField(max_length=20)
+    password = forms.CharField( widget=forms.PasswordInput)
 
-
-# class LoginForm(forms.Form):
-#     username =forms.CharField(max_length=65)
-#     password= forms.CharField(max_length=65, widget=forms.PasswordInput)
+    class Meta:
+            model = get_user_model()
+            fields = [
+                'email',
+                'username',
+                'phone',
+                # 'date_birth',
+                'password1',
+                'password2']
 
             # self.fields['username'].widget.attrs['class']        = 'form-control'
             # self.fields['username'].widget.attrs['placeholder']  = 'Pseudo'

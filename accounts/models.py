@@ -11,7 +11,7 @@ from pyblog import settings
 class My_manager(BaseUserManager):
     def create_user(self, email, first_name,  last_name,username, phone, password=None, ):
         if not email:
-            raise ValueError("vous devez entrez une adresse email ici")
+            raise ValueError("vous devez entre une adresse email ici !")
         user = self.model( first_name=first_name, last_name=last_name, phone=phone,
                            password=password,email=self.normalize_email(email))
         user.first_name = first_name
@@ -20,8 +20,8 @@ class My_manager(BaseUserManager):
         user.phone = phone
         user.set_password(password)
         user.staff = True
-        user.admin = False
-        user.active = False
+        user.admin = True
+        user.active = True
         user.save(using=self._db)
         return user
 
@@ -29,7 +29,7 @@ class My_manager(BaseUserManager):
         user = self.create_user(email, first_name,last_name,username, phone, password,)
         user.set_password(password)
         user.staff=   True
-        user.admin=   False
+        user.admin=   True
         user.active=  True
 
         user.save(using=self._db)
@@ -58,7 +58,7 @@ class User(AbstractBaseUser):
 
     active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False)  # a admin user; non super-user
-    admin = models.BooleanField(default=False)  # a superuser
+    admin = models.BooleanField(default=True)  # a superuser
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'username', 'phone', ]
@@ -101,9 +101,9 @@ class User(AbstractBaseUser):
         # "Is the user active?"
         return self.active
 
-    class Meta:
-        verbose_name = "user"
-        verbose_name_plural = "users"
+    # class Meta:
+    #     verbose_name = "user"
+    #     verbose_name_plural = "users"
 
 def pre_save_code_id(instance, sender, *args, **kwargs):
     if not instance.code:

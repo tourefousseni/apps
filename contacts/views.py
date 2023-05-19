@@ -40,6 +40,32 @@ def person(request):
         form = PersonForm
     return render (request, 'person/person.html', {'form': form})
 
+
+def update(request, id):
+    person       = Person.objects.get(id=id)
+    form         = PersonForm(instance=person)
+    if request.method == 'POST':
+        form     = PersonForm(request.POST, instance=person)
+        if form.is_valid():
+            form.save()
+    context      = {'form':form }
+    return render(request, 'person/person.html', context)
+
+def delete(request, id):
+    person = Person.objects.get(id=id)
+    if request.method == 'POST':
+        person.delete()
+        return redirect('contacts:list')
+    context = { 'person': person }
+    return render(request, 'person/delete.html', context)
+
+def detail(request, id):
+    person_detail = Person.objects.get(id=id)
+    context = {
+        'view_person': person_detail,
+    }
+    return render (request, 'person/person_detail.html', context)
+
 def list(request,):
     object        = Person.objects.all().order_by('-id')
     obj           = Person.objects.all()
@@ -99,27 +125,9 @@ def search_person(request):
 #     }
 #     return render(request, 'person/list_person.html', context)
 
-def delete(request, id):
-    del_contact = Person.objects.get(id=id).delete()
-    # del_contact.delete()
-    context = {
-        'delete': del_contact
-    }
-    return render(request, 'person/list_person.html', context)
 
-def detail(request, id):
-    person_detail = Person.objects.get(id=id)
-    context = {
-        'view_person': person_detail,
-    }
-    return render (request, 'person/person_detail.html', context)
 
-def update(request, id):
-    update_person = Person.objects.update(id=id)
-    context = {
-        'update_person': update_person,
-    }
-    return render(request, 'person/person.html', context)
+
 
 # OUTPUT CARD ADDRESS PERSON ON PDF
 def report_card(request, id):

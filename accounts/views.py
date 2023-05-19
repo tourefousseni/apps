@@ -165,7 +165,7 @@ def connect(request, ):
 
 @login_required
 def disconnect(request):
-    logout(request)
+    logout(request,)
 
      # # return redirect('accounts:homepage')
      # messages.success(request, 'vous etes deconnecte')

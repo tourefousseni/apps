@@ -21,12 +21,12 @@
           <div class="card-body">
              <p><h3 class="text-center">Bienvenue chez kalaliso</h3></p>
                 <p><h5 class="text-center" >Connectez-vous ici !</h5><hr></p>
-              {% for message in messages  %}
-                 <h5 class="text-center" id="message" style="color: red">{{ message }}</h5>
-              {% endfor %}
+{#              {% for message in messages  %}#}
+{#                 <h5 class="text-center" id="message" style="color: red">{{ message }}</h5>#}
+{#              {% endfor %}#}
 {#            Alerts#}
 {#             {% include 'partials/_alerts.html' %}#}
-                <form method="POST" action="{% url 'accounts:connect' %}" enctype="multipart/form-data">
+                <form method="post" action="{% url 'accounts:connect' %}" >
                 {% csrf_token %}
                     <card class="border-bottom form-control-color">
                         <div class="form-outline mb-4">

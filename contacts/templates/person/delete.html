@@ -4,14 +4,21 @@
 {% load static %}
 {% block content %}
 
-    <body>
-            <p> Vous voulez supprimer cette adresse  {{ person }} ?</p>
-            <form action="{% url 'contacts:delete' person.id %}" method="post">
-                {% csrf_token %}
+    <div class="row">
+            <div class="col-md-6">
+                    <div class="card card-body">
+                        <p> Vous voulez supprimer cette adresse ? <h5> {{ person }}</h5> </p>
+                        <form action="{% url 'contacts:delete' person.id %}" method="post">
+                            {% csrf_token %}
+                            <a href="{% url 'contacts:person'  %}" class="btn btn-warning">Annuller</a>
+                            <button class="btn btn-danger" type="submit" name="Confirm"> Confirmer </button>
+{#                            <button class="btn btn-success" type="submit" name="cancel"> Annuler </button>#}
+                        </form>
 
-                <button class="btn btn-danger" type="submit" name="Confirm"> Confirmer </button>
-                <button class="btn btn-success" type="submit" name="cancel"> Annuler </button>
-            </form>
-    </body>
+                    </div>
+            </div>
+    </div>
+
+
 
 {% endblock %}

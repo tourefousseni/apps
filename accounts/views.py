@@ -23,11 +23,6 @@ def dashboard(request):
 def homepage(request):
     return render(request, 'accounts/homepage.html')
 
-# class UserRegistrationForm(UserCreationForm):
-#     class Meta:
-#         model = User
-#         # fields = (UserCreationForm.Meta.fields)
-#         fields = ('email', 'first_name', 'last_name', 'username', 'phone', 'password')
 
 def register(request, ):
     if request.method == 'POST':
@@ -43,7 +38,8 @@ def register(request, ):
             # user = authenticate(username=username, email=email, first_name=first_name
             #                    , last_name=last_name, phone=phone, password=password)
             # login(request, user)
-            return redirect('accounts:connect')
+            return render(request, 'accounts/login.html')
+            # return redirect('accounts:connect')
     else:
         form = UserRegistrationForm()
     return render(request, 'accounts/register.html', {'form':form})
@@ -163,9 +159,10 @@ def connect(request, ):
 #
 #     return render(request, 'accounts/login.html')
 
-@login_required
+# @login_required
 def disconnect(request):
-    logout(request,)
+    logout(request)
+    return redirect('accounts:homepage')
 
      # # return redirect('accounts:homepage')
      # messages.success(request, 'vous etes deconnecte')

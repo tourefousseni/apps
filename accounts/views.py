@@ -64,10 +64,11 @@ def connect(request, ):
                             password2=password2
                             )
 
-        if user is not None and user.is_active:
+        if user is not None and user.active:
             login(request, user)
             messages.success(request, 'Bienvenue chez kalaliso')
-    return redirect('accounts:dashboard')
+    return render(request, 'accounts/login.html')
+    # return redirect('accounts:dashboard')
         # else:
         #     messages.error(request, "erreur d'authentification")
 

@@ -83,7 +83,7 @@
  </div>
 
 <a href="{% url 'kalaliso:list' %}"></a>
-    <div class="col-md-4 ">
+    <div class="col-md-4 offset-2">
            <form >
                       <input placeholder="Search ..." class="form-control form-control-dark" type="search" name="search">
                       <button class="btn btn-success my-2" type="submit">Search</button>
@@ -96,7 +96,7 @@
               height="60%" width="100%" class="img-thumbnail" alt="...">
 
               <ul class="d-inline">
-              <small><li >Model: {{ product.name }} </li></small>
+                  <small><li >Model: {{ product.name }} </li></small>
                   <small><li>Price: {{ product.price }}<span> FCFA </span></li></small>
                   <small><li>Code: {{  product.code_product }}</li></small>
                   <small><li>Date de creation: {{ product.create_at }}</li></small>

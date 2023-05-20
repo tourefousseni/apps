@@ -81,7 +81,7 @@ def pre_save_product_id(instance, sender, *args, **kwargs):
             instance.code_product = unique_product_id_generator(instance)
 
 pre_save.connect(pre_save_product_id, sender=Product)
-#
+
 
 class Order(models.Model):
     objects = None

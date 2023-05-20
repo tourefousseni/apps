@@ -92,22 +92,21 @@
 {% for product in list %}
     {% if forloop.first %}<div class="row col-md-8 offset-2 ">{% endif %}
     <div class="col-md-4 offset-0">
-      <div >
          <img src="{{product.photo.url}}"
-              height="70%" width="100%" class="img-thumbnail" alt="...">
+              height="60%" width="100%" class="img-thumbnail" alt="...">
 
               <ul class="d-inline">
-              <li >Model: {{ product.name }} </li>
-              <li>Price: {{ product.price }}<span> FCFA </span></li>
-              <li>Code: {{  product.code_product }}</li>
-              <li>Date de creation: {{ product.create_at }}</li>
-              <li>Detail : {{ product.description|truncatewords:1 }}</li>
-              <li>Publie par : kalaliso</li>
+              <small><li >Model: {{ product.name }} </li></small>
+                  <small><li>Price: {{ product.price }}<span> FCFA </span></li></small>
+                  <small><li>Code: {{  product.code_product }}</li></small>
+                  <small><li>Date de creation: {{ product.create_at }}</li></small>
+                  <small><li>Detail : {{ product.description|truncatewords:1 }}</li></small>
+                  <small><li>Publie par : kalaliso</li></small>
+
+                  <small><button class="btn btn-success m-2">Commander</button></small>
+                  <small><button class="btn btn-dark">View</button></small>
           </ul>
 
-          <button class="btn btn-success m-2">Commander</button>
-          <button class="btn btn-dark">View</button>
-      </div>
     </div>
         {% if forloop.counter|divisibleby:3 %}
     </div>

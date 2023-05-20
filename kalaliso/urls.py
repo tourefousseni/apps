@@ -10,6 +10,7 @@ urlpatterns = [
      path('list/', views.list, name='list'),
      path('report_mesure/', views.report_mesure, name='carnet_mesure'),
      path('detail/<int:id>/', views.detail, name='detail'),
+     path('carnet/<int:id>/', views.carnet, name='carnet'),
      path('search/', views.search_mesure, name='search_mesure'),
      path('search_products_list/', views.search_products_list, name='search_products_list'),
      # path('paginator_list_mesure/', views.paginator_list_mesure, name='paginator_list_mesure'),

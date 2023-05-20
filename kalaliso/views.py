@@ -37,7 +37,7 @@ def mesure(request):
         form = MesureForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success('votre registrement est fait avec succes !')
+            # messages.success( f'votre registrement est fait avec succes !')
             # return HttpResponse('mesure_list')
             # return redirect('/')
             return redirect('kalaliso:list')
@@ -122,6 +122,25 @@ def report_mesure(request):
     context = {'mesure_list': mesures}
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'filename="report_mesure.pdf"'
+    template = get_template(template_path)
+    html = template.render(context)
+    status = pisa.CreatePDF(html, dest=response)
+
+    if status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
+def carnet(request, id):
+    mesure = Mesure.objects.get(pk=id)
+    # list_person = Person.objects.get(pk=id)
+
+    template_path = 'kalaliso/xhtml2pdf/carnet_mesure.html'
+    context = {
+        'mesure_list': mesure,
+        # 'person': list_person
+    }
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="carnet.pdf"'
     template = get_template(template_path)
     html = template.render(context)
     status = pisa.CreatePDF(html, dest=response)

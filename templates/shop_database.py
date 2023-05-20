@@ -1,7 +1,8 @@
-from .models import *
+from kalaliso.models import *
 
 class Product_shop(models.Model):
     name              = models.CharField(primary_key=True, max_length=50,)
+    slug              = models.SlugField()
     def __str__(self):
         return'{}'.format(self.name)
 
@@ -10,14 +11,14 @@ class Sous_Product_shop(models.Model):
     ETAT              = (
         ('Nouveau', 'Nouveau'),
         ('Second main', 'Second main'),
-        ('Reconditionned', 'Reconditionned'),)
+        ('Reparer', 'Reparer'),)
 
     etat              = models.CharField(max_length=50, choices=ETAT, default='Nouveau',)
-    photo             = models.ImageField(upload_to='photos_shop/')
-    product_show      = models.ManyToManyField(Product_shop, verbose_name='Sous Produits')
-    description       = models.CharField(max_length=200, blank=True, null=True)
+    photo_product     = models.ImageField(upload_to='photos_product/', blank=True)
+    product_show      = models.ForeignKey(Product_shop, on_delete=models.CASCADE, verbose_name='Sous Produits')
+    description       = models.CharField(max_length=400, blank=True, null=True)
     slug              = models.SlugField()
-    status            = models.BooleanField(default=True)
+    status            = models.BooleanField(default=True, verbose_name='disponible')
     price             = models.DecimalField(decimal_places=2, max_digits=20, default=100.25, null=True, blank=True)
     create_at         = models.DateField(auto_now=True)
 
@@ -26,16 +27,19 @@ class Sous_Product_shop(models.Model):
 
 class Poster_shop(models.Model):
     NAME_POSTER_SHOP  = (
-        ('Nouveau', 'Nouveau'),
-        ('Second main', 'Second main'),
-        ('Reconditionned', 'Reconditionned'),)
-    name_poster_shop  = models.CharField(max_length=50, choices=NAME_POSTER_SHOP, default='Nouveau',)
+        ('Person', 'Person'),
+        ('Atelier', 'Atelier'),
+        ('Usine', 'Usine'),
+        ('Centre de formation', 'Centre de formation'),
+        ('Boutique', 'Boutique'),
+        ('commissionaire', 'commissionaire'),)
+    name_poster_shop  = models.CharField(max_length=100, choices=NAME_POSTER_SHOP, default='',)
     contact           = models.CharField(max_length=50, blank=True, null=True)
     pseudo            = models.CharField(max_length=50, null=True, blank=True)
     description       = models.TextField(null=True, blank=True)
     status            = models.BooleanField(default=True)
     email             = models.EmailField()
-    date_post = models.DateTimeField(auto_now_add=True)
+    date_post         = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return'{}'.format(self.name_poster_shop)
@@ -58,7 +62,8 @@ class Order_shop(models.Model):
     qty               = models.IntegerField()
     amount            = models.IntegerField()
     status            = models.BooleanField(default=True)
-    email             = models.EmailField()
+    taxe              = models.IntegerField()
+    remise            = models.IntegerField()
     created_at        = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -76,10 +81,6 @@ class Paiement_shop(models.Model):
     mode_payment      = models.CharField(max_length=50, choices=MODE_PAYMENT, default='Espece', )
     id_achecteur      = models.ForeignKey(Acheteur_shop, on_delete=models.CASCADE)
     order_show        = models.ForeignKey(Order_shop, on_delete=models.CASCADE)
-    price             = models.IntegerField()
-    amount            = models.IntegerField()
-    taxe              = models.IntegerField()
-    remise            = models.IntegerField()
     status            = models.BooleanField(default=True)
     created_at        = models.DateTimeField(auto_now_add=False)
 

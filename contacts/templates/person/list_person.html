@@ -1,8 +1,19 @@
 {% extends 'base.html' %}
 {% block title %} Liste des clients {% endblock %}
 
-{% block content %}<br><br><br><br>
-   <div class="card col-md-10 d-flex">
+<style>
+ .card{
+  displaY: inline-grid;
+  position: absolute;
+  width: 100%;
+  text-align: left;
+    }
+.pagination{
+    position: absolute;
+}
+</style>
+{% block content %}
+   <div class="card col-lg-12 ">
    <div class="card-title">
        <h4 class="justify-content-center">LISTE DES CLIENTS</h4>
     </div>

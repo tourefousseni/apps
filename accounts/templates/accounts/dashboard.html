@@ -2,6 +2,80 @@
 {% load static %}
 
 {% block content %}
+    <div class="container">
+        <div class="row  ">
+            <h5> STATISTIQUES </h5><hr>
+            <div class="row col-lg-12">
+              <div class="col-sm-4">
+                <div class="card" style="background: ghostwhite; height: 200px; width: 360px" >
+                  <div class="card-body">
+                    <h6 class="card-text text-center">CLIENTS</h6><hr>
+                     <p  class="text-center" href="#"> </p>
+                      <p>client=Person.objects.count(status='Client')</p>
+            {#         <p  class="text-center" href="#">{{ customer }} </p>#}
+                      <h4 class="text-center" style="color: white">
+                      </h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 ">
+                <div class="card" style="background: ghostwhite ;  height: 200px; width: 360px">
+                  <div class="card-body">
+                    <h6 class="card-text text-center">COMMANDER</h6><hr>
+                     <p  class="text-center" href="#"> </p>
+                      <p>com=Order.objects.count()</p>
+                      <h4 class="text-center " style="color: white">
+                      </h4>
+                  </div>
+                </div>
+              </div>
+                <div class="col-sm-4">
+                    <div class="card" style="background: ghostwhite;  height: 200px; width: 360px">
+                      <div class="card-body">
+                        <h6 class="card-text text-center">MODELES</h6><hr>
+                          <p  class="text-center" href="#"> </p>
+                          <p>mod=Product.objects.count()</p>
+                          <h4 class="text-center " style="color: white"> </h4>
+                      </div>
+                    </div>
+              </div>
+            </div><hr>
+
+            <div class="row col-lg-12 ">
+              <div class="col-sm-4">
+                <div class="card" style="background: ghostwhite;  height: 200px; width: 360px">
+                  <div class="card-body">
+                    <h6 class="card-text text-center">NOUVEAUTES</h6><hr>
+                     <p  class="text-center" href="#"> </p>
+            {#         <p  class="text-center" href="#">{{ customer }} </p>#}
+                      <h4 class="text-center" style="color: white;">
+                      </h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 ">
+                <div class="card" style="background: ghostwhite ;  height: 200px; width: 360px">
+                  <div class="card-body">
+                    <h6 class="card-text text-center">VENTE</h6><hr>
+                     <p  class="text-center" href="#"> </p>
+                      <p>vent=Payment.objects.count(status='TRUE')</p>
+                      <h4 class="text-center " style="color: white">
+                      </h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 ">
+                    <div class="card" style="background: ghostwhite ; height: 200px; width: 360px">
+                      <div class="card-body">
+                        <h6 class="card-text text-center">ABONNEES</h6><hr>
+                          <p  class="text-center" href="#"> </p>
+                          <p>abon=User.objects.count()</p>
+                          <h4 class="text-center " style="color: white "> </h4>
+                      </div>
+                    </div>
+              </div>
+      </div>
+    </div>
 
     {#<-- TopNavbar -->#}
 {#     {% include 'partials/_topnavbar.html' %}#}

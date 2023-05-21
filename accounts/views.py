@@ -29,15 +29,6 @@ def register(request, ):
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            # username= form.cleaned_data['username']
-            # email= form.cleaned_data['email']
-            # last_name= form.cleaned_data['last_name']
-            # first_name= form.cleaned_data['first_name']
-            # phone= form.cleaned_data['phone']
-            # password= form.cleaned_data['password']
-            # user = authenticate(username=username, email=email, first_name=first_name
-            #                    , last_name=last_name, phone=phone, password=password)
-            # login(request, user)
             messages.info(request, "votre compte a ete bien cree")
             return redirect('accounts:connect')
     else:
@@ -70,96 +61,6 @@ def connect(request):
             login(request, user)
             messages.success(request, 'Bienvenue chez kalaliso')
     return redirect('accounts:dashboard')
-        # else:
-        #     messages.error(request, "erreur d'authentification")
-
-        # form = LoginForm(request.POST)
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect('accounts:homepage')
-    # else:
-    #     form = LoginForm()
-    #    if form.is_valid():
-    #         form.save()
-    #     # messages.success(request, 'votre compte a ete bien cree !')
-    #         return HttpResponse("bienvenu chez kalaliso !")
-    #     else:
-    #       context["errors"] = form.errors
-    # form = UserRegisterForm()
-    # context["form"]=form
-    # return render(request, 'accounts/login.html')
-
-
-# def register(request):
-#     context ={}
-#     if request.method == 'POST':
-#         form = UserRegisterForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#         # messages.success(request, 'votre compte a ete bien cree !')
-#             return HttpResponse("bienvenu chez kalaliso !")
-#         else:
-#           context["errors"] = form.errors
-#     form = UserRegisterForm()
-#     context["form"]=form
-#     return render(request, 'accounts/register.html', context=context)
-
-        # GET FORM VALUES
-      # first_name  = request.POST.get('first_name')
-      # last_name   = request.POST.get('last_name')
-      # username    = request.POST.get('username')
-      # email       = request.POST.get('email')
-      # password1   = request.POST.get('password1')
-      # password2   = request.POST.get('password2')
-
- # Check if passwords match
-
-      # if password1 == password2:
-          # check username
-          # if User.objects.filter(username=username).exists():
-          #     messages.error(request, 'that username is take')
-          #     return redirect('accounts:register')
-          # else:
-
-              # if User.objects.filter(email=email).exists():
-              #     messages.error(request, 'this email is using')
-              #     return redirect('accounts:register')
-              # else:
-              # # LOOKS GOOD
-              #  user = User.objects.create_user(first_name=first_name,
-              #                                  last_name=last_name,
-              #                                  username=username,
-              #                                  email=email,
-              #                                  password1=password1,
-              #                                  password2=password2)
-
-              # authenticate.login(request, user)
-              # messages.success(request, 'you are now logged in')
-              # return redirect('accounts:dashboard')
-              # user.save()
-              # messages.success(request, 'you are now registered and can log in')
-              # return redirect('accounts:connect')
-        # else:
-        #   messages.error(request,'Passwords do not match')
-        #   return redirect('accounts:register')
-    # else:
-    #   return render(request, 'accounts/register.html')
-
-# def connect(request):
-#     if request.method == 'POST':
-#         email = request.POST.get('email')
-#         username = request.POST.get('username')
-#         password = request.POST.get('password')
-#         user = authenticate(request, email=email,username=username,  password=password)
-#         if user is not None and user.active:
-#             login(request, user)
-#             messages.success(request, 'vous pouvez connecte maintenant ! ')
-#             return redirect('accounts:homepage')
-#         else:
-#             # messages.error(request, "erreur d'authentification ")
-#             return redirect('accounts:connect')
-#
-#     return render(request, 'accounts/login.html')
 
 # @login_required
 def disconnect(request):

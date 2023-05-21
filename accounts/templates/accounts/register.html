@@ -99,7 +99,12 @@
 
           </div>
       </div>
-                <script src="{% static 'js/main.js' %}"></script>
+{#                <script src="{% static 'js/main.js' %}"></script>#}
+                <script >
+                    setTimeout(function () {
+                      $('#alert').fadeOut('slow');
+},                     3000);
+                </script>
  </section>
 
 {% endblock %}

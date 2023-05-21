@@ -14,10 +14,10 @@
 </style>
 
 {% block content %}<br>
-<div class="card col-md-8 offset-3">
+<div class="card col-lg-12 d-flex">
     <div class="card-title"><h2 class="text-center"> Ajouter nouveau mesure </h2>
         <div class="card-body">
-            <div class="row col-lg-12">
+{#            <div class="row col-lg-12">#}
 {#                {% for message in messages  %}#}
 {#                 <h5 class="text-center" id="message" style="color: red">{{ message }}</h5>#}
 {#              {% endfor %}#}
@@ -25,7 +25,7 @@
             <form action="{% url 'kalaliso:mesure' %}" method="post">
             {% csrf_token %}
             <div class="row ">
-              <div class="col-md-10 offset-1 ">
+              <div class="col-md-8 offset-1 ">
                <div class="row ">
                         <div class="form-group col-sm-12 mb-0">
                             {{ form.person |as_crispy_field }}
@@ -85,7 +85,7 @@
       </form>
 
     </div>
- </div>
+{# </div>#}
 </div>
 
 </div>

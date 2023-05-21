@@ -39,12 +39,11 @@ def register(request, ):
             #                    , last_name=last_name, phone=phone, password=password)
             # login(request, user)
             messages.info(request, "votre compte a ete bien cree")
-            return render(request, 'accounts/login.html')
-            # return redirect('accounts:connect')
+            return redirect('accounts:connect')
     else:
 
         form = UserRegistrationForm()
-    messages.info(request, ("la creation de votre compte est echouee"))
+        messages.info(request, ("la creation de votre compte est echouee"))
     return render(request, 'accounts/register.html', {'form':form})
 
 def connect(request):
@@ -70,8 +69,7 @@ def connect(request):
         if user is not None and user.active:
             login(request, user)
             messages.success(request, 'Bienvenue chez kalaliso')
-    return render(request, 'accounts/login.html')
-    # return redirect('accounts:dashboard')
+    return redirect('accounts:dashboard')
         # else:
         #     messages.error(request, "erreur d'authentification")
 

@@ -22,7 +22,7 @@
                           <input placeholder="Search ..." class="form-control form-control-dark"
                                  type="search" name="search">
                                  <button class="btn btn-primary my-2" type="submit">Search</button>
-                                 <a href="{% url 'contacts:person' %}" class="btn btn-info">Ajouter a Nouveau</a><br>
+                                 <a href="{% url 'contacts:person' %}" class="btn btn-info">Ajouter a Nouveau</a>
 
          </form>
     </div>
@@ -32,7 +32,6 @@
     <table id="bootstrapdatable" class="table table-responsive-md table-bordered" width="100%">
         <thead>
 
-         <br/>
             <tr>
                   <th>ID</th>
                   <th>Code</th>
@@ -114,8 +113,8 @@
     </table>
     </div>
    </div>
-</div>
-<nav><br>
+</div><br>
+<nav>
     <ul  class="pagination justify-content-center">
               {% if obj.has_previous %}
                         <li class="page-item">

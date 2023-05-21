@@ -14,16 +14,35 @@
 </head>
 
 {% block content %}
-<section class="vh-100" style="background-color: #eee;"><br><br><br><br>
+
+<section class="vh-100" style="background-color: #eee;"><br><br><br>
+
+
+
 
       <div class="card col-md-4 offset-md-4 " >
         <div class="card-title">
           <div class="card-body">
-             <p><h3 class="text-center">Bienvenue chez kalaliso</h3></p>
-                <p><h5 class="text-center" >Connectez-vous ici !</h5><hr></p>
-{#              {% for message in messages  %}#}
-{#                 <h5 class="text-center" id="message" style="color: red">{{ message }}</h5>#}
-{#              {% endfor %}#}
+
+
+               <p>
+                  <h5 class="text-center">
+                  {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ message }}
+                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+
+                        {% endfor  %}
+                    {% endif  %}
+
+                 </h5>
+               </p>
+               <p>
+                 <h5 class="text-center" >Connectez-vous ici !</h5><hr>
+               </p>
+
 {#            Alerts#}
 {#             {% include 'partials/_alerts.html' %}#}
                 <form method="post" action="{% url 'accounts:connect' %}" >

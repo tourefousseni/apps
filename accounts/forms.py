@@ -31,9 +31,9 @@ class UserRegistrationForm(UserCreationForm):
     # date_birth = forms.DateField(label="Date Birth", widget=forms.DateInput(attrs={
     #     'class': 'form-control',
     #     'type': 'date'}))
-    # email      = forms.EmailField(label='email', widget=forms.EmailInput(attrs={'class': 'form-control','placeholder':'Enter Email Here' }))
-    # last_name  = forms.CharField(label='last_name', widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Last Name' }))
-    # first_name = forms.CharField(label='first_name', widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'First Name' }))
+    email      = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control' }))
+    last_name  = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control' }))
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
             model = get_user_model()
@@ -78,25 +78,25 @@ class LoginForm(forms.Form):
             # self.fields['password2'].help_text                   = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
 
 
-# class EditProfileForm(UserChangeForm):
-#         password = forms.CharField(label="", widget=forms.TextInput(attrs={'type': 'hidden'}))
-#
-#         class Meta:
-#             model = User
-#             fields = ('username',
-#                       'first_name',
-#                       'last_name',
-#                       'email',
-#                       'phone',
-#                       'password')
-#
-#
-# class  PasswordRsestForm(PasswordChangeForm):
-#     password = forms.CharField(label="", widget=forms.TextInput(attrs={'type': 'hidden'}))
-#
-#     class Meta:
-#         model = User
-#         fields = ('__all__')
+class EditProfileForm(UserChangeForm):
+        password = forms.CharField(label="", widget=forms.TextInput(attrs={'type': 'hidden'}))
+
+        class Meta:
+            model = get_user_model()
+            fields = ('username',
+                      'first_name',
+                      'last_name',
+                      'email',
+                      'phone',
+                      'password')
+
+
+class  PasswordRsestForm(PasswordChangeForm):
+    password = forms.CharField(label="", widget=forms.TextInput(attrs={'type': 'hidden'}))
+
+    class Meta:
+        model = get_user_model()
+        fields = ('__all__')
 
 
 # ==============================================

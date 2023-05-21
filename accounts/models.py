@@ -114,9 +114,9 @@ def pre_save_code_id(instance, sender, *args, **kwargs):
 pre_save.connect(pre_save_code_id, sender=User)
 
 # class Profile(models.Model):
-#     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+#     profile   = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 #     vendor_id = models.IntegerField()
-#     visitor = models.IntegerField()
+#     visitor   = models.IntegerField()
 
 
 # ==============================================

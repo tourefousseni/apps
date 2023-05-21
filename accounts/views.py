@@ -38,13 +38,16 @@ def register(request, ):
             # user = authenticate(username=username, email=email, first_name=first_name
             #                    , last_name=last_name, phone=phone, password=password)
             # login(request, user)
+            messages.info(request, "votre compte a ete bien cree")
             return render(request, 'accounts/login.html')
             # return redirect('accounts:connect')
     else:
+
         form = UserRegistrationForm()
+    messages.info(request, ("la creation de votre compte est echouee"))
     return render(request, 'accounts/register.html', {'form':form})
 
-def connect(request, ):
+def connect(request):
     if request.method == 'POST':
         first_name  = request.POST.get('first_name')
         last_name   = request.POST.get('last_name')
@@ -163,6 +166,7 @@ def connect(request, ):
 # @login_required
 def disconnect(request):
     logout(request)
+    messages.info(request, ("vous etes deconnecte sur le site"))
     return redirect('accounts:homepage')
 
      # # return redirect('accounts:homepage')

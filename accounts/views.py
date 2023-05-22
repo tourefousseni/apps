@@ -24,37 +24,36 @@ def homepage(request):
     return render(request, 'accounts/homepage.html')
 
 
-def register(request, ):
+def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             messages.info(request, "votre compte a ete bien cree")
             return redirect('accounts:connect')
-    else:
-
-        form = UserRegistrationForm()
-        messages.info(request, ("la creation de votre compte est echouee"))
+        else:
+            form = UserRegistrationForm()
+            messages.info(request, ("la creation de votre compte est echouee"))
     return render(request, 'accounts/register.html', {'form':form})
 
 def connect(request):
     if request.method == 'POST':
-        first_name  = request.POST.get('first_name')
-        last_name   = request.POST.get('last_name')
-        username    = request.POST.get('username')
-        phone       = request.POST.get('phone')
-        email       = request.POST.get('email')
-        password1   = request.POST.get('password1')
-        password2   = request.POST.get('password2')
+        # first_name  = request.POST['first_name']
+        # last_name   = request.POST['last_name']
+        username    = request.POST['username']
+        # phone       = request.POST['phone']
+        email       = request.POST['email']
+        password   = request.POST['password']
+        # password2   = request.POST['password2']
 
         user = authenticate(request,
-                            first_name=first_name,
-                            last_name=last_name,
+                            # first_name=first_name,
+                            # last_name=last_name,
                             username=username,
-                            phone=phone,
+                            # phone=phone,
                             email=email,
-                            password1=password1,
-                            password2=password2
+                            password=password,
+                            # password2=password2
                             )
 
         if user is not None and user.active:

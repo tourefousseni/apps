@@ -67,14 +67,32 @@ def list(request, *args, **kwargs):
 
 
 def detail(request, id):
-    mesure_detail = Mesure.objects.get(pk=id)
-    list_person = Person.objects.get(pk=id)
+    detail_view = Mesure.objects.get(pk=id)
+    # list_person = Person.objects.get(pk=person_id)
     context = {
-        'mesure_detail': mesure_detail,
-        'list_person': list_person,
+        'mesure': detail_view,
+        # 'list_person': list_person
     }
     return render(request, 'kalaliso/mesure_detail.html', context)
 
+
+def update_mesure(request, id):
+    mesure       = Mesure.objects.get(id=id)
+    form         = MesureForm(instance=mesure)
+    if request.method == 'POST':
+        form     = MesureForm(request.POST, instance=mesure)
+        if form.is_valid():
+            form.save()
+    context      = {'form':form }
+    return render(request, 'kalaliso/mesure.html', context)
+
+def delete_mesure(request, id):
+    mesure = Mesure.objects.get(id=id)
+    if request.method == 'POST':
+        mesure.delete()
+        return redirect('kalaliso:list')
+    context = { 'mesure': mesure }
+    return render(request, 'kalaliso/delete_mesure.html', context)
 
 def update(request, id):
     update_mesure = Mesure.objects.get(pk=id)

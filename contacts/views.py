@@ -138,7 +138,7 @@ def report_card(request, id):
     response['Content-Disposition'] = 'filename="card_person.pdf"'
     template = get_template(template_path)
     html = template.render(context)
-    status = pisa.CreatePDF(html, dest=response)
+    status = pisa.CreatePDF(html, dest=response, getSize='A6')
 
     if status.err:
         return HttpResponse('We had some errors <pre>' + html + '</pre>')

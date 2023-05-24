@@ -138,17 +138,10 @@ def report_card(request, id):
     response['Content-Disposition'] = 'filename="card_person.pdf"'
     template = get_template(template_path)
     html = template.render(context)
-    status = pisa.CreatePDF(html, dest=response, getSize='A6')
+    status = pisa.CreatePDF(html, dest=response)
 
     if status.err:
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
 
-# def delete(request, id):
-#     del_contact = Person.objects.delete(id=id)
-#
-#     context = {
-#         'delete_contact': del_contact,
-#     }
-#     return render (request, 'person/delete.html', context)
 

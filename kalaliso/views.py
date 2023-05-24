@@ -21,6 +21,7 @@ import datetime
 from django.forms import ModelForm
 from io import BytesIO
 from django.template.loader import get_template, select_template
+# from django.template.loader import get_template
 from django.views import View
 from xhtml2pdf import pisa
 from django.core.paginator import Paginator
@@ -68,10 +69,8 @@ def list(request, *args, **kwargs):
 
 def detail(request, id):
     detail_view = Mesure.objects.get(pk=id)
-    # list_person = Person.objects.get(pk=person_id)
     context = {
         'mesure': detail_view,
-        # 'list_person': list_person
     }
     return render(request, 'kalaliso/mesure_detail.html', context)
 
@@ -93,6 +92,20 @@ def delete_mesure(request, id):
         return redirect('kalaliso:list')
     context = { 'mesure': mesure }
     return render(request, 'kalaliso/delete_mesure.html', context)
+
+def report_carnet(request, id):
+    detail_view = Mesure.objects.get(id=id)
+    template_path = 'kalaliso/xhtml2pdf/report_carnet_mesure.html'
+    context = {'mesure': detail_view}
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="carnet_mesure.pdf"'
+    template = get_template(template_path)
+    html = template.render(context)
+    status = pisa.CreatePDF(html, dest=response)
+
+    if status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
 
 def update(request, id):
     update_mesure = Mesure.objects.get(pk=id)

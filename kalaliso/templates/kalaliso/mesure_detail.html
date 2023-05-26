@@ -4,8 +4,7 @@
 {% block title %} CARNET DE MESURE {% endblock %}
 
 {% block content %}
-
- <div class="card col-md-6">
+    <div class="card col-md-4">
   <h2>Carnet de mesure</h2>
 
                             <div class="card-body">
@@ -31,37 +30,10 @@
 
 
     </div>
+
               <div class="col-sm-4 m-2">
                          <a href="{% url 'kalaliso:report_carnet_mesure' mesure.id %}" class="btn btn-info">Generated PDF</a>
                          <a href="{% url 'kalaliso:list' %}" class="btn btn-warning">Return to List Mesure</a>
 
               </div>
 {% endblock %}
-{#                           <tr> #}
-{##}
-{#                                <td>{{ mesure.id }}</td>#}
-{#                                <td>{{ mesure.person_mesure.prenom }}</td>#}
-{#                                <td>{{ mesure.person_mesure.nom }}</td>#}
-{#                                <td>{{ mesure.coude }}</td>#}
-{#                                <td>{{ mesure.epaule }}</td>#}
-{#                                <td>{{ mesure.manche }}</td>#}
-{#                                <td>{{ mesure.tour_manche }}</td>#}
-{#                                <td>{{ mesure.taille }}</td>#}
-{#                                <td>{{ mesure.poitrine }}</td>#}
-{#                                <td>{{ mesure.longueur_boubou }}</td>#}
-{#                                <td>{{ mesure.longueur_patanlon }}</td>#}
-{#                                <td>{{ mesure.fesse }}</td>#}
-{#                                <td>{{ mesure.ceinture }}</td>#}
-{#                                <td>{{ mesure.cuisse }}</td>#}
-{#                                <td>{{ mesure.patte }}</td>#}
-{#                                <td>{{ mesure.created_at }}</td>#}
-{#                           </tr>#}
-
-
-
-{#        </tbody>#}
-{#    </table>#}
-
-{#    </div>#}
-{#            <a href="{% url 'view_mesure' mesuredetail %}" class="btn btn-info">View Mesure</a>#}
-

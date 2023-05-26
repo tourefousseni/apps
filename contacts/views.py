@@ -126,9 +126,6 @@ def search_person(request):
 #     return render(request, 'person/list_person.html', context)
 
 
-
-
-
 # OUTPUT CARD ADDRESS PERSON ON PDF
 def report_card(request, id):
     person_detail = Person.objects.get(id=id)
@@ -144,4 +141,16 @@ def report_card(request, id):
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
 
+def report_all_person(request):
+    persons = Person.objects.all().order_by('-id')
+    template_path = 'pdf/report_all_person.html'
+    context = {'all': persons}
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="report-all-adress.pdf"'
+    template = get_template(template_path)
+    html = template.render(context)
+    status = pisa.CreatePDF(html, dest=response)
 
+    if status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response

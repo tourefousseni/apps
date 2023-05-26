@@ -15,23 +15,23 @@ class My_manager(BaseUserManager):
             raise ValueError("vous devez entre une adresse email ici !")
         user = self.model( first_name=first_name, last_name=last_name, phone=phone,
                            password=password,email=self.normalize_email(email))
-        user.first_name = first_name
-        user.last_name = last_name
-        user.username = username
-        user.phone = phone
+        user.first_name    = first_name
+        user.last_name     = last_name
+        user.username      = username
+        user.phone         = phone
         user.set_password(password)
-        user.staff = True
-        user.admin = True
-        user.active = True
+        user.staff         = True
+        user.admin         = True
+        user.active        = True
         user.save(using=self._db)
         return user
 
     def create_superuser(self, email, first_name, last_name,username, phone, password=None, ):
         user = self.create_user(email, first_name,last_name,username, phone, password,)
         user.set_password(password)
-        user.staff=   True
-        user.admin=   True
-        user.active=  True
+        user.staff      =   True
+        user.admin      =   True
+        user.active     =  True
 
         user.save(using=self._db)
         return user
@@ -60,7 +60,7 @@ class User(AbstractBaseUser):
 
     active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False)  # a admin user; non super-user
-    admin = models.BooleanField(default=True)  # a superuser
+    admin = models.BooleanField(default=False)  # a superuser
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'username', 'phone', ]

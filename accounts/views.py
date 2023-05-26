@@ -25,6 +25,7 @@ def homepage(request):
 
 
 def register(request):
+    form = UserRegistrationForm()
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():

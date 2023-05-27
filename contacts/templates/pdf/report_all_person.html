@@ -2,7 +2,7 @@
 
 
 
-{#{% block content %}#}
+{% block content %}
    <div class="card col-lg-12 ">
    <div class="card-title">
        <h4 class="justify-content-center">LISTE DES CLIENTS</h4>
@@ -11,7 +11,7 @@
        <div class="table-responsive">
 
     <table id="bootstrapdatable" class="table table-responsive-md table-bordered" width="100%">
-        <thead>
+        <thead >
 
             <tr>
                   <th>ID</th>
@@ -22,14 +22,12 @@
                   <th>Genre</th>
                   <th>Contact</th>
 
-
             </tr>
       </thead>
 
       <tbody>
              {% for person in all %}
                      <tr>
-{#                                <a href="{% url 'contacts:list'  %}"></a>#}
                                 <td>{{ person.id }}</td>
                                 <td>{{ person.code_person }}</td>
                                 <td>{{ person.prenom }}</td>
@@ -47,4 +45,4 @@
 </div><br>
 
 
-{#{% endblock %}#}
+{% endblock %}

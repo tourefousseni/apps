@@ -142,7 +142,7 @@ def report_card(request, id):
     return response
 
 def report_all_person(request):
-    persons = Person.objects.all().order_by('-id')
+    persons = Person.objects.all().order_by('id')
     template_path = 'pdf/report_all_person.html'
     context = {'all': persons}
     response = HttpResponse(content_type='application/pdf')

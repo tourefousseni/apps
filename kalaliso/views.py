@@ -107,6 +107,20 @@ def report_carnet(request, id):
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
 
+def report_all_mesure(request):
+    page_obj = Mesure.objects.all()
+    template_path = 'kalaliso/xhtml2pdf/report_all_mesure.html'
+    context = {'list_mesure': page_obj,}
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="report_all_mesure.pdf"'
+    template = get_template(template_path)
+    html = template.render(context)
+    status = pisa.CreatePDF(html, dest=response)
+
+    if status.err:
+        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
 def update(request, id):
     update_mesure = Mesure.objects.get(pk=id)
     obj = Person.objects.get(pk=id)

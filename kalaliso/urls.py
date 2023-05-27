@@ -10,6 +10,7 @@ urlpatterns = [
      path('list/', views.list, name='list'),
      path('report_mesure/', views.report_mesure, name='carnet_mesure'),
      path('report_carnet/<int:id>/', views.report_carnet, name='report_carnet_mesure'),
+     path('report_all_mesure/', views.report_all_mesure, name='report_all_mesure'),
      path('detail/<int:id>/', views.detail, name='detail'),
      path('delete/<int:id>/', views.delete_mesure, name='delete_mesure'),
      path('update/<int:id>/', views.update_mesure, name='update_mesure'),

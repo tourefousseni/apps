@@ -41,10 +41,10 @@ def connect(request):
     if request.method == 'POST':
         # first_name  = request.POST['first_name']
         # last_name   = request.POST['last_name']
-        username    = request.POST['username']
+        username    = request.POST.get('username')
         # phone       = request.POST['phone']
-        email       = request.POST['email']
-        password   = request.POST['password']
+        email       = request.POST.get('email')
+        password   = request.POST.get('password')
         # password2   = request.POST['password2']
 
         user = authenticate(request,
@@ -60,7 +60,12 @@ def connect(request):
         if user is not None and user.is_active:
             login(request, user)
             messages.success(request, 'Bienvenue chez kalaliso')
-    return redirect('accounts:dashboard')
+            return redirect('accounts:dashboard')
+        else:
+            messages.warning(request, ('il faut refaire pour connecter'))
+            return redirect('accounts:dashboard')
+    else:
+        return render(request, 'registration/login.html')
 
 # @login_required
 def disconnect(request):

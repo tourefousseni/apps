@@ -2,7 +2,7 @@ from pathlib import Path
 from django.contrib.messages import constants as messages
 # from django.contrib.gis.db.backends.XXX
 import os
-from decouple import config
+from decouple import config, Csv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -13,13 +13,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('My_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG=config('My_DEBUG', cast=bool)
+DEBUG=config('My_DEBUG', default=False, cast=bool)
+# ALLOWED_HOSTS=config('My_ALLOWED_HOSTS', cast=Csv())
 
-
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS=config('My_ALLOWED_HOSTS', default='127.0.0.1', cast=Csv())
+# os.environ['My_ALLOWED_HOSTS'] = '.localhost'
 
 # Application definition
-
 INSTALLED_APPS = [
     # Listings Apps
     'paypal.standard.ipn',
@@ -85,11 +85,11 @@ WSGI_APPLICATION = 'pyblog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE':  'django.contrib.gis.db.backends.postgis',
-        'NAME':    'plateform',
-        'USER':    'myprojectuser',
-        'PASSWORD':'password',
-        'HOST':    '127.0.0.1',
-        'PORT':    '5432',
+        'NAME':    config('BD_NAME'),
+        'USER':    config('BD_USER'),
+        'PASSWORD': config('BD_PASSWORD'),
+        'HOST':    config('BD_HOST'),
+        'PORT':    config('BD_PORT'),
     }
 }
 

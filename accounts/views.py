@@ -57,7 +57,7 @@ def connect(request):
                             # password2=password2
                             )
 
-        if user is not None and user.active:
+        if user is not None and user.is_active:
             login(request, user)
             messages.success(request, 'Bienvenue chez kalaliso')
     return redirect('accounts:dashboard')
@@ -103,8 +103,6 @@ def change_password(request):
     context = {'form': form}
 
     return render(request, 'accounts/change_password.html', context)
-
-
 
 # ===========================
 #      VIEWS KALALISO

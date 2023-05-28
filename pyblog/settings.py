@@ -2,6 +2,7 @@ from pathlib import Path
 from django.contrib.messages import constants as messages
 # from django.contrib.gis.db.backends.XXX
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,10 +11,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '$s7p551k75n+3l2iuf*qv92xo+c0i5)@4&_^4ev%q&p%*x75bl'
-
+SECRET_KEY = config('My_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG=config('My_DEBUG', cast=bool)
+
 
 ALLOWED_HOSTS = ['*']
 

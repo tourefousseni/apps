@@ -31,9 +31,13 @@ class UserRegistrationForm(UserCreationForm):
     # date_birth = forms.DateField(label="Date Birth", widget=forms.DateInput(attrs={
     #     'class': 'form-control',
     #     'type': 'date'}))
-    email      = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control' }))
-    last_name  = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control' }))
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email      = forms.EmailField(label='', widget=forms.EmailInput(attrs={'class':'form-control', 'placeholder':'Email' }))
+    last_name  = forms.CharField(label='',widget=forms.TextInput(attrs={'class': 'form-control' , 'placeholder':'Last Name' }))
+    first_name = forms.CharField(label='',widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder':'First Name'}))
+    username   = forms.CharField(label='',widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Username'}))
+    phone      = forms.CharField(label='',widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Phone Number'}))
+    password1 = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Password'}))
+    password2 = forms.CharField(label="", widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Confirm Password'}))
 
     class Meta:
             model = get_user_model()

@@ -6,4 +6,4 @@
 /run.sh
 /script.sh
 pyblog/.env
-/tmp
+./tmp

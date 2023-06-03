@@ -1,15 +1,14 @@
 
 {% load static %}
-
  <div class="card col-md-6">
   <h2 >CARNET DE MESURE </h2>
 
                             <div class="card-body">
-                                <h4 >Person </h4><hr>
+                                <h2 >Client </h2><hr>
                                 <h6>Code             :{{ mesure.person.code_person }}</h6>
                                 <h6>Prenom           : {{ mesure.person.prenom }}</h6>
                                 <h6>Nom              :{{ mesure.person.nom }}</h6><hr>
-                                <h4 >Mesure Detail </h4>
+                                <h2 >Mesure Detail </h2>
                                 <h6>Coude            :{{ mesure.coude }}</h6>
                                 <h6>Epaule           :{{ mesure.epaule }}</h6>
                                 <h6>Manche courte    :{{ mesure.manche_courte }}</h6>
@@ -35,31 +34,4 @@
 
               </div>
 {#{% endblock %}#}
-{#                           <tr> #}
-{##}
-{#                                <td>{{ mesure.id }}</td>#}
-{#                                <td>{{ mesure.person_mesure.prenom }}</td>#}
-{#                                <td>{{ mesure.person_mesure.nom }}</td>#}
-{#                                <td>{{ mesure.coude }}</td>#}
-{#                                <td>{{ mesure.epaule }}</td>#}
-{#                                <td>{{ mesure.manche }}</td>#}
-{#                                <td>{{ mesure.tour_manche }}</td>#}
-{#                                <td>{{ mesure.taille }}</td>#}
-{#                                <td>{{ mesure.poitrine }}</td>#}
-{#                                <td>{{ mesure.longueur_boubou }}</td>#}
-{#                                <td>{{ mesure.longueur_patanlon }}</td>#}
-{#                                <td>{{ mesure.fesse }}</td>#}
-{#                                <td>{{ mesure.ceinture }}</td>#}
-{#                                <td>{{ mesure.cuisse }}</td>#}
-{#                                <td>{{ mesure.patte }}</td>#}
-{#                                <td>{{ mesure.created_at }}</td>#}
-{#                           </tr>#}
-
-
-
-{#        </tbody>#}
-{#    </table>#}
-
-{#    </div>#}
-{#            <a href="{% url 'view_mesure' mesuredetail %}" class="btn btn-info">View Mesure</a>#}
 

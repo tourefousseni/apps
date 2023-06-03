@@ -23,20 +23,6 @@ def dashboard(request):
 def homepage(request):
     return render(request, 'accounts/homepage.html')
 
-
-def register(request):
-    form = UserRegistrationForm()
-    if request.method == 'POST':
-        form = UserRegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.info(request, "votre compte a ete bien cree")
-            return redirect('accounts:connect')
-        else:
-            form = UserRegistrationForm()
-            messages.info(request, ("la creation de votre compte est echouee"))
-    return render(request, 'accounts/register.html', {'form':form})
-
 def connect(request):
     if request.method == 'POST':
         # first_name  = request.POST['first_name']
@@ -66,6 +52,21 @@ def connect(request):
             return redirect('accounts:dashboard')
     else:
         return render(request, 'registration/login.html')
+
+def register(request):
+    form = UserRegistrationForm()
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.info(request, "votre compte a ete bien cree")
+            return redirect('accounts:connect')
+        else:
+            form = UserRegistrationForm()
+            messages.info(request, ("la creation de votre compte est echouee"))
+    return render(request, 'accounts/register.html', {'form':form})
+
+
 
 # @login_required
 def disconnect(request):

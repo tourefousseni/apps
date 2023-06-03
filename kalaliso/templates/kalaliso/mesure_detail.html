@@ -2,15 +2,14 @@
 {% load static %}
 
 {% block title %} CARNET DE MESURE {% endblock %}
-
 {% block content %}
-    <div class="card col-md-4">
-  <h2>Carnet de mesure</h2>
+    <div class="card">
+        <h2>Carnet de mesure</h2>
 
                             <div class="card-body">
-                                <h6>Code             :{{ mesure.person.code_person }}</h6>
-                                <h6>Prenom           : {{ mesure.person.prenom }}</h6>
-                                <h6>Nom              :{{ mesure.person.nom }}</h6>
+                                <h5>Code             :{{ mesure.person.code_person }}</h5>
+                                <h5>Prenom           : {{ mesure.person.prenom }}</h5>
+                                <h5>Nom              :{{ mesure.person.nom }}</h5>
                                 <h6>Coude            :{{ mesure.coude }}</h6>
                                 <h6>Epaule           :{{ mesure.epaule }}</h6>
                                 <h6>Manche courte    :{{ mesure.manche_courte }}</h6>
@@ -25,15 +24,11 @@
                                 <h6>Cuisse           : {{ mesure.cuisse }}</h6>
                                 <h6>Patte            :{{ mesure.patte }}</h6>
                                 <h6>Date Creation    :{{ mesure.created_at }}</h6>
-
-                             </div>
-
-
-    </div>
-
-              <div class="col-sm-4 m-2">
+                            </div>
+              <div class="col-sm-4 m-2 ">
                          <a href="{% url 'kalaliso:report_carnet_mesure' mesure.id %}" class="btn btn-info">Generated PDF</a>
                          <a href="{% url 'kalaliso:list' %}" class="btn btn-warning">Return to List Mesure</a>
-
               </div>
+    </div>
+
 {% endblock %}

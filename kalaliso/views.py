@@ -41,7 +41,7 @@ def mesure(request):
             # messages.success( f'votre registrement est fait avec succes !')
             # return HttpResponse('mesure_list')
             # return redirect('/')
-            return redirect('kalaliso:list')
+            return redirect('kalaliso:mesure')
     else:
         form = MesureForm()
         # form = PersonForm()
@@ -427,7 +427,7 @@ def payment(request, ):
 
 
 def payment_list(request, payment_id):
-    qs = Payment.objects.all()
+    qs = Payment.objects.all(id=payment_id)
 
     context = {'payment_list': qs, }
 

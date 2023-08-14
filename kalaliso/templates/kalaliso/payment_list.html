@@ -27,7 +27,7 @@
       <tbody>
                     {% for payment in payment_list %}
                            <tr>
-                                <td><a href="{% url 'payment_list' payment.pk %}"></a></td>
+                                <td><a href="{% url 'payment_list' payment.id %}"></a></td>
                                 <td><input type="checkbox" class="checkthis" /></td>
                                 <td>{{ contact.id }}</td>
                                 <td>{{ payment.id }}</td>

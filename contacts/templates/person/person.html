@@ -24,34 +24,33 @@
           <div class="Personform">
             <form action="{% url 'contacts:person'  %}" method="post">
                  {% csrf_token %}
-                       <div class="row offset-0">
 
-                        <div class="form-group col-sm-3 mb-0 ">
-                             {{ form.status|as_crispy_field }}
-                        </div>
-                        <div class=" form-group col-sm-3 mb-0">
-                             {{ form.genre|as_crispy_field }}
-                        </div>
-                        <div class=" form-group col-sm-3 mb-0">
-                             {{ form.type_tailleur|as_crispy_field }}
-                        </div>
-                        <div class="form-group col-sm-3 mb-0">
-                           {{ form.category|as_crispy_field }}
-                        </div>
-                        <div class="row offset-0">
-                        <div class="form-group col-sm-3 mb-0">
-                            {{ form.prenom|as_crispy_field }}
-                        </div>
+                         <div class="row offset-0">
+                            <div class="form-group col-sm-3 mb-0">
+                                {{ form.prenom|as_crispy_field }}
+                            </div>
 
-                        <div class="form-group col-sm-3 mb-0">
-                            {{ form.nom|as_crispy_field }}
-                        </div>
-                         <div class="form-group col-sm-3 mb-0">
-                            {{ form.contact_1|as_crispy_field }}
-                         </div>
+                            <div class="form-group col-sm-3 mb-0">
+                                {{ form.nom|as_crispy_field }}
+                            </div>
+                             <div class="form-group col-sm-3 mb-0">
+                                {{ form.contact_1|as_crispy_field }}
+                             </div>
                           </div>
-
-                      </div>
+                       <div class="row offset-0">
+                            <div class="form-group col-sm-3 mb-0 ">
+                                 {{ form.status|as_crispy_field }}
+                            </div>
+                            <div class=" form-group col-sm-3 mb-0">
+                                 {{ form.genre|as_crispy_field }}
+                            </div>
+                            <div class=" form-group col-sm-3 mb-0">
+                                 {{ form.type_tailleur|as_crispy_field }}
+                            </div>
+                            <div class="form-group col-sm-3 mb-0">
+                               {{ form.category|as_crispy_field }}
+                            </div>
+                       </div>
                         <div class="row offset-1">
                                 <div class="col-12 justify-content-center">
                                          <input type="submit" value="Submit" class="btn btn-primary col-md-3">

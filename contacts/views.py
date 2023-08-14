@@ -35,7 +35,7 @@ def person(request):
             form.save()
             # return HttpResponse('mesure_list')
             # return render(request, 'person/person.html')
-            return redirect('contacts:list')
+            return redirect('contacts:person')
     else:
         form = PersonForm
     return render (request, 'person/person.html', {'form': form})

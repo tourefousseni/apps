@@ -19,7 +19,7 @@
         <div class="card-body">
             {% if messages %}
                         {% for message in messages %}
-                            <div id=messages class="alert alert-success alert-dismissible fade show" role="alert">
+                            <div id=mesure class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ message }}
                               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
@@ -98,7 +98,7 @@
 </div>
 
     <script>
-        var message_ele = document.getElementById("messages");
+        var message_ele = document.getElementById("mesure");
           setTimeout(function()
           {message_ele.style.display = "none";}, 2000);
     </script>

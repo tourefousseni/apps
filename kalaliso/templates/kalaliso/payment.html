@@ -8,7 +8,10 @@
 <div class="PaymentForm">
     <form action="{% url 'kalaliso:payment' %}" method="post">
       {% csrf_token %}
-        {{  form | crispy }}
+        <div class="row-cols-4 offset-1">
+            {{  form | crispy }}
+        </div>
+
     </form>
 </div>
 </div>

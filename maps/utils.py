@@ -9,7 +9,7 @@ import string
 def random_string_generator():
     characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
     result = ''
-    for i in range(0, 20):
+    for i in range(0, 10):
         result += random.choice(characters)
     return result
 

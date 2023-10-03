@@ -3,7 +3,12 @@
 /static
 /venv
 /m_db.sh
+/db.sh
+/gisconsulting
+/gisconsulting.pub
 /run.sh
+/push
+/templates/brouillon.html
 /script.sh
 pyblog/.env
 ./tmp

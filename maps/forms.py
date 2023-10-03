@@ -12,13 +12,14 @@ from django import forms
 from django_bootstrap_datetimepicker import *
 from django.forms import widgets
 import datetime
+from .models import Commune, Region, Cercle, Village
 
-from .models import  Commune,  Region, Cercle, Village
 
 class RegionForm(forms.ModelForm):
     class Meta:
         model = Region
         fields = '__all__'
+        exclude = ['id','id_reg']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -29,7 +30,7 @@ class CercleForm(forms.ModelForm):
         model = Cercle
         fields = '__all__'
 
-        exclude = ['id_cer', 'cercle']
+        exclude = ['id_cer', 'id_reg', 'id']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -39,6 +40,7 @@ class CommuneForm(forms.ModelForm):
     class Meta:
         model = Commune
         fields = '__all__'
+        exclude = ['com']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -48,8 +50,8 @@ class VillageForm(forms.ModelForm):
     class Meta:
         model = Village
         fields = '__all__'
+        exclude = ['id_village', 'id','alt', 'long', 'lat']
 
-        exclude=['alt', 'long', 'lat']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

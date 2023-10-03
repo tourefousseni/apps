@@ -7,10 +7,13 @@
 
 {% block content %}
 <div class="card col-lg-12">
-<div class="card-title"><h4>CARNET DES MESURES</h4>
+<div class="card-title"><h4 class="justify-content-left">CARNET DES MESURES</h4></div>
     <div class="card-body">
+          {% if message %}<p><strong>{{ message }}</strong></p>{% endif %}
     <div class="table-responsive">
+
          <div class="col-md-6 offset-6 ">
+
                       <form action="{% url 'kalaliso:search_mesure'  %}" method="get">
                           <input placeholder="Search ..." class="form-control form-control-dark" type="search" name="search">
                           <button class="btn btn-primary my-2" type="submit" >Search</button>

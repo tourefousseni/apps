@@ -41,11 +41,12 @@ def mesure(request):
             # messages.success( f'votre registrement est fait avec succes !')
             # return HttpResponse('mesure_list')
             # return redirect('/')
+            messages.success(request, 'Les mesures sont  bien registres avec succes !')
             return redirect('kalaliso:mesure')
     else:
         form = MesureForm()
         # form = PersonForm()
-    return render(request, 'kalaliso/mesure.html', {'form': form, 'messages':messages})
+    return render(request, 'kalaliso/mesure.html', {'form': form, })
 
 
 def list(request, *args, **kwargs):
@@ -85,6 +86,15 @@ def update_mesure(request, id):
     context      = {'form':form }
     return render(request, 'kalaliso/mesure.html', context)
 
+def update(request, id):
+    update_mesure = Mesure.objects.get(pk=id)
+    obj           = Person.objects.get(pk=id)
+    context       = {
+        'update_mesure': update_mesure,
+        'obj': obj,
+    }
+    return render(request, 'kalaliso/list.html', context)
+
 def delete_mesure(request, id):
     mesure = Mesure.objects.get(id=id)
     if request.method == 'POST':
@@ -120,15 +130,6 @@ def report_all_mesure(request):
     if status.err:
         return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
-
-def update(request, id):
-    update_mesure = Mesure.objects.get(pk=id)
-    obj = Person.objects.get(pk=id)
-    context = {
-        'update_mesure': update_mesure,
-        'obj': obj,
-    }
-    return render(request, 'kalaliso/list.html', context)
 
 
 def search_products_list(request):
@@ -196,7 +197,7 @@ def carnet(request, id):
 
 
 def search_mesure(request):
-    search = request.GET.get('search')
+    search = request.GET.get('search').order_by('-id')
     filter_mesure = Mesure.objects.filter(Q(coude__icontains=search)|
                                           Q(epaule__icontains=search)|
                                           Q(poitrine__icontains=search)

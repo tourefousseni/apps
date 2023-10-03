@@ -135,33 +135,6 @@
 {#          </a>#}
 {#        </div>#}
 
-# width, height = A4
-#
-# heightList = [
-#     height * 20 / 100, # header
-#     height * 75 / 100, # body
-#     height * 5 / 100,  # footer
-# ]
-#
-# mainTable = Table([
-#             ['Header'],
-#             ['Body'],
-#             ['Footer'],
-#
-# ],
-#      colWidths=width,
-#      rowHeights=heightList
-# )
-#
-# mainTable.setStyle([
-#     ('GRID', (0, 0), (-1, -1), 1, 'red'),
-#     ('LEFTPADDING', (0, 0), (0, 2), 0),
-#     ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
-# ]
-# )
-#
-# mainTable.wrapOn(pdf, 0, 0)
-# mainTable.drawOn(pdf, 0, 0)
 
 
 Douniya_12Toure
@@ -694,8 +667,6 @@ class="img-thumbnail"
         patte = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
         # create_at = forms.DateField()
         # update_at = forms.DateField()
-
-
 
         NAME = (
             ('Boubou', 'Boubou'),

@@ -19,7 +19,21 @@ from .forms import *
 # Create your views here.
 
 def maps(request):
-    return render(request, 'maps/maps.html',)
+
+    return render(request, 'maps/maps.html')
+
+# def locate(request, pk):
+#     data_region = Region.objects.filter(id=pk)
+#     data_cercle = Cercle.objects.filter(id=pk)
+#     data_commune = Commune.objects.filter(id=pk)
+#     data_village = Village.objects.filter(id=pk)
+#     context={
+#         'data_region': data_region,
+#         'data_cercle': data_cercle,
+#         'data_commune': data_commune,
+#         'data_village': data_village,
+#     }
+#     return render(request, 'localisation/locate.html', context)
 
 
 def region(request):
@@ -30,7 +44,7 @@ def region(request):
             return redirect('maps:cercle')
     else:
             form = RegionForm()
-    return render(request, 'localisation/region.html', {'form': form})
+    return render(request, 'localisation/cercle.html', {'form': form})
 
 def cercle(request):
     if request.method == 'POST':
@@ -50,7 +64,7 @@ def commune(request):
             return redirect('maps:village')
     else:
         form = CommuneForm()
-    return render(request, 'localisation/commune.html', {'form': form})
+    return render(request, 'localisation/cercle.html', {'form': form})
 
 def village(request):
     if request.method == 'POST':
@@ -60,4 +74,4 @@ def village(request):
             return redirect('maps:village')
     else:
         form = VillageForm()
-    return render(request, 'localisation/village.html', {'form': form})
+    return render(request, 'localisation/cercle.html', {'form': form})

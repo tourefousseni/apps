@@ -8,10 +8,11 @@ class PersonForm(forms.ModelForm):
         fields = ['nom', 'prenom',
                   'contact_1', 'status','genre',
                   'type_tailleur','category',
+                  'code_person',
                   ]
 
         exclude = ['domicile','image', 'email','alias','contact_2',
-                    'code_person','photo', 'profession',
+                    'photo', 'profession',
                     'responsable','date_naissance','nationalite','tutuelle',
                     'telephonique_fix','nina',
                    'carte_biometrique',

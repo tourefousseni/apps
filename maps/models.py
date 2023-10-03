@@ -5,12 +5,12 @@ from .utils import  unique_parcel_id_generator
 
 
 class Parcel(models.Model):
-    fips           = models.CharField(max_length=2)
-    iso2           = models.CharField(max_length=2)
-    iso3           = models.CharField(max_length=3)
+    fips           = models.CharField(max_length=30)
+    iso2           = models.CharField(max_length=30)
+    iso3           = models.CharField(max_length=30)
     un             = models.IntegerField()
     name           = models.CharField(max_length=50)
-    code_parcel    = models.CharField(max_length=50)
+    code_parcel    = models.CharField(max_length=100)
     culture        = models.CharField(max_length=100)
     area           = models.IntegerField()
     perimter       = models.IntegerField()
@@ -60,23 +60,23 @@ class Casier(models.Model):
 
 class Village(models.Model):
     # parcel          = models.ForeignKey('Parcel', on_delete=models.CASCADE,)
-    id          = models.AutoField(primary_key=True )
-    com         = models.ForeignKey('Commune', on_delete=models.CASCADE, verbose_name='Communes',)
-    id_vil      = models.PositiveIntegerField()
-    village     = models.CharField(max_length=50, blank=True, verbose_name='quartier/village')
-    long        = models.FloatField( )
-    alt         = models.CharField(max_length=50, blank=True, )
-    lat         = models.FloatField()
+    id             = models.AutoField(primary_key=True)
+    id_com         = models.ForeignKey('Commune', on_delete=models.CASCADE, verbose_name='Communes',)
+    id_village      = models.PositiveIntegerField()
+    nom_village     = models.CharField(max_length=50, blank=True, verbose_name='Quartiers/Villages')
+    long            = models.FloatField(blank=True)
+    alt             = models.CharField(max_length=50, blank=True, )
+    lat             = models.FloatField(blank=True)
     # point        = models.PointField(geography=True, blank=True, null=True)
 
     def __str__(self):
-        return '{}'.format(self.village)
+        return '{}'.format(self.nom_village)
 
 
 class Commune(models.Model):
     id           = models.AutoField(primary_key=True)
-    cer          = models.ForeignKey('Cercle', on_delete=models.CASCADE, verbose_name='Cercles',)
-    id_com       = models.PositiveIntegerField()
+    id_cercle    = models.ForeignKey('Cercle', on_delete=models.CASCADE, verbose_name='Cercles',)
+    com          = models.PositiveIntegerField()
     commune      = models.CharField(max_length=50, blank=True)
     # point     = models.PointField(geography=True,blank=True, null=True)
 
@@ -85,10 +85,10 @@ class Commune(models.Model):
 
 
 class Cercle(models.Model):
-    id          = models.AutoField(primary_key=True)
-    reg         = models.ForeignKey('Region', on_delete=models.CASCADE,  verbose_name='Regions',)
-    id_cer      = models.PositiveIntegerField()
-    cercle      = models.CharField(max_length=50, blank=True)
+    id             = models.AutoField(primary_key=True)
+    id_reg         = models.ForeignKey('Region', on_delete=models.CASCADE,  verbose_name='Regions',)
+    id_cer         = models.PositiveIntegerField()
+    cercle         = models.CharField(max_length=50, blank=True)
     # point     = models.PointField(geography=True, blank=True, null=True)
 
     def __str__(self):
@@ -98,7 +98,7 @@ class Cercle(models.Model):
 class Region(models.Model):
     id          = models.AutoField(primary_key=True)
     id_reg      = models.PositiveIntegerField()
-    region      = models.CharField(max_length=100,)
+    region      = models.CharField(max_length=100)
     # point     = models.PointField(geography=True, blank=True, null=True)
 
     def __str__(self):

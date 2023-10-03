@@ -7,12 +7,13 @@
 {# {% include 'kalaliso/order_items.html' %}#}
 
 <div class="orderform">
-          <div >
+          <div class="row-cols-auto offset-1">
                {% crispy form %}
-          </div>
+
          <a href="{% url 'kalaliso:order' %}"></a>
          <a href="{% url 'kalaliso:order_list'  %}" class="btn btn-primary"> Views all orders</a>
-</div>
+          </div>
+    </div>
     <script>
         $(document).ready(() => {
             $('#Reset').click(function(event) {

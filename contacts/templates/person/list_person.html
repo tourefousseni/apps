@@ -8,24 +8,26 @@
 }
 </style>
 {% block content %}
-   <div class="card col-lg-12 ">
-   <div class="card-title">
-       <h4 class="justify-content-center">LISTE DES CLIENTS</h4>
-    </div>
-   <div class="col-md-4 offset-md-7">
+   <div class="card col-lg-12 "><br>
+
+   <div class="col-md-4 offset-md-7 ">
+
          <form action="{% url 'contacts:search_person'  %}" method="get">
                           <input placeholder="Search ..." class="form-control form-control-dark"
                                  type="search" name="search">
                                  <button class="btn btn-primary my-2" type="submit">Search</button>
                                  <a href="{% url 'contacts:person' %}" class="btn btn-info">Ajouter a Nouveau</a>
                                  <a href="{% url 'contacts:report_all_person' %}" class="btn btn-warning">Create PDF</a>
-
          </form>
     </div>
+
    <div class="card-body">
        <div class="table-responsive">
+       <div class="card-title"><hr/>
+          <h3 class="justify-content-center m-3">REPERTOIRE</h3>
+   </div>
 
-    <table id="bootstrapdatable" class="table table-responsive-md table-bordered" width="100%">
+    <table id="bootstrapdatable" class="table table-responsive-md table-bordered" width="80%">
         <thead>
 
             <tr>

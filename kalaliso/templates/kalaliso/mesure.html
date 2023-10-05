@@ -17,15 +17,18 @@
 <div class="card col-lg-12 d-flex">
     <div class="card-title"><h2 class="text-center"> Ajouter nouveau mesure </h2>
         <div class="card-body">
+        <div class="row col-md-8 text-center">
+
+
             {% if messages %}
                         {% for message in messages %}
                             <div id=mesure class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ message }}
-                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+{#                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>#}
                             </div>
                         {% endfor  %}
             {% endif  %}
-
+        </div>
 
            <div class="Mesureform"><br>
             <form action="{% url 'kalaliso:mesure' %}" method="post">

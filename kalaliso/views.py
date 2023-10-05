@@ -41,7 +41,7 @@ def mesure(request):
             # messages.success( f'votre registrement est fait avec succes !')
             # return HttpResponse('mesure_list')
             # return redirect('/')
-            messages.success(request, 'Les mesures sont  bien registres avec succes !')
+            messages.success(request, 'Les mesures sont registrées avec succès !')
             return redirect('kalaliso:mesure')
     else:
         form = MesureForm()
@@ -197,7 +197,7 @@ def carnet(request, id):
 
 
 def search_mesure(request):
-    search = request.GET.get('search').order_by('-id')
+    search = request.GET.get('search')
     filter_mesure = Mesure.objects.filter(Q(coude__icontains=search)|
                                           Q(epaule__icontains=search)|
                                           Q(poitrine__icontains=search)

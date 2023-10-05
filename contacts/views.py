@@ -36,7 +36,7 @@ def person(request):
             form.save()
             # return HttpResponse('mesure_list')
             # return render(request, 'person/person.html')
-            messages.success(request, "Le registrement s'est bien effectué avec succes !")
+            messages.success(request, "Le registrement s'est bien effectué avec succès !")
             return redirect('contacts:person')
     else:
         form = PersonForm

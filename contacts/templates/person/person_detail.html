@@ -3,31 +3,67 @@
 
 
 {% block content %}
-        <div class="container " ><br>
+
+        <div class="container" >
+            <div class="card justify-content-lg-center" style="width: 18rem">
+
+        </div><br>
           {% for view_person in person_detail.all %}
 {#              'view_person': person_detail,#}
 
           {% endfor %}
+        <section class="row-cols-4">
                  <div class="card justify-content-lg-center" style="width: 18rem; background: lightblue ">
                           <div class="card-body" >
-                               <a href="{% url 'contacts:detail' view_person.id %}" class="card-link">Detail Personnel:</a>
-                                        <p>Status       : {{ view_person.status }}</p>
-                                        <p>Nom          : {{ view_person.nom }}</p>
-                                        <p>Prenom       : {{ view_person.prenom }}</p>
-                                        <p>Telephone    : {{view_person.contact_1 }}</p>
-                                        <p>Code         : {{ view_person.code_person }}</p>
+                              <h5 style="background-color: white">Information Personnel</h5>
+                               <a href="{% url 'contacts:detail' view_person.id %}" class="card-link"></a>
+                                        <h6 >Photo       : {{ view_person.image }}</h6>
+                                        <h6>Status       : {{ view_person.status }}</h6>
+                                        <h6>Nom          : {{ view_person.nom }}</h6>
+                                        <h6>Prenom       : {{ view_person.prenom }}</h6>
+                                        <h6>Telephone    : {{view_person.contact_1 }}</h6>
+                                        <h6>Code         : {{ view_person.code_person }}</h6>
 
                               <a href="{% url 'contacts:list' %}" class="card-link">Return to list</a>
                             <a href="{% url 'contacts:report_card' view_person.id %}" class="card-link">Generated PDF</a>
                           </div>
 
-                 </div><br>
-                        <div class="card justify-content-lg-center" style="width: 18rem; background: lightblue ">
+                 </div>
+        </section>
+            <br>
+{#        {% for mesure in detail_view.all %}#}
+{#              'view_person': person_detail,#}
+{##}
+{#          {% endfor %}#}
+
+        <section class="row-cols-8">
+            <div>
+                     <div class="card justify-content-lg-center" style="width: 18rem; background: lightblue ">
                             <div class="card-body">
-                                <h2>Carnet Mesure</h2>
+                                <h5 style="background-color: white">Carnet Mesure</h5>
+
+
+{#                                <h5>Code             :{{ mesure.person.code_person }}</h5>#}
+{#                                <h5>Prenom           :{{ mesure.person.prenom }}</h5>#}
+{#                                <h5>Nom              :{{ mesure.person.nom }}</h5>#}
+                                <h6>Coude            :{{ mesure.coude }} cm</h6>
+                                <h6>Epaule           :{{ mesure.epaule }} cm</h6>
+                                <h6>Manche courte    :{{ mesure.manche_courte }} cm</h6>
+                                <h6>Manche longue    :{{ mesure.manche_longue }} cm</h6>
+                                <h6>Tour Manche      :{{ mesure.tour_manche }} cm</h6>
+                                <h6>Taille           :{{ mesure.taille }} cm</h6>
+                                <h6>Pointrine        :{{ mesure.poitrine }} cm</h6>
+                                <h6>Longueur Boubou  :{{ mesure.longueur_boubou }} cm</h6>
+                                <h6>Longueur Patanlon:{{ mesure.longueur_patanlon }} cm</h6>
+                                <h6>Fesse            :{{ mesure.fesse }} cm</h6>
+                                <h6>Ceinture         :{{ mesure.ceinture }} cm</h6>
+                                <h6>Cuisse           :{{ mesure.cuisse }} cm</h6>
+                                <h6>Patte            :{{ mesure.patte }} cm</h6>
+                                <h6>Date Creation    :{{ mesure.created_at }}</h6>
                             </div>
-                        </div>
+                            </div>
+            </div>
 
-        </div>
-
-{% endblock %}
+        </section>
+       </div>
+{% endblock  %}

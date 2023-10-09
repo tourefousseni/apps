@@ -28,6 +28,14 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 import xhtml2pdf.default
 from xhtml2pdf.util import getSize
+from kalaliso.models import Mesure
+
+
+def number_customer(request):
+    number_person = Person.objects.count()
+    context = {'number_person': number_person}
+    return render(request, 'person/number_person.html', context)
+
 
 def person(request):
     if request.method == 'POST':
@@ -63,10 +71,19 @@ def delete(request, id):
 
 def detail(request, id):
     person_detail = Person.objects.get(id=id)
+    detail_view = Mesure.objects.get(pk=id)
     context = {
         'view_person': person_detail,
+        'mesure': detail_view,
     }
     return render (request, 'person/person_detail.html', context)
+
+# def detail_mesure(request, id):
+#     detail_view = Mesure.objects.get(pk=id)
+#     context = {
+#         'mesure': detail_view,
+#     }
+#     return render(request, 'person/person_detail.html', context)
 
 def list(request,):
     object        = Person.objects.all().order_by('-id')

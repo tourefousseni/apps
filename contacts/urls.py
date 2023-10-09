@@ -10,8 +10,10 @@ app_name = 'contacts'
 urlpatterns = [
 
     path('person/', views.person, name='person'),
+    path('person_number/', views.number_customer, name='number_customer'),
     path('list/', views.list, name='list'),
     path('person/<int:id>/', views.detail, name='detail'),
+    # path('person/<int:id>/', views.detail_mesure, name='detail_mesure'),
     path('update/<int:id>/', views.update, name='update'),
     path('delete/<int:id>/', views.delete, name="delete"),
     path('search_person/', views.search_person, name='search_person'),

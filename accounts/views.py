@@ -13,9 +13,15 @@ import io
 from .import views
 import time
 time.sleep(5)
+from contacts.models import Person
 
 from accounts.models import User
 from .forms import *
+
+# def number_customer(request):
+#     number_person=Person.objects.count()
+#     context = {'number_person': number_person}
+#     return render(request, 'accounts/dashboard.html', context)
 
 def dashboard(request):
     return render(request, 'accounts/dashboard.html')

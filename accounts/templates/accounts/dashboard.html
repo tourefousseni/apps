@@ -11,7 +11,11 @@
                   <div class="card-body">
                     <h6 class="card-text text-center">CLIENTS</h6><hr>
                      <p  class="text-center" href="#"> </p>
-                      <p>client=Person.objects.count(status='Client')</p>
+                      <p>
+                         <div class="number_person">
+                          {{ number_person }}
+                         </div>
+                      </p>
             {#         <p  class="text-center" href="#">{{ customer }} </p>#}
                       <h4 class="text-center" style="color: white">
                       </h4>
@@ -88,6 +92,5 @@
     {#<-- Footer -->#}
 
 {#             {% include 'partials/_footer.html' %}#}
-
- {% endblock %}
-
+</div>
+{% endblock %}

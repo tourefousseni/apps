@@ -6,13 +6,12 @@ class PersonForm(forms.ModelForm):
     class Meta:
         model = Person
         fields = ['nom', 'prenom',
-                  'contact_1', 'status','genre',
+                  'contact_1', 'image', 'status','genre',
                   'type_tailleur','category','domicile',
                   'code_person',
                   ]
 
-        exclude = ['image', 'email','alias','contact_2',
-                    'photo', 'profession',
+        exclude = [ 'email','alias','contact_2', 'profession',
                     'responsable','date_naissance','nationalite','tutuelle',
                     'telephonique_fix','nina',
                    'carte_biometrique',

@@ -1,4 +1,4 @@
-{#{% extends 'base.html' %}#}
+{% extends 'base.html' %}
 {% load static %}
 
 <head>
@@ -80,9 +80,9 @@
 
 
 {% block content %}
- <div>
-      <h3 class="text-center">CATALOGUE DES MODELES</h3><hr>
- </div>
+
+      <h1 class="text-center">CATALOGUE DES MODELES</h1>
+
 
 <a href="{% url 'kalaliso:list' %}"></a>
     <div class="col-md-4 offset-2">
@@ -98,14 +98,14 @@
               height="60%" width="100%" class="img-thumbnail" alt="...">
 
               <ul class="d-inline">
-                  <small><li >Model: {{ product.name }} </li></small>
+                  <small><li>Model: {{ product.name }} </li></small>
                   <small><li>Price: {{ product.price }}<span> FCFA </span></li></small>
                   <small><li>Code: {{  product.code_product }}</li></small>
                   <small><li>Date de creation: {{ product.create_at }}</li></small>
                   <small><li>Detail : {{ product.description|truncatewords:1 }}</li></small>
                   <small><li>Publie par : kalaliso</li></small>
 
-                  <small><button class="btn btn-success m-2">Commander</button></small>
+                  <a class="btn btn-success my-2" href="{% url 'kalaliso:order' %}"><i class="fas fa-user-plus"></i>Commander</a>
                   <small><button class="btn btn-dark">View</button></small>
           </ul>
 

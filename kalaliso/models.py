@@ -67,7 +67,7 @@ class Product(models.Model):
         ('XXXL', 'XXXL'),
         ('AUTRES', 'AUTRES'),)
     size                = models.CharField(max_length=50, choices=SIZE, default='S',)
-    photo               = models.ImageField(upload_to='photos/')
+    photo               = models.ImageField(blank=True, upload_to='photos/')
     code_product        = models.CharField(max_length=30,  verbose_name='Code product')
     description         = models.CharField(max_length=200, blank=True, null=True)
     price               = models.DecimalField(decimal_places=2, max_digits=20, default=100.25, null=True, blank=True)

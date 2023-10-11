@@ -29,6 +29,7 @@ from django.db.models import Q
 import xhtml2pdf.default
 from xhtml2pdf.util import getSize
 from paypal.standard.forms import PayPalPaymentsForm
+from .models import Product
 
 
 # from .forms import PaymentForm, OrderForm, Order_ItemsForm
@@ -357,7 +358,10 @@ def products_list(request):
 
 def product_detail(request, product_id):
     product_detail = get_object_or_404(Product, pk=product_id)
-    return render(request, 'kalaliso/product_detail.html', {'product_detail': product_detail, })
+
+    context={'product_detail': product_detail, }
+
+    return render(request, 'kalaliso/product_detail.html',context )
 
 
 def product_sum(request):

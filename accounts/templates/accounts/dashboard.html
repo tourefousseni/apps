@@ -3,8 +3,8 @@
 
 {% block content %}
     <div class="container">
+        <h5> STATISTIQUES </h5>
         <div class="row  ">
-            <h5> STATISTIQUES </h5><hr>
             <div class="row col-lg-12">
               <div class="col-sm-4">
                 <div class="card" style="background: ghostwhite; height: 200px; width: 360px" >
@@ -13,7 +13,7 @@
                      <p  class="text-center" href="#"> </p>
                       <p>
                          <div class="number_person">
-                          {{ number_person }}
+                          <h3 class="text-center">{{ custom }}</h3>
                          </div>
                       </p>
             {#         <p  class="text-center" href="#">{{ customer }} </p>#}
@@ -27,7 +27,11 @@
                   <div class="card-body">
                     <h6 class="card-text text-center">COMMANDER</h6><hr>
                      <p  class="text-center" href="#"> </p>
-                      <p>com=Order.objects.count()</p>
+                      <p>
+                          <div class="number_order">
+                              <h3 class="text-center">{{ order}}</h3>
+                          </div>
+                      </p>
                       <h4 class="text-center " style="color: white">
                       </h4>
                   </div>
@@ -38,7 +42,11 @@
                       <div class="card-body">
                         <h6 class="card-text text-center">MODELES</h6><hr>
                           <p  class="text-center" href="#"> </p>
-                          <p>mod=Product.objects.count()</p>
+                          <p>
+                              <div class="number_product">
+                                    <h3 class="text-center">{{ product }}</h3>
+                              </div>
+                          </p>
                           <h4 class="text-center " style="color: white"> </h4>
                       </div>
                     </div>
@@ -62,7 +70,11 @@
                   <div class="card-body">
                     <h6 class="card-text text-center">VENTE</h6><hr>
                      <p  class="text-center" href="#"> </p>
-                      <p>vent=Payment.objects.count(status='TRUE')</p>
+                      <p>
+                          <div class="number_person">
+                              <h3 class="text-center">{{ payment }}</h3>
+                          </div>
+                      </p>
                       <h4 class="text-center " style="color: white">
                       </h4>
                   </div>

@@ -94,7 +94,7 @@
 {% for product in list %}
     {% if forloop.first %}<div class="row col-md-8 offset-2 ">{% endif %}
     <div class="col-md-4 offset-0">
-         <img src="{{product.photo.url}}"
+         <img src="{{ product.image.url }}"
               height="60%" width="100%" class="img-thumbnail" alt="...">
 
               <ul class="d-inline">

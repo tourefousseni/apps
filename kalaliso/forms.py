@@ -55,11 +55,14 @@ class Video_form(forms.ModelForm):
 #         fields='__all__'
 
 class ProductForm(forms.ModelForm):
+    description = forms.CharField(widget=forms.Textarea,  help_text='saississez votre commentaire')
+    # photo = forms.ImageField()
+
     class Meta:
          model = Product
          template_name = 'kalaliso/product.html'
-         fields = ['name', 'description', 'price']
-         exclude = ['create_at']
+         fields = ['name', 'description', 'price', 'photo', 'size', ]
+         exclude = ['create_at','code_product']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -69,20 +72,29 @@ class ProductForm(forms.ModelForm):
             Row(
                 Column('name', ),
                 Column('price', ),
-                Column('description', ),
+                Column('size', ),
+
             ),
             Row(
-                Column('code_product', ),
-                # Column('create_at', ),
+                # Column('code_product', ),
+
+                 Column('photo', ),
+                 Column('description', ),
+
+                FormActions(
+                    Submit('save_product', 'Save'),
+                    Submit('cancel', 'Cancel', css_class='btn btn-danger')
+                ),
             ),
 
-            FormActions(
-                Submit('save_product', 'Save'),
-                Submit('cancel', 'Cancel', css_class='btn btn-danger')
-            ),
+
         )
 #
 class OrderForm(forms.ModelForm):
+    rendez_vous = forms.DateField(label="Rendez Vous", widget=forms.DateInput(attrs={
+        'class': 'form-control',
+        'type': 'date'}))
+
     class Meta:
         model = Order
         template_name = 'kalaliso/order.html'
@@ -90,13 +102,13 @@ class OrderForm(forms.ModelForm):
                   'reception',
                   # 'localization',
                   'confirmed',
+                  'item',
                   'cancelled',
                   'rendez_vous',
-                  'create_at',
                   'remise',
-                  'code_order',]
+                  ]
 
-        # exclude = []
+        exclude = ['code_order','create_at',]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

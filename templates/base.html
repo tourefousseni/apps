@@ -122,6 +122,19 @@
                             </li>
 
                         </ul>
+                     <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Product</span> >> </a>
+                        <ul class="collapse show nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
+
+                            <li>
+                                <a href="{% url 'kalaliso:product' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Add product</span></a>
+                            </li>
+                            <li>
+                                <a href="{% url 'kalaliso:products_list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. List products</span></a>
+                            </li>
+
+
+                        </ul>
 
                      <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Commande</span> >> </a>
@@ -212,7 +225,12 @@
      style=" margin-top: -800px;>
 
     {% block content %}
+
     {% endblock %}
+
+{#     {% block section %}#}
+{##}
+{#    {% endblock section%}#}
 </div>
 
   <div class="copyright-footer" style="position: fixed; bottom: 0px; width: 100%; text-align: center;">

@@ -1,19 +1,68 @@
 {% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{#{% load crispy_forms_field %}#}
 {% load crispy_forms_tags %}
 {% load static %}
 
 {% block content %}
 
-{# {% include 'kalaliso/order_items.html' %}#}
+
 
 <div class="orderform">
-          <div class="row-cols-auto offset-1">
-               {% crispy form %}
-
-         <a href="{% url 'kalaliso:order' %}"></a>
-         <a href="{% url 'kalaliso:order_list'  %}" class="btn btn-primary"> Views all orders</a>
+          <div class="row-cols-6 justify-content-center">
+{#               {% crispy form %}#}
+              <div class="form-group col-sm-3 mb-0">
+                                {{ form.person_id|as_crispy_field }}
+              </div>
+              <div class="form-group col-sm-3 mb-0">
+                                {{ form.reception|as_crispy_field }}
+              </div>
+              <div class="form-group col-sm-3 mb-0">
+                                {{ form.confirmed|as_crispy_field }}
+              </div>
+              <div class="form-group col-sm-3 mb-0">
+                                {{ form.cancelled|as_crispy_field }}
+              </div>
           </div>
-    </div>
+          <div class="row-cols-6 justify-content-center"></div>
+{#              <div class="form-group col-sm-3 mb-0">#}
+{#                                {{ form.create_at|as_crispy_field }}#}
+{#              </div>#}
+
+              <div class="form-group col-sm-3 mb-0">
+                                {{ form.rendez_vous|as_crispy_field }}
+              </div>
+              <div class="form-group col-sm-3 mb-0">
+                                {{ form.remise|as_crispy_field }}
+              </div>
+              <div class="form-group col-sm-3 mb-0">
+                                {{ form.remise|as_crispy_field }}
+              </div>
+              <div class="form-group col-sm-3 mb-0">
+                                {{ form.item|as_crispy_field }}
+{#                                {% crispy_field form.item %}#}
+              </div>
+     <div class="row-cols-md-6">
+         <a href="{% url 'kalaliso:order' %}"></a>
+
+         <a href="{% url 'kalaliso:order_items' %}" class="btn btn-primary">Ajouter un produit</a>
+         <a href="{% url 'kalaliso:order_list'  %}" class="btn btn-primary"> Views all orders</a>
+     </div>
+
+
+{#              <div class="form-group col-sm-3 mb-0">#}
+{#                                {{ form.code_order|as_crispy_field }}#}
+{#              </div>#}
+{#              <div class="form-group col-sm-3 mb-0">#}
+{#                                {{ form.order_items.category|as_crispy_field }}#}
+{#              </div>#}
+{#              {% include 'kalaliso/order_items.html' %}#}
+
+
+</div>
+{% endblock  %}
+
+
     <script>
         $(document).ready(() => {
             $('#Reset').click(function(event) {
@@ -22,4 +71,3 @@
             });
         });
     </script>
-{% endblock  %}

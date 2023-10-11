@@ -20,6 +20,7 @@ urlpatterns = [
      # path('paginator_list_mesure/', views.paginator_list_mesure, name='paginator_list_mesure'),
      path('update/<int:id>/', views.update, name='update_mesure'),
      path('product/', views.product, name='product'),
+     path('product/list', views.products_list, name='products_list'),
      path('order/', views.order, name='order'),
      path('order_list/', views.order_list, name='order_list'),
      path('order_items/', views.order_items, name='order_items'),
@@ -27,7 +28,7 @@ urlpatterns = [
      path('payment/<int:id>/', views.payment_list, name='payment_list'),
      path('anonce/', views.anonce, name='anonce'),
      path('depense/', views.depense, name='depense'),
-     path('product/list', views.products_list, name='products_list'),
+
      path('show_video/', views.show_video, name='show_video'),
      path('albums/', views.album, name='album'),
      path('paypal-return/', views.paypal_return, name='paypal_return'),

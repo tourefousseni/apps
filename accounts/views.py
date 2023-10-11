@@ -17,6 +17,8 @@ from contacts.models import Person
 
 from accounts.models import User
 from .forms import *
+from contacts.models import Person
+from kalaliso.models import Product, Order, Payment
 
 # def number_customer(request):
 #     number_person=Person.objects.count()
@@ -24,7 +26,18 @@ from .forms import *
 #     return render(request, 'accounts/dashboard.html', context)
 
 def dashboard(request):
-    return render(request, 'accounts/dashboard.html')
+    num_person = Person.objects.count()
+    num_product = Product.objects.count()
+    num_order = Order.objects.count()
+    num_payment = Payment.objects.count()
+
+    context = {'custom': num_person,
+               'product': num_product,
+               'order': num_order,
+               'payment': num_payment,
+               }
+
+    return render(request, 'accounts/dashboard.html', context)
 
 def homepage(request):
     return render(request, 'accounts/homepage.html')

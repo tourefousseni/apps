@@ -78,12 +78,6 @@ def detail(request, id):
     }
     return render (request, 'person/person_detail.html', context)
 
-# def detail_mesure(request, id):
-#     detail_view = Mesure.objects.get(pk=id)
-#     context = {
-#         'mesure': detail_view,
-#     }
-#     return render(request, 'person/person_detail.html', context)
 
 def list(request,):
     object        = Person.objects.all().order_by('-id')

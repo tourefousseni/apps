@@ -376,15 +376,41 @@ def order(request):
         form = OrderForm()
     return render(request, 'kalaliso/order.html', {'form': form})
 
+# def order(request):
+#     if request.method == 'POST':
+#         form = OrderForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('kalaliso:order_list')
+#         else:
+#             form = OrderForm()
+#     return render(request, 'kalaliso/order.html', {'form': form, })
+#
+# def order_items(request):
+#
+#     if request.method == 'POST':
+#         form = Order_ItemsForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('kalaliso:order_list')
+#         else:
+#             form =Order_ItemsForm()
+#     return render(request, 'kalaliso/order.html', {'form': form,})
+            # return HttpResponse('order')
 
-def order_list(request):
-    o_l = Order.objects.all()
 
-    context = {
-        'order_list': o_l
-    }
-    return render(request, 'kalaliso/order_list.html', context)
 
+# def order_items(request, ):
+#     if request.method == 'POST':
+#         form = Order_ItemsForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('kalaliso:order_list')
+#             # return HttpResponseRedirect(reverse('order_items'))
+#     else:
+#         form = Order_ItemsForm()
+#     # return render(request, 'kalaliso/order.html', {'form': form})
+#     return render(request, 'kalaliso/order_items.html', {'form': form,})
 
 def order_items(request, ):
     if request.method == 'POST':
@@ -396,7 +422,18 @@ def order_items(request, ):
     else:
         form = Order_ItemsForm()
     # return render(request, 'kalaliso/order.html', {'form': form})
-    return render(request, 'kalaliso/order_items.html', {'form': form})
+    return render(request, 'kalaliso/order.html', {'form': form})
+
+def order_list(request):
+    o_l = Order.objects.all()
+
+    context = {
+        'order_list': o_l
+    }
+    return render(request, 'kalaliso/order_list.html', context)
+
+
+
 
 
 def orderdetail_detail(request, ):

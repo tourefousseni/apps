@@ -12,7 +12,21 @@ from django import forms
 from django_bootstrap_datetimepicker import *
 from django.forms import widgets
 import datetime
-from .models import Commune, Region, Cercle, Village
+from .models import Commune, Region, Cercle, Village, Parcel, Zone
+
+class ParcelForm(forms.ModelForm):
+    class Meta:
+        model = Parcel
+        fields = '__all__'
+        # exclude = ['id','id_reg']
+
+
+class ZoneForm(forms.ModelForm):
+    class Meta:
+        model = Zone
+        fields = '__all__'
+        # exclude = ['id','id_reg']
+
 
 
 class RegionForm(forms.ModelForm):

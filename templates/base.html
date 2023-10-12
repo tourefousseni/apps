@@ -32,7 +32,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">KALALISO APP</a>
+    <a class="navbar-brand" href="#">Cadastre Foncier</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -42,7 +42,7 @@
           <a class="nav-link active" aria-current="page" href="{% url 'accounts:homepage' %}">Homepage</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'kalaliso:products_list' %}">Albums</a>
+          <a class="nav-link" href="{% url 'maps:maps' %}">Carte</a>
         </li>
           <li class="nav-item">
           <a class="nav-link" href="{% url 'kalaliso:show_video' %}">Videos</a>
@@ -101,24 +101,28 @@
                         <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-speedometer2" style="color: white"></i> <span class="ms-1 d-none d-sm-inline"> Personne</span> >> </a>
                         <ul class="collapse show nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+
                             <li class="w-100">
-                                <a href="{% url 'contacts:person' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Ajouter un client</span> </a>
+                                <a href="{% url 'contacts:person' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Ajouter une personne</span> </a>
                             </li>
                             <li>
-                                <a href="{% url 'contacts:list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Liste des clients</span> </a>
+                                <a href="{% url 'contacts:list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Liste des personnes</span> </a>
+                            </li>
+                             <li class="w-100">
+                                <a href="{% url 'maps:maps' %}" class="nav-link px-0"> <span class="d-none d-sm-inline"> Carte </span> </a>
                             </li>
 
                         </ul>
 
                     <li>
                         <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline"> Mesure</span> >> </a>
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline"> Gestionnaire Eau</span> >> </a>
                         <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="{% url 'kalaliso:mesure' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Ajouter mesure</span> </a>
+                                <a href="{% url 'kalaliso:mesure' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Ajouter consommation</span> </a>
                             </li>
                             <li>
-                                <a href="{% url 'kalaliso:list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Liste des mesures</span></a>
+                                <a href="{% url 'kalaliso:list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Liste des consommations</span></a>
                             </li>
 
                         </ul>
@@ -157,24 +161,24 @@
 {#                            </li>#}
                         </ul>
                     </li>
-                    <li>
-                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Albums </span>>> </a>
-                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="{% url 'kalaliso:products_list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-info">Bronze</h6></span> </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-success">Or</h6></span> </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-warning">Diamant</h6></span> </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-danger">Will</h6></span></a>
-                            </li>
-                        </ul>
-                    </li>
+{#                    <li>#}
+{#                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">#}
+{#                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Albums </span>>> </a>#}
+{#                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">#}
+{#                            <li class="w-100">#}
+{#                                <a href="{% url 'kalaliso:products_list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-info">Bronze</h6></span> </a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-success">Or</h6></span> </a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-warning">Diamant</h6></span> </a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-danger">Will</h6></span></a>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </li>#}
                     <li>
                         <a href="{% url 'kalaliso:home' %}" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Payments</span></a>
@@ -216,7 +220,7 @@
 </div>
 
   <div class="copyright-footer" style="position: fixed; bottom: 0px; width: 100%; text-align: center;">
-    <p>&copy; <a href="#">Kalaliso.com</a> 2023, All Right Reserved.</p>
+    <p>&copy; <a href="#">Cadastre Foncier.com</a> 2023, All Right Reserved.</p>
   </div>
 
 </body>

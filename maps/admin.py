@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from .models import   Region, Cercle, Casier, Commune, Village, Parcel
+from .models import   Region, Cercle, Zone, Commune, Village, Parcel
 
-@admin.register(Casier)
-class CasierAdmin(admin.ModelAdmin):
-   list_display = [ 'culture', 'name_casier']
+@admin.register(Zone)
+class ZoneAdmin(admin.ModelAdmin):
+   list_display = [ 'name_casier']
 
 @admin.register(Parcel)
 class ParcelAdmin(admin.ModelAdmin):

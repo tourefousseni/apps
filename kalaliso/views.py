@@ -51,7 +51,7 @@ def mesure(request):
 
 def list(request, *args, **kwargs):
     list_mesure  = Mesure.objects.all().order_by('-id')
-    paginator    = Paginator(list_mesure, 10)
+    paginator    = Paginator(list_mesure, 5)
     page_number  = request.GET.get('page')
     page_obj     = paginator.get_page(page_number)
     person_number= list_mesure.count()

@@ -5,13 +5,34 @@ from .utils import  unique_parcel_id_generator
 
 
 class Parcel(models.Model):
+    TYPE_CULTURE = (
+        ('Riz', 'RIZ'),
+        ('Mil', 'MIL'),
+        ('Mais', 'MAIS'),
+        ('Sorghoi', 'SORGHOI'),
+        ('Niebe', 'NIEBE'),
+        ('Tomate', 'TOMATE'),
+        ('Piment', 'PIMENT'),
+        ('Salade', 'SALADE'),
+        ('Concombre', 'CONCOMBRE'),
+        ('No defini', 'NO DEFINI'),
+    )
+    TYPE = (
+        ('En exploitation', 'En exploitation'),
+        ('Non exploite', 'NON EXPLOITE'),
+        ('En jachere', 'EN JACHERE'),
+        ('Totalement exploite', 'TOTALEMENT EXPLOITE'),
+        ('Partiellement exploite', 'PARTIELLEMENT EXPLOITE'),
+        ('No qualifie', 'NO QUALIFIE'),
+    )
+    type           = models.CharField(max_length=50, choices=TYPE, verbose_name='Type')
     fips           = models.CharField(max_length=30)
     iso2           = models.CharField(max_length=30)
     iso3           = models.CharField(max_length=30)
     un             = models.IntegerField()
     name           = models.CharField(max_length=50)
     code_parcel    = models.CharField(max_length=100)
-    culture        = models.CharField(max_length=100)
+    culture        = models.CharField(max_length=20, choices=TYPE_CULTURE, verbose_name='Type de culture')
     area           = models.IntegerField()
     perimter       = models.IntegerField()
     pop2005        = models.IntegerField()
@@ -31,7 +52,7 @@ def pre_save_code_parcel_id(instance, sender, *args, **kwargs):
 pre_save.connect(pre_save_code_parcel_id, sender=Parcel)
 
 
-class Casier(models.Model):
+class Zone(models.Model):
     NAME_CASIER          = (
         ('Woloni', 'Woloni'),
         ('Tounga Ouest', 'Tounga Ouest'),
@@ -51,7 +72,7 @@ class Casier(models.Model):
     )
 
     name_casier          = models.CharField(max_length=50, choices=NAME_CASIER, )
-    culture              = models.CharField(max_length=100)
+    # culture              = models.CharField(max_length=100)
     locate_parcel        = models.ForeignKey('Parcel', on_delete=models.CASCADE,)
 
     def __str__(self):

@@ -7,16 +7,16 @@ class PersonForm(forms.ModelForm):
         model = Person
         fields = ['nom', 'prenom',
                   'contact_1', 'status','genre',
-                  'type_tailleur','category','domicile',
+                  'category','domicile',
                   'code_person',
                   ]
 
-        exclude = ['image', 'email','alias','contact_2',
+        exclude = ['image','email','alias','contact_2',
                     'photo', 'profession',
                     'responsable','date_naissance','nationalite','tutuelle',
                     'telephonique_fix','nina',
-                   'carte_biometrique',
-                   'numero_reference','created_at']
+                    'carte_biometrique',
+                    'numero_reference','created_at']
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)

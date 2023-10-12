@@ -22,7 +22,7 @@ from  maps.models import Region
 class Mesure(models.Model):
     objects = None
     id                 = models.AutoField(primary_key=True)
-    person             = models.OneToOneField('contacts.Person',on_delete=models.CASCADE,verbose_name='Mesure Client')
+    person             = models.OneToOneField('contacts.Person',on_delete=models.CASCADE,verbose_name='Consommateur')
     coude              = models.FloatField(null=True, blank=True)
     epaule             = models.FloatField(null=True, blank=True)
     manche_courte      = models.FloatField(null=True, blank=True)

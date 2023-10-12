@@ -14,20 +14,10 @@ class Person(models.Model):
     id = models.AutoField(primary_key=True)
     image = models.ImageField(upload_to='profil', null=True, blank=True, verbose_name='Photo_commande')
     STATUS = (
-        ('Client', 'CLIENT'),
-        ('Ouvrier', 'OUVRIER'),
-        ('Apprenti', 'APPRENTI'),
-        ('Fournisseur', 'FOURNISSEUR'),
-        ('Company', 'COMPANY'),)
+        ('Paysan', 'Paysan'),
+        ('Societe', 'Societe'),
+        )
 
-    TYPE_TAILLEUR = (
-        ('Brodeur', 'BRODEUR'),
-        ('Couture simple', 'COUTURE SIMPLE'),
-        ('Couture a main', 'COUTURE A MAIN'),
-        ('Boutouman', 'BUTTOUMAN'),
-        ('Perleuse', 'PERLEUSE'),
-        ('No qualifie', 'NO QUALIFIE'),
-    )
 
     GENRE = (
         ('Homme', 'HOMME'),
@@ -41,7 +31,6 @@ class Person(models.Model):
     )
     status            = models.CharField(max_length=20, choices=STATUS, )
     # user                = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Utilisateur')
-    type_tailleur     = models.CharField(max_length=20, choices=TYPE_TAILLEUR, verbose_name='Specialité')
     genre             = models.CharField(max_length=20, choices=GENRE,)
     category          = models.CharField(max_length=20, choices=CATEGORY,)
     code_person       = models.CharField(max_length=30, blank=True, verbose_name='Code person')

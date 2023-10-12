@@ -9,7 +9,7 @@ class PersonAdmin(admin.ModelAdmin):
                     'genre',
                     )
     # exclude = ('code', 'img', )
-    list_filter = ("status", "type_tailleur")
+    list_filter = ("status",)
     search_fields = ("nom__startswith",)
 admin.site.register(Person, PersonAdmin)
 # admin.site.register(Person)

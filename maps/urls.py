@@ -10,6 +10,8 @@ app_name = 'maps'
 # PARTY MAPS LOCALISATION #
 urlpatterns = [
         path('maps/', views.maps, name='maps'),
+        path('parcel/', views.parcel, name='parcel'),
+        path('zone/', views.zone, name='zone'),
         # path('locate/<int:pk>/', views.locate, name='locate'),
         path('region/', views.region, name='region'),
         path('cercle/', views.cercle, name='cercle'),

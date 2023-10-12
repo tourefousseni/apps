@@ -36,6 +36,26 @@ def maps(request):
 #     return render(request, 'localisation/locate.html', context)
 
 
+def parcel(request):
+    if request.method == 'POST':
+        form = ParcelForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    else:
+            form = ParcelForm()
+    return render(request, 'maps/parcel.html', {'form': form})
+
+def zone(request):
+    if request.method == 'POST':
+        form = ZoneForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    else:
+            form = ZoneForm()
+    return render(request, 'maps/zone.html', {'form': form})
+
 def region(request):
     if request.method == 'POST':
         form = RegionForm(request.POST)

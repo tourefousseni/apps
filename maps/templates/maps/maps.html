@@ -19,7 +19,7 @@
               <div class="row col-12">
                       <h4 class="text-center">ZONE D'ETUDE</h4>
                               <div class="col-md-12 offset-0" id="map" style="width:1200px; height: 680px">
-                                  {% leaflet_map "map"%}
+                                  {% leaflet_map "map" callback="main_map_init" %}
                               </div>
                                <div>
                                     {% leaflet_js %}
@@ -28,10 +28,30 @@
               </div>
 
 }
-<script>
 
+<script type="text/javascript">
+        function main_map_init (map, options) {
+            // Use Leaflet API here
 
+        var markerOptions = {
+            title: "MyLocation",
+            clickable: true,
+            draggable: true,
+        }
+        var marker = L.marker([13.10, -5.20], markerOptions);
+        // Creating a Layer object
+         var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 
+         // Adding layer to the map
+         map.addLayer(layer);
+
+         // Adding popup to the marker
+         marker.bindPopup("Fousseni Toure 78 36 06 03").openPopup();
+         marker.addTo(map); // Adding marker to the map
+        }
 </script>
+
+
+
 
 {% endblock %}

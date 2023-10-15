@@ -36,8 +36,8 @@ class UserRegistrationForm(UserCreationForm):
     first_name = forms.CharField(label='',widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder':'First Name'}))
     username   = forms.CharField(label='',widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Username'}))
     phone      = forms.CharField(label='',widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Phone Number'}))
-    password1 = forms.CharField(label="", widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Password'}))
-    password2 = forms.CharField(label="", widget=forms.TextInput(attrs={'class': 'form-control','placeholder':'Confirm Password'}))
+    password1  = forms.CharField(label="", widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder':'Password'}))
+    password2  = forms.CharField(label="", widget=forms.PasswordInput(attrs={'class': 'form-control','placeholder':'Confirm Password'}))
 
     class Meta:
             model = get_user_model()
@@ -53,7 +53,7 @@ class UserRegistrationForm(UserCreationForm):
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=200)
-    phone    = forms.CharField(max_length=20)
+    email    = forms.EmailField(max_length=20)
     password = forms.CharField( widget=forms.PasswordInput)
 
     class Meta:
@@ -61,10 +61,11 @@ class LoginForm(forms.Form):
             fields = [
                 'email',
                 'username',
-                'phone',
+                # 'phone',
                 # 'date_birth',
-                'password1',
-                'password2']
+                'password',
+                # 'password2'
+            ]
 
             # self.fields['username'].widget.attrs['class']        = 'form-control'
             # self.fields['username'].widget.attrs['placeholder']  = 'Pseudo'

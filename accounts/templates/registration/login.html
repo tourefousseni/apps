@@ -29,9 +29,9 @@
                   <h5 class="text-center">
                   {% if messages %}
                         {% for message in messages %}
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <div id='login' class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ message }}
-                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+{#                              <button type="button" data-bs-dismiss="alert" aria-label="Close"></button>#}
                             </div>
 
                         {% endfor  %}
@@ -46,25 +46,26 @@
 {#            Alerts#}
 {#             {% include 'partials/_alerts.html' %}#}
                 <form method="post" action="{% url 'accounts:connect' %}" >
-                {% csrf_token %}
-                    <card class="border-bottom form-control-color">
-                        <div class="form-outline mb-4">
-                                <input type="email" id="email" class="form-control" placeholder="Email"/>
-                        </div>
-                        <div class="form-outline mb-4">
-                                <input type="text" id="text" class="form-control" placeholder="Username"/>
-                        </div>
-                      <!-- Password input -->
-                      <div class="form-outline mb-4">
-                        <input type="password" id="password" class="form-control" placeholder="Tapez votre mot de passe"/>
-                      </div>
-                        <div class="col text-center">
-                          <!-- Simple link -->
-                          <a href="#!">Forgot password?</a>
-                           <button type="submit" value="login" class="btn btn-primary btn-lg" > Login</button>
-                            <a href="{% url 'accounts:register' %}" class="btn btn-info">Creer un nouveau compte</a>
-                        </div>
-                    </card>
+                    {% csrf_token %}
+{#                        {{ form|crispy }}#}
+                        <card class="border-bottom form-control-color">
+                            <div class="form-outline mb-4">
+                                    <input type="email" id="email" class="form-control" placeholder="Email"/>
+                            </div>
+                            <div class="form-outline mb-4">
+                                    <input type="text" id="text" class="form-control" placeholder="Username"/>
+                            </div>
+                          <!-- Password input -->
+                          <div class="form-outline mb-4">
+                            <input type="password" id="password" class="form-control" placeholder="Mot de passe"/>
+                          </div>
+                          <div class="col text-center">
+                              <!-- Simple link -->
+                              <a href="#!" class="btn btn-danger " >Forgot password ?</a>
+                               <button type="submit" value="login" class="btn btn-primary " >Login</button>
+                                <a href="{% url 'accounts:register' %}" class="btn btn-info"> Nouveau compte</a>
+                          </div>
+                        </card>
                 </form>
 {#          <form  method="POST" action="{% url 'accounts:connect' %}" enctype="multipart/form-data">#}
 {#                          {% csrf_token %}#}
@@ -79,7 +80,13 @@
          </div>
        </div>
     </div>
-               <script src="{% static 'js/main.js' %}"></script>
-</section>
+    </section>
+               <script >
+                   var message_ele = document.getElementById("login");
+                      setTimeout(function()
+                      {message_ele.style.display = "None";}, 2000);
+               </script>
+
+
 {% endblock %}
 

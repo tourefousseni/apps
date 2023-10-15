@@ -3,13 +3,13 @@
 
 {% block content %}
     <div class="container">
-        <div class="row  ">
-            <h5> STATISTIQUES </h5><hr>
+        <div class="row">
+            <h5 class="justify-content-center offset-5"> STATISTIQUES </h5><hr>
             <div class="row col-lg-12">
               <div class="col-sm-4">
                 <div class="card" style="background: ghostwhite; height: 200px; width: 360px" >
                   <div class="card-body">
-                    <h6 class="card-text text-center">CLIENTS</h6><hr>
+                    <h6 class="card-text text-center">EFFECTIF</h6><hr>
                      <p  class="text-center" href="#"> </p>
                       <p>client=Person.objects.count(status='Client')</p>
             {#         <p  class="text-center" href="#">{{ customer }} </p>#}
@@ -21,7 +21,7 @@
               <div class="col-sm-4 ">
                 <div class="card" style="background: ghostwhite ;  height: 200px; width: 360px">
                   <div class="card-body">
-                    <h6 class="card-text text-center">COMMANDER</h6><hr>
+                    <h6 class="card-text text-center">MONTANT ACQUIS</h6><hr>
                      <p  class="text-center" href="#"> </p>
                       <p>com=Order.objects.count()</p>
                       <h4 class="text-center " style="color: white">
@@ -32,7 +32,7 @@
                 <div class="col-sm-4">
                     <div class="card" style="background: ghostwhite;  height: 200px; width: 360px">
                       <div class="card-body">
-                        <h6 class="card-text text-center">MODELES</h6><hr>
+                        <h6 class="card-text text-center">CREDITS</h6><hr>
                           <p  class="text-center" href="#"> </p>
                           <p>mod=Product.objects.count()</p>
                           <h4 class="text-center " style="color: white"> </h4>
@@ -45,7 +45,7 @@
               <div class="col-sm-4">
                 <div class="card" style="background: ghostwhite;  height: 200px; width: 360px">
                   <div class="card-body">
-                    <h6 class="card-text text-center">NOUVEAUTES</h6><hr>
+                    <h6 class="card-text text-center">VOLUME D'EAU</h6><hr>
                      <p  class="text-center" href="#"> </p>
             {#         <p  class="text-center" href="#">{{ customer }} </p>#}
                       <h4 class="text-center" style="color: white;">

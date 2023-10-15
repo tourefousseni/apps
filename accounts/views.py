@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, User
 from django.contrib.auth import authenticate, login, get_user_model, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm, LoginForm
-from django.contrib import messages
+from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, FileResponse
@@ -23,36 +23,6 @@ def dashboard(request):
 def homepage(request):
     return render(request, 'accounts/homepage.html')
 
-def connect(request):
-    if request.method == 'POST':
-        # first_name  = request.POST['first_name']
-        # last_name   = request.POST['last_name']
-        username    = request.POST.get('username')
-        # phone       = request.POST['phone']
-        email       = request.POST.get('email')
-        password   = request.POST.get('password')
-        # password2   = request.POST['password2']
-
-        user = authenticate(request,
-                            # first_name=first_name,
-                            # last_name=last_name,
-                            username=username,
-                            # phone=phone,
-                            email=email,
-                            password=password,
-                            # password2=password2
-                            )
-
-        if user is not None and user.is_active:
-            login(request, user)
-            messages.success(request, 'Bienvenue chez kalaliso')
-            return redirect('accounts:dashboard')
-        else:
-            messages.warning(request, ('il faut refaire pour connecter'))
-            return redirect('accounts:dashboard')
-    else:
-        return render(request, 'registration/login.html')
-
 def register(request):
     form = UserRegistrationForm()
     if request.method == 'POST':
@@ -61,17 +31,55 @@ def register(request):
             form.save()
             messages.info(request, "votre compte a ete bien cree")
             return redirect('accounts:connect')
-        else:
-            form = UserRegistrationForm()
-            messages.info(request, ("la creation de votre compte est echouee"))
+    else:
+        form = UserRegistrationForm()
+        # messages.info(request, ("la creation de votre compte est echouee"))
     return render(request, 'accounts/register.html', {'form':form})
+
+def connect(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(username=username, email=email,password=password)
+        # first_name  = request.POST['first_name']
+        # last_name   = request.POST['last_name']
+        # username    = request.POST.get('username')
+        # phone       = request.POST['phone']
+        # email       = request.POST.get('email')
+        # password    = request.POST.get('password')
+        # password2   = request.POST['password2']
+        # user = auth.authenticate(username=username, password=password)
+        # user = authenticate(
+        # user = auth.authenticate(
+                            # request,
+                            # first_name=first_name,
+                            # last_name=last_name,
+                            # username=username,
+                            # phone=phone,
+                            # email=email,
+                            # password=password,
+                            # password2=password2
+                            # )
+        # and user.is_active
+        if user is not None:
+            login(request, user)
+            messages.success(request, 'Bienvenue vous etes connecté avec succés')
+            return redirect('accounts:dashboard')
+        else:
+            messages.warning(request, ('Il faut refaire pour connecter'))
+            return redirect('accounts:dashboard')
+    else:
+        return render(request, 'registration/login.html')
+
+
 
 
 
 # @login_required
 def disconnect(request):
     logout(request)
-    messages.info(request, ("vous etes deconnecte sur le site"))
+    # messages.info(request, ("vous etes deconnecte sur le site"))
     return redirect('accounts:homepage')
 
      # # return redirect('accounts:homepage')

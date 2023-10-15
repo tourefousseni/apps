@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.gis.db import models
 from django.db.models.signals import pre_save
 from .utils import  unique_parcel_id_generator
+# from djgeojson.fields import PolygonField
 
 
 class Parcel(models.Model):
@@ -41,6 +42,7 @@ class Parcel(models.Model):
     lon            = models.FloatField()
     lat            = models.FloatField()
     geom           = models.MultiPolygonField(srid=4326)
+    geom2          = models.PolygonField()
 
     def __str__(self):
          return str(self.code_parcel)

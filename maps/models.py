@@ -4,6 +4,19 @@ from django.db.models.signals import pre_save
 from .utils import  unique_parcel_id_generator
 # from djgeojson.fields import PolygonField
 
+##Import library
+# from django.db import models
+# import datetime
+# from django.db.models.signals import post_save, post_delete
+# from django.dispatch import receiver
+# import geopandas as gpd
+# import os
+# import glob
+# import zipfile
+# from sqlalchemy import *
+# from geo.Geoserver import Geoserver
+# from pg.pg import Pg
+
 
 class Parcel(models.Model):
     TYPE_CULTURE = (

@@ -35,42 +35,71 @@ def register(request):
         form = UserRegistrationForm()
         # messages.info(request, ("la creation de votre compte est echouee"))
     return render(request, 'accounts/register.html', {'form':form})
-
 def connect(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        user = authenticate(username=username, email=email,password=password)
-        # first_name  = request.POST['first_name']
-        # last_name   = request.POST['last_name']
-        # username    = request.POST.get('username')
-        # phone       = request.POST['phone']
-        # email       = request.POST.get('email')
-        # password    = request.POST.get('password')
-        # password2   = request.POST['password2']
-        # user = auth.authenticate(username=username, password=password)
-        # user = authenticate(
-        # user = auth.authenticate(
-                            # request,
-                            # first_name=first_name,
-                            # last_name=last_name,
-                            # username=username,
-                            # phone=phone,
-                            # email=email,
-                            # password=password,
-                            # password2=password2
-                            # )
-        # and user.is_active
-        if user is not None:
-            login(request, user)
-            messages.success(request, 'Bienvenue vous etes connecté avec succés')
-            return redirect('accounts:dashboard')
-        else:
-            messages.warning(request, ('Il faut refaire pour connecter'))
-            return redirect('accounts:dashboard')
-    else:
-        return render(request, 'registration/login.html')
+    form = LoginForm(request.POST)
+    if form.is_valid():
+         username   = form.cleaned_data["username"]
+         # email      = form.cleaned_data["email"]
+         password   = form.cleaned_data["password"]
+         user       = authenticate(username=username,  password=password)
+
+         if user is not None:
+            if user.is_active:
+                login(request, user)
+                return redirect('accounts:dashboard')
+            else:
+                return redirect('accounts:dashboard')
+
+    return render(request, "registration/login.html", {'form': form})
+
+# def connect(request):
+#     if request.method == 'POST':
+#         username = request.POST.get('username')
+#         email = request.POST.get('email')
+#         password = request.POST.get('password')
+#         user = auth.authenticate(request, username=username, email=email,password=password)
+#         # first_name  = request.POST['first_name']
+#         # last_name   = request.POST['last_name']
+#         # username    = request.POST.get('username')
+#         # phone       = request.POST['phone']
+#         # email       = request.POST.get('email')
+#         # password    = request.POST.get('password')
+#         # password2   = request.POST['password2']
+#         # user = auth.authenticate(username=username, password=password)
+#         # user = authenticate(
+#         # user = auth.authenticate(
+#                             # request,
+#                             # first_name=first_name,
+#                             # last_name=last_name,
+#                             # username=username,
+#                             # phone=phone,
+#                             # email=email,
+#                             # password=password,
+#                             # password2=password2
+#                             # )
+#         # and user.is_active
+#         if user is not None:
+#             if  user.is_active:
+#              auth.login(request, user)
+#              messages.success(request, ('Bienvenue vous etes connecté avec succés'))
+#             return redirect('accounts:dashboard')
+#         if password !=password:
+#             messages.warning(request, ('votre mot de passe est different'))
+#             return redirect('accounts:connect')
+#
+#         if email != email:
+#             messages.warning(request, ('votre email est different'))
+#             return redirect('accounts:connect')
+#
+#         if username !=username:
+#             messages.warning(request, ('votre username est different'))
+#             return redirect('accounts:connect')
+#
+#         else:
+#             messages.success(request, ('Il faut refaire pour connecter'))
+#             return redirect('accounts:dashboard')
+#     else:
+#         return render(request, 'registration/login.html')
 
 
 

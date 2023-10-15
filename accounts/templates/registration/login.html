@@ -45,28 +45,31 @@
 
 {#            Alerts#}
 {#             {% include 'partials/_alerts.html' %}#}
-                <form method="post" action="{% url 'accounts:connect' %}" >
+                <form method="POST" action="{% url 'accounts:connect' %}">
+                  <div>
                     {% csrf_token %}
-{#                        {{ form|crispy }}#}
-                        <card class="border-bottom form-control-color">
-                            <div class="form-outline mb-4">
-                                    <input type="email" id="email" class="form-control" placeholder="Email"/>
-                            </div>
-                            <div class="form-outline mb-4">
-                                    <input type="text" id="text" class="form-control" placeholder="Username"/>
-                            </div>
-                          <!-- Password input -->
-                          <div class="form-outline mb-4">
-                            <input type="password" id="password" class="form-control" placeholder="Mot de passe"/>
-                          </div>
-                          <div class="col text-center">
+                        {{ form | crispy }}
+{#                        <card class="border-bottom form-control-color">#}
+{#                            <div class="form-outline mb-4">#}
+{#                                    <input type="email" name="email" id="email" class="form-control" placeholder="email"/>#}
+{#                            </div>#}
+{#                            <div class="form-outline mb-4">#}
+{#                                    <input type="text" id="text" name="username" class="form-control" placeholder="username"/>#}
+{#                            </div>#}
+{#                          <!-- Password input -->#}
+{#                          <div class="form-outline mb-4">#}
+{#                            <input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe"/>#}
+{#                          </div>#}
+{#                          <div class="col text-center">#}
                               <!-- Simple link -->
-                              <a href="#!" class="btn btn-danger " >Forgot password ?</a>
-                               <button type="submit" value="login" class="btn btn-primary " >Login</button>
+{#                              <a href="#!" class="btn btn-danger " >Forgot password ?</a>#}
+                               <button type="submit"  value="submit" class="btn btn-primary " >Login</button>
                                 <a href="{% url 'accounts:register' %}" class="btn btn-info"> Nouveau compte</a>
-                          </div>
+
                         </card>
+                  </div>
                 </form>
+
 {#          <form  method="POST" action="{% url 'accounts:connect' %}" enctype="multipart/form-data">#}
 {#                          {% csrf_token %}#}
 {#                          {{ form|crispy }}#}

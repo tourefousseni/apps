@@ -172,9 +172,9 @@ class PaymentForm(forms.ModelForm):
                   'frais_shipp',
                   'delivered',
                   'confirmed',
-                  'create_at',]
+                  ]
 
-        # exclude = [ ]
+        exclude = [ 'create_at','code_payment']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -206,7 +206,7 @@ class DepenseForm(forms.ModelForm):
         model = Depense
         template_name = 'kalaliso/depense.html'
         fields = ('__all__')
-
+        exclude=['create_at',]
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
         # self.helper = FormHelper(self)

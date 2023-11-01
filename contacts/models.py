@@ -12,24 +12,20 @@ from .utils import unique_person_id_generator
 class Person(models.Model):
     objects = None
     id = models.AutoField(primary_key=True)
-    image = models.ImageField(upload_to='profil', null=True, blank=True, verbose_name='Photo_commande')
+    image = models.ImageField(upload_to='profil', null=True, blank=True, verbose_name='Profile')
     STATUS = (
-        ('Paysan', 'Paysan'),
-        ('Societe', 'Societe'),
-        )
-
-
+        ('Particulier', 'Particulier'),
+        ('Societe', 'Societe'),)
     GENRE = (
-        ('Homme', 'HOMME'),
-        ('Femme', 'FEMME'),
-        ('Autres', 'AUTRES'),
-    )
+        ('Homme', 'Homme'),
+        ('Femme', 'Femme'),
+        ('Autres', 'Autres'),)
     CATEGORY = (
-        ('Grande', 'GRANDE'),
-        ('Moyenne', 'MOYENNE'),
-        ('Petit', 'PETIT'),
-    )
-    status            = models.CharField(max_length=20, choices=STATUS, )
+        ('Grande', 'Grande'),
+        ('Moyenne', 'Moyenne'),
+        ('Petit', 'Petit'), )
+
+    status            = models.CharField(max_length=30, choices=STATUS, )
     # user                = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Utilisateur')
     genre             = models.CharField(max_length=20, choices=GENRE,)
     category          = models.CharField(max_length=20, choices=CATEGORY,)
@@ -50,6 +46,7 @@ class Person(models.Model):
     nina              = models.CharField(max_length=30, null=True, blank=True)
     carte_biometrique = models.CharField(max_length=50, null=True, blank=True)
     created_at        = models.DateField(auto_now=True)
+    update_at         = models.DateField(auto_now=True)
 
     def __str__(self):
         return '{} {} {}'.format(self.prenom, self.nom, self.contact_1)

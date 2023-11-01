@@ -365,16 +365,36 @@ def product_sum(request):
     return render(request, 'kalaliso/product_count.html', {'product_sum': product_sum, })
 
 
+# def order(request):
+#     if request.method == 'POST':
+#         form = OrderForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('kalaliso:order_list')
+#             # return HttpResponse('order')
+#     else:
+#         form = OrderForm()
+#     return render(request, 'kalaliso/order.html', {'form': form})
+
 def order(request):
     if request.method == 'POST':
-        form = OrderForm(request.POST)
+        form1 = OrderForm(request.POST)
+        if form1.is_valid():
+            form1.save()
+            return redirect('kalaliso:order_list')
+    else:
+        form1 = OrderForm()
+            # return HttpResponse('order')
+
+    if request.method=='POST':
+        form =Order_ItemsForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('kalaliso:order_list')
-            # return HttpResponse('order')
+            return redirect('kalaliso:order')
     else:
-        form = OrderForm()
-    return render(request, 'kalaliso/order.html', {'form': form})
+        form = Order_ItemsForm()
+
+    return render(request, 'kalaliso/order.html', {'form1': form1, 'form':form })
 
 
 def order_list(request):

@@ -1,3 +1,7 @@
+# from geo.Geoserver import Geoserver
+
+# Initialize the library
+# geo = Geoserver('http://127.0.0.1:8080/geoserver', username='admin', password='geoserver')
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse, FileResponse
@@ -16,11 +20,18 @@ import xhtml2pdf.default
 from xhtml2pdf.util import getSize
 from . import forms
 from .forms import *
+from contacts.models import Person
+from kalaliso.models import Order, Order_Items, Product, Payment, Depense
 # Create your views here.
 
 def maps(request):
+    parcel=Parcel.objects.all()
 
-    return render(request, 'maps/maps.html')
+    context={
+        'parcel':parcel
+    }
+
+    return render(request, 'maps/maps.html', context)
 
 # def locate(request, pk):
 #     data_region = Region.objects.filter(id=pk)

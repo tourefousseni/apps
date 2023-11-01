@@ -16,7 +16,7 @@ class PersonForm(forms.ModelForm):
                     'responsable','date_naissance','nationalite','tutuelle',
                     'telephonique_fix','nina',
                     'carte_biometrique',
-                    'numero_reference','created_at']
+                    'numero_reference','created_at','update_at']
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)

@@ -4,14 +4,16 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <h5 class="justify-content-center offset-5"> STATISTIQUES </h5><hr>
+            <div class="col-md-12">
+              <h4 class="justify-content-center offset-5"> STATISTIQUES </h4><hr>
+            </div>
             <div class="row col-lg-12">
               <div class="col-sm-4">
                 <div class="card" style="background: ghostwhite; height: 200px; width: 360px" >
                   <div class="card-body">
                     <h6 class="card-text text-center">EFFECTIF</h6><hr>
                      <p  class="text-center" href="#"> </p>
-                      <p>client=Person.objects.count(status='Client')</p>
+                      <h2 class="justify-content-center offset-6">{{person}}</h2>
             {#         <p  class="text-center" href="#">{{ customer }} </p>#}
                       <h4 class="text-center" style="color: white">
                       </h4>

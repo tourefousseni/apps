@@ -17,6 +17,8 @@ from .validators import file_size
 from  contacts.models import Person
 # from  kalaliso.models import Mesure
 from  maps.models import Region
+from maps.models import Parcel
+from contacts.models import Person
 
 
 class Mesure(models.Model):
@@ -36,6 +38,14 @@ class Mesure(models.Model):
     ceinture           = models.FloatField(null=True, blank=True)
     cuisse             = models.FloatField(null=True, blank=True)
     patte              = models.FloatField(null=True, blank=True)
+    parcel             = models.ForeignKey('maps.Parcel', on_delete=models.CASCADE,verbose_name='Parcel')
+    volume             = models.FloatField(null=True, blank=True)
+    litre              = models.FloatField(null=True, blank=True)
+    diff               = models.FloatField(null=True, blank=True)
+    start_eau           = models.DateTimeField(null=True, blank=True)
+    end_eau             = models.DateTimeField(null=True, blank=True)
+    duration           = models.DurationField()
+    quantity           = models.FloatField(null=True, blank=True)
     created_at         = models.DateField(auto_now=True)
     update_at          = models.DateField(auto_now=True)
 
@@ -134,11 +144,11 @@ class Payment(models.Model):
         ('Sama Money', 'Sama Money'),
         ('Wave', 'Wave'),
         ('Virement', 'Virement'),
-        ('Transaction', 'Transaction'), )
+        ('Transaction bancaire', 'Transaction bancaire'), )
     mode_payment     =  models.CharField(max_length=50, choices=MODE_PAYMENT, default='Espece', )
     payment_Order    = models.ForeignKey('kalaliso.Order', on_delete=models.CASCADE, blank=True, null=True, verbose_name='Payment Facture', )
     code_payment     = models.CharField(max_length=30, blank=True, verbose_name='Code Payement')
-    person_id        = models.ForeignKey('contacts.Person', on_delete=models.CASCADE, verbose_name='Titulaire command', )
+    person_id        = models.ForeignKey('contacts.Person', on_delete=models.CASCADE, verbose_name='Consommateur', )
     amount           = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True, verbose_name='Montant Total')
     fees_commission  = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
     taxe             = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
@@ -174,7 +184,7 @@ class Depense(models.Model):
         ('Sama Money', 'Sama Money'),
         ('Wave', 'Wave'),
         ('Virement', 'Virement'),
-        ('Transaction', 'Transaction'), )
+        ('Transaction bancaire', 'Transaction bancaire'), )
 
     mode_payment_depense   =  models.CharField(max_length=50, choices=MODE_PAYMENT_DEPENSE, default='Espece', )
     person_responsable     = models.ForeignKey('contacts.Person', on_delete=models.CASCADE, verbose_name='Titulaire Depense', )

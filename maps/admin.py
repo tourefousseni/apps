@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from .models import   Region, Cercle, Zone, Commune, Village, Parcel
+from .models import   \
+   Region, Cercle, Zone, Commune, Village, Parcel
 
 @admin.register(Zone)
 class ZoneAdmin(admin.ModelAdmin):
@@ -8,7 +9,9 @@ class ZoneAdmin(admin.ModelAdmin):
 
 @admin.register(Parcel)
 class ParcelAdmin(admin.ModelAdmin):
-   list_display = [ 'area', 'name', 'fips']
+   list_display = ['file','name',
+                    'description',
+                    'upload_date']
 
 @admin.register(Region)
 class RegionAdmin(admin.ModelAdmin):

@@ -11,6 +11,7 @@ from django.http import HttpResponseRedirect, HttpResponse, FileResponse
 from .forms import UserRegistrationForm, LoginForm
 import io
 from .import views
+from contacts.models import Person
 import time
 time.sleep(5)
 
@@ -18,7 +19,12 @@ from accounts.models import User
 from .forms import *
 
 def dashboard(request):
-    return render(request, 'accounts/dashboard.html')
+    person = Person.objects.count()
+    context={
+        'person': person,
+
+         }
+    return render(request, 'accounts/dashboard.html', context)
 
 def homepage(request):
     return render(request, 'accounts/homepage.html')

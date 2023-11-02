@@ -7,13 +7,16 @@
 {# {% include 'kalaliso/order_items.html' %}#}
 
  <div class="orderform">
-          <div class="row col-md-8 offset-md-1">
+          <div class="row col-md-8 m-2">
                {% crispy form1 %}<hr>
                {% crispy form %}
 
          <a href="{% url 'kalaliso:order' %}"></a>
-         <a href="{% url 'kalaliso:order_list'  %}" class="justify-content-center btn btn-primary"> Views all orders</a>
 {#          <a href="{% url 'kalaliso:order_items' %}"></a>#}
+              <input type="submit" value="Submit" class="btn btn-primary col-md-2 m-2">
+              <input type="reset" value="Reset" class="btn btn-danger col-md-2 m-2">
+               <a href="{% url 'kalaliso:order_list'  %}" class="btn btn-dark col-md-2 m-2"> All orders</a>
+
           </div>
 </div>
 {#<div class="orderitems">#}

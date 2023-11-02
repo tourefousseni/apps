@@ -124,10 +124,10 @@ class OrderForm(forms.ModelForm):
             # InlineRadios('cancelled'),
             # InlineRadios('rendez_vous'),
 
-            FormActions(
-                    Submit('save_product', 'Save'),
-                    Submit('cancel', 'Cancel', css_class='btn btn-danger')
-                )
+            # FormActions(
+            #         Submit('save_product', 'Save'),
+            #         Submit('cancel', 'Cancel', css_class='btn btn-danger')
+            #     )
             )
 
 class Order_ItemsForm(forms.ModelForm):
@@ -152,10 +152,10 @@ class Order_ItemsForm(forms.ModelForm):
                 # Column('create_at', ),
             ),
 
-            FormActions(
-                Submit('save_product', 'Save'),
-                Submit('cancel', 'Cancel', css_class='btn btn-danger')
-            ),
+            # FormActions(
+            #     Submit('save_product', 'Save'),
+            #     Submit('cancel', 'Cancel', css_class='btn btn-danger')
+            # ),
         )
 
 class PaymentForm(forms.ModelForm):

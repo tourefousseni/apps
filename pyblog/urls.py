@@ -8,7 +8,7 @@ urlpatterns = [
       path('maps/', include('maps.urls',)),
       path('contacts/', include('contacts.urls',)),
       path('accounts/',include('accounts.urls',)),
-      path('kalaliso/', include('kalaliso.urls',)),
+      path('gestion/', include('gestion.urls', )),
       path('paypal/', include('paypal.standard.ipn.urls')),
       path('admin/', admin.site.urls),
 ]

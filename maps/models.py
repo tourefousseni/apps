@@ -13,9 +13,9 @@ import zipfile
 import datetime
 from django.db import models
 import glob
-# from maps.models import Parcel
+from maps.models import *
 from geo.Geoserver import Geoserver
-from pg.pg import Pg
+# from pg.pg import Pg
 from geoalchemy2 import Geometry, WKTElement
 
 # Initialize the library
@@ -23,8 +23,8 @@ from geoalchemy2 import Geometry, WKTElement
 geo = Geoserver('http://127.0.0.1:8080/geoserver/geogate',
                 username='admin', password='allahkbarou')
 
-db = Pg(dbname='plateform', port='5432', host='localhost',
-             user='postgres', password='password')
+# db = Pg(dbname='plateform', port='5432', host='localhost',
+#              user='postgres', password='password')
 
 #
 ##Import library
@@ -43,29 +43,30 @@ db = Pg(dbname='plateform', port='5432', host='localhost',
 class Parcel(models.Model):
     id = models.AutoField(primary_key=True)
     TYPE_CULTURE = (
-        ('Riz', 'RIZ'),
-        ('Mil', 'MIL'),
-        ('Mais', 'MAIS'),
-        ('Sorghoi', 'SORGHOI'),
-        ('Niebe', 'NIEBE'),
-        ('Tomate', 'TOMATE'),
-        ('Piment', 'PIMENT'),
-        ('Salade', 'SALADE'),
-        ('Concombre', 'CONCOMBRE'),
-        ('No defini', 'NO DEFINI'),
+        ('RIZ', 'RIZ'),
+        ('MIL', 'MIL'),
+        ('MAIS', 'MAIS'),
+        ('SORGHOI', 'SORGHOI'),
+        ('NIEBE', 'NIEBE'),
+        ('TOMATE', 'TOMATE'),
+        ('PIMENT', 'PIMENT'),
+        ('SALADE', 'SALADE'),
+        ('CONCOMBRE', 'CONCOMBRE'),
+        ('AUBERGINE', 'AUBERGINE'),
+        ('CHOPEAUM', 'CHOPEAUM'),
+        ('NO DEFINI', 'NO DEFINI'),
     )
     TYPE = (
-        ('En exploitation', 'EN EXPLOITATION'),
-        ('Non exploite', 'NON EXPLOITE'),
-        ('En jachere', 'EN JACHERE'),
-        ('Totalement exploite', 'TOTALEMENT EXPLOITE'),
-        ('Partiellement exploite', 'PARTIELLEMENT EXPLOITE'),
-        ('No qualifie', 'NO QUALIFIE'),
+        ('EN EXPLOITATION', 'EN EXPLOITATION'),
+        ('NON EXPLOITE', 'NON EXPLOITE'),
+        ('EN JACHERE', 'EN JACHERE'),
+        ('TOTALEMENT EXPLOITE', 'TOTALEMENT EXPLOITE'),
+        ('PARTIELLEMENT EXPLOITE', 'PARTIELLEMENT EXPLOITE'),
+        ('NO QUALIFIE', 'NO QUALIFIE'),
     )
     type           = models.CharField(max_length=50, choices=TYPE, verbose_name='Type')
     fips           = models.CharField(max_length=50, blank=True, null=True)
     iso2           = models.CharField(max_length=50, blank=True, null=True)
-    iso3           = models.CharField(max_length=50,blank=True, null=True)
     un             = models.IntegerField( blank=True, null=True)
     name           = models.CharField(max_length=50, blank=True, null=True)
     description    = models.CharField(max_length=1000, blank=True, null=True)
@@ -74,10 +75,8 @@ class Parcel(models.Model):
     code_parcel    = models.CharField(max_length=100)
     culture        = models.CharField(max_length=50, choices=TYPE_CULTURE, verbose_name='Type de culture')
     area           = models.IntegerField( blank=True, null=True)
-    perimter       = models.IntegerField( blank=True, null=True)
-    pop2005        = models.IntegerField(blank=True, null=True)
+    perimeter      = models.IntegerField( blank=True, null=True)
     region         = models.IntegerField( blank=True, null=True)
-    subregion      = models.IntegerField( blank=True, null=True)
     lon            = models.FloatField (blank=True, null=True)
     lat            = models.FloatField( blank=True, null=True)
     # geom           = models.MultiPolygonField()
@@ -121,6 +120,7 @@ def publish_data(sender, instance, created, **kwargs):
     geom_type = gdf.geom_type[1]
     engine = create_engine(conn_str) # create the SQLAlchemy's engine to use
     gdf['geom']=gdf['geometry'].apply(lambda x:WKTElement(x.wkt, srid=epsg))
+
     # drop the geometry column(since we already backuq this coulmn with geom)
     gdf.drop('geometry', 1, inplace=True)
     gdf.to_sql(name, engine, 'plateform', if_exits='replace',
@@ -183,8 +183,60 @@ def publish_data(sender, instance, created, **kwargs):
     # geo.delete_style(style_name='style2', workspace='geogate1')
 
 
-class Zone(models.Model):
-    NAME_CASIER          = (
+# class Zone(models.Model):
+#     NAME_CASIER          = (
+#         ('Woloni', 'Woloni'),
+#         ('Tounga Ouest', 'Tounga Ouest'),
+#         ('Tounga Centre', 'Casier Centre'),
+#         ('Tounga Est', 'Casier Est'),
+#         ('Casier de Kandara', 'Casier de Kandara'),
+#         ('Tibi', 'Tibi'),
+#         ('Parampasso-NGoa', 'Parampasso-NGoa'),
+#         ('Dahelan', 'Dahelan'),
+#         ('Casier de Djenne Sud', 'Casier de Djenne Sud'),
+#         ('Casier de Djenne Nord', 'Casier de Djenne Nord'),
+#         ('Tiekilenso Nord', 'Tiekilenso Nord'),
+#         ('Tiekilenso Sud', 'Tiekilenso Sud'),
+#         ('Casier C', 'Casier C'),
+#         ('San Est I', 'San Est I'),
+#         ('San Est II', 'San Est II'),
+#     )
+#
+#     name_casier          = models.CharField(max_length=50, choices=NAME_CASIER, )
+#     # culture              = models.CharField(max_length=100)
+#     locate_parcel        = models.ForeignKey('Parcel', on_delete=models.CASCADE,)
+#
+#     def __str__(self):
+#         return '{}'.format(self.name_casier)
+
+class Localization(models.Model):
+    REGION = (
+        ('Bamako', 'Bamako'),
+        ('kayes', 'kayes'),
+        ('koulikoro', 'koulikoro'),)
+
+    region = models.CharField(max_length=50, choices=REGION , default='Bamako', )
+    CERCLE = (
+        ('Bafoulabe', 'Bafoulabe'),
+        ('Diema', 'Diema'),
+        ('Kenieba', 'Kenieba'),
+        ('kidal', 'kidal'),)
+
+    cercle = models.CharField(max_length=50, choices=CERCLE, default='kidal', )
+    COMMUNE = (
+        ('Commune I', 'Commune I'),
+        ('Commune II', 'Commune II'),
+        ('Commune III', 'Commune III'),)
+
+    commune = models.CharField(max_length=50, choices=COMMUNE, default='Commune I', )
+    QUARTIER_VILLAGE = (
+        ('Lafiabougou', 'Lafiabougou'),
+        ('Lassa', 'Lassa'),
+        ('Taliko', 'Taliko'),)
+
+    quartier = models.CharField(max_length=50, choices=QUARTIER_VILLAGE, default='Lafiabougou', )
+    location    = models.ForeignKey('Parcel', on_delete=models.DO_NOTHING)
+    CASIER = (
         ('Woloni', 'Woloni'),
         ('Tounga Ouest', 'Tounga Ouest'),
         ('Tounga Centre', 'Casier Centre'),
@@ -202,59 +254,58 @@ class Zone(models.Model):
         ('San Est II', 'San Est II'),
     )
 
-    name_casier          = models.CharField(max_length=50, choices=NAME_CASIER, )
-    # culture              = models.CharField(max_length=100)
-    locate_parcel        = models.ForeignKey('Parcel', on_delete=models.CASCADE,)
+    casier = models.CharField(max_length=50, choices=CASIER, )
 
     def __str__(self):
-        return '{}'.format(self.name_casier)
+        return self.quartier
 
 
-class Village(models.Model):
-    # parcel          = models.ForeignKey('Parcel', on_delete=models.CASCADE,)
-    id             = models.AutoField(primary_key=True)
-    id_com         = models.ForeignKey('Commune', on_delete=models.CASCADE, verbose_name='Communes',)
-    id_village      = models.PositiveIntegerField()
-    nom_village     = models.CharField(max_length=50, blank=True, verbose_name='Quartiers/Villages')
-    long            = models.FloatField(blank=True)
-    alt             = models.CharField(max_length=50, blank=True, )
-    lat             = models.FloatField(blank=True)
-    # point        = models.PointField(geography=True, blank=True, null=True)
 
-    def __str__(self):
-        return '{}'.format(self.nom_village)
-
-
-class Commune(models.Model):
-    id           = models.AutoField(primary_key=True)
-    id_cercle    = models.ForeignKey('Cercle', on_delete=models.CASCADE, verbose_name='Cercles',)
-    com          = models.PositiveIntegerField()
-    commune      = models.CharField(max_length=50, blank=True)
-    # point     = models.PointField(geography=True,blank=True, null=True)
-
-    def __str__(self):
-        return '{}'.format(self.commune)
-
-
-class Cercle(models.Model):
-    id             = models.AutoField(primary_key=True)
-    id_reg         = models.ForeignKey('Region', on_delete=models.CASCADE,  verbose_name='Regions',)
-    id_cer         = models.PositiveIntegerField()
-    cercle         = models.CharField(max_length=50, blank=True)
-    # point     = models.PointField(geography=True, blank=True, null=True)
-
-    def __str__(self):
-        return '{}'.format(self.cercle)
-
-
-class Region(models.Model):
-    id          = models.AutoField(primary_key=True)
-    id_reg      = models.PositiveIntegerField()
-    region      = models.CharField(max_length=100)
-    # point     = models.PointField(geography=True, blank=True, null=True)
-
-    def __str__(self):
-        return'{}'.format(self.region)
+# class Village(models.Model):
+#     # parcel          = models.ForeignKey('Parcel', on_delete=models.CASCADE,)
+#     id             = models.AutoField(primary_key=True)
+#     id_com         = models.ForeignKey('Commune', on_delete=models.CASCADE, verbose_name='Communes',)
+#     id_village      = models.PositiveIntegerField()
+#     nom_village     = models.CharField(max_length=50, blank=True, verbose_name='Quartiers/Villages')
+#     long            = models.FloatField(blank=True)
+#     alt             = models.CharField(max_length=50, blank=True, )
+#     lat             = models.FloatField(blank=True)
+#     # point        = models.PointField(geography=True, blank=True, null=True)
+#
+#     def __str__(self):
+#         return '{}'.format(self.nom_village)
+#
+#
+# class Commune(models.Model):
+#     id           = models.AutoField(primary_key=True)
+#     id_cercle    = models.ForeignKey('Cercle', on_delete=models.CASCADE, verbose_name='Cercles',)
+#     com          = models.PositiveIntegerField()
+#     commune      = models.CharField(max_length=50, blank=True)
+#     # point     = models.PointField(geography=True,blank=True, null=True)
+#
+#     def __str__(self):
+#         return '{}'.format(self.commune)
+#
+#
+# class Cercle(models.Model):
+#     id             = models.AutoField(primary_key=True)
+#     id_reg         = models.ForeignKey('Region', on_delete=models.CASCADE,  verbose_name='Regions',)
+#     id_cer         = models.PositiveIntegerField()
+#     cercle         = models.CharField(max_length=50, blank=True)
+#     # point     = models.PointField(geography=True, blank=True, null=True)
+#
+#     def __str__(self):
+#         return '{}'.format(self.cercle)
+#
+#
+# class Region(models.Model):
+#     id          = models.AutoField(primary_key=True)
+#     id_reg      = models.PositiveIntegerField()
+#     region      = models.CharField(max_length=100)
+#     # point     = models.PointField(geography=True, blank=True, null=True)
+#
+#     def __str__(self):
+#         return'{}'.format(self.region)
 
 
 

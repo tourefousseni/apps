@@ -1,4 +1,4 @@
-from kalaliso.models import *
+from gestion.models import *
 
 class Product_shop(models.Model):
     name              = models.CharField(primary_key=True, max_length=50,)

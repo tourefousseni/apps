@@ -1,0 +1,64 @@
+
+{% load static %}
+
+{% block content %}
+
+                   <div>
+{#                     <a href="{% url 'gestion:carnet' mesure.id %}" class="btn btn-secondary btn ">Select mesure by custom</a>#}
+                   </div>
+
+        <div class="text-center">
+            <h2>CARNET DES MESURES</h2>
+        </div>
+
+    <div class="table-responsive">
+    <table id="bootstrapdatable" class="table table-striped table-bordered" width="100%">
+        <thead><br/>
+            <tr>
+{#                  <th>N°</th>#}
+                  <th>Prenom</th>
+                  <th>Nom</th>
+                  <th>Coude</th>
+                  <th>Epaule</th>
+                  <th>Manche</th>
+                  <th>Tour Manche</th>
+                  <th>Taille</th>
+                  <th>Poitrine</th>
+                  <th>Longueur Boubou</th>
+                  <th>Longueur Patanlon</th>
+                  <th>Fesse</th>
+                  <th>Ceinure</th>
+                  <th>Cuisse</th>
+                  <th>Patte</th>
+                  <th>Create_at</th>
+
+            </tr>
+      </thead>
+      <tbody>
+                {% for mesure in mesure_list.all %}
+                           <tr>
+
+{#                                <td>{{ mesure.id }}</td>#}
+                                <td>" "{{ mesure.person_mesure.prenom }}</td>
+                                <td>" "{{ mesure.person_mesure.nom }}</td>
+                                <td>" "{{ mesure.coude }}</td>
+                                <td>" "{{ mesure.epaule }}</td>
+                                <td>" "{{ mesure.manche }}</td>
+                                <td>{{ mesure.tour_manche }}</td>
+                                <td>{{ mesure.taille }}</td>
+                                <td>{{ mesure.poitrine }}</td>
+                                <td>{{ mesure.longueur_boubou }}</td>
+                                <td>{{ mesure.longueur_patanlon }}</td>
+                                <td>{{ mesure.fesse }}</td>
+                                <td>{{ mesure.ceinture }}</td>
+                                <td>{{ mesure.cuisse }}</td>
+                                <td>{{ mesure.patte }}</td>
+                                <td>{{ mesure.created_at }}</td>
+
+                           </tr>
+                    {% empty %}
+                {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+</div>

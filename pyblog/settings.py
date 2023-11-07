@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'contacts.apps.ContactsConfig',
     'maps.apps.MapsConfig',
     'accounts.apps.AccountsConfig',
-    'kalaliso.apps.KalalisoConfig',
+    'gestion.apps.GestionConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -61,8 +61,8 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'reportlab',
     # 'geo-rest',
-    'geo',
-    'osgeo',
+    'geopy',
+    # 'osgeo',
 ]
 
 MIDDLEWARE = [
@@ -174,19 +174,7 @@ MESSAGE_TAGS = {
 PAYPAL_RECEIVER_EMAIL = 'tourefousseni1@gmail.com'
 PAYPAL_TEST = True
 
-LEAFLET_CONFIG = {
-# 'SPATIAL_EXTENT': (12.05, -2.09, 14.5, -4.46),
-#
-# 'SPATIAL_EXTENT': (11, -4.16,  13.05,  -2.00),
-
-
-'DEFAULT_CENTER': (13.10, -4.30),
-'DEFAULT_ZOOM': 3,
-'MIN_ZOOM': 8,
-'MAX_ZOOM': 30,
-'DEFAULT_PRECISION': 6,
-'SCALE': 'both',
-'MINIMAP': True,
-'EPSG': 4354,
-
-}
+LEAFLET_CONFIG = dict(DEFAULT_CENTER=(13.10, -4.30),
+                      DEFAULT_ZOOM=3, MIN_ZOOM=8,
+                      MAX_ZOOM=30, DEFAULT_PRECISION=6,
+                      SCALE='both', MINIMAP=True, EPSG=4354, RESET_VIEW=True,NO_GLOBALS = False)

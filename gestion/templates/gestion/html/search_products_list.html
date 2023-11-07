@@ -1,0 +1,136 @@
+{#{% extends 'base.html' %}#}
+{% load static %}
+
+<head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="description" content="">
+            <title>Kalaliso App</title>
+             <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+             <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<section>
+     <topnavbar class="navbar navbar-expand-sm navbar-brand bg-success">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="topnavbar">
+             <nav class="col-md-6 offset-3 text-center">
+                     <p  style="color: whitesmoke ">
+                         <small>
+                            Telephone: 78 36 06 03 Email: gisconsulting4@mail.com Bamako-Mali
+                         </small>
+                     </p>
+             </nav>
+        </div>
+      </div>
+    </topnavbar>
+</section>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">KALALISO APP</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 m-2">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'accounts:homepage' %}">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'gestion:products_list' %}">Albums</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="{% url 'gestion:show_video' %}">Videos</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="#">Annonce</a>
+        </li>
+           <li class="nav-item">
+          <a class="nav-link" href="#">Publicte</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Aide
+          </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+        </li>
+{#        <li class="nav-item">#}
+{#          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>#}
+{#        </li>#}
+      </ul>
+         <nav>
+            <div class="btn-toolbar mb-2 mb-md-0">
+             <div class="btn-group me-2">
+                    <a class="btn btn-sm btn-outline-secondary " href="{% url 'accounts:register' %}"><i class="fas fa-user-plus"></i>Register</a>
+                    <a class="btn btn-sm btn-outline-secondary " href="{% url 'accounts:connect' %}"><i class="fas fa-user-plus"></i>Login</a>
+          </div>
+        </div>
+    </nav>
+
+    </div>
+  </div>
+</nav>
+
+
+{% block content %}
+ <div>
+      <h3 class="text-center">CATALOGUE DES MODELES</h3><hr>
+ </div>
+
+<a href="{% url 'gestion:list' %}"></a>
+    <div class="col-md-4 ">
+    <h5 class="text-center">{{ message }}</h5>
+           <form action="{% url 'gestion:search_products_list'  %}" method="get">
+                      <input placeholder="Search ..." class="form-control form-control-dark" type="search" name="search">
+                      <button class="btn btn-success my-2" type="submit">Search</button>
+           </form>
+         </div>
+{% for product in search_products %}
+    {% if forloop.first %}<div class="row col-md-8 offset-2 ">{% endif %}
+    <div class="col-md-4 offset-0">
+      <div >
+         <img src="{{product.photo.url}}"
+              height="70%" width="100%" class="img-thumbnail" alt="...">
+
+              <ul class="d-inline">
+              <li >Model: {{ product.name }} </li>
+              <li>Price: {{ product.price }}<span>FCFA</span></li>
+              <li>Code: {{  product.code_product }}</li>
+              <li>Date de creation: {{ product.create_at }}</li>
+              <li>Detail : {{ product.description|truncatewords:1 }}</li>
+              <li>Publie par : kalaliso</li>
+          </ul>
+
+          <button class="btn btn-success m-2">Commander</button>
+          <button class="btn btn-dark">View</button>
+      </div>
+    </div>
+        {% if forloop.counter|divisibleby:3 %}
+    </div>
+    <div class="row col-md-8 offset-2">{% endif %}
+        {% if forloop.last %}</div>{% endif %}
+{% endfor %}
+{#    <div class="offset-md-4">#}
+{#    <nav aria-label="...">#}
+{#      <ul class="pagination">#}
+{#        <li class="page-item disabled">#}
+{#          <a class="page-link" href="#" tabindex="-1">Previous</a>#}
+{#        </li>#}
+{#        <li class="page-item"><a class="page-link" href="#">1</a></li>#}
+{#        <li class="page-item active">#}
+{#          <a class="page-link" href="#">2 <span class="sr-only">  </span></a>#}
+{#        </li>#}
+{#        <li class="page-item"><a class="page-link" href="#">3</a></li>#}
+{#        <li class="page-item">#}
+{#          <a class="page-link" href="#">Next</a>#}
+{#        </li>#}
+{#      </ul>#}
+{#    </nav>#}
+{#</div>#}
+{% endblock content %}
+

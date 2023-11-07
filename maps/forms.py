@@ -12,7 +12,7 @@ from django import forms
 from django_bootstrap_datetimepicker import *
 from django.forms import widgets
 import datetime
-from .models import Commune, Region, Cercle, Village, Parcel, Zone
+from .models import Localization, Parcel
 
 class ParcelForm(forms.ModelForm):
     class Meta:
@@ -21,52 +21,61 @@ class ParcelForm(forms.ModelForm):
         # exclude = ['id','id_reg']
 
 
-class ZoneForm(forms.ModelForm):
-    class Meta:
-        model = Zone
-        fields = '__all__'
+# class ZoneForm(forms.ModelForm):
+#     class Meta:
+#         model = Zone
+#         fields = '__all__'
         # exclude = ['id','id_reg']
 
 
-
-class RegionForm(forms.ModelForm):
+class LocalizationForm(forms.ModelForm):
     class Meta:
-        model = Region
+        model = Localization
         fields = '__all__'
-        exclude = ['id','id_reg']
+        # exclude = ['id','id_reg']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)
 
-class CercleForm(forms.ModelForm):
-    class Meta:
-        model = Cercle
-        fields = '__all__'
-
-        exclude = ['id_cer', 'id_reg', 'id']
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper(self)
-
-class CommuneForm(forms.ModelForm):
-    class Meta:
-        model = Commune
-        fields = '__all__'
-        exclude = ['com']
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper(self)
-
-class VillageForm(forms.ModelForm):
-    class Meta:
-        model = Village
-        fields = '__all__'
-        exclude = ['id_village', 'id','alt', 'long', 'lat']
-
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper(self)
+# class RegionForm(forms.ModelForm):
+#     class Meta:
+#         model = Region
+#         fields = '__all__'
+#         exclude = ['id','id_reg']
+#
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.helper = FormHelper(self)
+#
+# class CercleForm(forms.ModelForm):
+#     class Meta:
+#         model = Cercle
+#         fields = '__all__'
+#
+#         exclude = ['id_cer', 'id_reg', 'id']
+#
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.helper = FormHelper(self)
+#
+# class CommuneForm(forms.ModelForm):
+#     class Meta:
+#         model = Commune
+#         fields = '__all__'
+#         exclude = ['com']
+#
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.helper = FormHelper(self)
+#
+# class VillageForm(forms.ModelForm):
+#     class Meta:
+#         model = Village
+#         fields = '__all__'
+#         exclude = ['id_village', 'id','alt', 'long', 'lat']
+#
+#
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.helper = FormHelper(self)

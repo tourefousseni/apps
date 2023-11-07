@@ -18,7 +18,7 @@ env.user = 'touretoure'
 # env.port = '22'
 # ssh key path
 # env.ssh_keys_dir = os.path.join(abs_dir_path, 'ssh-keys')
-venv = 'source /var/www/kalaliso/venv/bin/activate'
+venv = 'source /var/www/gestion/venv/bin/activate'
 
 
 # GIT_REPO = "https://github.com/foussenitoure/cadastre.git:gisconsulting"
@@ -36,7 +36,7 @@ timestamp="release_%s" % int(time.time() * 1000)
 # env.user_name = 'deployer'
 
 def deploy():
-    source_folder = '/var/www/kalaliso'
+    source_folder = '/var/www/gestion'
 
     run('cd %s && git pull' % source_folder)
     run("""
@@ -72,14 +72,14 @@ def _reload():
 
 @task(alias="d")
 def basic_deploy():
-     with cd('/var/www/kalaliso'):
+     with cd('/var/www/gestion'):
         _install_doc()
         _get_code()
         _reload()
 
 @task(alias="dwn")
 def deploy():
-     with cd('/var/www/kalaliso'):
+     with cd('/var/www/gestion'):
         _install_doc()
         _get_code()
         # _dumpdata()

@@ -51,11 +51,36 @@ class Product(models.Model):
         return self.Name
 
 class Localization(models.Model):
+    REGION = (
+        ('Bamako', 'Bamako'),
+        ('kayes', 'kayes'),
+        ('koulikoro', 'koulikoro'),)
+
+    region = models.CharField(max_length=50, choices=REGION , default='Bamako', )
+    CERCLE = (
+        ('Bafoulabe', 'Bafoulabe'),
+        ('Diema', 'Diema'),
+        ('Kenieba', 'Kenieba'),
+        ('kidal', 'kidal'),)
+
+    cercle = models.CharField(max_length=50, choices=CERCLE, default='kidal', )
+    COMMUNE = (
+        ('Commune I', 'Commune I'),
+        ('Commune II', 'Commune II'),
+        ('Commune III', 'Commune III'),)
+
+    commune = models.CharField(max_length=50, choices=COMMUNE, default='Commune I', )
+    QUARTIER_VILLAGE = (
+        ('Lafiabougou', 'Lafiabougou'),
+        ('Lassa', 'Lassa'),
+        ('Taliko', 'Taliko'),)
+
+    quartier = models.CharField(max_length=50, choices=QUARTIER_VILLAGE, default='Lafiabougou', )
     location    = models.ForeignKey('Product', on_delete=models.DO_NOTHING)
-    quartier    = models.CharField(max_length=30, blank=True)
-    commune     = models.CharField(max_length=30, blank=True)
-    cercle      = models.CharField(max_length=30, blank=True)
-    region      = models.CharField(max_length=30, blank=True)
+    # quartier    = models.CharField(max_length=30, blank=True)
+    # commune     = models.CharField(max_length=30, blank=True)
+    # cercle      = models.CharField(max_length=30, blank=True)
+    # region      = models.CharField(max_length=30, blank=True)
 
     def __str__(self):
         return self.quartier

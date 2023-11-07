@@ -46,10 +46,10 @@
           <a class="nav-link" href="{% url 'maps:maps' %}">Carte</a>
         </li>
           <li class="nav-item">
-          <a class="nav-link" href="{% url 'kalaliso:show_video' %}">Videos</a>
+          <a class="nav-link" href="{% url 'gestion:show_video' %}">Videos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'kalaliso:anonce' %}">Annonce</a>
+          <a class="nav-link" href="{% url 'gestion:anonce' %}">Annonce</a>
         </li>
            <li class="nav-item">
           <a class="nav-link" href="#">Publicte</a>
@@ -120,10 +120,10 @@
                             <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline"> Gestionnaire Eau</span> >> </a>
                         <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="{% url 'kalaliso:mesure' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Ajouter consommation</span> </a>
+                                <a href="{% url 'gestion:mesure' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Ajouter consommation</span> </a>
                             </li>
                             <li>
-                                <a href="{% url 'kalaliso:list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Liste des consommations</span></a>
+                                <a href="{% url 'gestion:list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Liste des consommations</span></a>
                             </li>
 
                         </ul>
@@ -133,13 +133,13 @@
                         <ul class="collapse show nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
 
                             <li>
-                                <a href="{% url 'kalaliso:order' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Commander</span></a>
+                                <a href="{% url 'gestion:order' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Commander</span></a>
                             </li>
                             <li>
-                                <a href="{% url 'kalaliso:order_items' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Detail commandes</span></a>
+                                <a href="{% url 'gestion:order_items' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Detail commandes</span></a>
                             </li>
                             <li>
-                                <a href="{% url 'kalaliso:order_list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">3. Liste des commandes</span></a>
+                                <a href="{% url 'gestion:order_list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">3. Liste des commandes</span></a>
                             </li>
 
                         </ul>
@@ -148,17 +148,17 @@
                             <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Payment</span> >></a>
                         <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="{% url 'kalaliso:payment' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">payment</span> 1</a>
+                                <a href="{% url 'gestion:payment' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">payment</span> 1</a>
                             </li>
                             <li class="w-100">
-                                <a href="{% url 'kalaliso:depense' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Depense</span> 2</a>
+                                <a href="{% url 'gestion:depense' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Depense</span> 2</a>
                             </li>
 
 {#                            <li>#}
-{#                                <a href="{% url 'kalaliso:payment' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Payement</span></a>#}
+{#                                <a href="{% url 'gestion:payment' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Payement</span></a>#}
 {#                            </li>#}
 {#                            <li>#}
-{#                                <a href="{% url 'kalaliso:depense' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Depense</span></a>#}
+{#                                <a href="{% url 'gestion:depense' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Depense</span></a>#}
 {#                            </li>#}
                         </ul>
                     </li>
@@ -167,7 +167,7 @@
 {#                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Albums </span>>> </a>#}
 {#                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">#}
 {#                            <li class="w-100">#}
-{#                                <a href="{% url 'kalaliso:products_list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-info">Bronze</h6></span> </a>#}
+{#                                <a href="{% url 'gestion:products_list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-info">Bronze</h6></span> </a>#}
 {#                            </li>#}
 {#                            <li>#}
 {#                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-success">Or</h6></span> </a>#}
@@ -181,7 +181,7 @@
 {#                        </ul>#}
 {#                    </li>#}
                     <li>
-                        <a href="{% url 'kalaliso:home' %}" class="nav-link px-0 align-middle">
+                        <a href="{% url 'gestion:home' %}" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Payments</span></a>
                     </li>
 
@@ -206,7 +206,7 @@
             </div>
         </div>
 {#        <div class="col py-3">#}
-{#            Bienvenu chez kalaliso !#}
+{#            Bienvenu chez gestion !#}
 {#        </div>#}
 {#    </div>#}
 </div>

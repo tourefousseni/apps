@@ -2,7 +2,6 @@
 absl-py==2.0.0
 affine==2.4.0
 alabaster==0.7.12
-altgraph @ file:///System/Volumes/Data/SWE/Apps/DT/BuildRoots/BuildRoot7/ActiveBuildRoot/Library/Caches/com.apple.xbs/Sources/python3/python3-133.100.1.1/altgraph-0.17.2-py2.py3-none-any.whl
 anything==0.2.1
 arabic-reshaper==3.0.0
 asgiref==3.6.0
@@ -47,7 +46,6 @@ Fabric3==1.14.post1
 filelock==3.11.0
 fiona==1.9.5
 fonttools==4.43.1
-future @ file:///System/Volumes/Data/SWE/Apps/DT/BuildRoots/BuildRoot7/ActiveBuildRoot/Library/Caches/com.apple.xbs/Sources/python3/python3-133.100.1.1/future-0.18.2-py3-none-any.whl
 GDAL==3.7.2
 GeoAlchemy2==0.14.2
 geopandas==0.14.0
@@ -66,7 +64,6 @@ Jinja2==3.0.3
 jsonschema==3.2.0
 kiwisolver==1.4.5
 lxml==4.9.2
-macholib @ file:///System/Volumes/Data/SWE/Apps/DT/BuildRoots/BuildRoot7/ActiveBuildRoot/Library/Caches/com.apple.xbs/Sources/python3/python3-133.100.1.1/macholib-1.15.2-py2.py3-none-any.whl
 MarkupSafe==2.0.1
 matplotlib==3.8.0
 more-itertools==8.14.0
@@ -131,3 +128,4 @@ XlsxWriter==3.0.3
 xmltodict==0.13.0
 zc.lockfile==2.0
 zipp==3.17.0
+

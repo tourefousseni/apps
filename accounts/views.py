@@ -166,11 +166,11 @@ def change_password(request):
 #         if form.is_valid():
 #             form.save()
 #             obj=form.instance
-#             return render(request, 'kalaliso/homepage.html', {'obj': obj})
+#             return render(request, 'gestion/homepage.html', {'obj': obj})
 #     else:
 #         form = ImageForm()
 #     img = Image.objects.all()
-#     return render(request, 'kalaliso/homepage.html', {'img': img, 'form': form})
+#     return render(request, 'gestion/homepage.html', {'img': img, 'form': form})
 
 # def homepage(request,):
 #     customer = Person.objects.count()

@@ -18,7 +18,7 @@ class AccountsAdmin(admin.ModelAdmin):
     exclude = ('code', 'img', 'phone_fix', 'date_birth' )
     # list_filter = ("is_staff")
     search_fields = ("last_name__startswith",)
-admin.site.site_header = 'Admininstration kalaliso'
+admin.site.site_header = 'Admininstration gestion'
 admin.site.register(User, AccountsAdmin)
 
 # from django.contrib import admin

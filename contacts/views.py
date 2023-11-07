@@ -11,7 +11,7 @@ import io
 import time
 time.sleep(5)
 from accounts.models import *
-from kalaliso.models import *
+from gestion.models import *
 from contacts.models import *
 from .forms import *
 from django.contrib.gis.db import  *

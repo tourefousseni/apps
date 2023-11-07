@@ -21,7 +21,7 @@ from xhtml2pdf.util import getSize
 from . import forms
 from .forms import *
 from contacts.models import Person
-from kalaliso.models import Order, Order_Items, Product, Payment, Depense
+from gestion.models import Order, Order_Items, Product, Payment, Depense
 # Create your views here.
 
 def maps(request):
@@ -57,52 +57,64 @@ def parcel(request):
             form = ParcelForm()
     return render(request, 'maps/parcel.html', {'form': form})
 
-def zone(request):
+# def zone(request):
+#     if request.method == 'POST':
+#         form = ZoneForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('/')
+#     else:
+#             form = ZoneForm()
+#     return render(request, 'maps/zone.html', {'form': form})
+
+
+def localization(request):
     if request.method == 'POST':
-        form = ZoneForm(request.POST)
+        form = LocalizationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/')
     else:
-            form = ZoneForm()
-    return render(request, 'maps/zone.html', {'form': form})
+            form = LocalizationForm()
+    return render(request, 'localisation/locate.html', {'form': form})
 
-def region(request):
-    if request.method == 'POST':
-        form = RegionForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('maps:cercle')
-    else:
-            form = RegionForm()
-    return render(request, 'localisation/cercle.html', {'form': form})
 
-def cercle(request):
-    if request.method == 'POST':
-        form = CercleForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('maps:commune')
-    else:
-        form = CercleForm()
-    return render(request, 'localisation/cercle.html', {'form': form})
-
-def commune(request):
-    if request.method == 'POST':
-        form = CommuneForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('maps:village')
-    else:
-        form = CommuneForm()
-    return render(request, 'localisation/cercle.html', {'form': form})
-
-def village(request):
-    if request.method == 'POST':
-        form = VillageForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('maps:village')
-    else:
-        form = VillageForm()
-    return render(request, 'localisation/cercle.html', {'form': form})
+# def region(request):
+#     if request.method == 'POST':
+#         form = RegionForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('maps:cercle')
+#     else:
+#             form = RegionForm()
+#     return render(request, 'localisation/cercle.html', {'form': form})
+#
+# def cercle(request):
+#     if request.method == 'POST':
+#         form = CercleForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('maps:commune')
+#     else:
+#         form = CercleForm()
+#     return render(request, 'localisation/cercle.html', {'form': form})
+#
+# def commune(request):
+#     if request.method == 'POST':
+#         form = CommuneForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('maps:village')
+#     else:
+#         form = CommuneForm()
+#     return render(request, 'localisation/cercle.html', {'form': form})
+#
+# def village(request):
+#     if request.method == 'POST':
+#         form = VillageForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('maps:village')
+#     else:
+#         form = VillageForm()
+#     return render(request, 'localisation/cercle.html', {'form': form})

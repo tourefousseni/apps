@@ -50,7 +50,7 @@ def gestion(request):
 
 
 def list(request, *args, **kwargs):
-    list_gest  = Gestion.objects.all().order_by('-id')
+    list_gest    = Eau.objects.all().order_by('-id')
     paginator    = Paginator(list_gest, 5)
     page_number  = request.GET.get('page')
     page_obj     = paginator.get_page(page_number)
@@ -69,7 +69,7 @@ def list(request, *args, **kwargs):
 
 
 def detail(request, id):
-    detail_view = Gestion.objects.get(pk=id)
+    detail_view = Eau.objects.get(pk=id)
     context = {
         'gestion': detail_view,
     }
@@ -77,7 +77,7 @@ def detail(request, id):
 
 
 def update_mesure(request, id):
-    mesure       = Gestion.objects.get(id=id)
+    mesure       = Eau.objects.get(id=id)
     form         = GestionForm(instance=mesure)
     if request.method == 'POST':
         form     = GestionForm(request.POST, instance=gestion)
@@ -87,7 +87,7 @@ def update_mesure(request, id):
     return render(request, 'gestion/html/mesure.html', context)
 
 def update(request, id):
-    update_gest = Gestion.objects.get(pk=id)
+    update_gest = Eau.objects.get(pk=id)
     obj           = Person.objects.get(pk=id)
     context       = {
         'update_gest': update_gest,
@@ -96,7 +96,7 @@ def update(request, id):
     return render(request, 'gestion/html/list.html', context)
 
 def delete_mesure(request, id):
-    gestion = Gestion.objects.get(id=id)
+    gestion = Eau.objects.get(id=id)
     if request.method == 'POST':
         gestion.delete()
         return redirect('gestion:list')
@@ -104,7 +104,7 @@ def delete_mesure(request, id):
     return render(request, 'gestion/html/delete_gestion.html', context)
 
 def report_carnet(request, id):
-    detail_view = Gestion.objects.get(id=id)
+    detail_view = Eau.objects.get(id=id)
     template_path = 'gestion/xhtml2pdf/report_carnet_gestion.html'
     context = { 'gestion': detail_view,}
     response = HttpResponse(content_type='application/pdf')
@@ -118,7 +118,7 @@ def report_carnet(request, id):
     return response
 
 def report_all_mesure(request):
-    page_obj = Gestion.objects.all()
+    page_obj = Eau.objects.all()
     template_path = 'gestion/xhtml2pdf/report_all_gestions.html'
     context = {'list_gest': page_obj,}
     response = HttpResponse(content_type='application/pdf')
@@ -163,7 +163,7 @@ def search_products_list(request):
 #     return render(request, 'gestion/gestion_detail.html', context)
 
 def report_mesure(request):
-    gestions = Gestion.objects.all().order_by('id')
+    gestions = Eau.objects.all().order_by('id')
     template_path = 'gestion/xhtml2pdf/report_mesure.html'
     context = {'list_gest': page_obj}
     response = HttpResponse(content_type='application/pdf')
@@ -177,7 +177,7 @@ def report_mesure(request):
     return response
 
 def carnet(request, id):
-    mesure = Gestion.objects.get(pk=id)
+    mesure = Eau.objects.get(pk=id)
     # list_person = Person.objects.get(pk=id)
 
     template_path = 'gestion/xhtml2pdf/carnet_mesure.html'
@@ -198,7 +198,7 @@ def carnet(request, id):
 
 def search_mesure(request):
     search = request.GET.get('search')
-    filter_data = Gestion.objects.filter(Q(coude__icontains=search)|
+    filter_data = Eau.objects.filter(Q(coude__icontains=search)|
                                           Q(epaule__icontains=search)|
                                           Q(poitrine__icontains=search)
     )

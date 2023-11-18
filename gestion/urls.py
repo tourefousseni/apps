@@ -6,7 +6,7 @@ app_name = 'gestion'
 
 urlpatterns = [
 
-     path('gestio/', views.mesure, name='mesure'),
+     path('gestion/', views.gestion, name='gestion'),
      path('list/', views.list, name='list'),
      path('report_mesure/', views.report_mesure, name='carnet_mesure'),
      path('report_carnet/<int:id>/', views.report_carnet, name='report_carnet_mesure'),

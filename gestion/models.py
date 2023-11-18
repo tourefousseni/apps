@@ -18,11 +18,16 @@ from .utils import  \
 from django.forms import widgets
 from .validators import file_size
 from  contacts.models import Person
-# from  gestion.models import Mesure
+# from  gestion.models import
 # from  maps.models import Region
-from maps.models import Parcel
+# from maps.models import Parcel
 from contacts.models import Person
 
+
+# ==============================================
+#                  MODEL GESTION
+#                        START
+# ==============================================
 
 class Eau(models.Model):
     objects = None
@@ -35,7 +40,6 @@ class Eau(models.Model):
     null1              = models.FloatField(null=True, blank=True)
     null2              = models.FloatField(null=True, blank=True)
     null3              = models.FloatField(null=True, blank=True)
-    parcel             = models.ForeignKey('maps.Parcel', on_delete=models.CASCADE,verbose_name='Parcel')
     volume             = models.FloatField(null=True, blank=True)
     litre              = models.FloatField(null=True, blank=True)
     diff               = models.FloatField(null=True, blank=True)
@@ -50,90 +54,7 @@ class Eau(models.Model):
         return self.person.nom, \
                self.person.prenom, \
                self.person.contact_1
-#
-class Product(models.Model):
-    id = models.AutoField(primary_key=True)
-    Name            = (
-        ('Boubou', 'Boubou'),
-        ('Grand Boubou', 'Grand Boubou'),
-        ('Chemise Complet', 'Chemise Complet'),
-        ('Chemise Manche Long', 'Chemise Manche Long'),
-        ('Chemise Manche Court', 'Chemise Manche Court'),
-        ('Pagne Jupe', 'Pagne Jupe'),
-        ('Pagne Complet', 'Pagne Complet'),
-        ('Pagne Maniere', 'Pagne Maniere'),
-        ('Patanlon', 'Patanlon'),
-        ('Tenu Scolaire', 'Tenu Scolaire'),
-        ('Tenu Securite', 'Tenu Securite'),
-        ('AUTRES', 'AUTRES'),)
-    name              = models.CharField(max_length=50, choices=Name, default='Boubou',)
-    SIZE            = (
-        ('S', 'S'),
-        ('M', 'M'),
-        ('L', 'L'),
-        ('X', 'X'),
-        ('XXL', 'XXL'),
-        ('XXXL', 'XXXL'),
-        ('AUTRES', 'AUTRES'),)
-    size                = models.CharField(max_length=50, choices=SIZE, default='S',)
-    photo               = models.ImageField(upload_to='photos/')
-    code_product        = models.CharField(max_length=30,  verbose_name='ID')
-    description         = models.CharField(max_length=200, blank=True, null=True)
-    price               = models.DecimalField(decimal_places=2, max_digits=20, default=100.25, null=True, blank=True)
-    create_at           = models.DateField(auto_now=True)
 
-    def __str__(self):
-        return'{}'.format(self.name)
-
-def pre_save_product_id(instance, sender, *args, **kwargs):
-    if not instance.code_product:
-            instance.code_product = unique_product_id_generator(instance)
-
-pre_save.connect(pre_save_product_id, sender=Product)
-
-
-class Order(models.Model):
-    objects = None
-    id             = models.AutoField(primary_key=True)
-    person_id      = models.ForeignKey('contacts.Person', on_delete=models.CASCADE, verbose_name='Acheteur')
-    code_order     = models.CharField(max_length=30, blank=True, verbose_name='Code order')
-    reception      = models.BooleanField(default=True)
-    rendez_vous    = models.DateField(auto_now=False)
-    # localization   = models.ForeignKey('maps.Region', on_delete=models.CASCADE, verbose_name='Localisation',)
-    confirmed      = models.BooleanField(default=False)
-    cancelled      = models.BooleanField(default=False)
-    remise         = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-    create_at      = models.DateField(auto_now=False)
-
-    def __str__(self):
-        return str(self.id)
-
-def pre_save_order_id(instance, sender, *args, **kwargs):
-    if not instance.code_order:
-            instance.code_order = unique_order_id_generator(instance)
-
-pre_save.connect(pre_save_order_id, sender=Order)
-
-class Order_Items(models.Model):
-    id = models.AutoField(primary_key=True)
-    CATEGORY    = (
-        ('Homme', 'Homme'),
-        ('Femme', 'Femme'),
-        ('Fille', 'Fille'),
-        ('Garçon', 'Garçon'),
-        ('Autres', 'Autres'),)
-
-    category         = models.CharField(max_length=50, choices=CATEGORY, default='Homme', )
-    items            = models.ManyToManyField('gestion.Order', verbose_name='items')
-    product          = models.ForeignKey('gestion.Product', on_delete=models.CASCADE, verbose_name='Add Product', )
-    quantity         = models.IntegerField(default=1, blank=True, null=True)
-    submontant       = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-    price            = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-
-    def __str__(self):
-        return self.price
-#
-#
 class Payment(models.Model):
     id = models.AutoField(primary_key=True)
     MODE_PAYMENT     = (
@@ -145,15 +66,15 @@ class Payment(models.Model):
         ('Virement', 'Virement'),
         ('Transaction bancaire', 'Transaction bancaire'), )
     mode_payment     =  models.CharField(max_length=50, choices=MODE_PAYMENT, default='Espece', )
-    payment_Order    = models.ForeignKey('gestion.Order', on_delete=models.CASCADE, blank=True, null=True, verbose_name='Payment Facture', )
+    payment          = models.ForeignKey('Eau', on_delete=models.CASCADE, blank=True, null=True, verbose_name='Payment Facture', )
     code_payment     = models.CharField(max_length=30, blank=True, verbose_name='Code Payement')
-    person_id        = models.ForeignKey('contacts.Person', on_delete=models.CASCADE, verbose_name='Consommateur', )
+    person           = models.ForeignKey('contacts.Person', on_delete=models.CASCADE, verbose_name='Consommateur', )
     amount           = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True, verbose_name='Montant Total')
-    fees_commission  = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
+    # fees_commission  = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
     taxe             = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-    frais_shipp      = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
+    # frais_shipp      = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
     code_facture     = models.CharField(max_length=50, blank=True, verbose_name='Code Facture')
-    declared         = models.BooleanField(default=True)
+    delivered         = models.BooleanField(default=True)
     confirmed        = models.BooleanField(default=True)
     create_at        = models.DateField(auto_now=False)
 
@@ -177,11 +98,14 @@ pre_save.connect(pre_save_code_facture_id, sender=Payment)
 class Depense(models.Model):
     id = models.AutoField(primary_key=True)
     MOTIF    = (
-        ('Paiement Ouvrier', 'Paiement Ouvrier'),
-        ('Achat Materiels', 'Achat Materiels'),
-        ('Paiement Magasin', 'Paiement Magasin'),
-        ('Bon', 'Bon'),
-        ('Electricite', 'Electricite'),)
+        ('Paiement des engrais', 'Paiement des engrais'),
+        ('Achat des Materiels', 'Achat des Materiels'),
+        ('Paiement perdiem', 'Paiement perdiem'),
+        ('Frais de mission', 'Frais de mission'),
+        ('Carburant', 'Carburant'),
+        ('Electricite', 'Electricite'),
+        ('Autres', 'Autres'),
+    )
 
     MODE_PAYMENT_DEPENSE     = (
         ('Espece', 'Espece'),
@@ -256,3 +180,95 @@ class Annonce(models.Model):
 
 class order_paypal(models.Model):
     pass
+
+#
+# class Product(models.Model):
+#     id = models.AutoField(primary_key=True)
+#     Name            = (
+#         ('Boubou', 'Boubou'),
+#         ('Grand Boubou', 'Grand Boubou'),
+#         ('Chemise Complet', 'Chemise Complet'),
+#         ('Chemise Manche Long', 'Chemise Manche Long'),
+#         ('Chemise Manche Court', 'Chemise Manche Court'),
+#         ('Pagne Jupe', 'Pagne Jupe'),
+#         ('Pagne Complet', 'Pagne Complet'),
+#         ('Pagne Maniere', 'Pagne Maniere'),
+#         ('Patanlon', 'Patanlon'),
+#         ('Tenu Scolaire', 'Tenu Scolaire'),
+#         ('Tenu Securite', 'Tenu Securite'),
+#         ('AUTRES', 'AUTRES'),)
+#     name              = models.CharField(max_length=50, choices=Name, default='Boubou',)
+#     SIZE            = (
+#         ('S', 'S'),
+#         ('M', 'M'),
+#         ('L', 'L'),
+#         ('X', 'X'),
+#         ('XXL', 'XXL'),
+#         ('XXXL', 'XXXL'),
+#         ('AUTRES', 'AUTRES'),)
+#     size                = models.CharField(max_length=50, choices=SIZE, default='S',)
+#     photo               = models.ImageField(upload_to='photos/')
+#     code_product        = models.CharField(max_length=30,  verbose_name='ID')
+#     description         = models.CharField(max_length=200, blank=True, null=True)
+#     price               = models.DecimalField(decimal_places=2, max_digits=20, default=100.25, null=True, blank=True)
+#     create_at           = models.DateField(auto_now=True)
+#
+#     def __str__(self):
+#         return'{}'.format(self.name)
+#
+# def pre_save_product_id(instance, sender, *args, **kwargs):
+#     if not instance.code_product:
+#             instance.code_product = unique_product_id_generator(instance)
+#
+# pre_save.connect(pre_save_product_id, sender=Product)
+#
+#
+# class Order(models.Model):
+#     objects = None
+#     id             = models.AutoField(primary_key=True)
+#     person_id      = models.ForeignKey('contacts.Person', on_delete=models.CASCADE, verbose_name='Acheteur')
+#     code_order     = models.CharField(max_length=30, blank=True, verbose_name='Code order')
+#     reception      = models.BooleanField(default=True)
+#     rendez_vous    = models.DateField(auto_now=False)
+#     # localization   = models.ForeignKey('maps.Region', on_delete=models.CASCADE, verbose_name='Localisation',)
+#     confirmed      = models.BooleanField(default=False)
+#     cancelled      = models.BooleanField(default=False)
+#     remise         = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
+#     create_at      = models.DateField(auto_now=False)
+#
+#     def __str__(self):
+#         return str(self.id)
+#
+# def pre_save_order_id(instance, sender, *args, **kwargs):
+#     if not instance.code_order:
+#             instance.code_order = unique_order_id_generator(instance)
+#
+# pre_save.connect(pre_save_order_id, sender=Order)
+#
+# class Order_Items(models.Model):
+#     id = models.AutoField(primary_key=True)
+#     CATEGORY    = (
+#         ('Homme', 'Homme'),
+#         ('Femme', 'Femme'),
+#         ('Fille', 'Fille'),
+#         ('Garçon', 'Garçon'),
+#         ('Autres', 'Autres'),)
+#
+#     category         = models.CharField(max_length=50, choices=CATEGORY, default='Homme', )
+#     items            = models.ManyToManyField('gestion.Order', verbose_name='items')
+#     product          = models.ForeignKey('gestion.Product', on_delete=models.CASCADE, verbose_name='Add Product', )
+#     quantity         = models.IntegerField(default=1, blank=True, null=True)
+#     submontant       = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
+#     price            = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
+#
+#     def __str__(self):
+#         return self.price
+# #
+#
+
+
+
+# ==============================================
+#                  MODEL GESTION
+#                        END
+# ==============================================

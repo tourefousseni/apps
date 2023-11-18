@@ -6,6 +6,9 @@ import os
 from decouple import config, Csv
 from django.contrib.gis import gdal
 
+# from unipath import Path
+# from dj_database_url import parse as db_url
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -118,6 +121,11 @@ DATABASES = {
     }
 
 }
+# EMAIL_HOST = config('EMAIL_HOST')
+# EMAIL_PORT = config('EMAIL_PORT', cast=int)
+# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+# EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

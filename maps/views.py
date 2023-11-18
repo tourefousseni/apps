@@ -21,7 +21,7 @@ from xhtml2pdf.util import getSize
 from . import forms
 from .forms import *
 from contacts.models import Person
-from gestion.models import Order, Order_Items, Product, Payment, Depense
+# from gestion.models import Order, Order_Items, Product, Payment, Depense
 # Create your views here.
 
 def maps(request):

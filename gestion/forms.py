@@ -13,8 +13,8 @@ from django_bootstrap_datetimepicker import *
 from django.forms import widgets
 import datetime
 
-from .models import  Mesure, Product,\
-    Depense,Video,Payment, Product, Order, Order_Items, Annonce
+from gestion.models import  Depense,Video,Payment, Eau,  Annonce
+# Mesure,
 #     \
 #
 
@@ -28,7 +28,7 @@ class GestionForm(forms.ModelForm):
     start_eau = forms.DateTimeField(initial=datetime.date.today)
     end_eau   = forms.DateTimeField(initial=datetime.date.today)
     class Meta:
-        model = Gestion
+        model = Eau
         template_name = 'gestion/mesure.html'
         fields = [
                   'person',
@@ -54,122 +54,120 @@ class Video_form(forms.ModelForm):
 #         model=User
 #         fields='__all__'
 
-class ProductForm(forms.ModelForm):
-    class Meta:
-         model = Product
-         template_name = 'gestion/product.html'
-         fields = ['name', 'description', 'price']
-         exclude = ['create_at']
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_method = 'post'
-        self.helper.layout = Layout(
-            Row(
-                Column('name', ),
-                Column('price', ),
-                Column('description', ),
-            ),
-            Row(
-                Column('code_product', ),
-                # Column('create_at', ),
-            ),
-
-            FormActions(
-                Submit('save_product', 'Save'),
-                Submit('cancel', 'Cancel', css_class='btn btn-danger')
-            ),
-        )
+# class ProductForm(forms.ModelForm):
+#     class Meta:
+#          model = Product
+#          template_name = 'gestion/product.html'
+#          fields = ['name', 'description', 'price']
+#          exclude = ['create_at']
 #
-class OrderForm(forms.ModelForm):
-    class Meta:
-        model = Order
-        template_name = 'gestion/order.html'
-        fields = ['person_id',
-                  'reception',
-                  # 'localization',
-                  'confirmed',
-                  'cancelled',
-                  'rendez_vous',
-                  'create_at',
-                  'remise',
-                  'code_order',]
-
-        # exclude = []
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_method = 'post'
-        self.helper.layout = Layout(
-            Row(
-                Column('person_id'),
-                Column('order_items'),
-                Column('localization'),
-                ),
-            Row(
-                Column('remise'),
-                Column('rendez_vous'),
-                Column('create_at'),
-            ),
-
-            Row(
-                Column('reception'),
-                Column('confirmed'),
-                Column('cancelled'),
-            ),
-            #
-            # InlineRadios('confirmed'),
-            # InlineRadios('cancelled'),
-            # InlineRadios('rendez_vous'),
-
-            # FormActions(
-            #         Submit('save_product', 'Save'),
-            #         Submit('cancel', 'Cancel', css_class='btn btn-danger')
-            #     )
-            )
-
-class Order_ItemsForm(forms.ModelForm):
-    class Meta:
-        model = Order_Items
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper(self)
-        self.helper.form_method = 'post'
-        self.helper.layout = Layout(
-            Row(
-                Column('category', ),
-                Column('product_id', ),
-                Column('quantity', ),
-                Column('price', ),
-                Column('submontant', ),
-            ),
-            Row(
-                Column('product_id', ),
-                # Column('create_at', ),
-            ),
-
-            # FormActions(
-            #     Submit('save_product', 'Save'),
-            #     Submit('cancel', 'Cancel', css_class='btn btn-danger')
-            # ),
-        )
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.helper = FormHelper()
+#         self.helper.form_method = 'post'
+#         self.helper.layout = Layout(
+#             Row(
+#                 Column('name', ),
+#                 Column('price', ),
+#                 Column('description', ),
+#             ),
+#             Row(
+#                 Column('code_product', ),
+#                 # Column('create_at', ),
+#             ),
+#
+#             FormActions(
+#                 Submit('save_product', 'Save'),
+#                 Submit('cancel', 'Cancel', css_class='btn btn-danger')
+#             ),
+#         )
+#
+# class OrderForm(forms.ModelForm):
+#     class Meta:
+#         model = Order
+#         template_name = 'gestion/order.html'
+#         fields = ['person_id',
+#                   'reception',
+#                   # 'localization',
+#                   'confirmed',
+#                   'cancelled',
+#                   'rendez_vous',
+#                   'create_at',
+#                   'remise',
+#                   'code_order',]
+#
+#         # exclude = []
+#
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.helper = FormHelper()
+#         self.helper.form_method = 'post'
+#         self.helper.layout = Layout(
+#             Row(
+#                 Column('person_id'),
+#                 Column('order_items'),
+#                 Column('localization'),
+#                 ),
+#             Row(
+#                 Column('remise'),
+#                 Column('rendez_vous'),
+#                 Column('create_at'),
+#             ),
+#
+#             Row(
+#                 Column('reception'),
+#                 Column('confirmed'),
+#                 Column('cancelled'),
+#             ),
+#             #
+#             # InlineRadios('confirmed'),
+#             # InlineRadios('cancelled'),
+#             # InlineRadios('rendez_vous'),
+#
+#             # FormActions(
+#             #         Submit('save_product', 'Save'),
+#             #         Submit('cancel', 'Cancel', css_class='btn btn-danger')
+#             #     )
+#             )
+#
+# class Order_ItemsForm(forms.ModelForm):
+#     class Meta:
+#         model = Order_Items
+#         fields = '__all__'
+#
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.helper = FormHelper(self)
+#         self.helper.form_method = 'post'
+#         self.helper.layout = Layout(
+#             Row(
+#                 Column('category', ),
+#                 Column('product_id', ),
+#                 Column('quantity', ),
+#                 Column('price', ),
+#                 Column('submontant', ),
+#             ),
+#             Row(
+#                 Column('product_id', ),
+#                 # Column('create_at', ),
+#             ),
+#
+#             # FormActions(
+#             #     Submit('save_product', 'Save'),
+#             #     Submit('cancel', 'Cancel', css_class='btn btn-danger')
+#             # ),
+#         )
 
 class PaymentForm(forms.ModelForm):
     class Meta:
         model = Payment
         template_name = 'gestion/payment.html'
-        fields = ['person_id',
+        fields = ['person',
                   'mode_payment',
                   'code_payment',
-                  'payment_Order',
+                  'payment',
                   'amount',
-                  'fees_commission',
                   'taxe',
-                  'frais_shipp',
                   'delivered',
                   'confirmed',
                   ]

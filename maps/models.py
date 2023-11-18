@@ -2,23 +2,29 @@ from django.db import models
 from django.contrib.gis.db import models
 from django.db.models.signals import pre_save, post_save, post_delete
 from django.dispatch import receiver
+from pg import db
 from sqlalchemy import create_engine
-
 from .utils import  unique_parcel_id_generator
 # from djgeojson.fields import PolygonField
 from contacts.models import Person
+from gestion.models import Eau
 import os
 import geopandas as gpd
 import zipfile
 import datetime
 from django.db import models
 import glob
-from maps.models import *
+# from maps.models import *
 from geo.Geoserver import Geoserver
 # from pg.pg import Pg
 from geoalchemy2 import Geometry, WKTElement
 
 # Initialize the library
+
+# ==============================================
+#                  MODEL MAPS
+#                        START
+# ==============================================
 
 geo = Geoserver('http://127.0.0.1:8080/geoserver/geogate',
                 username='admin', password='allahkbarou')
@@ -26,7 +32,6 @@ geo = Geoserver('http://127.0.0.1:8080/geoserver/geogate',
 # db = Pg(dbname='plateform', port='5432', host='localhost',
 #              user='postgres', password='password')
 
-#
 ##Import library
 # from django.db import models
 # import datetime
@@ -51,6 +56,7 @@ class Parcel(models.Model):
         ('TOMATE', 'TOMATE'),
         ('PIMENT', 'PIMENT'),
         ('SALADE', 'SALADE'),
+        ('OIGNON', 'OIGNON'),
         ('CONCOMBRE', 'CONCOMBRE'),
         ('AUBERGINE', 'AUBERGINE'),
         ('CHOPEAUM', 'CHOPEAUM'),
@@ -69,9 +75,9 @@ class Parcel(models.Model):
     iso2           = models.CharField(max_length=50, blank=True, null=True)
     un             = models.IntegerField( blank=True, null=True)
     name           = models.CharField(max_length=50, blank=True, null=True)
-    description    = models.CharField(max_length=1000, blank=True, null=True)
+    description    = models.CharField(max_length=2000, blank=True, null=True)
     file           = models.FileField(upload_to='%y/%m/%d')
-    person_id      = models.ForeignKey('contacts.Person', on_delete=models.CASCADE)
+    # person_id      = models.ForeignKey('contacts.Person', on_delete=models.CASCADE)
     code_parcel    = models.CharField(max_length=100)
     culture        = models.CharField(max_length=50, choices=TYPE_CULTURE, verbose_name='Type de culture')
     area           = models.IntegerField( blank=True, null=True)
@@ -79,6 +85,7 @@ class Parcel(models.Model):
     region         = models.IntegerField( blank=True, null=True)
     lon            = models.FloatField (blank=True, null=True)
     lat            = models.FloatField( blank=True, null=True)
+    eau            = models.ForeignKey('gestion.Eau', on_delete=models.CASCADE, verbose_name='Parcel')
     # geom           = models.MultiPolygonField()
     # geom2          = models.PolygonField()
     upload_date    =models.DateField(default=datetime.date.today, blank=True)
@@ -157,8 +164,6 @@ def publish_data(sender, instance, created, **kwargs):
     #                         port=5432,
     #                         schema='public',
     #                         pg_password='password')
-    #
-    #
 
     #
     # # For uploading SLD file and connect it with layer
@@ -182,32 +187,6 @@ def publish_data(sender, instance, created, **kwargs):
     # # delete style file
     # geo.delete_style(style_name='style2', workspace='geogate1')
 
-
-# class Zone(models.Model):
-#     NAME_CASIER          = (
-#         ('Woloni', 'Woloni'),
-#         ('Tounga Ouest', 'Tounga Ouest'),
-#         ('Tounga Centre', 'Casier Centre'),
-#         ('Tounga Est', 'Casier Est'),
-#         ('Casier de Kandara', 'Casier de Kandara'),
-#         ('Tibi', 'Tibi'),
-#         ('Parampasso-NGoa', 'Parampasso-NGoa'),
-#         ('Dahelan', 'Dahelan'),
-#         ('Casier de Djenne Sud', 'Casier de Djenne Sud'),
-#         ('Casier de Djenne Nord', 'Casier de Djenne Nord'),
-#         ('Tiekilenso Nord', 'Tiekilenso Nord'),
-#         ('Tiekilenso Sud', 'Tiekilenso Sud'),
-#         ('Casier C', 'Casier C'),
-#         ('San Est I', 'San Est I'),
-#         ('San Est II', 'San Est II'),
-#     )
-#
-#     name_casier          = models.CharField(max_length=50, choices=NAME_CASIER, )
-#     # culture              = models.CharField(max_length=100)
-#     locate_parcel        = models.ForeignKey('Parcel', on_delete=models.CASCADE,)
-#
-#     def __str__(self):
-#         return '{}'.format(self.name_casier)
 
 class Localization(models.Model):
     REGION = (
@@ -236,6 +215,7 @@ class Localization(models.Model):
 
     quartier = models.CharField(max_length=50, choices=QUARTIER_VILLAGE, default='Lafiabougou', )
     location    = models.ForeignKey('Parcel', on_delete=models.DO_NOTHING)
+
     CASIER = (
         ('Woloni', 'Woloni'),
         ('Tounga Ouest', 'Tounga Ouest'),
@@ -255,57 +235,17 @@ class Localization(models.Model):
     )
 
     casier = models.CharField(max_length=50, choices=CASIER, )
+    # point = models.PointField(geography=True, blank=True, null=True)
 
     def __str__(self):
         return self.quartier
 
 
+# ==============================================
+#                  MODEL MAPS
+#                        END
+# ==============================================
 
-# class Village(models.Model):
-#     # parcel          = models.ForeignKey('Parcel', on_delete=models.CASCADE,)
-#     id             = models.AutoField(primary_key=True)
-#     id_com         = models.ForeignKey('Commune', on_delete=models.CASCADE, verbose_name='Communes',)
-#     id_village      = models.PositiveIntegerField()
-#     nom_village     = models.CharField(max_length=50, blank=True, verbose_name='Quartiers/Villages')
-#     long            = models.FloatField(blank=True)
-#     alt             = models.CharField(max_length=50, blank=True, )
-#     lat             = models.FloatField(blank=True)
-#     # point        = models.PointField(geography=True, blank=True, null=True)
-#
-#     def __str__(self):
-#         return '{}'.format(self.nom_village)
-#
-#
-# class Commune(models.Model):
-#     id           = models.AutoField(primary_key=True)
-#     id_cercle    = models.ForeignKey('Cercle', on_delete=models.CASCADE, verbose_name='Cercles',)
-#     com          = models.PositiveIntegerField()
-#     commune      = models.CharField(max_length=50, blank=True)
-#     # point     = models.PointField(geography=True,blank=True, null=True)
-#
-#     def __str__(self):
-#         return '{}'.format(self.commune)
-#
-#
-# class Cercle(models.Model):
-#     id             = models.AutoField(primary_key=True)
-#     id_reg         = models.ForeignKey('Region', on_delete=models.CASCADE,  verbose_name='Regions',)
-#     id_cer         = models.PositiveIntegerField()
-#     cercle         = models.CharField(max_length=50, blank=True)
-#     # point     = models.PointField(geography=True, blank=True, null=True)
-#
-#     def __str__(self):
-#         return '{}'.format(self.cercle)
-#
-#
-# class Region(models.Model):
-#     id          = models.AutoField(primary_key=True)
-#     id_reg      = models.PositiveIntegerField()
-#     region      = models.CharField(max_length=100)
-#     # point     = models.PointField(geography=True, blank=True, null=True)
-#
-#     def __str__(self):
-#         return'{}'.format(self.region)
 
 
 

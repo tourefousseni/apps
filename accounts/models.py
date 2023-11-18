@@ -6,7 +6,7 @@ from pyblog import settings
 # from phonenumber_field.modelfields import PhoneNumberField
 
 # ==============================================
-#                  MODELE ACCOUNTS
+#                  MODEL ACCOUNTS
 #                        START
 # ==============================================
 class My_manager(BaseUserManager):

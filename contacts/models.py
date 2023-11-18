@@ -9,10 +9,15 @@ from django.db.models.signals import pre_save
 from .utils import unique_person_id_generator
 
 
+# ==============================================
+#                  MODEL CONTACT
+#                        START
+# ==============================================
+
 class Person(models.Model):
     objects = None
     id = models.AutoField(primary_key=True)
-    image = models.ImageField(upload_to='profil', null=True, blank=True, verbose_name='Profile')
+    image = models.ImageField(upload_to='profil', blank=True, null=True,  verbose_name='Profile')
     STATUS = (
         ('Particulier', 'Particulier'),
         ('Societe', 'Societe'),)
@@ -26,7 +31,7 @@ class Person(models.Model):
         ('Petit', 'Petit'), )
 
     status            = models.CharField(max_length=30, choices=STATUS, )
-    # user                = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Utilisateur')
+    # user              = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Utilisateur')
     genre             = models.CharField(max_length=20, choices=GENRE,)
     category          = models.CharField(max_length=20, choices=CATEGORY,)
     code_person       = models.CharField(max_length=30, blank=True, verbose_name='Code person')
@@ -57,3 +62,9 @@ def pre_save_person_id(instance, sender, *args, **kwargs):
         instance.code_person = unique_person_id_generator(instance)
 
 pre_save.connect(pre_save_person_id, sender=Person)
+
+
+# ==============================================
+#                  MODEL CONTACT
+#                        END
+# ==============================================

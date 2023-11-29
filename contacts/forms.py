@@ -5,8 +5,8 @@ from contacts.models import Person
 class PersonForm(forms.ModelForm):
     class Meta:
         model = Person
-        fields = ['nom', 'prenom',
-                  'contact_1', 'status','genre',
+        fields = ['status', 'nom', 'prenom',
+                  'contact_1', 'genre',
                   'category','domicile',
                   'code_person',
                   ]

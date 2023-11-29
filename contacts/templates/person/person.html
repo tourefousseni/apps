@@ -34,6 +34,9 @@
                  {% csrf_token %}
 
                          <div class="row offset-0">
+                             <div  class="form-group col-sm-3 mb-0 ">
+                                 {{ form.status|as_crispy_field }}
+                            </div>
                             <div class="form-group col-sm-3 mb-0">
                                 {{ form.prenom|as_crispy_field }}
                             </div>
@@ -44,25 +47,23 @@
                              <div class="form-group col-sm-3 mb-0">
                                 {{ form.contact_1|as_crispy_field }}
                              </div>
-                             <div class="form-group col-sm-3 mb-0">
-                                {{ form.domicile|as_crispy_field }}
-                             </div>
+
                           </div>
                        <div class="row offset-0">
-                            <div class="form-group col-sm-3 mb-0 ">
-                                 {{ form.status|as_crispy_field }}
-                            </div>
-                            <div class=" form-group col-sm-3 mb-0">
+                           <div class=" form-group col-sm-3 mb-0">
                                  {{ form.genre|as_crispy_field }}
                             </div>
+                           <div class="form-group col-sm-3 mb-0">
+                                {{ form.domicile|as_crispy_field }}
+                             </div>
                             <div class="form-group col-sm-3 mb-0">
                                {{ form.category|as_crispy_field }}
                             </div>
                        </div>
                         <div class="row offset-1">
                                 <div class="col-12 justify-content-center">
-                                         <input type="submit" value="Submit" class="btn btn-primary col-md-3">
-                                         <input type="reset" value="Reset" class="btn btn-danger col-md-3">
+                                         <input type="submit" value="Rengistrer" class="btn btn-primary col-md-3">
+                                         <input type="reset" value="Annuler" class="btn btn-danger col-md-3">
                                          <a href="{% url 'contacts:list'  %}" class="btn btn-info col-md-3">Repertoire</a>
 {#                                         <a href="{% url 'contacts:update' id %}" class="btn btn-info col-md-3">Mise a jour</a>#}
                                 </div>

@@ -33,7 +33,7 @@ from paypal.standard.forms import PayPalPaymentsForm
 
 # from .forms import PaymentForm, OrderForm, Order_ItemsForm
 
-def gestion(request):
+def gestion(request,):
     if request.method == 'POST':
         form = GestionForm(request.POST)
         if form.is_valid():
@@ -46,7 +46,7 @@ def gestion(request):
     else:
         form = GestionForm()
         # form = PersonForm()
-    return render(request, 'gestion/html/mesure.html', {'form': form, })
+    return render(request, 'gestion/html/eau.html', {'form': form, })
 
 
 def list(request, *args, **kwargs):
@@ -84,7 +84,7 @@ def update_mesure(request, id):
         if form.is_valid():
             form.save()
     context      = {'form':form }
-    return render(request, 'gestion/html/mesure.html', context)
+    return render(request, 'gestion/html/eau.html', context)
 
 def update(request, id):
     update_gest = Eau.objects.get(pk=id)
@@ -152,6 +152,23 @@ def search_products_list(request):
     }
     return render(request, 'gestion/html/search_products_list.html', context)
 
+def payment(request, ):
+    if request.method == 'POST':
+        form = PaymentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:homepage')
+    else:
+        form = PaymentForm()
+    return render(request, 'gestion/html/payment.html', {'form': form})
+
+
+def payment_list(request, id):
+    qs = Payment.objects.all(id=id)
+
+    context = {'payment_list': qs, }
+
+    return render(request, 'gestion/html/payment_list.html', context)
 
 # def report_mesure(request):
 #     mesure_detail = Mesure.objects.get(pk=id)
@@ -436,23 +453,7 @@ def orderdetail_detail(request, ):
 # research for OVER STACK FLOW this Bug
 # response = wrapped_callback(request, *callback_args, **callback_kwargs)
 
-def payment(request, ):
-    if request.method == 'POST':
-        form = PaymentForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('accounts:homepage')
-    else:
-        form = PaymentForm()
-    return render(request, 'gestion/html/payment.html', {'form': form})
 
-
-def payment_list(request, payment_id):
-    qs = Payment.objects.all(id=payment_id)
-
-    context = {'payment_list': qs, }
-
-    return render(request, 'gestion/html/payment_list.html', context)
 
 
 def profile(request):

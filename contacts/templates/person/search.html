@@ -13,15 +13,7 @@
 
 {% block content  %}
 
-<div class="col-md-4 ">
-    <form action="{% url 'contacts:search_person'  %}" method="get">
-         <input placeholder="Search ..." class="form-control form-control-dark" type="search" name="search">
-         <button class="btn btn-primary my-2" type="submit" >Search</button>
-    </form>
-       <div>
-          <a href="{% url 'contacts:list'  %}" class="btn btn-secondary btn ">Retournez</a>
-       </div>
-</div>
+
 <div class="card col-md-10 offset-2">
     <div class="table-responsive">
 <table id="bootstrapdatable" class="table table-sm" width="80%">
@@ -110,6 +102,15 @@
             {% endfor %}
         </tbody>
     </table>
+    <div class="col-md-4 ">
+    <form action="{% url 'contacts:search_person'  %}" method="get">
+         <input placeholder="Search ..." class="form-control form-control-dark" type="search" name="search">
+         <button class="btn btn-primary my-2" type="submit" >Search</button>
+    </form>
+       <div>
+          <a href="{% url 'contacts:list'  %}" class="btn btn-secondary btn ">Retournez</a>
+       </div>
+</div>
  </div>
 </div>
 </div>

@@ -80,14 +80,14 @@ def unique_payment_id_generator(instance):
     return code_payment_new_id
 
 
-def unique_facture_id_generator(instance):
-    code_facture_new_id = random_string_generator()
-
-    Klass = instance.__class__
-    qs_exists = Klass.objects.filter(code_facture=code_facture_new_id).exists()
-    if qs_exists:
-        return unique_facture_id_generator(instance)
-    return code_facture_new_id
+# def unique_facture_id_generator(instance):
+#     code_facture_new_id = random_string_generator()
+#
+#     Klass = instance.__class__
+#     qs_exists = Klass.objects.filter(code_facture=code_facture_new_id).exists()
+#     if qs_exists:
+#         return unique_facture_id_generator(instance)
+#     return code_facture_new_id
 
 
 # =================================

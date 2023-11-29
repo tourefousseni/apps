@@ -12,8 +12,8 @@ from django.db.models.signals import pre_save
 from .utils import  \
     unique_product_id_generator, \
     unique_order_id_generator, \
-    unique_payment_id_generator,\
-    unique_facture_id_generator
+    unique_payment_id_generator
+    # unique_facture_id_generator
 
 from django.forms import widgets
 from .validators import file_size
@@ -23,6 +23,10 @@ from  contacts.models import Person
 # from maps.models import Parcel
 from contacts.models import Person
 
+from geo.Geoserver import Geoserver
+
+# Initialize the library
+geo = Geoserver('http://127.0.0.1:8080/geoserver', username='admin', password='geoserver')
 
 # ==============================================
 #                  MODEL GESTION
@@ -64,7 +68,7 @@ class Payment(models.Model):
         ('Sama Money', 'Sama Money'),
         ('Wave', 'Wave'),
         ('Virement', 'Virement'),
-        ('Transaction bancaire', 'Transaction bancaire'), )
+        ('Transaction Bancaire', 'Transaction Bancaire'), )
     mode_payment     =  models.CharField(max_length=50, choices=MODE_PAYMENT, default='Espece', )
     payment          = models.ForeignKey('Eau', on_delete=models.CASCADE, blank=True, null=True, verbose_name='Payment Facture', )
     code_payment     = models.CharField(max_length=30, blank=True, verbose_name='Code Payement')
@@ -73,13 +77,15 @@ class Payment(models.Model):
     # fees_commission  = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
     taxe             = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
     # frais_shipp      = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-    code_facture     = models.CharField(max_length=50, blank=True, verbose_name='Code Facture')
+    # code_facture     = models.CharField(max_length=50, blank=True, verbose_name='Code Facture')
     delivered         = models.BooleanField(default=True)
     confirmed        = models.BooleanField(default=True)
     create_at        = models.DateField(auto_now=False)
 
     def __str__(self):
-        return str(self.code_payment)
+        return '{}','{}','{}'.format(self.person.prenom), \
+               (self.person.nom), \
+               (self.person.contact_1)
 
 def pre_save_code_payment_id(instance, sender, *args, **kwargs):
     if not instance.code_payment:
@@ -87,13 +93,13 @@ def pre_save_code_payment_id(instance, sender, *args, **kwargs):
 
 pre_save.connect(pre_save_code_payment_id, sender=Payment)
 
-def pre_save_code_facture_id(instance, sender, *args, **kwargs):
-    if not instance.code_facture:
-        instance.code_facture = unique_facture_id_generator(instance)
+# def pre_save_code_facture_id(instance, sender, *args, **kwargs):
+#     if not instance.code_facture:
+#         instance.code_facture = unique_facture_id_generator(instance)
+#
+# pre_save.connect(pre_save_code_facture_id, sender=Payment)
+#
 
-pre_save.connect(pre_save_code_facture_id, sender=Payment)
-#
-#
 #
 class Depense(models.Model):
     id = models.AutoField(primary_key=True)
@@ -159,7 +165,7 @@ class Category(models.Model):
 
     category     =  models.CharField(max_length=50, choices=category, default='Or')
     id           = models.AutoField(primary_key=True)
-    album        = models.ForeignKey(Album, on_delete=models.CASCADE, verbose_name='Photos')
+    album        = models.ForeignKey('Album', on_delete=models.CASCADE, verbose_name='Photos')
     title        = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):
@@ -182,39 +188,34 @@ class order_paypal(models.Model):
     pass
 
 #
-# class Product(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     Name            = (
-#         ('Boubou', 'Boubou'),
-#         ('Grand Boubou', 'Grand Boubou'),
-#         ('Chemise Complet', 'Chemise Complet'),
-#         ('Chemise Manche Long', 'Chemise Manche Long'),
-#         ('Chemise Manche Court', 'Chemise Manche Court'),
-#         ('Pagne Jupe', 'Pagne Jupe'),
-#         ('Pagne Complet', 'Pagne Complet'),
-#         ('Pagne Maniere', 'Pagne Maniere'),
-#         ('Patanlon', 'Patanlon'),
-#         ('Tenu Scolaire', 'Tenu Scolaire'),
-#         ('Tenu Securite', 'Tenu Securite'),
-#         ('AUTRES', 'AUTRES'),)
-#     name              = models.CharField(max_length=50, choices=Name, default='Boubou',)
-#     SIZE            = (
-#         ('S', 'S'),
-#         ('M', 'M'),
-#         ('L', 'L'),
-#         ('X', 'X'),
-#         ('XXL', 'XXL'),
-#         ('XXXL', 'XXXL'),
-#         ('AUTRES', 'AUTRES'),)
-#     size                = models.CharField(max_length=50, choices=SIZE, default='S',)
-#     photo               = models.ImageField(upload_to='photos/')
-#     code_product        = models.CharField(max_length=30,  verbose_name='ID')
-#     description         = models.CharField(max_length=200, blank=True, null=True)
-#     price               = models.DecimalField(decimal_places=2, max_digits=20, default=100.25, null=True, blank=True)
-#     create_at           = models.DateField(auto_now=True)
-#
-#     def __str__(self):
-#         return'{}'.format(self.name)
+class Product(models.Model):
+    id = models.AutoField(primary_key=True)
+    Products            = (
+        ('Web mapping', 'Web mapping'),
+        ('Delimitation', 'Delimitation'),
+        ('Bornage', 'Bornage'),
+        ('Transaction fonciere', 'Transaction fonciere'),
+        ('Vente', 'Vente'),
+        ('Gestion des perimetres', 'Gestion des perimetres'),
+        ('AUTRES', 'AUTRES'),)
+    products              = models.CharField(max_length=50, choices=Products, default='Boubou',)
+    SIZE            = (
+        ('S', 'S'),
+        ('M', 'M'),
+        ('L', 'L'),
+        ('X', 'X'),
+        ('XXL', 'XXL'),
+        ('XXXL', 'XXXL'),
+        ('AUTRES', 'AUTRES'),)
+    size                = models.CharField(max_length=50, choices=SIZE, default='S',)
+    photo               = models.ImageField(upload_to='photos/')
+    code_product        = models.CharField(max_length=30,  verbose_name='ID')
+    description         = models.CharField(max_length=200, blank=True, null=True)
+    price               = models.DecimalField(decimal_places=2, max_digits=20, default=100.25, null=True, blank=True)
+    create_at           = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return'{}'.format(self.products)
 #
 # def pre_save_product_id(instance, sender, *args, **kwargs):
 #     if not instance.code_product:
@@ -263,10 +264,6 @@ class order_paypal(models.Model):
 #
 #     def __str__(self):
 #         return self.price
-# #
-#
-
-
 
 # ==============================================
 #                  MODEL GESTION

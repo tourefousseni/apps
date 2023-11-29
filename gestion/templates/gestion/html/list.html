@@ -6,8 +6,12 @@
 {% block title %} CARNET D'EAU {% endblock %}
 
 {% block content %}
-<div class="card col-lg-12">
-<div class="card-title"><h4 class="justify-content-left">CARNET DE CONSOMMATION D'EAU</h4></div>
+<div class="card"><br><br>
+        <div class="card-title">
+            <h4 class="justify-content-center">
+                CARNET DE CONSOMMATION D'EAU
+            </h4>
+        </div>
     <div class="card-body">
           {% if message %}<p><strong>{{ message }}</strong></p>{% endif %}
     <div class="table-responsive">
@@ -16,9 +20,9 @@
 
                       <form action="{% url 'gestion:search_mesure'  %}" method="get">
                           <input placeholder="Search ..." class="form-control form-control-dark" type="search" name="search">
-                          <button class="btn btn-primary my-2" type="submit" >Search</button>
-                          <a href="{% url 'gestion:gestion'  %}" class="btn btn-secondary btn ">Add new mesure</a>
-                          <a href="{% url 'gestion:report_all_mesure'  %}" class="btn btn-warning btn ">Report All Mesues</a>
+                          <button class="btn btn-primary my-2" type="submit" >Rechercher ...</button>
+                          <a href="{% url 'gestion:gestion'  %}" class="btn btn-secondary btn "> Ajouter Nouveau</a>
+                          <a href="{% url 'gestion:report_all_mesure'  %}" class="btn btn-warning btn ">Export Rapport </a>
                       </form>
 
          </div>
@@ -31,16 +35,10 @@
                   <th>Volume</th>
                   <th>Litre</th>
                   <th>Difference</th>
+                  <th>Quantite</th>
                   <th>Debut arrosage</th>
                   <th>Fin arrosage</th>
-                  <th>Quantite</th>
-{#                  <th>Pointrine</th>#}
-{#                  <th>Longueur Boubou</th>#}
-{#                  <th>Longueur Patanlon</th>#}
-{#                  <th>Fesse</th>#}
-{#                  <th>Ceinure</th>#}
-{#                  <th>Cuisse</th>#}
-{#                  <th>Patte</th>#}
+                  <th>Date creation</th>
                   <th>View</th>
                   <th>Pdf</th>
                   <th>Update</th>
@@ -56,17 +54,10 @@
                                 <td>{{ gest.volume }}</td>
                                 <td>{{ gest.litre }}</td>
                                 <td>{{ gest.diff }}</td>
-                                <td>{{ gest.start_eau }}</td>
-                                <td>{{ gest.end_eau }}</td>
                                 <td>{{ gest.quantity }}</td>
-{#                                <td>{{ mesure.poitrine }}</td>#}
-{#                                <td>{{ mesure.longueur_boubou }}</td>#}
-{#                                <td>{{ mesure.longueur_patanlon }}</td>#}
-{#                                <td>{{ mesure.fesse }}</td>#}
-{#                                <td>{{ mesure.ceinture }}</td>#}
-{#                                <td>{{ mesure.cuisse }}</td>#}
-{#                                <td>{{ mesure.patte }}</td>#}
-{#                                <td>{{ mesure.created_at }}</td>#}
+                                <td>{{ gest.debut_eau }}</td>
+                                <td>{{ gest.fin_eau }}</td>
+                                <td>{{ gest.created_at }}</td>
                                                         <td>
                                                             <p class="text-center">
                                                             <a href="{% url 'gestion:detail' gest.id %}">

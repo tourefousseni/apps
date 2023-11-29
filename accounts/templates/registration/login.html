@@ -2,10 +2,10 @@
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 {% load static %}
-from geo.Geoserver import Geoserver
+{#from geo.Geoserver import Geoserver#}
 
-# Initialize the library
-geo = Geoserver('http://127.0.0.1:8080/geoserver', username='admin', password='geoserver')
+{## Initialize the library#}
+{#geo = Geoserver('http://127.0.0.1:8080/geoserver', username='admin', password='geoserver')#}
 
 <head>
             <meta charset="utf-8">
@@ -17,18 +17,14 @@ geo = Geoserver('http://127.0.0.1:8080/geoserver', username='admin', password='g
 
 </head>
 
+<body id="bg" style="background-image: url('{% static "img.JPG"  %}');>
 {% block content %}
 
 <section class="vh-100" style="background-color: #eee;"><br><br><br>
 
-
-
-
       <div class="card col-md-4 offset-md-4 " >
         <div class="card-title">
           <div class="card-body">
-
-
                <p>
                   <h5 class="text-center">
                   {% if messages %}
@@ -96,4 +92,5 @@ geo = Geoserver('http://127.0.0.1:8080/geoserver', username='admin', password='g
 
 
 {% endblock %}
+</body>
 

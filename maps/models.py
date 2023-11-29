@@ -1,4 +1,5 @@
-from django.db import models
+# from django.db import models
+# from django.contrib.gis.db import models
 from django.contrib.gis.db import models
 from django.db.models.signals import pre_save, post_save, post_delete
 from django.dispatch import receiver
@@ -12,7 +13,7 @@ import os
 import geopandas as gpd
 import zipfile
 import datetime
-from django.db import models
+# from django.db import models
 import glob
 # from maps.models import *
 from geo.Geoserver import Geoserver
@@ -47,7 +48,7 @@ geo = Geoserver('http://127.0.0.1:8080/geoserver/geogate',
 
 class Parcel(models.Model):
     id = models.AutoField(primary_key=True)
-    TYPE_CULTURE = (
+    CULTURE = (
         ('RIZ', 'RIZ'),
         ('MIL', 'MIL'),
         ('MAIS', 'MAIS'),
@@ -71,6 +72,7 @@ class Parcel(models.Model):
         ('NO QUALIFIE', 'NO QUALIFIE'),
     )
     type           = models.CharField(max_length=50, choices=TYPE, verbose_name='Type')
+    culture = models.CharField(max_length=50, choices=CULTURE, verbose_name='cultures')
     fips           = models.CharField(max_length=50, blank=True, null=True)
     iso2           = models.CharField(max_length=50, blank=True, null=True)
     un             = models.IntegerField( blank=True, null=True)
@@ -79,7 +81,6 @@ class Parcel(models.Model):
     file           = models.FileField(upload_to='%y/%m/%d')
     # person_id      = models.ForeignKey('contacts.Person', on_delete=models.CASCADE)
     code_parcel    = models.CharField(max_length=100)
-    culture        = models.CharField(max_length=50, choices=TYPE_CULTURE, verbose_name='Type de culture')
     area           = models.IntegerField( blank=True, null=True)
     perimeter      = models.IntegerField( blank=True, null=True)
     region         = models.IntegerField( blank=True, null=True)
@@ -235,11 +236,10 @@ class Localization(models.Model):
     )
 
     casier = models.CharField(max_length=50, choices=CASIER, )
-    # point = models.PointField(geography=True, blank=True, null=True)
+    point = models.PointField(default=None)
 
     def __str__(self):
         return self.quartier
-
 
 # ==============================================
 #                  MODEL MAPS

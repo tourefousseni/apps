@@ -13,44 +13,30 @@
         <thead>
             <tr>
                   <th>N°</th>
-                  <th>Nom</th>
                   <th>Prenom</th>
-                  <th>Coude</th>
-                  <th>Epaule</th>
-                  <th>Manche Courte</th>
-                  <th>Manche Longue</th>
-                  <th>Tour Manche</th>
-                  <th>Taille</th>
-                  <th>Pointrine</th>
-                  <th>Longueur Boubou</th>
-                  <th>Longueur Patanlon</th>
-                  <th>Fesse</th>
-                  <th>Ceinure</th>
-                  <th>Cuisse</th>
-                  <th>Patte</th>
-
+                  <th>Nom</th>
+                  <th>Volume</th>
+                  <th>Litre</th>
+                  <th>Difference</th>
+                  <th>Quantite</th>
+                  <th>Debut arrosage</th>
+                  <th>Fin arrosage</th>
+                  <th>Date creation</th>
             </tr>
       </thead>
       <tbody>
-                {% for mesure in list_mesure %}
+                {% for gest in list_gest %}
                            <tr>
-                                <td>{{ mesure.id }}</td>
-                                <td>{{ mesure.person.prenom }}</td>
-                                <td>{{ mesure.person.nom }}</td>
-                                <td>{{ mesure.coude }}</td>
-                                <td>{{ mesure.epaule }}</td>
-                                <td>{{ mesure.manche_courte }}</td>
-                                <td>{{ mesure.manche_longue }}</td>
-                                <td>{{ mesure.tour_manche }}</td>
-                                <td>{{ mesure.taille }}</td>
-                                <td>{{ mesure.poitrine }}</td>
-                                <td>{{ mesure.longueur_boubou }}</td>
-                                <td>{{ mesure.longueur_patanlon }}</td>
-                                <td>{{ mesure.fesse }}</td>
-                                <td>{{ mesure.ceinture }}</td>
-                                <td>{{ mesure.cuisse }}</td>
-                                <td>{{ mesure.patte }}</td>
-{#                                <td>{{ mesure.created_at }}</td>#}
+                                <td>{{ gest.id }}</td>
+                                <td>{{ gest.person.prenom }}</td>
+                                <td>{{ gest.person.nom }}</td>
+                                <td>{{ gest.volume }}</td>
+                                <td>{{ gest.litre }}</td>
+                                <td>{{ gest.diff }}</td>
+                                <td>{{ gest.quantity }}</td>
+                                <td>{{ gest.debut_eau }}</td>
+                                <td>{{ gest.fin_eau }}</td>
+                                <td>{{ gest.created_at }}</td>
 
                 {% endfor %}
         </tbody>

@@ -1,4 +1,19 @@
 from django.contrib import admin
+from django.contrib.gis.admin import OSMGeoAdmin
+from maps.models import Localization, Parcel
+
+
+@admin.register(Localization)
+class LocalizationAdmin(OSMGeoAdmin):
+    list_display = ['region', 'cercle', 'commune',
+                    'quartier', 'casier', 'location',
+                    'point']
+
+@admin.register(Parcel)
+class ParcelAdmin(OSMGeoAdmin):
+    list_display = ['eau','perimeter','culture', 'type', 'lon',
+                    'lat', 'file', 'description',
+                    'name']
 
 # from .models import   \
 #    Region, Cercle, Zone, Commune, Village, Parcel

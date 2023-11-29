@@ -43,16 +43,16 @@
           <a class="nav-link active" aria-current="page" href="{% url 'accounts:homepage' %}">Homepage</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'maps:maps' %}">Carte</a>
+          <a class="nav-link" href="{% url 'maps:maps' %}">Digitaliser</a>
         </li>
           <li class="nav-item">
-          <a class="nav-link" href="{% url 'gestion:show_video' %}">Videos</a>
+          <a class="nav-link" href="{% url 'gestion:show_video' %}">Temoignages</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'gestion:anonce' %}">Annonce</a>
+          <a class="nav-link" href="{% url 'gestion:anonce' %}">Annonces</a>
         </li>
            <li class="nav-item">
-          <a class="nav-link" href="#">Publicte</a>
+          <a class="nav-link" href="#">Publictes</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -110,7 +110,7 @@
                                 <a href="{% url 'contacts:list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Liste des personnes</span> </a>
                             </li>
                              <li class="w-100">
-                                <a href="{% url 'maps:maps' %}" class="nav-link px-0"> <span class="d-none d-sm-inline"> Carte </span> </a>
+                                <a href="{% url 'maps:maps' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Digitalisation</span> </a>
                             </li>
 
                         </ul>
@@ -128,21 +128,21 @@
 
                         </ul>
 
-                     <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Commande</span> >> </a>
-                        <ul class="collapse show nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
-
-                            <li>
-                                <a href="{% url 'gestion:order' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Commander</span></a>
-                            </li>
-                            <li>
-                                <a href="{% url 'gestion:order_items' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Detail commandes</span></a>
-                            </li>
-                            <li>
-                                <a href="{% url 'gestion:order_list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">3. Liste des commandes</span></a>
-                            </li>
-
-                        </ul>
+{#                     <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle">#}
+{#                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Commande</span> >> </a>#}
+{#                        <ul class="collapse show nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">#}
+{##}
+{#                            <li>#}
+{#                                <a href="{% url 'gestion:order' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Commander</span></a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="{% url 'gestion:order_items' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Detail commandes</span></a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="{% url 'gestion:order_list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">3. Liste des commandes</span></a>#}
+{#                            </li>#}
+{##}
+{#                        </ul>#}
 
                         <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
                             <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Payment</span> >></a>
@@ -180,10 +180,10 @@
 {#                            </li>#}
 {#                        </ul>#}
 {#                    </li>#}
-                    <li>
-                        <a href="{% url 'gestion:home' %}" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Payments</span></a>
-                    </li>
+{#                    <li>#}
+{#                        <a href="{% url 'gestion:payment' %}" class="nav-link px-0 align-middle">#}
+{#                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Payments</span></a>#}
+{#                    </li>#}
 
 
                 </ul>

@@ -6,9 +6,9 @@
     <meta charset="UTF-8">
     <title>Depnse</title>
 </head>
-{% block content %}<br>
-<section>
-    <h4>Tableau des depenses</h4>
+{% block content %}
+<section class="m-2">
+    <h2 class="col-md-8 m-2">Tableau des depenses</h2><hr>
     <div class="col-md-8 offset-2">
        <div class="DepenseForm">
             <form action="{% url 'gestion:depense' %}" method="post">

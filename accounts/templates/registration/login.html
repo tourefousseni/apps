@@ -1,9 +1,8 @@
-{#{% extends 'base.html' %}#}
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 {% load static %}
-{#from geo.Geoserver import Geoserver#}
 
+{#from geo.Geoserver import Geoserver#}
 {## Initialize the library#}
 {#geo = Geoserver('http://127.0.0.1:8080/geoserver', username='admin', password='geoserver')#}
 
@@ -22,12 +21,12 @@
         border-color: white;
         border-style: solid;
         border-width: 2px;
-
     }
 </style>
+
 <body id="bg" style="background-image: url('{% static "img.JPG" %}');>
-        {% block content %}
-  <section class="vh-100"><br><br><br>
+{% block content %}
+  <section class="vh-100";><br><br><br>
       <div class="card col-md-4 offset-md-4" >
         <div class="card-title">
           <div class="card-body">
@@ -89,7 +88,7 @@
          </div>
        </div>
     </div>
-    </section>
+</section>
                <script >
                    var message_ele = document.getElementById("login");
                       setTimeout(function()

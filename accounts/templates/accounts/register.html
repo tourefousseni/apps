@@ -12,9 +12,19 @@
              <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 </head>
+    <style class="">
+    .card{
+        background-color: transparent;
+        border-color: white;
+        border-style: solid;
+        border-width: 2px;
+
+    }
+</style>
+
     <body id="bg" style="background-image: url('{% static "img.JPG" %}');>
 
-  <section class="vh-100" style="background-color: #eee;"><br><br>
+  <section class="vh-100"><br><br>
 
       <div class="card col-md-4 offset-md-4">
           {% if messages %}
@@ -27,7 +37,7 @@
                         {% endfor  %}
            {% endif  %}
           <p>
-                <h4 class="text-center">Creer votre compte</h4>
+                <h4 class="text-center" style="color: white">Creer votre compte</h4>
           </p><hr>
 
           <div class="UserRegisterForm">

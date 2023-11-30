@@ -70,22 +70,20 @@ class Payment(models.Model):
         ('Virement', 'Virement'),
         ('Transaction Bancaire', 'Transaction Bancaire'), )
     mode_payment     =  models.CharField(max_length=50, choices=MODE_PAYMENT, default='Espece', )
-    payment          = models.ForeignKey('Eau', on_delete=models.CASCADE, blank=True, null=True, verbose_name='Payment Facture', )
+    payment          = models.ForeignKey('gestion.Eau', on_delete=models.CASCADE, blank=True, null=True, verbose_name='Payment Facture', )
     code_payment     = models.CharField(max_length=30, blank=True, verbose_name='Code Payement')
     person           = models.ForeignKey('contacts.Person', on_delete=models.CASCADE, verbose_name='Consommateur', )
     amount           = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True, verbose_name='Montant Total')
-    # fees_commission  = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
     taxe             = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-    # frais_shipp      = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-    # code_facture     = models.CharField(max_length=50, blank=True, verbose_name='Code Facture')
+    code_facture     = models.CharField(max_length=50, blank=True, verbose_name='Code Facture')
     delivered         = models.BooleanField(default=True)
     confirmed        = models.BooleanField(default=True)
     create_at        = models.DateField(auto_now=False)
 
     def __str__(self):
-        return '{}','{}','{}'.format(self.person.prenom), \
-               (self.person.nom), \
-               (self.person.contact_1)
+        return self.person.prenom, \
+               self.person.nom, \
+               self.person.contact_1
 
 def pre_save_code_payment_id(instance, sender, *args, **kwargs):
     if not instance.code_payment:

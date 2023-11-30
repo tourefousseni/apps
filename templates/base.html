@@ -10,7 +10,7 @@
             <title>Cadastre foncier</title>
              <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
              <link rel="stylesheet" href="{% static 'css/style.css' %}">
-{#             <link rel="stylesheet" href="{% static 'leaflet/css/leaflet.css' %}">#}
+             <link rel="stylesheet" href="{% static 'leaflet/css/leaflet.css' %}">
 {#<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />#}
 </head>
 <section>
@@ -145,10 +145,10 @@
 {#                        </ul>#}
 
                         <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                            <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Payment</span> >></a>
+                            <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Paiements</span> >></a>
                         <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="{% url 'gestion:payment' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">payment</span> 1</a>
+                                <a href="{% url 'gestion:payment' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Paiement</span> 1</a>
                             </li>
                             <li class="w-100">
                                 <a href="{% url 'gestion:depense' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Depense</span> 2</a>
@@ -245,10 +245,8 @@
               <script src="{% static 'js/bootstrap.min.js' %}"></script>
 {#              <script src="{% static 'leaflet/js/leaflet.js' %}"></script>#}
 {#              <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>#}
-              <script src="{% static 'lib/L.Geoserver.js' %}"></script>
-
-                <script class="maps">
-                    {#var wmsLayer = L.Geoserver.wms("http://localhost:8080/geoserver/geogate/wms?", {#}
+              <script class="maps" src="{% static 'lib/L.Geoserver.js' %}">
+                  {#var wmsLayer = L.Geoserver.wms("http://localhost:8080/geoserver/geogate/wms?", {#}
                     var wmsLayer = L.Geoserver.wms("http://localhost:8080/geoserver/geogate/wms?service=WMS&version=1.1.0&request=GetMap&layers=geogate%3ACasier_OMB_Ens&bbox=247334.055700134%2C1457114.49619568%2C308213.701441241%2C1481782.57048504&width=768&height=330&srs=EPSG%3A32630&styles=&format=application/openlayers#toggle", {
                         layers: "geogate:Casier_OMB_Ens",
                         style:"style2",
@@ -293,7 +291,8 @@
 
                     // add layer groups to layer switcher control
                     var controlLayers = L.control.layers(baseLayers).addTo(map);
-                            </script>
+
+              </script>
 </html>
 
 </st>

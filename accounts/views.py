@@ -41,20 +41,21 @@ def register(request):
         form = UserRegistrationForm()
         # messages.info(request, ("la creation de votre compte est echouee"))
     return render(request, 'accounts/register.html', {'form':form})
+
 def connect(request):
     form = LoginForm(request.POST)
     if form.is_valid():
          username   = form.cleaned_data["username"]
          # email      = form.cleaned_data["email"]
          password   = form.cleaned_data["password"]
-         user       = authenticate(username=username,  password=password)
+         user       = auth.authenticate(username=username,  password=password)
 
          if user is not None:
             if user.is_active:
                 login(request, user)
                 return redirect('accounts:dashboard')
             else:
-                return redirect('accounts:dashboard')
+                return redirect('accounts:connect')
 
     return render(request, "registration/login.html", {'form': form})
 

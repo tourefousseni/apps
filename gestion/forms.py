@@ -13,11 +13,7 @@ from django_bootstrap_datetimepicker import *
 from django.forms import widgets
 import datetime
 
-from gestion.models import  Depense,Video,Payment, Eau,  Annonce
-# Mesure,
-#     \
-#
-
+from gestion.models import  Depense,Video,Payment,Eau,Annonce
 
 # ==============================================
 #                  FORM GESTION
@@ -54,19 +50,18 @@ class PaymentForm(forms.ModelForm):
     class Meta:
         model = Payment
         template_name = 'gestion/payment.html'
-        fields = (
-                  'person',
+        fields = [
+                  # 'person',
                   'mode_payment',
                   'code_payment',
                   # 'code_facture',
                   'payment',
                   'amount',
                   'taxe',
-                  'confirmed',
-                  'delivered',
-        )
+        ]
+        # fields = ('__all__')
 
-        exclude = [ 'create_at', ]
+        exclude = [ 'create_at', 'confirmed', 'delivered',]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -82,7 +77,7 @@ class PaymentForm(forms.ModelForm):
                 ),
             Row(
                 Column('code_payment'),
-                Column('create_at'),
+                # Column('create_at'),
                 Column('delivered'),
                  ),
         )

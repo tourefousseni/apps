@@ -152,12 +152,12 @@ def search_products_list(request):
     }
     return render(request, 'gestion/html/search_products_list.html', context)
 
-def payment(request, ):
+def payment(request):
     if request.method == 'POST':
         form = PaymentForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('accounts:homepage')
+            return redirect('gestion:payment_list')
     else:
         form = PaymentForm()
     return render(request, 'gestion/html/payment.html', {'form': form})
@@ -166,7 +166,9 @@ def payment(request, ):
 def payment_list(request, id):
     qs = Payment.objects.all(id=id)
 
-    context = {'payment_list': qs, }
+    context = {
+        'payment_list': qs,
+    }
 
     return render(request, 'gestion/html/payment_list.html', context)
 

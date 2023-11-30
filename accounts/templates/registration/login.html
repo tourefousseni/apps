@@ -16,13 +16,19 @@
             <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 </head>
+<style class="">
+    .card{
+        background-color: transparent;
+        border-color: white;
+        border-style: solid;
+        border-width: 2px;
 
-<body id="bg" style="background-image: url('{% static "img.JPG"  %}');>
-{% block content %}
-
-<section class="vh-100" style="background-color: #eee;"><br><br><br>
-
-      <div class="card col-md-4 offset-md-4 " >
+    }
+</style>
+<body id="bg" style="background-image: url('{% static "img.JPG" %}');>
+        {% block content %}
+  <section class="vh-100"><br><br><br>
+      <div class="card col-md-4 offset-md-4" >
         <div class="card-title">
           <div class="card-body">
                <p>
@@ -40,7 +46,7 @@
                  </h5>
                </p>
                <p>
-                 <h5 class="text-center" >Connectez-vous ici !</h5><hr>
+                 <h5 class="text-center" style="color: white" >Connectez-vous ici !</h5><hr>
                </p>
 
 {#            Alerts#}
@@ -63,10 +69,10 @@
 {#                          <div class="col text-center">#}
                               <!-- Simple link -->
 {#                              <a href="#!" class="btn btn-danger " >Forgot password ?</a>#}
-                               <button type="submit"  value="submit" class="btn btn-primary " >Login</button>
-                                <a href="{% url 'accounts:register' %}" class="btn btn-info"> Nouveau compte</a>
+                               <button type="submit"  value="submit" class="btn btn-primary text-center" >Login</button>
+                                <a href="{% url 'accounts:register' %}" class="btn btn-info text-center"> Nouveau compte</a>
 
-                        </card>
+                        </div>
                   </div>
                 </form>
 

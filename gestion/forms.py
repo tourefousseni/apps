@@ -91,11 +91,17 @@ class AnonceForm(forms.ModelForm):
             super().__init__(*args, **kwargs)
 
 class DepenseForm(forms.ModelForm):
+    cancelled = forms.DateTimeField(label="annuler", widget=forms.DateTimeInput(attrs={
+       'class': 'form-control',
+       'type': 'date',}
+       )
+        )
+
     class Meta:
         model = Depense
         template_name = 'gestion/depense.html'
         fields = ('__all__')
-        exclude=['create_at',]
+        exclude=['create_at','cancelled']
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
         # self.helper = FormHelper(self)

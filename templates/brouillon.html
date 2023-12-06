@@ -147,12 +147,14 @@ ALTER ROLE myprojectuser SET client_encoding TO 'utf8';
 ALTER ROLE myprojectuser SET timezone TO 'UTC';
 GRANT ALL PRIVILEGES ON DATABASE douniyakafe TO myprojectuser;
 
-create database kaladb;
+create database kalaliso;
 create user myprojectuser WITH PASSWORD 'password';
 ALTER ROLE myprojectuser SET default_transaction_isolation TO 'read committed';
 ALTER ROLE myprojectuser SET client_encoding TO 'utf8';
 ALTER ROLE myprojectuser SET timezone TO 'UTC';
-GRANT ALL PRIVILEGES ON DATABASE kaladb TO myprojectuser;
+GRANT ALL PRIVILEGES ON DATABASE kalaliso TO myprojectuser;
+\c kalaliso ;
+create extension postgis;
 
 create database plateform;
 create user myprojectuser WITH PASSWORD 'password';
@@ -161,8 +163,25 @@ ALTER ROLE myprojectuser SET client_encoding TO 'utf8';
 ALTER ROLE myprojectuser SET timezone TO 'UTC';
 GRANT ALL PRIVILEGES ON DATABASE plateform TO myprojectuser;
 \c plateform ;
+./create extension postgis;
+
+create database alkawsara;
+create user myprojectuser WITH PASSWORD 'password';
+ALTER ROLE myprojectuser SET default_transaction_isolation TO 'read committed';
+ALTER ROLE myprojectuser SET client_encoding TO 'utf8';
+ALTER ROLE myprojectuser SET timezone TO 'UTC';
+GRANT ALL PRIVILEGES ON DATABASE alkawsara TO myprojectuser;
+\c alkawsara ;
 create extension postgis;
 
+create database constructor;
+create user myprojectuser WITH PASSWORD 'password';
+ALTER ROLE myprojectuser SET default_transaction_isolation TO 'read committed';
+ALTER ROLE myprojectuser SET client_encoding TO 'utf8';
+ALTER ROLE myprojectuser SET timezone TO 'UTC';
+GRANT ALL PRIVILEGES ON DATABASE constructor TO myprojectuser;
+\c constructor ;
+create extension postgis;
 <!--            <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">-->
 
 

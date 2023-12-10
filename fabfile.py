@@ -13,6 +13,7 @@ import pyblog
 
 # env.hosts = ['www.kalalso.com']
 env.hosts = ['fulani@170.187.211.246']
+
 env.password = 'fulani'
 env.user = 'touretoure'
 # env.port = '22'

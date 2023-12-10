@@ -7,7 +7,7 @@
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <meta name="description" content="">
-            <title>Kalaliso App</title>
+            <title>Al Kawsara Koita</title>
              <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
              <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
@@ -32,7 +32,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">KALALISO APP</a>
+    <a class="navbar-brand" href="#">AL KAWSARA KOITA</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -82,132 +82,132 @@
 </nav>
 
 
-    <sidebar>
-
-          <div class="container-fluid">
-    <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+{#    <sidebar>#}
+{##}
+{#          <div class="container-fluid">#}
+{#    <div class="row flex-nowrap">#}
+{#        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">#}
+{#            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">#}
 {#                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">#}
 {#                    <span class="fs-5 d-none d-sm-inline">Dashboard</span>#}
 {#                </a>#}
-                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link align-middle px-0">
-                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline" style="color: white">Rubrique</span>
-                        </a><hr>
-                    </li>
-                    <li>
-                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-speedometer2" style="color: white"></i> <span class="ms-1 d-none d-sm-inline"> Personne</span> >> </a>
-                        <ul class="collapse show nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="{% url 'contacts:person' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Ajouter un client</span> </a>
-                            </li>
-                            <li>
-                                <a href="{% url 'contacts:list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Liste des clients</span> </a>
-                            </li>
-
-                        </ul>
-
-                    <li>
-                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline"> Mesure</span> >> </a>
-                        <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="{% url 'kalaliso:mesure' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Ajouter mesure</span> </a>
-                            </li>
-                            <li>
-                                <a href="{% url 'kalaliso:list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Liste des mesures</span></a>
-                            </li>
-
-                        </ul>
-
-                     <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Commande</span> >> </a>
-                        <ul class="collapse show nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
-
-                            <li>
-                                <a href="{% url 'kalaliso:order' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Commander</span></a>
-                            </li>
-                            <li>
-                                <a href="{% url 'kalaliso:order_items' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Detail commandes</span></a>
-                            </li>
-                            <li>
-                                <a href="{% url 'kalaliso:order_list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">3. Liste des commandes</span></a>
-                            </li>
-
-                        </ul>
-
-                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                            <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Payment</span> >></a>
-                        <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="{% url 'kalaliso:payment' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">payment</span> 1</a>
-                            </li>
-                            <li class="w-100">
-                                <a href="{% url 'kalaliso:depense' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Depense</span> 2</a>
-                            </li>
-
+{#                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">#}
+{#                    <li class="nav-item">#}
+{#                        <a href="#" class="nav-link align-middle px-0">#}
+{#                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline" style="color: white">Rubrique</span>#}
+{#                        </a><hr>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle">#}
+{#                            <i class="fs-4 bi-speedometer2" style="color: white"></i> <span class="ms-1 d-none d-sm-inline"> Personne</span> >> </a>#}
+{#                        <ul class="collapse show nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">#}
+{#                            <li class="w-100">#}
+{#                                <a href="{% url 'contacts:person' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Ajouter un client</span> </a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="{% url 'contacts:list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Liste des clients</span> </a>#}
+{#                            </li>#}
+{##}
+{#                        </ul>#}
+{##}
+{#                    <li>#}
+{#                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">#}
+{#                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline"> Mesure</span> >> </a>#}
+{#                        <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">#}
+{#                            <li class="w-100">#}
+{#                                <a href="{% url 'kalaliso:mesure' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Ajouter mesure</span> </a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="{% url 'kalaliso:list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Liste des mesures</span></a>#}
+{#                            </li>#}
+{##}
+{#                        </ul>#}
+{##}
+{#                     <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle">#}
+{#                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Commande</span> >> </a>#}
+{#                        <ul class="collapse show nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">#}
+{##}
+{#                            <li>#}
+{#                                <a href="{% url 'kalaliso:order' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Commander</span></a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="{% url 'kalaliso:order_items' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Detail commandes</span></a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="{% url 'kalaliso:order_list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">3. Liste des commandes</span></a>#}
+{#                            </li>#}
+{##}
+{#                        </ul>#}
+{##}
+{#                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">#}
+{#                            <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Payment</span> >></a>#}
+{#                        <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">#}
+{#                            <li class="w-100">#}
+{#                                <a href="{% url 'kalaliso:payment' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">payment</span> 1</a>#}
+{#                            </li>#}
+{#                            <li class="w-100">#}
+{#                                <a href="{% url 'kalaliso:depense' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Depense</span> 2</a>#}
+{#                            </li>#}
+{##}
 {#                            <li>#}
 {#                                <a href="{% url 'kalaliso:payment' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Payement</span></a>#}
 {#                            </li>#}
 {#                            <li>#}
 {#                                <a href="{% url 'kalaliso:depense' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Depense</span></a>#}
 {#                            </li>#}
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Albums </span>>> </a>
-                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="{% url 'kalaliso:products_list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-info">Bronze</h6></span> </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-success">Or</h6></span> </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-warning">Diamant</h6></span> </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-danger">Will</h6></span></a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="{% url 'kalaliso:home' %}" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Payments</span></a>
-                    </li>
-
-
-                </ul>
-                <hr>
-                <div class="dropdown pb-4">
-                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{% static 'profile/image-profile/my-picture.png' %}" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                        <span class="d-none d-sm-inline mx-1">fulani</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+{#                        </ul>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">#}
+{#                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Albums </span>>> </a>#}
+{#                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">#}
+{#                            <li class="w-100">#}
+{#                                <a href="{% url 'kalaliso:products_list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-info">Bronze</h6></span> </a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-success">Or</h6></span> </a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-warning">Diamant</h6></span> </a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-danger">Will</h6></span></a>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                        <a href="{% url 'kalaliso:home' %}" class="nav-link px-0 align-middle">#}
+{#                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Payments</span></a>#}
+{#                    </li>#}
+{##}
+{##}
+{#                </ul>#}
+{#                <hr>#}
+{#                <div class="dropdown pb-4">#}
+{#                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">#}
+{#                        <img src="{% static 'profile/image-profile/my-picture.png' %}" alt="hugenerd" width="30" height="30" class="rounded-circle">#}
+{#                        <span class="d-none d-sm-inline mx-1">fulani</span>#}
+{#                    </a>#}
+{#                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">#}
+{#                        <li><a class="dropdown-item" href="#">New project...</a></li>#}
+{#                        <li><a class="dropdown-item" href="#">Settings</a></li>#}
+{#                        <li><a class="dropdown-item" href="#">Profile</a></li>#}
+{#                        <li>#}
+{#                            <hr class="dropdown-divider">#}
+{#                        </li>#}
+{#                        <li><a class="dropdown-item" href="#">Sign out</a></li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
 {#        <div class="col py-3">#}
 {#            Bienvenu chez kalaliso !#}
 {#        </div>#}
 {#    </div>#}
-</div>
-</div>
-
-</sidebar>
+{#</div>#}
+{#</div>#}
+{##}
+{#</sidebar>#}
 <div class="card col-lg-10 offset-sm-2"
      style=" margin-top: -800px;>
 

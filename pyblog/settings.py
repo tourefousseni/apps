@@ -9,11 +9,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
+SECRET_KEY='$s7p551k75n+3l2iuf*qv92xo+c0i5)@4&_^4ev%q&p%*x75bl'
+DEBUG=True
+ALLOWED_HOSTS=['*']
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('My_SECRET_KEY')
+# SECRET_KEY = config('My_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG=config('My_DEBUG', default=False, cast=bool)
+# DEBUG=config('My_DEBUG', default=False, cast=bool)
 # ALLOWED_HOSTS=config('My_ALLOWED_HOSTS', cast=Csv())
 
 # ALLOWED_HOSTS=config('My_ALLOWED_HOSTS', default='127.0.0.1', cast=Csv())
@@ -85,11 +88,16 @@ WSGI_APPLICATION = 'pyblog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE':  'django.contrib.gis.db.backends.postgis',
-        'NAME':    config('BD_NAME'),
-        'USER':    config('BD_USER'),
-        'PASSWORD': config('BD_PASSWORD'),
-        'HOST':    config('BD_HOST'),
-        'PORT':    config('BD_PORT'),
+        # 'NAME':    config('BD_NAME'),
+        # 'USER':    config('BD_USER'),
+        # 'PASSWORD': config('BD_PASSWORD'),
+        # 'HOST':    config('BD_HOST'),
+        # 'PORT':    config('BD_PORT'),
+        'NAME':     'constructor',
+        'USER':     'postgres',
+        'PASSWORD': 'password',
+        'HOST':     'localhost',
+        'PORT':     '5432',
     }
 }
 

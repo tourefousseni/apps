@@ -5,7 +5,7 @@
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <meta name="description" content="">
-            <title>Kalaliso App</title>
+            <title>Constructor Sarl</title>
              <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
              <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
@@ -30,7 +30,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">KALALISO</a>
+    <a class="navbar-brand" href="#">CONSTRUCTOR SARL</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -40,16 +40,19 @@
           <a class="nav-link active" aria-current="page" href="{% url 'accounts:homepage' %}">Homepage</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'kalaliso:products_list' %}">Albums</a>
+          <a class="nav-link" href="{% url 'kalaliso:products_list' %}">Images</a>
         </li>
           <li class="nav-item">
           <a class="nav-link" href="{% url 'kalaliso:show_video' %}">Videos</a>
         </li>
           <li class="nav-item">
-          <a class="nav-link" href="#">Annonce</a>
+          <a class="nav-link" href="#">Annonces</a>
+        </li>
+            <li class="nav-item">
+          <a class="nav-link" href="#">Offres</a>
         </li>
            <li class="nav-item">
-          <a class="nav-link" href="#">Publicte</a>
+          <a class="nav-link" href="#">Publicités</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -84,10 +87,10 @@
 
     <div class="jumbotron">
         <div class="container">
-        <h1 class="display-3">Bonjour le monde !</h1>
-            <p>Il s'agit d'une plate forme digitale de gestion integrale de l'atelier de couture et des boutiques des ventes des produits vestimentaires
-                 .Il comprend trois une grande plan d'abonnement a savoir Premuin, Gold et Diamant,
-                 Utilisez-le en tout simplicite, commodite et securise.
+        <p class="display-5">Bienvenue dans l'univers en BTP et Aménagements !</p>
+        <h2 class="display-3">CONSTRUCTOR SARL AU MALI</h2>
+            <p>Il s'agit d'une plate forme digitale de gestion integrale des chantiers en BTP et Aménagements
+                en toute sécurité et  commodité.
             </p>
             <p>
                 <a class="btn btn-primary btn-lg" href="#" role="button">Lire plus ... </a>
@@ -98,7 +101,7 @@
        <div class="card m-2" >
 {#    <img src="#" class="card-img-top" alt="...">#}
     <div class="card-body">
-      <h3 class="card-title text-center" style="background-color:#f2e7c3">PREMIUM</h3><hr>
+      <h3 class="card-title text-center" style="background-color:#f2e7c3">BATIMENTS</h3><hr>
       <p class="card-text">This card has supporting text below as a natural lead-in to additional This card has supporting text below as a natural lead-in to additional This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
       <ul>
           <li>
@@ -117,7 +120,7 @@
   <div class="card m-2">
 {#    <img src="#" class="card-img-top" alt="...">#}
     <div class="card-body">
-      <h3 class="card-title text-center" style="background-color:antiquewhite">GOLD</h3><hr>
+      <h3 class="card-title text-center" style="background-color:antiquewhite">ROUTES</h3><hr>
       <p class="card-text">This card has supporting text below as a natural lead-in to additional This card has supporting text below as a natural lead-in to additional This card has supporting text below as a natural lead-in to additional content.</p>
       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
     </div>
@@ -125,7 +128,7 @@
   <div class="card m-2">
 {#    <img src="#" class="card-img-top" alt="...">#}
     <div class="card-body">
-      <h3 class="card-title text-center" style="background-color:tan">DIAMANT</h3><hr>
+      <h3 class="card-title text-center" style="background-color:tan">AGRICOLES</h3><hr>
       <p class="card-text">This card has supporting text below as a natural lead-in to additional This card has supporting text below as a natural lead-in to additional This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
     </div>

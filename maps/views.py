@@ -10,11 +10,11 @@ from django.forms import ModelForm
 from io import BytesIO
 from django.template.loader import get_template, select_template
 from django.views import View
-from xhtml2pdf import pisa
+# from xhtml2pdf import pisa
 from django.core.paginator import Paginator
 from django.db.models import Q
-import xhtml2pdf.default
-from xhtml2pdf.util import getSize
+# import xhtml2pdf.default
+# from xhtml2pdf.util import getSize
 from . import forms
 from .forms import *
 from contacts.models import Person

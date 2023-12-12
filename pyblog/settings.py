@@ -26,13 +26,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # os.environ['My_ALLOWED_HOSTS']= 'localhost'
 # os.environ['My_DEBUG'] = 'False'
 # config('My_DEBUG', cast=bool)
-# False
-SECRET_KEY = config('SECRET_KEY')
+
+SECRET_KEY='$s7p551k75n+3l2iuf*qv92xo+c0i5)@4&_^4ev%q&p%*x75bl'
+DEBUG=True
+ALLOWED_HOSTS=['*']
+# SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG',  cast=bool, default=False)
+# DEBUG = config('DEBUG',  cast=bool, default=False)
 # ALLOWED_HOSTS = config('127.0.0.1', 'localhost')
 # ALLOWED_HOSTS=["*"]
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 # DEBUG = bool(os.environ.get('DEBUG', default=False))
 # My_ALLOWED_HOSTS= ['127.0.0.1'] if DEBUG==False else [ ]
 
@@ -59,7 +62,7 @@ INSTALLED_APPS = [
     'fabric',
 
     # 'bootstrap module', #
-    'django_bootstrap_datetimepicker',
+    # 'django-bootstrap-datepicker',
     'crispy_forms',
     'crispy_bootstrap5',
     'reportlab',
@@ -107,16 +110,16 @@ WSGI_APPLICATION = 'pyblog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE'  :  'django.contrib.gis.db.backends.postgis',
-        'NAME'    :   config('BD_NAME'),
-        'USER'    :   config('BD_USER'),
-        'PASSWORD':   config('BD_PASSWORD'),
-        'HOST'    :   config('BD_HOST'),
-        'PORT'    :   config('BD_PORT'),
-        # 'NAME':    'plateform',
-        # 'USER':    'myprojectuser',
-        # 'PASSWORD': 'password',
-        # 'HOST':    'localhost',
-        # 'PORT':    '5432',
+        # 'NAME'    :   config('BD_NAME'),
+        # 'USER'    :   config('BD_USER'),
+        # 'PASSWORD':   config('BD_PASSWORD'),
+        # 'HOST'    :   config('BD_HOST'),
+        # 'PORT'    :   config('BD_PORT'),
+        'NAME':    'dugukolo',
+        'USER':    'postgres',
+        'PASSWORD': 'password',
+        'HOST':    'localhost',
+        'PORT':    '5432',
 
     }
 

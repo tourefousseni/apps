@@ -23,10 +23,10 @@ from  contacts.models import Person
 # from maps.models import Parcel
 from contacts.models import Person
 
-from geo.Geoserver import Geoserver
+# from geo.Geoserver import Geoserver
 
 # Initialize the library
-geo = Geoserver('http://127.0.0.1:8080/geoserver', username='admin', password='geoserver')
+# geo = Geoserver('http://127.0.0.1:8080/geoserver', username='admin', password='geoserver')
 
 # ==============================================
 #                  MODEL GESTION

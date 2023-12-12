@@ -16,7 +16,7 @@ import datetime
 # from django.db import models
 import glob
 # from maps.models import *
-from geo.Geoserver import Geoserver
+# from geo.Geoserver import Geoserver
 # from pg.pg import Pg
 from geoalchemy2 import Geometry, WKTElement
 
@@ -27,8 +27,8 @@ from geoalchemy2 import Geometry, WKTElement
 #                        START
 # ==============================================
 
-geo = Geoserver('http://127.0.0.1:8080/geoserver/geogate',
-                username='admin', password='allahkbarou')
+# geo = Geoserver('http://127.0.0.1:8080/geoserver/geogate',
+#                 username='admin', password='allahkbarou')
 
 # db = Pg(dbname='plateform', port='5432', host='localhost',
 #              user='postgres', password='password')
@@ -144,10 +144,10 @@ def publish_data(sender, instance, created, **kwargs):
      # geo.publish_featurestore(workspace='geogate', store_name='donnees_omb',
      #                          pg_table='Casier_OMB_Ens')
 
-    @receiver(post_delete, sender=shp)
-    def delete_data(sender, instance, **kwargs):
-        db.delete_table(table_name=instance.name, schema='public', db='plateform')
-        geo.delete_layer(instance.name, 'geogate')
+    # @receiver(post_delete, sender=shp)
+    # def delete_data(sender, instance, **kwargs):
+    #     db.delete_table(table_name=instance.name, schema='public', db='plateform')
+    #     geo.delete_layer(instance.name, 'geogate')
 
     # geo.create_workspace(workspace='geogate')
     #

@@ -11,4 +11,5 @@
 /templates/brouillon.html
 /script.sh
 pyblog/.env
+pyblog/settings.py
 ./tmp

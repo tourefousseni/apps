@@ -8,7 +8,7 @@ from sqlalchemy import create_engine
 from .utils import  unique_parcel_id_generator
 # from djgeojson.fields import PolygonField
 from contacts.models import Person
-from gestion.models import Eau
+from gestion.models import Redevance_eau
 import os
 import geopandas as gpd
 import zipfile
@@ -16,9 +16,12 @@ import datetime
 # from django.db import models
 import glob
 # from maps.models import *
-# from geo.Geoserver import Geoserver
-# from pg.pg import Pg
+from geo.Geoserver import Geoserver
+from pg.pg import Pg
+# from pg import as Pg
 from geoalchemy2 import Geometry, WKTElement
+from bson import json_util
+
 
 # Initialize the library
 
@@ -27,11 +30,11 @@ from geoalchemy2 import Geometry, WKTElement
 #                        START
 # ==============================================
 
-# geo = Geoserver('http://127.0.0.1:8080/geoserver/geogate',
-#                 username='admin', password='allahkbarou')
+geo=Geoserver('http://127.0.0.1:8080/geoserver/geogate',
+                username='admin', password='allahkbarou')
 
-# db = Pg(dbname='plateform', port='5432', host='localhost',
-#              user='postgres', password='password')
+database=Pg(dbname='dugukolo', port='5432', host='localhost',
+             user='postgres', password='password')
 
 ##Import library
 # from django.db import models
@@ -43,8 +46,7 @@ from geoalchemy2 import Geometry, WKTElement
 # import glob
 # import zipfile
 # from sqlalchemy import *
-# from pg.pg import Pg
-
+#
 
 class Parcel(models.Model):
     id = models.AutoField(primary_key=True)
@@ -61,35 +63,43 @@ class Parcel(models.Model):
         ('CONCOMBRE', 'CONCOMBRE'),
         ('AUBERGINE', 'AUBERGINE'),
         ('CHOPEAUM', 'CHOPEAUM'),
+        ('GOYAVE', 'GOYAVE'),
         ('NO DEFINI', 'NO DEFINI'),
     )
-    TYPE = (
+    ETAT_PARCEL = (
         ('EN EXPLOITATION', 'EN EXPLOITATION'),
         ('NON EXPLOITE', 'NON EXPLOITE'),
         ('EN JACHERE', 'EN JACHERE'),
         ('TOTALEMENT EXPLOITE', 'TOTALEMENT EXPLOITE'),
         ('PARTIELLEMENT EXPLOITE', 'PARTIELLEMENT EXPLOITE'),
-        ('NO QUALIFIE', 'NO QUALIFIE'),
-    )
-    type           = models.CharField(max_length=50, choices=TYPE, verbose_name='Type')
-    culture = models.CharField(max_length=50, choices=CULTURE, verbose_name='cultures')
-    fips           = models.CharField(max_length=50, blank=True, null=True)
-    iso2           = models.CharField(max_length=50, blank=True, null=True)
-    un             = models.IntegerField( blank=True, null=True)
-    name           = models.CharField(max_length=50, blank=True, null=True)
-    description    = models.CharField(max_length=2000, blank=True, null=True)
-    file           = models.FileField(upload_to='%y/%m/%d')
+        ('NO QUALIFIE', 'NO QUALIFIE'),)
+    etat_parcel           = models.CharField(max_length=50, choices=ETAT_PARCEL, verbose_name='Type')
+    ACTIVITES = (
+        ('AGRICOLE', 'AGRICOLE'),
+        ('PATURAGE', 'PATURAGE'),
+        ('PISCULTURE', 'PISCULTURE'),
+        ('FORESTERIE', 'FORESTERIE'),
+        ('ELEVAGE', 'ELEVAGE'),
+        ('NO QUALIFIE', 'NO QUALIFIE'),)
+    activites       = models.CharField(max_length=50, choices=ACTIVITES, verbose_name='Activites')
+    culture         = models.CharField(max_length=50, choices=CULTURE, verbose_name='cultures')
+    name            = models.CharField(max_length=50, blank=True, null=True)
+    description     = models.CharField(max_length=2000, blank=True, null=True)
+    shapefile       = models.FileField(upload_to='%y/%m/%d')
+    code_parcel     = models.CharField(max_length=100)
+    area            = models.IntegerField(blank=True, null=True)
+    perimeter       = models.IntegerField(blank=True, null=True)
+    region          = models.IntegerField(blank=True, null=True)
+    lon             = models.FloatField(blank=True, null=True)
+    lat             = models.FloatField(blank=True, null=True)
+    null1           = models.CharField(max_length=50, blank=True, null=True)
+    null2           = models.CharField(max_length=50, blank=True, null=True)
+    null3           = models.IntegerField( blank=True, null=True)
+    upload_date     = models.DateField(default=datetime.date.today, blank=True)
     # person_id      = models.ForeignKey('contacts.Person', on_delete=models.CASCADE)
-    code_parcel    = models.CharField(max_length=100)
-    area           = models.IntegerField( blank=True, null=True)
-    perimeter      = models.IntegerField( blank=True, null=True)
-    region         = models.IntegerField( blank=True, null=True)
-    lon            = models.FloatField (blank=True, null=True)
-    lat            = models.FloatField( blank=True, null=True)
-    eau            = models.ForeignKey('gestion.Eau', on_delete=models.CASCADE, verbose_name='Parcel')
+    # eau            = models.ForeignKey('gestion.Redevance_eau', on_delete=models.CASCADE, verbose_name='Parcel')
     # geom           = models.MultiPolygonField()
     # geom2          = models.PolygonField()
-    upload_date    =models.DateField(default=datetime.date.today, blank=True)
 
     def __str__(self):
          return str(self.code_parcel)
@@ -103,21 +113,37 @@ pre_save.connect(pre_save_code_parcel_id, sender=Parcel)
 
 @receiver(post_save, sender=Parcel)
 def publish_data(sender, instance, created, **kwargs):
-    file        = instance.file.path
-    file_format = os.path.basename(file).split('.')[-1]
-    file_name   = os.path.basename(file).split('.')[0]
-    file_path   = os.path.dirname(file)
+    shapefile   = instance.file.path
+    file_format = os.path.basename(shapefile).split('.')[-1]
+    file_name   = os.path.basename(shapefile).split('.')[0]
+    file_path   = os.path.dirname(shapefile)
     name        = instance.name
-    conn_str    = 'postgresql://postgres:password@localhost:5432/plateform'
+    conn_str    = 'postgresql://postgres:password@localhost:5432/dugukolo'
 
 #extract zipfile
-    with zipfile.ZipFile(file, 'r') as zip_ref:
+    with zipfile.ZipFile(shapefile, 'r') as zip_ref:
         zip_ref.extractall(file_path)
 
-    os.remove(file) #remove zip file
+    os.remove(shapefile) #remove zip file
 
     shp = glob.glob(r'{}/**/*.shp'.format(file_path),
                    recursive=True)[0] #to get shp
+    try:
+        req_shapefile = shapefile[0]
+        gdf = gpd.read_file(req_shapefile) # make geodataframe
+        engine = create_engine(conn_str)
+        gdf.to_postgis(
+            con=engine,
+            schema='public',
+            name=name,
+            if_exists="replace")
+        for s in shapefile:
+            os.remove(s)
+    except Exception as e:
+        for s in shapefile:
+            os.remove(s)
+        instance.delete()
+        print("There is problem during shapefile:", e)
 
     gdf=gpd.read_file(shp)  # make geodataframe
     crs_name = str(gdf.crs.srs)
@@ -131,10 +157,10 @@ def publish_data(sender, instance, created, **kwargs):
 
     # drop the geometry column(since we already backuq this coulmn with geom)
     gdf.drop('geometry', 1, inplace=True)
-    gdf.to_sql(name, engine, 'plateform', if_exits='replace',
+    gdf.to_sql(name, engine, 'dugukolo', if_exits='replace',
                index=False, dtype={'geom':Geometry('Geometry', srid=epsg)}) #post gdf to the postgresql
 
-    os.remove(shp)
+    os.remove(shapefile)
     # published shp to geoserver using geoserver-rest
 
     #geo.create_featurestore(workspace='geogate', db='plateform', host='localhost',
@@ -144,10 +170,10 @@ def publish_data(sender, instance, created, **kwargs):
      # geo.publish_featurestore(workspace='geogate', store_name='donnees_omb',
      #                          pg_table='Casier_OMB_Ens')
 
-    # @receiver(post_delete, sender=shp)
-    # def delete_data(sender, instance, **kwargs):
-    #     db.delete_table(table_name=instance.name, schema='public', db='plateform')
-    #     geo.delete_layer(instance.name, 'geogate')
+    @receiver(post_delete, sender=shapefile)
+    def delete_data(sender, instance, **kwargs):
+        db.delete_table(table_name=instance.name, schema='public', db='dugukolo')
+        geo.delete_layer(instance.name, 'geogate')
 
     # geo.create_workspace(workspace='geogate')
     #

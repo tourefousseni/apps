@@ -18,7 +18,7 @@
 </style>
               <div class="row col-12">
                       <h4 class="text-center">CADASTRAL RURAL</h4>
-                              <div class="col-md-12 offset-0" id="map" style="width:1200px; height: 680px">
+                              <div class="col-md-12 offset-0" id="map" style="width:1200px; height: 650px">
                                   {% leaflet_map "map" callback="main_map_init" %}
                               </div>
                                <div>
@@ -52,8 +52,6 @@
                golden=L.marker([13.9, -5.18]).bindPopup('This is Golden, CO.');
 
            var cities=L.layerGroup([littleton, denver, aurora, golden]);
-
-
 
 
            var osm=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {

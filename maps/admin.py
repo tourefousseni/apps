@@ -11,9 +11,9 @@ class LocalizationAdmin(OSMGeoAdmin):
 
 @admin.register(Parcel)
 class ParcelAdmin(OSMGeoAdmin):
-    list_display = ['eau','perimeter','culture', 'type', 'lon',
-                    'lat', 'file', 'description',
-                    'name']
+    list_display = ['name','perimeter','culture', 'lon',
+                    'lat', 'code_parcel', 'description',
+                    ]
 
 # from .models import   \
 #    Region, Cercle, Zone, Commune, Village, Parcel

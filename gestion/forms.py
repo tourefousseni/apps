@@ -13,8 +13,9 @@ from django_bootstrap_datetimepicker import *
 from django.forms import widgets
 import datetime
 
-from gestion.models import  Depense,Video,Payment,Eau,Annonce
-
+from gestion.models import  Depense,\
+    Paiement,Redevance_eau
+# Video,,Annonce
 # ==============================================
 #                  FORM GESTION
 #                        START
@@ -32,12 +33,12 @@ class GestionForm(forms.ModelForm):
         'type': 'date'}))
 
     class Meta:
-        model = Eau
+        model = Redevance_eau
         template_name = 'gestion/eau.html'
         fields = [
                   'person',
                   'volume', 'litre',
-                  'diff', 'quantity',
+                  'diff', 'quantite',
                   'debut_eau','fin_eau',
         ]
         exclude = ['update_at','created_at','duration']
@@ -48,14 +49,14 @@ class GestionForm(forms.ModelForm):
 
 class PaymentForm(forms.ModelForm):
     class Meta:
-        model = Payment
+        model = Paiement
         template_name = 'gestion/payment.html'
         fields = [
                   # 'person',
                   'mode_payment',
                   'code_payment',
                   # 'code_facture',
-                  'payment',
+                  # 'payment',
                   'amount',
                   'taxe',
         ]
@@ -81,14 +82,7 @@ class PaymentForm(forms.ModelForm):
                 Column('delivered'),
                  ),
         )
-class AnonceForm(forms.ModelForm):
-    class Meta:
-        model = Annonce
-        template_name = 'gestion/annonce.html'
-        fields = ('__all__')
 
-        def __init__(self, *args, **kwargs):
-            super().__init__(*args, **kwargs)
 
 class DepenseForm(forms.ModelForm):
     cancelled = forms.DateTimeField(label="annuler", widget=forms.DateTimeInput(attrs={
@@ -121,10 +115,10 @@ class DepenseForm(forms.ModelForm):
 
 
 
-class Video_form(forms.ModelForm):
-   class Meta:
-         model=Video
-         fields=("title","video")
+# class Video_form(forms.ModelForm):
+#    class Meta:
+#          model=Video
+#          fields=("title","video")
 
 # class UserForm(forms.ModelForm):
 #     class Meta:

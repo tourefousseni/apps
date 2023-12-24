@@ -23,10 +23,15 @@ gdal:
 
 psycopg2-binary==2.9.6 not install again
 
+HOW INSTALL GDAL
+pip install GDAL==3.7.2
+HOW INSTALL GEOSERVER-REST
+pip install geoserver-rest==2.5.3
+
 SECRET_KEY=$s7p551k75n+3l2iuf*qv92xo+c0i5)@4&_^4ev%q&p%*x75bl
 DEBUG=True
 ALLOWED_HOSTS=['*']
-BD_NAME=plateform
+BD_NAME=dugukolo
 BD_HOST=localhost
 BD_PASSWORD=password
 BD_USER=postgres
@@ -228,6 +233,16 @@ ALTER ROLE myprojectuser SET client_encoding TO 'utf8';
 ALTER ROLE myprojectuser SET timezone TO 'UTC';
 GRANT ALL PRIVILEGES ON DATABASE alkawsara TO myprojectuser;
 \c alkawsara ;
+create extension postgis;
+
+
+create database dugukolo;
+create user myprojectuser WITH PASSWORD 'password';
+ALTER ROLE myprojectuser SET default_transaction_isolation TO 'read committed';
+ALTER ROLE myprojectuser SET client_encoding TO 'utf8';
+ALTER ROLE myprojectuser SET timezone TO 'UTC';
+GRANT ALL PRIVILEGES ON DATABASE dugukolo TO myprojectuser;
+\c dugukolo ;
 create extension postgis;
 
 

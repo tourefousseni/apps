@@ -33,24 +33,39 @@ from contacts.models import Person
 #                        START
 # ==============================================
 
-class Eau(models.Model):
+class Redevance_eau(models.Model):
     objects = None
     id                 = models.AutoField(primary_key=True)
     person             = models.OneToOneField('contacts.Person',on_delete=models.CASCADE,verbose_name='Consommateur')
+    parcel             = models.ForeignKey('maps.Parcel',on_delete=models.CASCADE,verbose_name='Parcelle')
     frais_usage        = models.FloatField(null=True, blank=True)
-    reduction          = models.FloatField(null=True, blank=True)
-    delai_paie         = models.FloatField(null=True, blank=True)
-    delai_penality     = models.FloatField(null=True, blank=True)
-    null1              = models.FloatField(null=True, blank=True)
-    null2              = models.FloatField(null=True, blank=True)
-    null3              = models.FloatField(null=True, blank=True)
+    quantite           = models.FloatField(null=True, blank=True)
+    debut_eau          = models.DateTimeField(null=True, blank=True)
+    fin_eau            = models.DateTimeField(null=True, blank=True)
     volume             = models.FloatField(null=True, blank=True)
     litre              = models.FloatField(null=True, blank=True)
     diff               = models.FloatField(null=True, blank=True)
-    debut_eau          = models.DateTimeField(null=True, blank=True)
-    fin_eau            = models.DateTimeField(null=True, blank=True)
     duration           = models.DurationField(blank=True, null=True)
-    quantity           = models.FloatField(null=True, blank=True)
+    null1              = models.FloatField(null=True, blank=True)
+    null2              = models.FloatField(null=True, blank=True)
+    null3              = models.FloatField(null=True, blank=True)
+    created_at         = models.DateField(auto_now=True)
+    update_at          = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return self.person.nom, \
+               self.person.prenom, \
+               self.person.contact_1
+class Impot_foncier(models.Model):
+    objects = None
+    id                 = models.AutoField(primary_key=True)
+    person             = models.OneToOneField('contacts.Person',on_delete=models.CASCADE,verbose_name='Consommateur')
+    parcel             = models.ForeignKey('maps.Parcel',on_delete=models.CASCADE,verbose_name='Parcelle')
+    diff               = models.FloatField(null=True, blank=True)
+    duration           = models.DurationField(blank=True, null=True)
+    null1              = models.FloatField(null=True, blank=True)
+    null2              = models.FloatField(null=True, blank=True)
+    null3              = models.FloatField(null=True, blank=True)
     created_at         = models.DateField(auto_now=True)
     update_at          = models.DateField(auto_now=True)
 
@@ -59,7 +74,7 @@ class Eau(models.Model):
                self.person.prenom, \
                self.person.contact_1
 
-class Payment(models.Model):
+class Paiement(models.Model):
     id = models.AutoField(primary_key=True)
     MODE_PAYMENT     = (
         ('Espece', 'Espece'),
@@ -70,13 +85,16 @@ class Payment(models.Model):
         ('Virement', 'Virement'),
         ('Transaction Bancaire', 'Transaction Bancaire'), )
     mode_payment     =  models.CharField(max_length=50, choices=MODE_PAYMENT, default='Espece', )
-    payment          = models.ForeignKey('gestion.Eau', on_delete=models.CASCADE, blank=True, null=True, verbose_name='Payment Facture', )
+    redevance_eau    = models.ForeignKey('gestion.Redevance_eau', on_delete=models.CASCADE, blank=True, null=True, verbose_name='Redevance Eau', )
     code_payment     = models.CharField(max_length=30, blank=True, verbose_name='Code Payement')
     person           = models.ForeignKey('contacts.Person', on_delete=models.CASCADE, verbose_name='Consommateur', )
     amount           = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True, verbose_name='Montant Total')
     taxe             = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
     code_facture     = models.CharField(max_length=50, blank=True, verbose_name='Code Facture')
-    delivered         = models.BooleanField(default=True)
+    delai_paiement   = models.DateField(auto_now_add=True)
+    taux_reduction   = models.FloatField(null=True, blank=True)
+    taux_penalite    = models.FloatField(null=True, blank=True)
+    delivered        = models.BooleanField(default=True)
     confirmed        = models.BooleanField(default=True)
     create_at        = models.DateField(auto_now=False)
 
@@ -89,7 +107,7 @@ def pre_save_code_payment_id(instance, sender, *args, **kwargs):
     if not instance.code_payment:
         instance.code_payment = unique_payment_id_generator(instance)
 
-pre_save.connect(pre_save_code_payment_id, sender=Payment)
+pre_save.connect(pre_save_code_payment_id, sender=Paiement)
 
 # def pre_save_code_facture_id(instance, sender, *args, **kwargs):
 #     if not instance.code_facture:
@@ -121,147 +139,18 @@ class Depense(models.Model):
         ('Transaction bancaire', 'Transaction bancaire'), )
 
     mode_payment_depense   =  models.CharField(max_length=50, choices=MODE_PAYMENT_DEPENSE, default='Espece', )
-    person_responsable     = models.ForeignKey('contacts.Person', on_delete=models.CASCADE, verbose_name='Titulaire Depense', )
+    person                 = models.ForeignKey('contacts.Person', on_delete=models.CASCADE, verbose_name='Titulaire Depense', )
     amount                 = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True, verbose_name='Montant depensé')
-    motif                  = models.CharField(max_length=50, choices=MOTIF, default='Paiement Ouvrier',)
-    description            = models.CharField(max_length=200, blank=True, verbose_name='Description du depense')
-    status                 = models.BooleanField(default=False, verbose_name="valid")
-    cancelled              = models.DateField(auto_now=False)
+    motif                  = models.CharField(max_length=250, choices=MOTIF, default='Paiement Ouvrier',)
+    null1                  = models.CharField(max_length=200, blank=True, verbose_name='Description du depense')
+    status                 = models.BooleanField(default=True, verbose_name="valid")
+    cancelled              = models.BooleanField(default=False, verbose_name="cancel")
     create_at              = models.DateField(auto_now=False)
 
     def __str__(self):
-        return self.motif
-
-class Video(models.Model):
-    id         = models.AutoField(primary_key=True)
-    title      = models.CharField(max_length=50, blank=True, null=True)
-    video      = models.FileField(upload_to="video/%y", validators=[file_size])
-    comment    = models.CharField(max_length=250, blank=True, null=True)
-    like       = models.IntegerField()
-    shared     = models.IntegerField()
-    create_at  = models.DateField(auto_now=True)
-
-    def __str__(self):
-        return '{}'.format(self.title)
-
-
-class Album(models.Model):
-    id         = models.AutoField(primary_key=True)
-    title      = models.CharField(max_length=50, blank=True, null=True)
-    img        = models.FileField(upload_to="photos/", validators=[file_size])
-    create_at  = models.DateField(auto_now=True)
-
-    def __str__(self):
-        return '{}'.format(self.title)
-
-class Category(models.Model):
-    category = (
-
-                ('Or', 'Or'),
-                ('Meduim', 'Medium'),
-                ('Diamon', 'Diamon'),)
-
-    category     =  models.CharField(max_length=50, choices=category, default='Or')
-    id           = models.AutoField(primary_key=True)
-    album        = models.ForeignKey('Album', on_delete=models.CASCADE, verbose_name='Photos')
-    title        = models.CharField(max_length=50, blank=True, null=True)
-
-    def __str__(self):
-        return '{}'.format(self.title)
-
-class Annonce(models.Model):
-
-    id          = models.AutoField(primary_key=True)
-    title       = models.CharField(max_length=50, blank=False, null=True)
-    person      = models.ForeignKey("contacts.Person", on_delete=models.CASCADE)
-    video       = models.FileField(upload_to="video/%y", blank=True, null=True, validators=[file_size])
-    description = models.CharField(max_length=500, blank=True)
-    date_start  = models.DateField(auto_now=True)
-    date_end    = models.DateField(auto_now=True)
-
-    def __str__(self):
-        return '{}'.format(self.title)
-
-class order_paypal(models.Model):
-    pass
-
-#
-class Product(models.Model):
-    id = models.AutoField(primary_key=True)
-    Products            = (
-        ('Web mapping', 'Web mapping'),
-        ('Delimitation', 'Delimitation'),
-        ('Bornage', 'Bornage'),
-        ('Transaction fonciere', 'Transaction fonciere'),
-        ('Vente', 'Vente'),
-        ('Gestion des perimetres', 'Gestion des perimetres'),
-        ('AUTRES', 'AUTRES'),)
-    products              = models.CharField(max_length=50, choices=Products, default='Boubou',)
-    SIZE            = (
-        ('S', 'S'),
-        ('M', 'M'),
-        ('L', 'L'),
-        ('X', 'X'),
-        ('XXL', 'XXL'),
-        ('XXXL', 'XXXL'),
-        ('AUTRES', 'AUTRES'),)
-    size                = models.CharField(max_length=50, choices=SIZE, default='S',)
-    photo               = models.ImageField(upload_to='photos/')
-    code_product        = models.CharField(max_length=30,  verbose_name='ID')
-    description         = models.CharField(max_length=200, blank=True, null=True)
-    price               = models.DecimalField(decimal_places=2, max_digits=20, default=100.25, null=True, blank=True)
-    create_at           = models.DateField(auto_now=True)
-
-    def __str__(self):
-        return'{}'.format(self.products)
-#
-# def pre_save_product_id(instance, sender, *args, **kwargs):
-#     if not instance.code_product:
-#             instance.code_product = unique_product_id_generator(instance)
-#
-# pre_save.connect(pre_save_product_id, sender=Product)
-#
-#
-# class Order(models.Model):
-#     objects = None
-#     id             = models.AutoField(primary_key=True)
-#     person_id      = models.ForeignKey('contacts.Person', on_delete=models.CASCADE, verbose_name='Acheteur')
-#     code_order     = models.CharField(max_length=30, blank=True, verbose_name='Code order')
-#     reception      = models.BooleanField(default=True)
-#     rendez_vous    = models.DateField(auto_now=False)
-#     # localization   = models.ForeignKey('maps.Region', on_delete=models.CASCADE, verbose_name='Localisation',)
-#     confirmed      = models.BooleanField(default=False)
-#     cancelled      = models.BooleanField(default=False)
-#     remise         = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-#     create_at      = models.DateField(auto_now=False)
-#
-#     def __str__(self):
-#         return str(self.id)
-#
-# def pre_save_order_id(instance, sender, *args, **kwargs):
-#     if not instance.code_order:
-#             instance.code_order = unique_order_id_generator(instance)
-#
-# pre_save.connect(pre_save_order_id, sender=Order)
-#
-# class Order_Items(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     CATEGORY    = (
-#         ('Homme', 'Homme'),
-#         ('Femme', 'Femme'),
-#         ('Fille', 'Fille'),
-#         ('Garçon', 'Garçon'),
-#         ('Autres', 'Autres'),)
-#
-#     category         = models.CharField(max_length=50, choices=CATEGORY, default='Homme', )
-#     items            = models.ManyToManyField('gestion.Order', verbose_name='items')
-#     product          = models.ForeignKey('gestion.Product', on_delete=models.CASCADE, verbose_name='Add Product', )
-#     quantity         = models.IntegerField(default=1, blank=True, null=True)
-#     submontant       = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-#     price            = models.DecimalField(decimal_places=2, max_digits=20, default=0, null=True, blank=True)
-#
-#     def __str__(self):
-#         return self.price
+        return self.person.prenom, \
+               self.person.nom, \
+               self.person.contact_1
 
 # ==============================================
 #                  MODEL GESTION

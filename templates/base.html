@@ -7,11 +7,13 @@
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <meta name="description" content="">
-            <title>Cadastre foncier</title>
+            <title>Cadastre Rural</title>
              <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
              <link rel="stylesheet" href="{% static 'css/style.css' %}">
              <link rel="stylesheet" href="{% static 'leaflet/css/leaflet.css' %}">
-{#<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />#}
+             <link rel="stylesheet" href="{% static 'lib/leaflet-measure.css' %}">
+             <link rel="stylesheet" href="{% static 'lib/MarkerCluster.css'  %}">
+             <link rel="stylesheet" href="{% static 'lib/MarkerCluster.Default.css' %}">
 </head>
 <section>
      <topnavbar class=" col-lg-12 navbar navbar-expand-sm navbar-brand bg-success">
@@ -33,7 +35,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Cadastre Foncier</a>
+    <a class="navbar-brand" href="#">Cadastre Rural</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -46,10 +48,10 @@
           <a class="nav-link" href="{% url 'maps:maps' %}">Digitaliser</a>
         </li>
           <li class="nav-item">
-          <a class="nav-link" href="{% url 'gestion:show_video' %}">Temoignages</a>
+{#          <a class="nav-link" href="{% url 'gestion:show_video' %}">Temoignages</a>#}
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'gestion:anonce' %}">Annonces</a>
+          <a class="nav-link" href="{% url 'blog:annonce' %}">Annonces</a>
         </li>
            <li class="nav-item">
           <a class="nav-link" href="#">Publictes</a>
@@ -213,10 +215,11 @@
 </div>
 
 </sidebar>
-<div class="card col-lg-10 offset-sm-2"; style="margin-top: -800px">
+<div class="container col-md-12 offset-md-1"; style="margin-top: -770px; margin-right: 10px; position: initial">
     {% block content %}
     {% endblock %}
 </div>
+
 
   <div class="copyright-footer"; style="position:fixed; bottom: 0px; width: 100%; text-align: center;">
     <p>&copy; <a href="#">Cadastre Rural.info</a> 2023, All Right Reserved.</p>
@@ -240,13 +243,14 @@
 {#                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(125px, 163px, 0px); z-index: 163;"></div>#}
 </div>
 </body>
-                <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
-                <script type="text/javascript" src="scripts/moment-2.4.0.js"></script>
-                <script type="text/javascript" src="scripts/bootstrap-datetimepicker.js"></script>
-              <script src="{% static 'js/bootstrap.min.js' %}"></script>
-{#              <script src="{% static 'leaflet/js/leaflet.js' %}"></script>#}
-{#              <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>#}
-              <script class="maps" src="{% static 'lib/L.Geoserver.js' %}">
+
+                <script src="{% static 'js/bootstrap.min.js' %}"></script>
+                <script src="{% static 'lib/leaflet.browser.print.min.js'%}"></script>
+                <script src="{% static 'lib/leaflet-measure.js' %}"></script>
+                <script src="{% static 'lib/leaflet.markercluster.js' %}"></script>
+                <script src="{% static 'js/main.js' %}"></script>
+
+                <script class="maps" src="{% static 'lib/L.Geoserver.js' %}">
                   {#var wmsLayer = L.Geoserver.wms("http://localhost:8080/geoserver/geogate/wms?", {#}
                     var wmsLayer = L.Geoserver.wms("http://localhost:8080/geoserver/geogate/wms?service=WMS&version=1.1.0&request=GetMap&layers=geogate%3ACasier_OMB_Ens&bbox=247334.055700134%2C1457114.49619568%2C308213.701441241%2C1481782.57048504&width=768&height=330&srs=EPSG%3A32630&styles=&format=application/openlayers#toggle", {
                         layers: "geogate:Casier_OMB_Ens",

@@ -3,8 +3,6 @@ import random
 import string
 # from django.db.models import
 
-
-
 # =================================
 #         CADASTRE RANDOM
 #             START

@@ -29,9 +29,8 @@ def maps(request):
     parcel=Parcel.objects.all()
 
     context={
-        'parcel':parcel
+        'parcels':parcel
     }
-
     return render(request, 'maps/maps.html', context)
 
 # def locate(request, pk):
@@ -47,16 +46,22 @@ def maps(request):
 #     }
 #     return render(request, 'localisation/locate.html', context)
 
-
 def parcel(request):
-    if request.method == 'POST':
-        form = ParcelForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-    else:
-            form = ParcelForm()
-    return render(request, 'maps/parcel.html', {'form': form})
+    parcel = Parcel.objects.all()
+
+    context = {
+        'parcel': parcel
+    }
+    return render(request, 'maps/parcel.html', context)
+# def parcel(request):
+#     if request.method == 'POST':
+#         form = ParcelForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('/')
+#     else:
+#             form = ParcelForm()
+#     return render(request, 'maps/parcel.html', {'form': form})
 
 # def zone(request):
 #     if request.method == 'POST':

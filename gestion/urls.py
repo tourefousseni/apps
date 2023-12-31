@@ -4,6 +4,11 @@ from django.urls import include, path
 from .import views
 app_name = 'gestion'
 
+# =================================
+#         ULRS GESTION
+#             START
+# =================================
+
 urlpatterns = [
 
      path('gestion/', views.gestion, name='gestion'),
@@ -53,6 +58,6 @@ urlpatterns = [
 ]
 
 # =================================
-#         ULRS KALALISO
+#         ULRS GESTION
 #             END
 # =================================

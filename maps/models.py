@@ -1,52 +1,33 @@
-# from django.db import models
-# from django.contrib.gis.db import models
 from django.contrib.gis.db import models
 from django.db.models.signals import pre_save, post_save, post_delete
 from django.dispatch import receiver
 from pg import db
 from sqlalchemy import create_engine
 from .utils import  unique_parcel_id_generator
-# from djgeojson.fields import PolygonField
 from contacts.models import Person
 from gestion.models import Redevance_eau
 import os
 import geopandas as gpd
 import zipfile
 import datetime
-# from django.db import models
 import glob
-# from maps.models import *
 from geo.Geoserver import Geoserver
 from pg.pg import Pg
-# from pg import as Pg
+# from geo.Postgres import Db
 from geoalchemy2 import Geometry, WKTElement
-from bson import json_util
-
 
 # Initialize the library
+
+database=Pg(dbname='dugukolo', port='5432', host='localhost',
+      user='postgres', password='password')
+
+geo=Geoserver('http://127.0.0.1:8080/geoserver',
+              username='admin', password='allahkbarou')
 
 # ==============================================
 #                  MODEL MAPS
 #                        START
 # ==============================================
-
-geo=Geoserver('http://127.0.0.1:8080/geoserver/geogate',
-                username='admin', password='allahkbarou')
-
-database=Pg(dbname='dugukolo', port='5432', host='localhost',
-             user='postgres', password='password')
-
-##Import library
-# from django.db import models
-# import datetime
-# from django.db.models.signals import post_save, post_delete
-# from django.dispatch import receiver
-# import geopandas as gpd
-# import os
-# import glob
-# import zipfile
-# from sqlalchemy import *
-#
 
 class Parcel(models.Model):
     id = models.AutoField(primary_key=True)
@@ -107,13 +88,12 @@ class Parcel(models.Model):
 def pre_save_code_parcel_id(instance, sender, *args, **kwargs):
     if not instance.code_parcel:
         instance.code_parcel = unique_parcel_id_generator(instance)
-
 pre_save.connect(pre_save_code_parcel_id, sender=Parcel)
 
 
 @receiver(post_save, sender=Parcel)
 def publish_data(sender, instance, created, **kwargs):
-    shapefile   = instance.file.path
+    shapefile   = instance.shapefile.path
     file_format = os.path.basename(shapefile).split('.')[-1]
     file_name   = os.path.basename(shapefile).split('.')[0]
     file_path   = os.path.dirname(shapefile)
@@ -126,26 +106,26 @@ def publish_data(sender, instance, created, **kwargs):
 
     os.remove(shapefile) #remove zip file
 
-    shp = glob.glob(r'{}/**/*.shp'.format(file_path),
-                   recursive=True)[0] #to get shp
-    try:
-        req_shapefile = shapefile[0]
-        gdf = gpd.read_file(req_shapefile) # make geodataframe
-        engine = create_engine(conn_str)
-        gdf.to_postgis(
-            con=engine,
-            schema='public',
-            name=name,
-            if_exists="replace")
-        for s in shapefile:
-            os.remove(s)
-    except Exception as e:
-        for s in shapefile:
-            os.remove(s)
-        instance.delete()
-        print("There is problem during shapefile:", e)
+    Parcel = glob.glob(r'{}/**/*.shp'.format(file_path),
+                    recursive=True)  # to get shp
+    # try:
+    #     req_shapefile = Parcel[0]
+    #     gdf = gpd.read_file(req_shapefile) # make geodataframe
+    #     engine = create_engine(conn_str)
+    #     gdf.to_postgis(
+    #         con=engine,
+    #         schema='public',
+    #         name=name,
+    #         if_exists="replace")
+    #     for s in Parcel:
+    #         os.remove(s)
+    # except Exception as e:
+    #     for s in Parcel:
+    #         os.remove(s)
+    #     instance.delete()
+    #     print("There is problem during shapefile:", e)
 
-    gdf=gpd.read_file(shp)  # make geodataframe
+    gdf=gpd.read_file(Parcel)  # make geodataframe
     crs_name = str(gdf.crs.srs)
     epsg = int(crs_name.replace('epsg', ''))
     if epsg in None:
@@ -163,14 +143,19 @@ def publish_data(sender, instance, created, **kwargs):
     os.remove(shapefile)
     # published shp to geoserver using geoserver-rest
 
-    #geo.create_featurestore(workspace='geogate', db='plateform', host='localhost',
-                               #schema='public', pg_user='postgres',password='password',
-    #                          store_name='donnees_omb', pg_table='Casier_OMB_Ens')
+    geo.create_featurestore(workspace='geogate', db='dugukolo', host='localhost',
+                               schema='public', pg_user='postgres',password='password',
+                               store_name='pyblog', pg_table='name')
 
-     # geo.publish_featurestore(workspace='geogate', store_name='donnees_omb',
-     #                          pg_table='Casier_OMB_Ens')
+    geo.publish_featurestore(workspace='geogate', store_name='pyblog',
+                              pg_table='name')
 
-    @receiver(post_delete, sender=shapefile)
+    geo.create_outline_featurestyle('ombstyle_shp', workspace='geogate')
+
+    geo.publish_style(
+        layer_name=name, style_name='ombstyle_shp', workspace='geogate')
+
+    @receiver(post_delete, sender=Parcel)
     def delete_data(sender, instance, **kwargs):
         db.delete_table(table_name=instance.name, schema='public', db='dugukolo')
         geo.delete_layer(instance.name, 'geogate')

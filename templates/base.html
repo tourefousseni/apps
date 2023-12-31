@@ -3,6 +3,7 @@
 {% load crispy_forms_tags %}
 
 <div lang="en">
+
 <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,13 +20,9 @@
      <topnavbar class=" col-lg-12 navbar navbar-expand-sm navbar-brand bg-success">
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="topnavbar">
-             <nav class="col-md-6 offset-3 text-center">
+             <nav class="col-md-6 offset-3 text-center m1">
                      <p  style="color: whitesmoke ">
-                         <small>
-                             <em>
-                                 Telephone: 78 36 06 03 Email: gisconsulting4@mail.com Bamako-Mali
-                             </em>
-                         </small>
+                         <small><em>Telephone: (00223)78 36 06 03 Email: gisconsulting4@mail.com Bamako-Mali</em></small>
                      </p>
              </nav>
         </div>
@@ -45,7 +42,7 @@
           <a class="nav-link active" aria-current="page" href="{% url 'accounts:homepage' %}">Homepage</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'maps:maps' %}">Digitaliser</a>
+          <a class="nav-link" href="{% url 'maps:maps' %}">Vue Carte</a>
         </li>
           <li class="nav-item">
 {#          <a class="nav-link" href="{% url 'gestion:show_video' %}">Temoignages</a>#}
@@ -74,7 +71,7 @@
          <nav>
             <div class="btn-toolbar mb-2 mb-md-0">
              <div class="btn-group me-2">
-{#                 <p>Bienvenu {{ User }}</p>#}
+                 <p>Bienvenu {{ name }}</p>
                     <a class="btn btn-sm btn-outline-secondary " href="{% url 'accounts:disconnect' %}"><i class="fas fa-user-plus"></i>Logout</a>
           </div>
         </div>
@@ -91,9 +88,7 @@
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-{#                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">#}
-{#                    <span class="fs-5 d-none d-sm-inline">Dashboard</span>#}
-{#                </a>#}
+
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
                         <a href="#" class="nav-link align-middle px-0">
@@ -112,7 +107,7 @@
                                 <a href="{% url 'contacts:list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Liste des personnes</span> </a>
                             </li>
                              <li class="w-100">
-                                <a href="{% url 'maps:maps' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Digitalisation</span> </a>
+                                <a href="{% url 'maps:parcel' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Ajouter Une parcelle</span> </a>
                             </li>
 
                         </ul>
@@ -130,22 +125,6 @@
 
                         </ul>
 
-{#                     <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle">#}
-{#                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Commande</span> >> </a>#}
-{#                        <ul class="collapse show nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">#}
-{##}
-{#                            <li>#}
-{#                                <a href="{% url 'gestion:order' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Commander</span></a>#}
-{#                            </li>#}
-{#                            <li>#}
-{#                                <a href="{% url 'gestion:order_items' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Detail commandes</span></a>#}
-{#                            </li>#}
-{#                            <li>#}
-{#                                <a href="{% url 'gestion:order_list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">3. Liste des commandes</span></a>#}
-{#                            </li>#}
-{##}
-{#                        </ul>#}
-
                         <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
                             <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Paiements</span> >></a>
                         <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
@@ -155,37 +134,8 @@
                             <li class="w-100">
                                 <a href="{% url 'gestion:depense' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Depense</span> 2</a>
                             </li>
-
-{#                            <li>#}
-{#                                <a href="{% url 'gestion:payment' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Payement</span></a>#}
-{#                            </li>#}
-{#                            <li>#}
-{#                                <a href="{% url 'gestion:depense' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Depense</span></a>#}
-{#                            </li>#}
                         </ul>
                     </li>
-{#                    <li>#}
-{#                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">#}
-{#                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Albums </span>>> </a>#}
-{#                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">#}
-{#                            <li class="w-100">#}
-{#                                <a href="{% url 'gestion:products_list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-info">Bronze</h6></span> </a>#}
-{#                            </li>#}
-{#                            <li>#}
-{#                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-success">Or</h6></span> </a>#}
-{#                            </li>#}
-{#                            <li>#}
-{#                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-warning">Diamant</h6></span> </a>#}
-{#                            </li>#}
-{#                            <li>#}
-{#                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline"><h6 class="btn btn-danger">Will</h6></span></a>#}
-{#                            </li>#}
-{#                        </ul>#}
-{#                    </li>#}
-{#                    <li>#}
-{#                        <a href="{% url 'gestion:payment' %}" class="nav-link px-0 align-middle">#}
-{#                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Payments</span></a>#}
-{#                    </li>#}
 
 
                 </ul>
@@ -199,24 +149,19 @@
                         <li><a class="dropdown-item" href="#">New project...</a></li>
                         <li><a class="dropdown-item" href="#">Settings</a></li>
                         <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                        <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#">Sign out</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-{#        <div class="col py-3">#}
-{#            Bienvenu chez gestion !#}
-{#        </div>#}
-{#    </div>#}
 </div>
 </div>
 
 </sidebar>
-<div class="container col-md-12 offset-md-1"; style="margin-top: -770px; margin-right: 10px; position: initial">
+<div class="container col-md-12 offset-0"; style="padding:2px;margin-top: -670px; margin-right: 10px; position: relative">
     {% block content %}
+
     {% endblock %}
 </div>
 
@@ -224,80 +169,19 @@
   <div class="copyright-footer"; style="position:fixed; bottom: 0px; width: 100%; text-align: center;">
     <p>&copy; <a href="#">Cadastre Rural.info</a> 2023, All Right Reserved.</p>
   </div>
-{#<div class="leaflet-pane leaflet-marker-pane">#}
-{#    <img src="https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png"#}
-{#         class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive"#}
-{#         alt="Marker" tabindex="0" role="button" style="margin-left: -12px; margin-top: -41px;#}
-{#         width: 25px; height: 41px; transform: translate3d(278px, 314px, 0px); z-index: 314;">#}
-{#    <img src="https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png"#}
-{#            class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive"#}
-{#            alt="Marker" tabindex="0" role="button" style="margin-left: -12px; margin-top: -41px;#}
-{#             width: 25px; height: 41px; transform: translate3d(300px, 191px, 0px); z-index: 191;">#}
-{#    <img src="https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png"#}
-{#         class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive"#}
-{#         alt="Marker" tabindex="0" role="button" style="margin-left: -12px; margin-top: -41px;#}
-{#          width: 25px; height: 41px; transform: translate3d(438px, 200px, 0px); z-index: 200;">#}
-{#    <img src="https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png"#}
-{#         class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive"#}
-{#         alt="Marker" tabindex="0" role="button"#}
-{#                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(125px, 163px, 0px); z-index: 163;"></div>#}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(125px, 163px, 0px); z-index: 163;"></div>#}
 </div>
 </body>
-
+                <script src="{% static 'js/bootstrap.js.map' %}"></script>
                 <script src="{% static 'js/bootstrap.min.js' %}"></script>
                 <script src="{% static 'lib/leaflet.browser.print.min.js'%}"></script>
                 <script src="{% static 'lib/leaflet-measure.js' %}"></script>
                 <script src="{% static 'lib/leaflet.markercluster.js' %}"></script>
-                <script src="{% static 'js/main.js' %}"></script>
-
-                <script class="maps" src="{% static 'lib/L.Geoserver.js' %}">
-                  {#var wmsLayer = L.Geoserver.wms("http://localhost:8080/geoserver/geogate/wms?", {#}
-                    var wmsLayer = L.Geoserver.wms("http://localhost:8080/geoserver/geogate/wms?service=WMS&version=1.1.0&request=GetMap&layers=geogate%3ACasier_OMB_Ens&bbox=247334.055700134%2C1457114.49619568%2C308213.701441241%2C1481782.57048504&width=768&height=330&srs=EPSG%3A32630&styles=&format=application/openlayers#toggle", {
-                        layers: "geogate:Casier_OMB_Ens",
-                        style:"style2",
-                        });
-                    wmsLayer.addTo(map);
-
-                    var wfsLayerr = L.Geoserver.wfs("http://localhost:8080/geoserver/geogate/wfs", {
-                        layers: "topp:tasmania_roads",
-                        });
-                        wfsLayerr.addTo(map);
-
-
-                    // initialize map
-                    var map = L.map('map', {
-                        center: [13.10, -5.20], // Hood River, OR
-                        zoom: 7
-                    });
-
-                    // hydrology overlay layer
-                    var hydro = L.esri.tiledMapLayer('http://hydrology.esri.com/arcgis/rest/services/WorldHydroReferenceOverlay/MapServer', {
-                        zIndex: 5,
-                        detectRetina: true
-                    });
-
-                    // basemap layer groups so the hydro overlay always overlays the various basemaps
-                    var nationalGeographic = L.esri.basemapLayer('NationalGeographic'),
-                        esriTopo = L.esri.basemapLayer('Topographic'),
-                        esriShadedRelief = L.esri.basemapLayer('ShadedRelief'),
-                        esriImagery = L.esri.basemapLayer('Imagery');
-
-                    // add default layers to map
-                    map.addLayer(esriTopo);
-                    map.addLayer(hydro);
-
-                    // json object for layer switcher control basemaps
-                    var baseLayers = {
-                        "National Geographic": nationalGeographic,
-                        "Esri Topographic": esriTopo,
-                        "Shaded Relief": esriShadedRelief,
-                        "Imagery": esriImagery
-                    };
-
-                    // add layer groups to layer switcher control
-                    var controlLayers = L.control.layers(baseLayers).addTo(map);
-
-              </script>
+                <script src="{% static 'leaflet/js/leaflet.js.map' %}"></script>
+                <script src="{% static 'js/Web.JS.js' %}"></script>
+{#                <script src="{% static 'js/main.js' %}"></script>#}
+                <script class="map" src="{% static 'lib/L.Geoserver.js' %}"></script>
 </html>
+
 
 </st>

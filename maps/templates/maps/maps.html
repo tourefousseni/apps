@@ -1,151 +1,33 @@
 {% extends 'base.html' %}
 {% load leaflet_tags %}
 {% load static %}
-
-
 {% block content %}
 
-<style>
-    {#.map {  /* all maps */#}
-    {#    width:  100%;#}
-    {#    height: 100%;#}
-    {#    /*border-color: #1b1b1b;*/#}
-    {#    /*margin-top: auto;*/#}
-        {#margin-left: 10px;#}
-    {#}#}
-
-
-</style>
               <div class="row col-12">
                       <h4 class="text-center">CADASTRAL RURAL</h4>
-                              <div class="col-md-12 offset-0" id="map" style="width:1200px; height: 650px">
-                                  {% leaflet_map "map" callback="main_map_init" %}
+                              <div class="col-md-12" id="map" style="width:1200px; height: 550px">
+                              {% leaflet_map "map"  %}
+                              </div>
+
                               </div>
                                <div>
-                                    {% leaflet_js plugins="ALL"%}
-                                    {% leaflet_css plugins="ALL"%}
-
+                                    {% leaflet_js %}
+                                    {% leaflet_css %}
                                </div>
+
               </div>
-}
-<script src="{% static 'lib/L.Geoserver.js' %}"></script>
 
 <script type="text/javascript">
-        function main_map_init (map, options)
-        {
-            // Use Leaflet API here
-            overlayMpas = {};
-            {% for s in parcel %}
-                 {{ s.name }}=L.TileLayer.wms('http://localhost:8080/geoserver/wms', {
-                   layers:'{{s.name }}',
-            });
-            overlayMaps['{{ s.name }}']={{ s.name }}
-
-            {% endfor %}
-
-            {#L.control.layers(base_layer, overlayMaps, {collapse:false, position:'topleft'}).addTo(map);#}
-
-
-           var littleton=L.marker([13.10, -5.20]).bindPopup('This is Littleton, CO.'),
-               denver=L.marker([13.11, -5.19]).bindPopup('This is Denver, CO.'),
-               aurora=L.marker([13.12, -5.21]).bindPopup('This is Aurora, CO.'),
-               golden=L.marker([13.9, -5.18]).bindPopup('This is Golden, CO.');
-
-           var cities=L.layerGroup([littleton, denver, aurora, golden]);
-
-
-           var osm=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '© OpenStreetMap'
-            });
-
-           var osmHOT=L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '© OpenStreetMap contributors, Tiles style by Humanitarian OpenStreetMap Team hosted by OpenStreetMap France'});
-
-           var map1 = L.map('map', {
-                center: [13.10, -5.20],
-                zoom: 10,
-                layers: [osm, cities]
-            });
-
-           var baseMaps = {
-                "OpenStreetMap": osm,
-                "OpenStreetMap.HOT": osmHOT,
-                "OpenStreetMap.HO": map1
-            };
-
-           var overlayMaps = {
-                "Cities": cities
-            };
-
-           var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
-
-
-
-    {#       var map = L.map('map', {#}
-    {#center: [45.7067, -121.5217], // Hood River, OR#}
-    {#zoom: 7#}
-
-
-// initialize map
-        var map2 = L.map('map', {
-            center: [13.10, -5.20], // Hood River, OR
-            zoom: 7
-        });
-
-        // hydrology overlay layer
-        var hydro = L.esri.tiledMapLayer('http://hydrology.esri.com/arcgis/rest/services/WorldHydroReferenceOverlay/MapServer', {
-            zIndex: 5,
-            detectRetina: true
-        });
-
-        // basemap layer groups so the hydro overlay always overlays the various basemaps
-        var nationalGeographic = L.esri.basemapLayer('NationalGeographic'),
-            esriTopo = L.esri.basemapLayer('Topographic'),
-            esriShadedRelief = L.esri.basemapLayer('ShadedRelief'),
-            esriImagery = L.esri.basemapLayer('Imagery');
-
-        // add default layers to map
-        map.addLayer(esriTopo);
-        map.addLayer(hydro);
-
-        // json object for layer switcher control basemaps
-        var baseLayers = {
-            "National Geographic": nationalGeographic,
-            "Esri Topographic": esriTopo,
-            "Shaded Relief": esriShadedRelief,
-            "Imagery": esriImagery
-        };
-
-        // add layer groups to layer switcher control
-        var controlLayers = L.control.layers(baseLayers).addTo(map);
-
-         var marker = L.marker([13.10, -5.20],);
-            // Creating a Layer object
-         var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-
-            // Adding layer to the map
-         map.addLayer(layer)
-
-         // Adding popup to the marker
-         {#marker.bindPopup("Fousseni Toure 78 36 06 03").openPopup();#}
-         {#marker.addTo(map)#}
-         /// Adding marker to the map///
-        }
-        {#http://localhost:8080/geoserver/web/wicket/bookmarkable/org.geoserver.web.data.store.DataAccessEditPage?157&storeName=source+des+donnees+omb&wsName=geogate#}
-        {#http://localhost:8080/geoserver/geogate/wms?#}
-        {#var wmsLayer = L.Geoserver.wms("http://127.0.0.1:8080/geoserver/geogate/wms?service=WMS&version=1.1.0&request=GetMap&layers=geogate%3ACasier_OMB_Ens&bbox=247334.055700134%2C1457114.49619568%2C308213.701441241%2C1481782.57048504&width=768&height=330&srs=EPSG%3A32630&styles=&format=application/openlayers#toggle", {#}
-        var wmsLayer = L.Geoserver.wms("http://localhost:8080/geoserver/geogate", {
-            layers: "geogate:Casier_OMB_Ens",
-            style:"style2",
-            });
-            wmsLayer.addTo(map)
-
-
-
-
+        var overlayMaps={};
+         {% for s in parcel %}
+                        var {{ s.name }}=L.TileLayer.wms('http://localhost:8080/geoserver/wms', {
+                           layers:'{{s.name }}',
+                           transparent: true,
+                           format:'image/png',
+                        });
+                        overlayMaps['{{ s.name }}']={{ s.name }}
+         {% endfor %}
+        L.Control.layers(null, overlayMaps,{collapse:false, position:'topleft'}).addTo(map);
 </script>
-
 
 {% endblock %}

@@ -22,7 +22,6 @@ def dashboard(request):
     person = Person.objects.count()
     context={
         'person': person,
-
          }
     return render(request, 'accounts/dashboard.html', context)
 

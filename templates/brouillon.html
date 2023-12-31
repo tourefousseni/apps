@@ -235,6 +235,7 @@ GRANT ALL PRIVILEGES ON DATABASE alkawsara TO myprojectuser;
 \c alkawsara ;
 create extension postgis;
 
+pg_dump -U postgres -W -F t dugukolo > /Users/apple/PycharmProjects/dugukolo.tar
 
 create database dugukolo;
 create user myprojectuser WITH PASSWORD 'password';

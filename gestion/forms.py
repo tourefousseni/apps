@@ -48,13 +48,18 @@ class GestionForm(forms.ModelForm):
         self.helper = FormHelper(self)
 
 class PaymentForm(forms.ModelForm):
+    delai_paiement = forms.DateTimeField(label="Date Debut", widget=forms.DateTimeInput(attrs={
+        'class': 'form-control',
+        'type': 'date'}))
     class Meta:
         model = Paiement
         template_name = 'gestion/payment.html'
         fields = [
-                  # 'person',
                   'mode_payment',
                   'code_payment',
+                  # 'delai_paiement',
+                  'redevance_eau',
+                  'person',
                   # 'code_facture',
                   # 'payment',
                   'amount',
@@ -62,7 +67,7 @@ class PaymentForm(forms.ModelForm):
         ]
         # fields = ('__all__')
 
-        exclude = [ 'create_at', 'confirmed', 'delivered',]
+        exclude = [ 'create_at', 'delivered',]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

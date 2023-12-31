@@ -11,10 +11,12 @@ class LocalizationAdmin(OSMGeoAdmin):
 
 @admin.register(Parcel)
 class ParcelAdmin(OSMGeoAdmin):
-    list_display = ['name','perimeter','culture', 'lon',
-                    'lat', 'code_parcel', 'description',
+    list_display = ['name','shapefile','perimeter','culture',  'description',
                     ]
-
+    exclude = [
+        'null1','null2','null3','code_parcel','lon',
+                    'lat'
+    ]
 # from .models import   \
 #    Region, Cercle, Zone, Commune, Village, Parcel
 #

@@ -9,14 +9,17 @@ class LocalizationAdmin(OSMGeoAdmin):
                     'quartier', 'casier', 'location',
                     'point']
 
-@admin.register(Parcel)
-class ParcelAdmin(OSMGeoAdmin):
-    list_display = ['name','shapefile','perimeter','culture',  'description',
-                    ]
-    exclude = [
-        'null1','null2','null3','code_parcel','lon',
-                    'lat'
-    ]
+admin.site.register(Parcel)
+list_display = ['name','shapefile','perimeter','culture',  'description',]
+exclude = ['null1','null2','null3','code_parcel','lon','lat']
+
+# @admin.register(Parcel)
+# class ParcelAdmin(OSMGeoAdmin):
+#     list_display = ['name','shapefile','perimeter','culture',  'description',
+#                     ]
+#     exclude = [
+#         'null1','null2','null3','code_parcel','lon','lat'
+#     ]
 # from .models import   \
 #    Region, Cercle, Zone, Commune, Village, Parcel
 #

@@ -3,36 +3,44 @@
 {% load static %}
 {% block content %}
 
-              <div class="row col-12">
-                      <h4 class="text-center">CADASTRAL RURAL</h4>
-                              <div class="col-md-12 " id="map"; style="width:1200px; height: 630px">
-                                  {% leaflet_map "map"  %}
-                              </div>
-                               <div>
-                                    {% leaflet_js %}
-                                    {% leaflet_css %}
-                               </div>
-              </div>
-<script type="text/javascript">
+<div class="row col-12">
+        <h4 class="text-center">CADASTRAL RURAL</h4>
+        <div class="col-md-12" id="map" style="width:1200px; height: 550px">
+            {% leaflet_map "map"  %}
+        </div>
+
+    </div>
+    <div>
+        {% leaflet_js plugins="ALL" %}
+        {% leaflet_css plugins="ALL" %}
+    </div>
+
+    </div>
+<script>
         var overlayMaps={};
-        {% for s in parcel %}
-                        var {{ s.name }}=L.TileLayer.wms('http://localhost:8080/geoserver/wms', {
-                           layers:'{{s.name}}',
-                           transparent: true,
-                           format:'image/png',
-                        });
-                        overlayMaps['{{s.name}}']={{s.name}}
+        {% for s in shapefile %}
+        var {{ s.name }}=L.TileLayer.wms('http://localhost:8080/geoserver/wms', {
+            layers:'{{s.name}}',
+            transparent: true,
+            format:'image/png',
+        });
+        overlayMaps['{{s.name}}']={{s.name}}
+        {% endfor %}
 
-           var layerControl = L.control.layers(null, overlayMaps).addTo(map);
-           var osm = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-               maxZoom: 19,
-               attribution: '© OpenStreetMap'});
+         L.control.layers(BaseMaps, overlayMaps,{collapse:false,position:'topleft'}).addTo(map);
 
-            var wmsLayer = L.Geoserver.wms("http://localhost:8080/geoserver/wms?", {
-                layers: "geogate:Casier_OMB_Ens",
-                style:"style2",
-                });
-                wmsLayer.addTo(map);
+        var map = L.map('map', {
+            center: [51.505, -0.09],
+            zoom: 13
+        });
+        var lc = map.layerscontrol;
+            // An example from the Atlas of Living Australia https://www.ala.org.au/
+            lc.addOverlay(L.tileLayer.wms('https://spatial-beta.ala.org.au/geoserver/ALA/wms',
+            {layers: 'ALA:aus2', format: 'image/png', transparent: true}),
+            'Australia'
+            );
+            add.lc.addOverlay(map)
+        {#layers as needed#}
+
  </script>
-{% endfor %}
 {% endblock %}

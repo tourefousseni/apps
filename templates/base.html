@@ -51,7 +51,7 @@
           <a class="nav-link" href="{% url 'blog:annonce' %}">Annonces</a>
         </li>
            <li class="nav-item">
-          <a class="nav-link" href="#">Publictes</a>
+          <a class="nav-link" href="#">Publicités</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -76,30 +76,25 @@
           </div>
         </div>
     </nav>
-
     </div>
   </div>
 </nav>
-
-
-    <sidebar>
-
-          <div class="container-fluid">
+<sidebar>
+    <div class="container-fluid">
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
                         <a href="#" class="nav-link align-middle px-0">
-                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline" style="color: white">Rubrique</span>
+                            <i class="fs-4 bi-house"></i>
+                            <span class="ms-1 d-none d-sm-inline" style="color: white">Rubrique</span>
                         </a><hr>
                     </li>
                     <li>
                         <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-speedometer2" style="color: white"></i> <span class="ms-1 d-none d-sm-inline"> Personne</span> >> </a>
                         <ul class="collapse show nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
-
                             <li class="w-100">
                                 <a href="{% url 'contacts:person' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Ajouter une personne</span> </a>
                             </li>
@@ -109,9 +104,7 @@
                              <li class="w-100">
                                 <a href="{% url 'maps:parcel' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Ajouter Une parcelle</span> </a>
                             </li>
-
                         </ul>
-
                     <li>
                         <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline"> Gestionnaire Eau</span> >> </a>
@@ -136,8 +129,6 @@
                             </li>
                         </ul>
                     </li>
-
-
                 </ul>
                 <hr>
                 <div class="dropdown pb-4">
@@ -159,7 +150,7 @@
 </div>
 
 </sidebar>
-<div class="container col-md-12 offset-0"; style="padding:2px;margin-top: -670px; margin-right: 10px; position: relative">
+<div class="container col-md-12 offset-0"; style="padding:50px;margin-top: -780px; border-style: solid ; margin-right: 20px; position: initial">
     {% block content %}
 
     {% endblock %}
@@ -179,9 +170,38 @@
                 <script src="{% static 'lib/leaflet.markercluster.js' %}"></script>
                 <script src="{% static 'leaflet/js/leaflet.js.map' %}"></script>
                 <script src="{% static 'js/Web.JS.js' %}"></script>
-{#                <script src="{% static 'js/main.js' %}"></script>#}
-                <script class="map" src="{% static 'lib/L.Geoserver.js' %}"></script>
+                <script src="{% static 'js/main.js' %}"></script>
+                <script id="map" src="{% static 'lib/L.Geoserver.js' %}"></script>
 </html>
+
+ {% block script %}
+     <script>
+
+
+
+     {#var overlayMaps={};#}
+     {#   {% for s in parcel %}#}
+     {#                   var {{ s.name }}=L.TileLayer.wms('http://localhost:8080/geoserver/wms', {#}
+     {#                      layers:'{{s.name}}',#}
+     {#                      transparent: true,#}
+     {#                      format:'image/png',#}
+     {#                   });#}
+     {#                   overlayMaps['{{s.name}}']={{s.name}}#}
+     {##}
+     {#      var layerControl = L.control.layers(null, overlayMaps).addTo(map);#}
+     {#      var osm = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {#}
+     {#          maxZoom: 19,#}
+     {#          attribution: '© OpenStreetMap'});#}
+     {##}
+     {#       var wmsLayer = L.Geoserver.wms("http://localhost:8080/geoserver/wms?", {#}
+     {#           layers: "geogate:Casier_OMB_Ens",#}
+     {#           style:"style2",#}
+     {#           });#}
+     {#           wmsLayer.addTo(map);#}
+{#{% endfor %}#}
+     </script>
+
+ {% endblock %}
 
 
 </st>

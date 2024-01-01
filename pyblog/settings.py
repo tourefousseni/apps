@@ -189,4 +189,7 @@ PAYPAL_TEST = True
 LEAFLET_CONFIG = dict(DEFAULT_CENTER=(13.10, -4.30),
                       DEFAULT_ZOOM=3, MIN_ZOOM=8,
                       MAX_ZOOM=30, DEFAULT_PRECISION=6,
-                      SCALE='both', MINIMAP=True, EPSG=4354, RESET_VIEW=True,NO_GLOBALS = False)
+                      SCALE='both', MINIMAP=True, EPSG=4326, RESET_VIEW=True
+                      ,NO_GLOBALS = False,
+                      OVERLAYS= [('Cadastral', 'http://server/a/{z}/{x}/{y}.png', {'attribution': '&copy; IGN'})]
+                      )

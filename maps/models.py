@@ -106,46 +106,46 @@ def publish_data(sender, instance, created, **kwargs):
 
     os.remove(shapefile) #remove zip file
 
-    Parcel = glob.glob(r'{}/**/*.shp'.format(file_path),
+    shapefile = glob.glob(r'{}/**/*.shp'.format(file_path),
                     recursive=True)  # to get shp
-    # try:
-    #     req_shapefile = Parcel[0]
-    #     gdf = gpd.read_file(req_shapefile) # make geodataframe
-    #     engine = create_engine(conn_str)
-    #     gdf.to_postgis(
-    #         con=engine,
-    #         schema='public',
-    #         name=name,
-    #         if_exists="replace")
-    #     for s in Parcel:
-    #         os.remove(s)
-    # except Exception as e:
-    #     for s in Parcel:
-    #         os.remove(s)
-    #     instance.delete()
-    #     print("There is problem during shapefile:", e)
+    try:
+        req_shapefile = shapefile[0]
+        df = gpd.read_file(req_shapefile) # make geodataframe
+        engine = create_engine(conn_str)
+        df.to_postgis(
+            con=engine,
+            schema='public',
+            name=name,
+            if_exists="replace")
+        for s in shapefile:
+            os.remove(s)
+    except Exception as e:
+        for s in shapefile:
+            os.remove(s)
+        instance.delete()
+        print("There is problem during shapefile:", e)
 
-    gdf=gpd.read_file(Parcel)  # make geodataframe
-    crs_name = str(gdf.crs.srs)
+    df=gpd.read_file(zipfile)  # make geodataframe
+    crs_name = str(df.crs.srs)
     epsg = int(crs_name.replace('epsg', ''))
     if epsg in None:
         epsg = 4326  # WGS 84 Coordinates system
 
-    geom_type = gdf.geom_type[1]
+    geom_type = df.geom_type[1]
     engine = create_engine(conn_str) # create the SQLAlchemy's engine to use
-    gdf['geom']=gdf['geometry'].apply(lambda x:WKTElement(x.wkt, srid=epsg))
+    df['geom']=df['geometry'].apply(lambda x:WKTElement(x.wkt, srid=epsg))
 
-    # drop the geometry column(since we already backuq this coulmn with geom)
-    gdf.drop('geometry', 1, inplace=True)
-    gdf.to_sql(name, engine, 'dugukolo', if_exits='replace',
-               index=False, dtype={'geom':Geometry('Geometry', srid=epsg)}) #post gdf to the postgresql
-
-    os.remove(shapefile)
+    # # drop the geometry column(since we already backuq this coulmn with geom)
+    # df.drop('geometry', 1, inplace=True)
+    # df.to_sql(name, engine, 'dugukolo', if_exits='replace',
+    #            index=False, dtype={'geom':Geometry('Geometry', srid=epsg)}) #post gdf to the postgresql
+    #
+    # os.remove(shapefile)
     # published shp to geoserver using geoserver-rest
 
     geo.create_featurestore(workspace='geogate', db='dugukolo', host='localhost',
-                               schema='public', pg_user='postgres',password='password',
-                               store_name='pyblog', pg_table='name')
+                               schema='public', pg_user='postgres',
+                               store_name='pyblog',)
 
     geo.publish_featurestore(workspace='geogate', store_name='pyblog',
                               pg_table='name')
@@ -245,7 +245,6 @@ class Localization(models.Model):
         ('San Est I', 'San Est I'),
         ('San Est II', 'San Est II'),
     )
-
     casier = models.CharField(max_length=50, choices=CASIER, )
     point = models.PointField(default=None)
 

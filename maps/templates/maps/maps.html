@@ -3,31 +3,31 @@
 {% load static %}
 {% block content %}
 
-              <div class="row col-12">
-                      <h4 class="text-center">CADASTRAL RURAL</h4>
-                              <div class="col-md-12" id="map" style="width:1200px; height: 550px">
-                              {% leaflet_map "map"  %}
-                              </div>
+    <div class="row col-12">
+        <h4 class="text-center">CADASTRAL RURAL</h4>
+        <div class="col-md-12" id="map" style="width:1200px; height: 550px">
+            {% leaflet_map "map"  %}
+        </div>
 
-                              </div>
-                               <div>
-                                    {% leaflet_js %}
-                                    {% leaflet_css %}
-                               </div>
+    </div>
+    <div>
+        {% leaflet_js %}
+        {% leaflet_css %}
+    </div>
 
-              </div>
+    </div>
 
-<script type="text/javascript">
+<script>
         var overlayMaps={};
          {% for s in parcel %}
-                        var {{ s.name }}=L.TileLayer.wms('http://localhost:8080/geoserver/wms', {
-                           layers:'{{s.name }}',
-                           transparent: true,
-                           format:'image/png',
-                        });
-                        overlayMaps['{{ s.name }}']={{ s.name }}
+         var {{ s.name }}=L.TileLayer.wms('http://localhost:8080/geoserver/wms', {
+             layers:'{{s.name }}',
+             transparent: true,
+             format:'image/png',
+         });
+         overlayMaps['{{ s.name }}']={{ s.name }}
          {% endfor %}
-        L.Control.layers(null, overlayMaps,{collapse:false, position:'topleft'}).addTo(map);
+        L.Control.layers(BaseMaps, overlayMaps,{collapse:false, position:'topleft'}).addTo(map);
 </script>
 
 {% endblock %}

@@ -47,10 +47,9 @@ def maps(request):
 #     return render(request, 'localisation/locate.html', context)
 
 def parcel(request):
-    parcel = Parcel.objects.all()
-
+    shapefile = Parcel.objects.all()
     context = {
-        'parcel': parcel
+        'shapefile': shapefile
     }
     return render(request, 'maps/parcel.html', context)
 # def parcel(request):

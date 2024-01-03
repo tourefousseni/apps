@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'contacts.apps.ContactsConfig',
     'maps.apps.MapsConfig',
+    'tiff.apps.TiffConfig',
     'accounts.apps.AccountsConfig',
     'gestion.apps.GestionConfig',
     'blog.apps.BlogConfig',
@@ -191,5 +192,9 @@ LEAFLET_CONFIG = dict(DEFAULT_CENTER=(13.10, -4.30),
                       MAX_ZOOM=30, DEFAULT_PRECISION=6,
                       SCALE='both', MINIMAP=True, EPSG=4326, RESET_VIEW=True
                       ,NO_GLOBALS = False,
-                      OVERLAYS= [('Cadastral', 'http://server/a/{z}/{x}/{y}.png', {'attribution': '&copy; IGN'})]
+                      OVERLAYS= [('Cadastral', 'http://server/a/{z}/{x}/{y}.png', {'attribution': '&copy; IGN'}),
+                                  # 'Aerial Imagery', 'http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {'type': 'sat', 'ext': 'jpg','attribution': 'Data CC-By-SA by <a href="http://openstreetmap.org/" target="_blank">OpenStreetMap</a>, Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a>','subdomains': ['1','2','3','4']}
+                                  # 'carte',"http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",
+
+                                 ]
                       )

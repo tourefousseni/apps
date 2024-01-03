@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 <div lang="en">
-
+<body>
 <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,12 +17,12 @@
              <link rel="stylesheet" href="{% static 'lib/MarkerCluster.Default.css' %}">
 </head>
 <section>
-     <topnavbar class=" col-lg-12 navbar navbar-expand-sm navbar-brand bg-success">
+     <topnavbar class="col-lg-12 navbar navbar-expand-sm navbar-brand bg-success" >
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="topnavbar">
              <nav class="col-md-6 offset-3 text-center m1">
                      <p  style="color: whitesmoke ">
-                         <small><em>Telephone: (00223)78 36 06 03 Email: gisconsulting4@mail.com Bamako-Mali</em></small>
+                         <small><em>Telephone: (00 223)78 36 06 03 Email: gisconsulting4@mail.com Bamako-Mali</em></small>
                      </p>
              </nav>
         </div>
@@ -30,7 +30,7 @@
     </topnavbar>
 </section>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Cadastre Rural</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,31 +84,41 @@
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                <li class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
                         <a href="#" class="nav-link align-middle px-0">
                             <i class="fs-4 bi-house"></i>
                             <span class="ms-1 d-none d-sm-inline" style="color: white">Rubrique</span>
                         </a><hr>
                     </li>
-                    <li>
-                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-speedometer2" style="color: white"></i> <span class="ms-1 d-none d-sm-inline"> Personne</span> >> </a>
-                        <ul class="collapse show nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+{#                    <li>#}
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-speedometer2" style="color: white"></i> <span class="ms-1 d-none d-sm-inline">Personne</span> >> </a>
+                        <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                             <li class="w-100">
                                 <a href="{% url 'contacts:person' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Ajouter une personne</span> </a>
                             </li>
                             <li>
                                 <a href="{% url 'contacts:list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Liste des personnes</span> </a>
                             </li>
+                        </ul>
+{#                    </li>#}
+{#                    <li>#}
+                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-speedometer2" style="color: white"></i> <span class="ms-1 d-none d-sm-inline"> Creer une couche</span> >> </a>
+                        <ul class="collapse show nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                              <li class="w-100">
-                                <a href="{% url 'maps:parcel' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Ajouter Une parcelle</span> </a>
+                                <a href="{% url 'maps:parcel' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Ajouter Une parcelle</span> </a>
+                            </li>
+                            <li class="w-100">
+                                <a href="{% url 'tiff:raster' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">2. Ajouter Un raster</span> </a>
                             </li>
                         </ul>
-                    <li>
-                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+{#                    </li>#}
+{#                    <li>#}
+                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline"> Gestionnaire Eau</span> >> </a>
-                        <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                        <ul class="collapse show nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                             <li class="w-100">
                                 <a href="{% url 'gestion:gestion' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">1. Ajouter consommation</span> </a>
                             </li>
@@ -118,9 +128,9 @@
 
                         </ul>
 
-                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                        <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
                             <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Paiements</span> >></a>
-                        <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                        <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
                             <li class="w-100">
                                 <a href="{% url 'gestion:payment' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Paiement</span> 1</a>
                             </li>
@@ -150,7 +160,7 @@
 </div>
 
 </sidebar>
-<div class="container col-md-12 offset-0"; style="padding:50px;margin-top: -780px; border-style: solid ; margin-right: 20px; position: initial">
+<div class="container col-md-12 offset-0"; style="padding:50px;margin-top: -820px; margin-right: 20px; position: initial">
     {% block content %}
 
     {% endblock %}
@@ -161,8 +171,7 @@
     <p>&copy; <a href="#">Cadastre Rural.info</a> 2023, All Right Reserved.</p>
   </div>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(125px, 163px, 0px); z-index: 163;"></div>#}
-</div>
-</body>
+{#</div>#}
                 <script src="{% static 'js/bootstrap.js.map' %}"></script>
                 <script src="{% static 'js/bootstrap.min.js' %}"></script>
                 <script src="{% static 'lib/leaflet.browser.print.min.js'%}"></script>
@@ -173,35 +182,6 @@
                 <script src="{% static 'js/main.js' %}"></script>
                 <script id="map" src="{% static 'lib/L.Geoserver.js' %}"></script>
 </html>
-
- {% block script %}
-     <script>
+</body>
 
 
-
-     {#var overlayMaps={};#}
-     {#   {% for s in parcel %}#}
-     {#                   var {{ s.name }}=L.TileLayer.wms('http://localhost:8080/geoserver/wms', {#}
-     {#                      layers:'{{s.name}}',#}
-     {#                      transparent: true,#}
-     {#                      format:'image/png',#}
-     {#                   });#}
-     {#                   overlayMaps['{{s.name}}']={{s.name}}#}
-     {##}
-     {#      var layerControl = L.control.layers(null, overlayMaps).addTo(map);#}
-     {#      var osm = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {#}
-     {#          maxZoom: 19,#}
-     {#          attribution: '© OpenStreetMap'});#}
-     {##}
-     {#       var wmsLayer = L.Geoserver.wms("http://localhost:8080/geoserver/wms?", {#}
-     {#           layers: "geogate:Casier_OMB_Ens",#}
-     {#           style:"style2",#}
-     {#           });#}
-     {#           wmsLayer.addTo(map);#}
-{#{% endfor %}#}
-     </script>
-
- {% endblock %}
-
-
-</st>

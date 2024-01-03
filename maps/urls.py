@@ -12,11 +12,6 @@ app_name = 'maps'
 urlpatterns = [
         path('maps/', views.maps, name='maps'),
         path('parcel/', views.parcel, name='parcel'),
-        # path('zone/', views.zone, name='zone'),
-        # path('locate/<int:pk>/', views.locate, name='locate'),
         path('localization/', views.localization, name='localization'),
-        # path('region/', views.region, name='region'),
-        # path('cercle/', views.cercle, name='cercle'),
-        # path('commune/', views.commune, name='commune'),
-        # path('village/', views.village, name='village'),
+        # path('locate/<int:pk>/', views.locate, name='locate'),
 ]

@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse, FileResponse
@@ -52,26 +51,6 @@ def parcel(request):
         'shapefile': shapefile
     }
     return render(request, 'maps/parcel.html', context)
-# def parcel(request):
-#     if request.method == 'POST':
-#         form = ParcelForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('/')
-#     else:
-#             form = ParcelForm()
-#     return render(request, 'maps/parcel.html', {'form': form})
-
-# def zone(request):
-#     if request.method == 'POST':
-#         form = ZoneForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('/')
-#     else:
-#             form = ZoneForm()
-#     return render(request, 'maps/zone.html', {'form': form})
-
 
 def localization(request):
     if request.method == 'POST':

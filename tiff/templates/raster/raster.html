@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load leaflet_tags %}
+{% load static %}
+{% block content %}
+
+<div class="row col-12">
+   <h4 class="text-center">CADASTRAL RURAL</h4>
+    <div class="col-md-12" id="map" style="width:1200px; height: 550px">
+    {% leaflet_map "map"  %}
+    </div>
+
+</div>
+<div>
+    {% leaflet_js plugins="ALL" %}
+    {% leaflet_css plugins="ALL" %}
+</div>
+
+{% endblock %}

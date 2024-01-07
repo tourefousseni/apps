@@ -6,6 +6,7 @@ asn1crypto==1.5.1
 attrs==23.1.0
 bcrypt==4.1.1
 beautifulsoup4==4.12.2
+binaryio==1.0.0
 blinker==1.7.0
 certifi==2023.11.17
 cffi==1.16.0

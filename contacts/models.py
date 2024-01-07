@@ -3,6 +3,13 @@ from django.utils import timezone
 from django.forms import forms
 from django.contrib.gis.db import models
 import random
+import qrcode
+import io
+# from io import BytesIO, BinaryIO
+from typing import BinaryIO
+from io import *
+from django.core.files import File
+from PIL import Image, ImageDraw
 from random import randint
 from django.contrib.auth.models import User
 from django.db.models.signals import pre_save
@@ -18,6 +25,7 @@ class Person(models.Model):
     objects = None
     id = models.AutoField(primary_key=True)
     image = models.ImageField(upload_to='profil', blank=True, null=True,  verbose_name='Profile')
+    qr_code = models.ImageField(upload_to='qr_codes', blank=True,  verbose_name='Qrcode')
     STATUS = (
         ('Particulier', 'Particulier'),
         ('Societe', 'Societe'),)
@@ -56,6 +64,18 @@ class Person(models.Model):
     def __str__(self):
         return '{} {} {}'.format(self.prenom, self.nom, self.contact_1)
 
+    def save(self, *args, **kwargs):
+        # buffer = BinaryIO()
+        qr_code = qrcode.make(self.nom)
+        canvas = Image.new('RGB', (290,290), 'white')
+        draw = ImageDraw.Draw(canvas)
+        canvas.paste(qr_code)
+        frame =f'qr_code-{self.nom}'+'.png'
+        buffer = BinaryIO()
+        canvas.save(buffer, 'PNG')
+        self.qr_code.save(frame, File(buffer),save=False )
+        canvas.close()
+        super().save(*args, **kwargs)
 
 def pre_save_person_id(instance, sender, *args, **kwargs):
     if not instance.code_person:

@@ -11,6 +11,7 @@
                  <div class="card justify-content-lg-center" style="width: 18rem; background: lightblue ">
                           <div class="card-body" >
                                <a href="{% url 'contacts:detail' view_person.id %}" class="card-link">Detail Personnel:</a>
+                                        <p>code QR      : {{ view_person.qr_code.url }}</p>
                                         <p>Status       : {{ view_person.status }}</p>
                                         <p>Nom          : {{ view_person.nom }}</p>
                                         <p>Prenom       : {{ view_person.prenom }}</p>

@@ -9,6 +9,7 @@ class PersonForm(forms.ModelForm):
                   'contact_1', 'genre',
                   'category','domicile',
                   'code_person',
+                  'qr_code',
                   ]
 
         exclude = ['image','email','alias','contact_2',

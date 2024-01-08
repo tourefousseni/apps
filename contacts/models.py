@@ -79,7 +79,6 @@ def pre_save_person_id(instance, sender, *args, **kwargs):
 
 pre_save.connect(pre_save_person_id, sender=Person)
 
-
 # ==============================================
 #                  MODEL CONTACT
 #                        END

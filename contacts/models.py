@@ -4,10 +4,7 @@ from django.forms import forms
 from django.contrib.gis.db import models
 import random
 import qrcode
-import io
-# from io import BytesIO, BinaryIO
-from typing import BinaryIO
-from io import *
+from io import BytesIO
 from django.core.files import File
 from PIL import Image, ImageDraw
 from random import randint
@@ -65,15 +62,14 @@ class Person(models.Model):
         return '{} {} {}'.format(self.prenom, self.nom, self.contact_1)
 
     def save(self, *args, **kwargs):
-        # buffer = BinaryIO()
-        qr_code = qrcode.make(self.nom)
+        qrcode_img = qrcode.make(self.nom)
         canvas = Image.new('RGB', (290,290), 'white')
         draw = ImageDraw.Draw(canvas)
-        canvas.paste(qr_code)
-        frame =f'qr_code-{self.nom}'+'.png'
-        buffer = BinaryIO()
+        canvas.paste(qrcode_img)
+        fname =f'qr_code-{self.nom}'+'.png'
+        buffer = BytesIO()
         canvas.save(buffer, 'PNG')
-        self.qr_code.save(frame, File(buffer),save=False )
+        self.qr_code.save(fname, File(buffer),save=False )
         canvas.close()
         super().save(*args, **kwargs)
 

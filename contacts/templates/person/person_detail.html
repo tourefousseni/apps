@@ -5,20 +5,20 @@
 {% block content %}
         <div class="container " ><br>
           {% for view_person in person_detail.all %}
-{#              'view_person': person_detail,#}
 
           {% endfor %}
                  <div class="card justify-content-lg-center" style="width: 18rem; background: lightblue ">
                           <div class="card-body" >
                                <a href="{% url 'contacts:detail' view_person.id %}" class="card-link">Detail Personnel:</a>
-                                        <p>code QR      : {{ view_person.qr_code.url }}</p>
+                                        <img class="card-img-top" src="{{ view_person.qr_code.url }}" class="img-thumbnail" alt="...">
+{#                                        <p>Code QR      : {{ view_person.qr_code.url }}</p>#}
                                         <p>Status       : {{ view_person.status }}</p>
                                         <p>Nom          : {{ view_person.nom }}</p>
                                         <p>Prenom       : {{ view_person.prenom }}</p>
                                         <p>Telephone    : {{view_person.contact_1 }}</p>
                                         <p>Code         : {{ view_person.code_person }}</p>
 
-                              <a href="{% url 'contacts:list' %}" class="card-link">Return to list</a>
+                            <a href="{% url 'contacts:list' %}" class="card-link">Return to list</a>
                             <a href="{% url 'contacts:report_card' view_person.id %}" class="card-link">Generated PDF</a>
                           </div>
 

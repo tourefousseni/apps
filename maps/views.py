@@ -20,15 +20,17 @@ from contacts.models import Person
 # from gestion.models import Order, Order_Items, Product, Payment, Depense
 # Create your views here.
 # from geo.Geoserver import Geoserver
-
+from tiff.models import Raster
 # Initialize the library
 # geo = Geoserver('http://127.0.0.1:8080/geoserver', username='admin', password='geoserver')
 
 def maps(request):
-    parcel=Parcel.objects.all()
+    parcel = Parcel.objects.all()
+    raster = Raster.objects.all()
 
     context={
-        'parcels':parcel
+        'parcels':parcel,
+        'rasters':raster
     }
     return render(request, 'maps/maps.html', context)
 

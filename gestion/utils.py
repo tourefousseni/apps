@@ -89,6 +89,6 @@ def unique_payment_id_generator(instance):
 
 
 # =================================
-#         KALALISO RANDOM
+#         GESTION RANDOM
 #             END
 # =================================

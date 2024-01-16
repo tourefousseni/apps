@@ -90,17 +90,20 @@ class PaymentForm(forms.ModelForm):
 
 
 class DepenseForm(forms.ModelForm):
-    cancelled = forms.DateTimeField(label="annuler", widget=forms.DateTimeInput(attrs={
+    create_at = forms.DateField(label="create_at", widget=forms.DateInput(attrs={
        'class': 'form-control',
        'type': 'date',}
        )
         )
+    cancelled = forms.BooleanField(required=False,
+                                      initial=False,
+                                      label='cancelled')
 
     class Meta:
         model = Depense
         template_name = 'gestion/depense.html'
         fields = ('__all__')
-        exclude=['create_at','cancelled']
+        # exclude=['create_at','cancelled']
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
         # self.helper = FormHelper(self)

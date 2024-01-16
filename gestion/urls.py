@@ -32,6 +32,7 @@ urlpatterns = [
      path('payment/<int:id>/', views.payment_list, name='payment_list'),
      # path('anonce/', views.anonce, name='anonce'),
      path('depense/', views.depense, name='depense'),
+     path('depense/<int:id>/', views.depense, name='depense'),
      # path('product/list', views.products_list, name='products_list'),
      # path('show_video/', views.show_video, name='show_video'),
      # path('albums/', views.album, name='album'),

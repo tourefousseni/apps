@@ -500,25 +500,31 @@ def paypal_cancel(request):
     return redirect(request, 'home')
 
 
-def depense(request, ):
+def depense(request,):
     if request.method == 'POST':
         form = DepenseForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('gestion:annonce')
+            return redirect('gestion:depense')
     else:
         form = DepenseForm()
-    return render(request, 'gestion/html/depense.html', {'form': form})
 
-def anonce(request,):
-    if request.method == 'POST':
-        form = AnonceForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('gestion:annonce')
-    else:
-        form = AnonceForm()
-    return render(request, 'gestion/html/annonce.html', {'form': form})
+    list_depense = Depense.objects.all()
+
+    return render(request, 'gestion/html/depense.html', {'form': form, 'list_depense':list_depense})
+
+ # def list(request):
+#     list_person = Person.objects.all().order_by('id')
+#     return render(request, 'gestion/person_list.html', {'list_person': list_person})
+# def anonce(request,):
+#     if request.method == 'POST':
+#         form = AnonceForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('gestion:annonce')
+#     else:
+#         form = AnonceForm()
+#     return render(request, 'gestion/html/annonce.html', {'form': form})
 
 # ===========================
 #      VIEWS KALALISO

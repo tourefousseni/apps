@@ -1,21 +1,27 @@
-
 {% load static %}
-
 {% block content %}
         <div class="container">
-          {% for view_person in person_detail.all %}
 
+          {% for view_person in person_detail.all %}
           {% endfor %}
-          <h2>Carnet Agricole :</h2><hr>
+          <h1>Carnet Agricole :</h1><hr>
                  <div class="card" style="width: 18rem;">
                           <div class="card-body">
-                                       <img class="card-img-top" src="{{ view_person.qr_code.url }}" class="img-thumbnail" alt="...">
-                                        <p>Qr code      : {{ view_person.qr_code}}</p>
-                                        <p>Status       : {{ view_person.status }}</p>
-                                        <p>Nom          : {{ view_person.nom }}</p>
-                                        <p>Prenom       : {{ view_person.prenom }}</p>
-                                        <p>Telephone    : {{view_person.contact_1 }}</p>
-                                        <p>Identifiant  : {{ view_person.code_person }}</p>
+
+{#                                     <img class="card-img-top" src="{% path '/media/qr_codes/qr_code-DIALLO.png' %}/>#}
+{#                                        <img src="{{ view_person.qr_code.url }}" >#}
+{#                                       <img src="{{ view_person.qr_code.url }}" alt="Qrcode">#}
+                              <img class="card-img-top" src="{% static 'media/qr_codes/qr_code-DIALLO.png' %}" alt="Qrcode"/>
+
+                                        <h2><p>Qr code      : {{ view_person.qr_code.url}}</p></h2>
+                                        <h2><p>Status       : {{ view_person.status }}</p></h2>
+                                        <h2><p>Categorie    : {{ view_person.category }}</p></h2>
+                                        <h2><p>Nom          : {{ view_person.nom }}</p></h2>
+                                        <h2><p>Prenom       : {{ view_person.prenom }}</p></h2>
+                                        <h2><p>Telephone    : {{view_person.contact_1 }}</p></h2>
+                                        <h2><p>Identifiant  : {{ view_person.code_person }}</p></h2>
+                                        <h2><p>Date creation: {{ view_person.created_at }}</p></h2>
+
 {#                            <a href="{% url 'contacts:list' %}" class="card-link">Return to list</a>#}
 {#                            <a href="{% url 'contacts:report_card' view_person.id %}" class="card-link">Generated PDF</a>#}
                           </div>

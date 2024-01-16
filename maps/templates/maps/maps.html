@@ -17,17 +17,27 @@
 
     </div>
 
+
 <script>
-        var overlayMaps={};
-         {% for s in parcel %}
+         var overlayMaps={};
+         {% for s in parcels %}
          var {{ s.name }}=L.TileLayer.wms('http://localhost:8080/geoserver/wms', {
              layers:'{{s.name }}',
              transparent: true,
              format:'image/png',
          });
-         overlayMaps['{{ s.name }}']={{ s.name }}
+         overlayMaps['{{ s.name }}'] = {{ s.name }}
          {% endfor %}
-        L.Control.layers(BaseMaps, overlayMaps,{collapse:false, position:'topleft'}).addTo(map);
+
+         {% for r in raster %}
+         var {{ r.name }}=L.TileLayer.wms('http://localhost:8080/geoserver/wms', {
+             layers:'{{r.name }}',
+             transparent: true,
+             format:'image/png',
+         });
+         overlayMaps['{{ r.name }}'] = {{ r.name }}
+         {% endfor %}
+         L.Control.layers(BaseMaps, overlayMaps,{collapse:false, position:'topleft'}).addTo(map);
 </script>
 
 {% endblock %}

@@ -10,13 +10,16 @@
                  <div class="card justify-content-lg-center" style="width: 18rem; background: lightblue ">
                           <div class="card-body" >
                                <a href="{% url 'contacts:detail' view_person.id %}" class="card-link">Detail Personnel:</a>
-                                        <img class="card-img-top" src="{{ view_person.qr_code.url }}" class="img-thumbnail" alt="...">
+                                       <card class="">
+                                           <img class="card-img-top" src="{{ view_person.qr_code.url }}">
+                                       </card>
 {#                                        <p>Code QR      : {{ view_person.qr_code.url }}</p>#}
                                         <p>Status       : {{ view_person.status }}</p>
                                         <p>Nom          : {{ view_person.nom }}</p>
                                         <p>Prenom       : {{ view_person.prenom }}</p>
                                         <p>Telephone    : {{view_person.contact_1 }}</p>
                                         <p>Code         : {{ view_person.code_person }}</p>
+                                        <p>Date creation: {{ view_person.created_at }}</p>
 
                             <a href="{% url 'contacts:list' %}" class="card-link">Return to list</a>
                             <a href="{% url 'contacts:report_card' view_person.id %}" class="card-link">Generated PDF</a>

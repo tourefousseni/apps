@@ -34,15 +34,16 @@
                            <div class="form-group col-sm-4 mb-0">
                                {{ form.description|crispy }}
                             </div>
-{#                           <div class=" form-group col-sm-3 mb-0">#}
-{#                                 {{ form.cancelled|as_crispy_field }}#}
-{#                            </div>#}
-                           <div  class="form-group col-sm-4 mb-0 ">
+
+                           <div  class="form-group col-sm-2 mb-0 ">
                                  {{ form.status|as_crispy_field }}
                             </div>
-{#                           <div class="form-group col-sm-3 mb-0">#}
-{#                                {{ form.create_at|as_crispy_field }}#}
-{#                           </div>#}
+                           <div  class="form-group col-sm-2 mb-0 ">
+                                 {{ form.cancelled|as_crispy_field }}
+                            </div>
+                           <div class="form-group col-sm-3 mb-0">
+                                {{ form.create_at|as_crispy_field }}
+                           </div>
                         </div>
                               <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                 <input type="submit" value="Rengistrer" class="btn btn-primary col-md-3 m-2" >
@@ -67,8 +68,8 @@
                   <th><h6>Motif</h6></th>
                   <th><h6>Montant</h6></th>
                   <th><h6>Mode paiement</h6></th>
-                  <th><h6>Description</h6></th>
-                  <th><h6>Status</h6></th>
+{#                  <th><h6>Description</h6></th>#}
+{#                  <th><h6>Status</h6></th>#}
                   <th><h6>Date creation</h6></th>
                   <th><h6>View</h6></th>
                   <th><h6>Pdf</h6></th>
@@ -78,16 +79,17 @@
             </tr>
       </thead>
       <tbody>
-{#                {% for gest in list_gest %}#}
+                {% for gest in list_depense.all  %}
                            <tr>
                                 <td>{{ gest.id }}</td>
-                                <td>{{ gest.person.prenom }}</td>
-                                <td>{{ gest.person.nom }}</td>
-                                <td>{{ gest.volume }}</td>
-                                <td>{{ gest.litre }}</td>
-                                <td>{{ gest.diff }}</td>
-                                <td>{{ gest.fin_eau }}</td>
-                                <td>{{ gest.created_at }}</td>
+                                <td>{{ gest.person.nom }}  {{ gest.person.prenom }}</td>
+{#                                <td>{{ gest.person.nom }}</td>#}
+                                <td>{{ gest.motif }}</td>
+                                <td>{{ gest.amount }}</td>
+                                <td>{{ gest.mode_payment_depense }}</td>
+{#                                <td>{{ gest.description }}</td>#}
+{#                                <td>{{ gest.status }}</td>#}
+                                <td>{{ gest.create_at }}</td>
                                                         <td>
                                                             <p class="text-center">
 {#                                                            <a href="{% url 'gestion:detail' gest.id %}">#}
@@ -151,7 +153,7 @@
                                                            </td>
 
                            </tr>
-{#                {% endfor %}#}
+                {% endfor %}
         </tbody>
     </table>
 
